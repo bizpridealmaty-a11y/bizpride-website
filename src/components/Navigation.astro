@@ -1,0 +1,102 @@
+---
+const { currentPath } = Astro.props;
+
+const links = [
+  { href: '/about', label: 'О клубе' },
+  { href: '/#values', label: 'Ценности' },
+  { href: '/events', label: 'Мероприятия' },
+  { href: '/photos', label: 'Фото' },
+  { href: '/#membership', label: 'Членство' },
+];
+
+const waLink = "https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BE%20%D0%BA%D0%BB%D1%83%D0%B1%D0%B5%20BizPride";
+---
+
+<nav class="nav" id="nav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <div class="nav-logo-icon"><img src="/logo.png" alt="BizPride"></div>
+                <span class="nav-brand"><span>Biz</span>Pride</span>
+            </a>
+            <ul class="nav-links">
+                {links.map(link => (
+                    <li>
+                        <a href={link.href} class={currentPath === link.href ? 'active' : ''}>
+                            {link.label}
+                        </a>
+                    </li>
+                ))}
+                <li><a href={waLink} target="_blank" class="btn-glow">Вступить</a></li>
+            </ul>
+            <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+        </div>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    {links.map(link => (
+        <a href={link.href} class={currentPath === link.href ? 'active' : ''}>{link.label}</a>
+    ))}
+    <a href={waLink} target="_blank" class="btn-glow">Вступить</a>
+</div>
+
+<script>
+    const nav = document.getElementById('nav');
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    // Nav scroll
+    window.addEventListener('scroll', () => {
+        if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu toggle
+    if (burger && mobileMenu) {
+        burger.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('open');
+            if (isOpen) {
+                burger.classList.remove('active');
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            } else {
+                burger.classList.add('active');
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+
+        // Close on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
+            burger?.classList.remove('active');
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // If on a page with # anchor, handle smooth scroll
+    document.querySelectorAll('a[href^="/#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const href = a.getAttribute('href');
+            if (href && href.startsWith('/#') && window.location.pathname === '/') {
+                e.preventDefault();
+                const targetId = href.split('#')[1];
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+</script>

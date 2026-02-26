@@ -1,23 +1,68 @@
+---
+import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+	title: string;
+    description?: string;
+    canonicalURL?: string;
+}
+
+const { 
+    title, 
+    description = "BizPride Club — закрытый бизнес-клуб для предпринимателей в Алматы. Нетворкинг, мастермайнды, менторство и совместный рост.",
+    canonicalURL = Astro.url.href
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" href="/logo.png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalURL} />
+        
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:site_name" content="BizPride Club" />
+        <meta property="og:locale" content="ru_KZ" />
+        <meta property="og:image" content="https://bizpride.kz/img-mastermind.png" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet" />
+        
+        <ViewTransitions />
 	</head>
 	<body>
-		<slot />
+        <Navigation currentPath={currentPath} />
+        <main transition:animate="fade">
+		    <slot />
+        </main>
+        <Footer />
+
+        <script>
+            // Standard Reveal Logic (will work across pages with ViewTransitions)
+            function initReveals() {
+                const reveals = document.querySelectorAll('.reveal');
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+                }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+                reveals.forEach(el => observer.observe(el));
+            }
+
+            document.addEventListener('astro:page-load', initReveals);
+        </script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

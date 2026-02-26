@@ -1,0 +1,41 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer id="contacts" class="section-dark" style="border-top: 1px solid var(--border);">
+    <div class="container">
+        <div class="footer-bottom">
+            <span>© {currentYear} BizPride Club</span>
+            <div class="footer-social">
+                <a href="https://t.me/bizpride" target="_blank">TG</a>
+                <a href="https://www.instagram.com/biz.pride/" target="_blank">IG</a>
+                <a href="https://wa.me/77070357777" target="_blank">WA</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 40px 0;
+        font-size: 14px;
+        color: var(--text-muted);
+    }
+    .footer-social {
+        display: flex;
+        gap: 24px;
+    }
+    .footer-social a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-weight: 700;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+    }
+    .footer-social a:hover {
+        color: var(--red);
+    }
+</style>

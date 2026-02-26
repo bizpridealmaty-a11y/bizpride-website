@@ -1,113 +1,14 @@
 ---
-import '../styles/global.css';
-import { createClient } from '@sanity/client';
-import imageUrlBuilder from '@sanity/image-url';
-
-const client = createClient({
-  projectId: 'yctyzy4i',
-  dataset: 'production',
-  useCdn: false,
-  apiVersion: '2023-05-03',
-});
-
-const builder = imageUrlBuilder(client);
-function urlFor(source) {
-  return builder.image(source);
-}
+import Layout from '../layouts/Layout.astro';
+import { client, urlFor } from '../lib/sanity';
 
 const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
 ---
-<!DOCTYPE html>
-<html lang="ru">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BizPride Club — Закрытый бизнес-клуб в Алматы</title>
-    <link rel="icon" type="image/png" href="/logo.png">
-    <link rel="sitemap" href="/sitemap.xml">
-    <meta name="description"
-        content="BizPride Club — закрытый бизнес-клуб для предпринимателей в Алматы. Нетворкинг, мастермайнды, менторство и совместный рост. Вход по рекомендации.">
-    <meta name="keywords"
-        content="бизнес-клуб Алматы, BizPride, BizPride Club, нетворкинг Казахстан, предприниматели, мастермайнд, менторство">
-    <link rel="canonical" href="https://bizpride.kz/">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="BizPride Club — Закрытый бизнес-клуб в Алматы">
-    <meta property="og:description"
-        content="Закрытый бизнес-клуб для предпринимателей в Алматы. Нетворкинг, мастермайнды, менторство.">
-    <meta property="og:url" content="https://bizpride.kz/">
-    <meta property="og:site_name" content="BizPride Club">
-    <meta property="og:locale" content="ru_KZ">
-    <meta property="og:image" content="https://bizpride.kz/img-mastermind.png">
-    
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="BizPride Club — Закрытый бизнес-клуб в Алматы">
-    <meta name="twitter:description" content="Закрытый бизнес-клуб для предпринимателей в Алматы. Нетворкинг, мастермайнды, менторство.">
-    <meta name="twitter:image" content="https://bizpride.kz/img-mastermind.png">
-
-    <!-- Theme and Robots -->
-    <meta name="theme-color" content="#111111">
-    <meta name="robots" content="index, follow">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap"
-        rel="stylesheet">
-    
-    <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "BizPride Club",
-    "url": "https://bizpride.kz",
-    "telephone": "+77070357777",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Алматы",
-      "addressCountry": "KZ"
-    },
-    "description": "Закрытый бизнес-клуб для предпринимателей в Алматы"
-  }
-  </script>
-</head>
-
-<body>
-
-    <!-- NAV -->
-    <nav class="nav" id="nav">
-        <div class="container">
-            <div class="nav-inner">
-                <a href="/" class="nav-logo">
-                    <div class="nav-logo-icon"><img src="/logo.png" alt="BizPride"></div>
-                    <span class="nav-brand"><span>Biz</span>Pride</span>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="/about">О клубе</a></li>
-                    <li><a href="/#values">Ценности</a></li>
-                    <li><a href="/#events">Мероприятия</a></li>
-                    <li><a href="/photos">Фото</a></li>
-                    <li><a href="/#membership">Членство</a></li>
-                    <li><a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BE%20%D0%BA%D0%BB%D1%83%D0%B1%D0%B5%20BizPride"
-                            target="_blank" class="btn-glow">Вступить</a></li>
-                </ul>
-                <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#about">О клубе</a>
-        <a href="#values">Ценности</a>
-        <a href="#events">Мероприятия</a>
-        <a href="#gallery">Фото</a>
-        <a href="#membership">Членство</a>
-        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BE%20%D0%BA%D0%BB%D1%83%D0%B1%D0%B5%20BizPride"
-            target="_blank" class="btn-glow">Вступить</a>
-    </div>
-
+<Layout 
+    title="BizPride Club — Закрытый бизнес-клуб в Алматы"
+    description="Объединяем предпринимателей Казахстана для совместного роста. Нетворкинг-ужины, мастермайнды и закрытое сообщество лидеров в Алматы."
+>
     <!-- HERO -->
     <section class="hero" id="hero">
         <div class="container">
@@ -119,17 +20,14 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                     <p class="hero-desc">Объединяем предпринимателей Казахстана, которые ценят реальные связи, обмен
                         опытом и совместный рост. Вход — только по рекомендации.</p>
                     <div class="hero-actions">
-                        <a href="#membership" class="btn-glow">Стать резидентом</a>
-                        <a href="#about" class="btn-glass">Узнать больше</a>
+                        <a href="/#membership" class="btn-glow">Стать резидентом</a>
+                        <a href="/events" class="btn-glass">Расписание мероприятий</a>
                     </div>
                 </div>
                 <div class="hero-visual">
                     <div class="hero-cards">
                         <div class="hero-card hero-card-1">
-                            <div class="hc-icon"><svg viewBox="0 0 24 24">
-                                    <path
-                                        d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
-                                </svg></div>
+                            <div class="hc-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" /></svg></div>
                             <div class="hc-name">120+ Резидентов</div>
                             <div class="hc-role">Предприниматели, инвесторы, CEO</div>
                             <span class="hc-tag">Закрытый клуб</span>
@@ -149,318 +47,64 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                                 <div class="hc2-event-name">Ретрит</div>
                             </div>
                         </div>
-                        <div class="hero-card hero-card-3">
-                            <div class="hc3-bar">Club Stats · 2026</div>
-                            <div class="hc3-body">
-                                <div class="hc3-stat"><span class="hc3-stat-label">Резиденты</span><span
-                                        class="hc3-stat-value">120+</span></div>
-                                <div class="hc3-stat"><span class="hc3-stat-label">Встречи / год</span><span
-                                        class="hc3-stat-value">150+</span></div>
-                                <div class="hc3-stat"><span class="hc3-stat-label">Отрасли</span><span
-                                        class="hc3-stat-value">62</span></div>
-                            </div>
-                        </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar reveal reveal-d4 shadow-premium">
+                <div class="stats-item">
+                    <div class="stats-num" data-count="150" data-suffix="+">0</div>
+                    <div class="stats-label">Встреч в год</div>
+                </div>
+                <div class="stats-divider"></div>
+                <div class="stats-item">
+                    <div class="stats-num" data-count="120" data-suffix="+">0</div>
+                    <div class="stats-label">Резидентов</div>
+                </div>
+                <div class="stats-divider"></div>
+                <div class="stats-item">
+                    <div class="stats-num" data-count="62">0</div>
+                    <div class="stats-label">Отраслей</div>
+                </div>
+                <div class="stats-divider"></div>
+                <div class="stats-item">
+                    <div class="stats-num" data-count="5">0</div>
+                    <div class="stats-label">Лет опыта</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- STATS -->
-    <div class="stats-bar">
+    <!-- VALUES -->
+    <section class="section-dark" id="values" style="background: var(--bg-secondary);">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item reveal">
-                    <div class="stat-number" data-count="120" data-suffix="+">0</div>
-                    <div class="stat-label">Резидентов</div>
-                    <div class="stat-divider"></div>
-                </div>
-                <div class="stat-item reveal reveal-d1">
-                    <div class="stat-number" data-count="1000" data-suffix="+">0</div>
-                    <div class="stat-label">Участников мероприятий</div>
-                    <div class="stat-divider"></div>
-                </div>
-                <div class="stat-item reveal reveal-d2">
-                    <div class="stat-number" data-count="200" data-suffix="+">0</div>
-                    <div class="stat-label">Встреч в год</div>
-                    <div class="stat-divider"></div>
-                </div>
-                <div class="stat-item reveal reveal-d3">
-                    <div class="stat-number" data-count="4">0</div>
-                    <div class="stat-label">Года работы</div>
-                    <div class="stat-divider"></div>
-                </div>
-                <div class="stat-item reveal reveal-d4">
-                    <div class="stat-number" data-count="62">0</div>
-                    <div class="stat-label">Отраслей</div>
-                    <div class="stat-divider"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-    <!-- КАЛЕНДАРЬ МЕРОПРИЯТИЙ (МАРТ 2026) -->
-    <section class="section-light" id="calendar" style="background:#fdfaf6; padding: 100px 0;">
-        <div class="container" style="max-width:1200px;">
-            <div style="margin-bottom: 32px;">
-                <h2 style="font-size:clamp(40px, 8vw, 96px); font-weight:900; color:#d32f2f; text-transform:uppercase; line-height:1; letter-spacing:-2px; display:flex; align-items:baseline; gap:8px; margin:0;">
-                    МАРТ <span style="font-size:clamp(16px, 3vw, 24px); font-weight:800; opacity:0.6; letter-spacing:2px; color:#e57373;">РАСПИСАНИЕ МЕРОПРИЯТИЙ:</span>
-                </h2>
+            <div class="values-header">
+                <div class="label reveal">Ценности</div>
+                <h2 class="heading-lg reveal reveal-d1">Почему выбирают<br>наш клуб</h2>
             </div>
 
-
-            <div class="cal-red-grid reveal reveal-d1" style="display: grid; grid-template-columns: repeat(7, 1fr); border-top: 2px solid #d32f2f; border-left: 2px solid #d32f2f;">
-                <!-- Headers (Monday First) -->
-                <div class="cal-red-h">ПН</div>
-                <div class="cal-red-h">ВТ</div>
-                <div class="cal-red-h">СР</div>
-                <div class="cal-red-h">ЧТ</div>
-                <div class="cal-red-h">ПТ</div>
-                <div class="cal-red-h">СБ</div>
-                <div class="cal-red-h sun">ВС</div>
-
-                <!-- Row 1: Feb 23-28, Mar 1 -->
-                <div class="cal-red-cell empty"><span class="cal-red-num">23</span></div>
-                <div class="cal-red-cell empty"><span class="cal-red-num">24</span></div>
-                <div class="cal-red-cell empty"><span class="cal-red-num">25</span></div>
-                <div class="cal-red-cell empty"><span class="cal-red-num">26</span></div>
-                <div class="cal-red-cell empty"><span class="cal-red-num">27</span></div>
-                <div class="cal-red-cell empty"><span class="cal-red-num">28</span></div>
-                <div class="cal-red-cell sun has-event">
-                    <span class="cal-red-num text-white">1</span>
-                    <span class="cal-red-event text-white">Финансовые игры<br>CASHFLOW</span>
+            <div class="values-grid">
+                <div class="value-card reveal">
+                    <div class="vc-icon">🤝</div>
+                    <h3>Окружение</h3>
+                    <p>Доступ к кругу сильных лидеров, которые сталкиваются с такими же вызовами и готовы делиться
+                        опытом.</p>
                 </div>
-
-                <!-- Row 2: Mar 2-8 -->
-                <div class="cal-red-cell"><span class="cal-red-num">2</span></div>
-                <div class="cal-red-cell has-event hoverable">
-                    <span class="cal-red-num">3</span>
-                    <span class="cal-red-event-small">СОВЕТ<br>ДИРЕКТОРОВ</span>
-                    <div class="cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
-                    <div class="cal-Hover-popup">
-                        <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                        <p>Глубокий разбор бизнес-кейсов в закрытой группе. Взгляд со стороны, коллективный опыт и поиск эффективных решений для вашего роста.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%203%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank">Принять участие</a>
-                    </div>
+                <div class="value-card reveal reveal-d1">
+                    <div class="vc-icon">🚀</div>
+                    <h3>Развитие</h3>
+                    <p>Проверенные форматы встреч, ориентированные на конкретный результат в бизнесе и личностный рост.
+                    </p>
                 </div>
-                <div class="cal-red-cell"><span class="cal-red-num">4</span></div>
-                <div class="cal-red-cell"><span class="cal-red-num">5</span></div>
-                <div class="cal-red-cell"><span class="cal-red-num">6</span></div>
-                <div class="cal-red-cell has-event hoverable">
-                    <span class="cal-red-num">7</span>
-                    <span class="cal-red-event-small">FAMILY<br>DAY</span>
-                    <div class="cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
-                    <div class="cal-Hover-popup">
-                        <strong>Family Day</strong>
-                        <p>Семейный день в кругу резидентов клуба. Отдых, живое общение и укрепление связей в неформальной обстановке с близкими.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%207%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20Family%20Day." class="cal-btn-wa" target="_blank">Принять участие</a>
-                    </div>
-                </div>
-                <div class="cal-red-cell sun has-event">
-                    <span class="cal-red-num text-white">8</span>
-                    <span class="cal-red-event text-white">Финансовые игры<br>CASHFLOW</span>
-                </div>
-
-                <!-- Row 3: Mar 9-15 -->
-                <div class="cal-red-cell"><span class="cal-red-num">9</span></div>
-                <div class="cal-red-cell has-event hoverable">
-                    <span class="cal-red-num">10</span>
-                    <span class="cal-red-event-small">СОВЕТ<br>ДИРЕКТОРОВ</span>
-                    <div class="cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
-                    <div class="cal-Hover-popup">
-                        <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                        <p>Глубокий разбор бизнес-кейсов в закрытой группе. Взгляд со стороны, коллективный опыт и поиск эффективных решений для вашего роста.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2010%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank">Принять участие</a>
-                    </div>
-                </div>
-                <div class="cal-red-cell"><span class="cal-red-num">11</span></div>
-                <div class="cal-red-cell"><span class="cal-red-num">12</span></div>
-                <div class="cal-red-cell"><span class="cal-red-num">13</span></div>
-                <div class="cal-red-cell has-event hoverable">
-                    <span class="cal-red-num">14</span>
-                    <span class="cal-red-event-small">БИЗНЕС<br>БРАНЧ</span>
-                    <div class="cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></div>
-                    <div class="cal-Hover-popup">
-                        <strong>Бизнес-Бранч</strong>
-                        <p>Формат делового общения за завтраком. Знакомство с новыми резидентами, обмен контактами и обсуждение совместных проектов.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2014%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%91%D1%80%D0%B0%D0%BD%D1%87." class="cal-btn-wa" target="_blank">Принять участие</a>
-                    </div>
-                </div>
-                <div class="cal-red-cell sun has-event">
-                    <span class="cal-red-num text-white">15</span>
-                    <span class="cal-red-event text-white">Финансовые игры<br>CASHFLOW</span>
-                </div>
-
-                <!-- Row 4: Mar 16-22 -->
-                <div class="cal-red-cell"><span class="cal-red-num">16</span></div>
-                <div class="cal-red-cell has-event hoverable">
-                    <span class="cal-red-num">17</span>
-                    <span class="cal-red-event-small">СОВЕТ<br>ДИРЕКТОРОВ</span>
-                    <div class="cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
-                    <div class="cal-Hover-popup">
-                        <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                        <p>Глубокий разбор бизнес-кейсов в закрытой группе. Взгляд со стороны, коллективный опыт и поиск эффективных решений для вашего роста.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2017%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank">Принять участие</a>
-                    </div>
-                </div>
-                <div class="cal-red-cell"><span class="cal-red-num">18</span></div>
-                <div class="cal-red-cell"><span class="cal-red-num">19</span></div>
-                <div class="cal-red-cell"><span class="cal-red-num">20</span></div>
-                <div class="cal-red-cell has-event hoverable">
-                    <span class="cal-red-num">21</span>
-                    <span class="cal-red-event-small">БИЗНЕС<br>БРАНЧ</span>
-                    <div class="cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></div>
-                    <div class="cal-Hover-popup">
-                        <strong>Бизнес-Бранч</strong>
-                        <p>Формат делового общения за завтраком. Знакомство с новыми резидентами, обмен контактами и обсуждение совместных проектов.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2021%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%91%D1%80%D0%B0%D0%BD%D1%87." class="cal-btn-wa" target="_blank">Принять участие</a>
-                    </div>
-                </div>
-                <div class="cal-red-cell sun has-event">
-                    <span class="cal-red-num text-white">22</span>
-                    <span class="cal-red-event text-white">Финансовые игры<br>CASHFLOW</span>
-                </div>
-
-                <!-- Row 5: Mar 23-29 -->
-                <div class="cal-red-cell"><span class="cal-red-num">23</span></div>
-                <div class="cal-red-cell has-event hoverable">
-                    <span class="cal-red-num">24</span>
-                    <span class="cal-red-event-small">СОВЕТ<br>ДИРЕКТОРОВ</span>
-                    <div class="cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
-                    <div class="cal-Hover-popup">
-                        <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                        <p>Глубокий разбор бизнес-кейсов в закрытой группе. Взгляд со стороны, коллективный опыт и поиск эффективных решений для вашего роста.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2024%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank">Принять участие</a>
-                    </div>
-                </div>
-                <div class="cal-red-cell"><span class="cal-red-num">25</span></div>
-                <div class="cal-red-cell"><span class="cal-red-num">26</span></div>
-                <div class="cal-red-cell"><span class="cal-red-num">27</span></div>
-                <div class="cal-red-cell has-event hoverable">
-                    <span class="cal-red-num">28</span>
-                    <span class="cal-red-event-small">БИЗНЕС<br>БРАНЧ</span>
-                    <div class="cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></div>
-                    <div class="cal-Hover-popup">
-                        <strong>Бизнес-Бранч</strong>
-                        <p>Формат делового общения за завтраком. Знакомство с новыми резидентами, обмен контактами и обсуждение совместных проектов.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2028%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%91%D1%80%D0%B0%D0%BD%D1%87." class="cal-btn-wa" target="_blank">Принять участие</a>
-                    </div>
-                </div>
-                <div class="cal-red-cell sun has-event">
-                    <span class="cal-red-num text-white">29</span>
-                    <span class="cal-red-event text-white">Финансовые игры<br>CASHFLOW</span>
-                </div>
-
-                <!-- Row 6: Mar 30-31, Apr 1-5 -->
-                <div class="cal-red-cell"><span class="cal-red-num">30</span></div>
-                <div class="cal-red-cell has-event hoverable">
-                    <span class="cal-red-num">31</span>
-                    <span class="cal-red-event-small">СОВЕТ<br>ДИРЕКТОРОВ</span>
-                    <div class="cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
-                    <div class="cal-Hover-popup">
-                        <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                        <p>Глубокий разбор бизнес-кейсов в закрытой группе. Взгляд со стороны, коллективный опыт и поиск эффективных решений для вашего роста.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2031%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank">Принять участие</a>
-                    </div>
-                </div>
-                <div class="cal-red-cell empty"><span class="cal-red-num">1</span></div>
-                <div class="cal-red-cell empty"><span class="cal-red-num">2</span></div>
-                <div class="cal-red-cell empty"><span class="cal-red-num">3</span></div>
-                <div class="cal-red-cell empty"><span class="cal-red-num">4</span></div>
-                <div class="cal-red-cell sun empty">
-                    <span class="cal-red-num text-white">5</span>
+                <div class="value-card reveal reveal-d2">
+                    <div class="vc-icon">🛡️</div>
+                    <h3>Доверие</h3>
+                    <p>Закрытая среда, где соблюдаются правила конфиденциальности и действует принцип WIN-WIN.</p>
                 </div>
             </div>
         </div>
     </section>
-
-
-
-
-
-    <!-- Детальные форматы (Слайды 6-9) & Timeline -->
-    <section class="section-light" id="events-details" style="background:#fff; padding: 100px 0;">
-        <div class="container">
-
-
-                <h2 style="font-size: clamp(40px, 6vw, 64px); font-weight: 900; color: var(--brand); line-height: 1.1; margin-bottom: 60px; text-transform: uppercase;">
-                    Наши форматы<br>мероприятий
-                </h2>
-                <div class="formats-premium-grid">
-                    <!-- БИЗНЕС БРАНЧИ -->
-                    <div class="format-card-premium reveal">
-                        <div class="fcp-img-wrapper">
-                            <img src="/img-networking.png" alt="Бизнес Бранчи">
-                        </div>
-                        <div class="fcp-content">
-                            <h3>Бизнес Бранчи</h3>
-                            <p>Регулярные встречи с экспертами, обмен опытом и разбор актуальных трендов.</p>
-                            <div class="fcp-tags">
-                                <span class="fcp-tag">Знания</span>
-                                <span class="fcp-tag">Нетворкинг</span>
-                                <span class="fcp-tag">Инсайты</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- МАСТЕР МАЙНД -->
-                    <div class="format-card-premium light reveal reveal-d1">
-                        <div class="fcp-img-wrapper">
-                            <img src="/img-mastermind.png" alt="Мастер Майнд">
-                        </div>
-                        <div class="fcp-content">
-                            <h3>Мастер Майнд</h3>
-                            <p>Глубокий разбор бизнес-кейсов в закрытых группах. Взгляд со стороны и решения.</p>
-                            <div class="fcp-tags">
-                                <span class="fcp-tag">Рост</span>
-                                <span class="fcp-tag">Стратегия</span>
-                                <span class="fcp-tag">Решения</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ТРЕНИНГИ - WORKSHOP -->
-                    <div class="format-card-premium light reveal reveal-d2">
-                        <div class="fcp-img-wrapper">
-                            <img src="/img-networking.png" alt="Тренинги Workshop">
-                        </div>
-                        <div class="fcp-content">
-                            <h3>Тренинги - Workshop</h3>
-                            <p>Практические обучающие встречи по конкретным навыкам и инструментам.</p>
-                            <div class="fcp-tags">
-                                <span class="fcp-tag">Навыки</span>
-                                <span class="fcp-tag">Практика</span>
-                                <span class="fcp-tag">Инструменты</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- НЕФОРМАЛЬНЫЕ ВСТРЕЧИ -->
-                    <div class="format-card-premium reveal reveal-d3">
-                        <div class="fcp-img-wrapper">
-                            <img src="/img-mastermind.png" alt="Неформальные встречи">
-                        </div>
-                        <div class="fcp-content">
-                            <h3>Неформальные Встречи</h3>
-                            <p>Совместные поездки, ужины и тимбилдинги. Свободное общение без формата.</p>
-                            <div class="fcp-tags">
-                                <span class="fcp-tag">Отдых</span>
-                                <span class="fcp-tag">Связи</span>
-                                <span class="fcp-tag">Среда</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-    </section>
-
-
 
     <!-- CTA -->
     <section class="cta-section">
@@ -503,7 +147,7 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                         <li><span class="check">✓</span>Приоритет на ивентах</li>
                         <li><span class="check">✓</span>База контактов</li>
                     </ul>
-                    <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B2%D1%81%D1%82%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%B2%20%D0%BA%D0%BB%D1%83%D0%B1%20%D0%BD%D0%B0%206%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B5%D0%B2"
+                    <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B2%D1%81%D1%82%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%B2%20%D0%BA%D0%BB%D1%83%D0%B1%20%D0%BD%D0%B0%206%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%206%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%206%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B5%D0%B2"
                         target="_blank" class="btn-glow" style="width:100%;justify-content:center">Вступить</a>
                 </div>
                 <div class="membership-card featured reveal reveal-d2">
@@ -531,38 +175,6 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer id="contacts">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-brand-name"><span>Biz</span>Pride Club</div>
-                    <p>Закрытый бизнес-клуб BizPride в Алматы для предпринимателей, строящих значимые компании.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Навигация</h4><a href="#about">О клубе</a><a href="#values">Ценности</a><a
-                        href="#events">Мероприятия</a><a href="#gallery">Фото</a><a href="#membership">Членство</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Контакты</h4><a href="tel:+77070357777">+7 707 035 7777</a><a>Алматы, Казахстан</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Мы в сети</h4><a href="https://t.me/bizpride" target="_blank">Telegram</a><a
-                        href="https://www.instagram.com/biz.pride/" target="_blank">Instagram</a><a
-                        href="https://www.youtube.com/@BizPride" target="_blank">YouTube</a><a
-                        href="https://wa.me/77070357777" target="_blank">WhatsApp</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>© 2026 BizPride Club</span>
-                <div class="footer-social"><a href="https://t.me/bizpride" target="_blank">TG</a><a
-                        href="https://www.instagram.com/biz.pride/" target="_blank">IG</a><a
-                        href="https://www.youtube.com/@BizPride" target="_blank">YT</a><a
-                        href="https://wa.me/77070357777" target="_blank">WA</a></div>
-            </div>
-        </div>
-    </footer>
-
     <!-- FLOATING WHATSAPP -->
     <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BE%20%D0%BA%D0%BB%D1%83%D0%B1%D0%B5%20BizPride"
         target="_blank" class="wa-float" aria-label="WhatsApp">
@@ -572,39 +184,7 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
         </svg>
     </a>
 
-    <script>
-        // Nav scroll
-        const nav = document.getElementById('nav');
-        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
-
-        // Reveal on scroll
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(el => observer.observe(el));
-
-        // Smooth scroll + close menu
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                e.preventDefault();
-                const t = document.querySelector(a.getAttribute('href'));
-                if (t) { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); closeMobileMenu(); }
-            });
-        });
-
-        // Mobile menu
-        const burger = document.getElementById('burger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        function closeMobileMenu() { burger.classList.remove('active'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
-        burger.addEventListener('click', () => {
-            const open = mobileMenu.classList.contains('open');
-            if (open) closeMobileMenu();
-            else { burger.classList.add('active'); mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
-        });
-        document.querySelectorAll('.mobile-menu a').forEach(l => l.addEventListener('click', closeMobileMenu));
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
-
+    <script is:inline>
         // Animated counter
         function animateCounters() {
             document.querySelectorAll('[data-count]').forEach(el => {
@@ -619,19 +199,18 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                 }, 30);
             });
         }
-        const statsObs = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) { animateCounters(); statsObs.disconnect(); }
-            });
-        }, { threshold: 0.3 });
-        const statsElements = document.querySelectorAll('.stats-bar, .fmt-stats-block');
-        statsElements.forEach(el => statsObs.observe(el));
 
-        // Close on Escape
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') { closeMobileMenu(); }
-        });
+        function initStats() {
+            const statsObs = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { animateCounters(); statsObs.disconnect(); }
+                });
+            }, { threshold: 0.3 });
+            const statsElements = document.querySelectorAll('.stats-bar, .fmt-stats-block');
+            statsElements.forEach(el => statsObs.observe(el));
+        }
+
+        // Initialize on page load/transition
+        document.addEventListener('astro:page-load', initStats);
     </script>
-</body>
-
-</html>
+</Layout>
