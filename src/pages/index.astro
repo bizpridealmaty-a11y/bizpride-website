@@ -52,25 +52,30 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
             </div>
 
             <!-- Stats Bar -->
-            <div class="stats-bar reveal reveal-d4 shadow-premium">
-                <div class="stats-item">
-                    <div class="stats-num" data-count="150" data-suffix="+">0</div>
-                    <div class="stats-label">Встреч в год</div>
-                </div>
-                <div class="stats-divider"></div>
-                <div class="stats-item">
-                    <div class="stats-num" data-count="120" data-suffix="+">0</div>
-                    <div class="stats-label">Резидентов</div>
-                </div>
-                <div class="stats-divider"></div>
-                <div class="stats-item">
-                    <div class="stats-num" data-count="62">0</div>
-                    <div class="stats-label">Отраслей</div>
-                </div>
-                <div class="stats-divider"></div>
-                <div class="stats-item">
-                    <div class="stats-num" data-count="5">0</div>
-                    <div class="stats-label">Лет опыта</div>
+            <div class="stats-bar reveal reveal-d4">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="150" data-suffix="+">0</div>
+                            <div class="stat-label">Встреч в год</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="120" data-suffix="+">0</div>
+                            <div class="stat-label">Резидентов</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="62">0</div>
+                            <div class="stat-label">Отраслей</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="5">0</div>
+                            <div class="stat-label">Лет опыта</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="3000" data-suffix="+">0</div>
+                            <div class="stat-label">Запросов</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
