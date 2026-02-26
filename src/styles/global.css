@@ -3315,3 +3315,45 @@ footer {
   background: #d32f2f;
   color: #fff;
 }
+/* --- ORIGINAL CALENDAR FIXES --- */
+.calendar-header-wrapper h1 {
+  font-size: clamp(48px, 9vw, 110px);
+  font-weight: 900;
+  color: #d32f2f;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -3px;
+  margin: 0;
+}
+.calendar-title-small {
+  font-size: clamp(18px, 4vw, 32px);
+  color: #ff6b6b;
+  font-weight: 800;
+  letter-spacing: -1px;
+  opacity: 0.8;
+  position: relative;
+  display: inline-block;
+  transform: translateY(-20px);
+}
+.cal-btn-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  background: transparent;
+  border: 2px solid #d32f2f;
+  color: #d32f2f;
+  border-radius: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+.cal-btn-wa:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
