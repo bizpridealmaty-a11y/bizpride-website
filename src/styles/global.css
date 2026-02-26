@@ -89,6 +89,20 @@ img {
   padding: 0 clamp(20px, 5vw, 64px);
 }
 
+.section-dark {
+  padding: clamp(80px, 12vw, 140px) 0;
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-light {
+  padding: clamp(80px, 12vw, 140px) 0;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
 /* ═══ GRAIN OVERLAY ═══ */
 body::after {
   content: '';
