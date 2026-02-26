@@ -49,9 +49,7 @@ const currentPath = Astro.url.pathname;
 	</head>
 	<body>
         <Navigation currentPath={currentPath} theme={navTheme} />
-        <main transition:animate="fade">
-		    <slot />
-        </main>
+        <slot />
         <Footer />
 
         <script>
