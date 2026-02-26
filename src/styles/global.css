@@ -794,6 +794,16 @@ body::after {
   font-weight: 900;
 }
 
+.cal-red-event-small {
+  font-size: 8px;
+  font-weight: 700;
+  color: #d32f2f;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-top: 4px;
+  display: block;
+}
+
 /* ═══ STATS BAR ═══ */
 .stats-bar {
   padding: 56px 0;
