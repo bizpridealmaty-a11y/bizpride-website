@@ -2,40 +2,192 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer id="contacts" class="section-dark" style="border-top: 1px solid var(--border);">
+<footer id="contacts" class="section-dark footer-main">
     <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand-section">
+                <div class="footer-logo">
+                    <span class="red">BIZPRIDE</span> CLUB
+                </div>
+                <p class="footer-tagline">Закрытый бизнес-клуб BizPride в Алматы для предпринимателей, строящих значимые компании.</p>
+            </div>
+
+            <nav class="footer-nav">
+                <h3>Навигация</h3>
+                <ul>
+                    <li><a href="/about">О клубе</a></li>
+                    <li><a href="/#values">Ценности</a></li>
+                    <li><a href="/events">Мероприятия</a></li>
+                    <li><a href="/photos">Фото</a></li>
+                    <li><a href="/#membership">Членство</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-contacts">
+                <h3>Контакты</h3>
+                <p><a href="tel:+77070357777">+7 707 035 7777</a></p>
+                <p>Алматы, Казахстан</p>
+                <p>пр. Бухар-Жырау 33,<br>БЦ «Женис»</p>
+            </div>
+
+            <div class="footer-social-column">
+                <h3>Мы в сети</h3>
+                <div class="social-links-text">
+                    <a href="https://t.me/bizpride" target="_blank">Telegram</a>
+                    <a href="https://www.instagram.com/biz.pride/" target="_blank">Instagram</a>
+                    <a href="https://youtube.com/@bizpride" target="_blank">YouTube</a>
+                    <a href="https://wa.me/77070357777" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Google Map Integration -->
+        <div class="footer-map-wrapper reveal">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d2906.770283407!2d76.915!3d43.235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836ecf86e96997%3A0x6b86ce6f9a0c7c8!2z0L_RgC3Rgi4g0JHRg9GF0LDRgC3QltGL0YDQsNGDIDMzLCDQkNC70LzQsNGC0YsgMDUwMDAwLCDQmtCw0LfQsNGF0YHRgtCw0L0!5e0!3m2!1sru!2skz!4v1700000000000!5m2!1sru!2skz" 
+                width="100%" 
+                height="350" 
+                style="border:0; border-radius: 24px; filter: invert(90%) hue-rotate(180deg) brightness(0.9);" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
         <div class="footer-bottom">
             <span>© {currentYear} BizPride Club</span>
-            <div class="footer-social">
-                <a href="https://t.me/bizpride" target="_blank">TG</a>
-                <a href="https://www.instagram.com/biz.pride/" target="_blank">IG</a>
-                <a href="https://wa.me/77070357777" target="_blank">WA</a>
+            <div class="footer-social-icons">
+                <a href="https://t.me/bizpride" target="_blank" class="social-icon">TG</a>
+                <a href="https://www.instagram.com/biz.pride/" target="_blank" class="social-icon">IG</a>
+                <a href="https://youtube.com/@bizpride" target="_blank" class="social-icon">YT</a>
+                <a href="https://wa.me/77070357777" target="_blank" class="social-icon">WA</a>
             </div>
         </div>
     </div>
 </footer>
 
 <style>
+    .footer-main {
+        padding-top: 100px;
+        padding-bottom: 40px;
+        border-top: 1px solid var(--border);
+        background: #0a0a0a;
+    }
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 80px;
+    }
+    .footer-brand-section {
+        max-width: 320px;
+    }
+    .footer-logo {
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        margin-bottom: 24px;
+        color: #fff;
+    }
+    .footer-tagline {
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--text-muted);
+    }
+    
+    .footer-grid h3 {
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #fff;
+        margin-bottom: 24px;
+    }
+    
+    .footer-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .footer-nav li {
+        margin-bottom: 12px;
+    }
+    .footer-nav a, .footer-contacts a, .social-links-text a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 15px;
+        transition: color 0.3s;
+    }
+    .footer-nav a:hover, .footer-contacts a:hover, .social-links-text a:hover {
+        color: var(--red);
+    }
+    
+    .footer-contacts p {
+        font-size: 15px;
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+    
+    .social-links-text {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer-map-wrapper {
+        margin-bottom: 60px;
+    }
+
     .footer-bottom {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 40px 0;
+        padding-top: 40px;
+        border-top: 1px solid rgba(255,255,255,0.05);
         font-size: 14px;
         color: var(--text-muted);
     }
-    .footer-social {
+    .footer-social-icons {
         display: flex;
-        gap: 24px;
+        gap: 12px;
     }
-    .footer-social a {
+    .social-icon {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
         color: var(--text-muted);
         text-decoration: none;
         font-weight: 700;
-        letter-spacing: 1px;
-        transition: color 0.3s;
+        font-size: 12px;
+        transition: all 0.3s;
     }
-    .footer-social a:hover {
-        color: var(--red);
+    .social-icon:hover {
+        background: var(--red);
+        color: #fff;
+        border-color: var(--red);
+        transform: translateY(-3px);
+    }
+
+    @media (max-width: 991px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+    }
+    @media (max-width: 576px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+        }
+        .footer-bottom {
+            flex-direction: column;
+            gap: 24px;
+            text-align: center;
+        }
     }
 </style>

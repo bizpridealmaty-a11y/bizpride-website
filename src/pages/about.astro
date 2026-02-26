@@ -33,10 +33,30 @@ import Layout from '../layouts/Layout.astro';
 
     <section class="section-dark" style="background: var(--bg-secondary);">
         <div class="container">
-            <div style="max-width: 800px;">
-                <h2 class="heading-lg reveal" style="font-size: 48px; margin-bottom: 32px;">Наша Миссия</h2>
-                <p class="reveal reveal-d1" style="font-size: 18px; margin-bottom: 24px;">Мы верим, что успех предпринимателя напрямую зависит от тех, кто его окружает. Наша цель — создать среду, где каждый лидер находит поддержку, нужные контакты и вдохновение для новых свершений.</p>
-                <p class="reveal reveal-d2" style="font-size: 18px;">В BizPride мы не просто знакомимся — мы строим долгосрочные партнерские отношения, основанные на доверии и общих ценностях.</p>
+            <div class="hero-grid" style="align-items: center; gap: 80px;">
+                <div style="max-width: 800px;">
+                    <h2 class="heading-lg reveal" style="font-size: 48px; margin-bottom: 32px;">Наша Миссия</h2>
+                    <p class="reveal reveal-d1" style="font-size: 18px; margin-bottom: 24px;">Мы верим, что успех предпринимателя напрямую зависит от тех, кто его окружает. Наша цель — создать среду, где каждый лидер находит поддержку, нужные контакты и вдохновение для новых свершений.</p>
+                    <p class="reveal reveal-d2" style="font-size: 18px; margin-bottom: 40px;">В BizPride мы не просто знакомимся — мы строим долгосрочные партнерские отношения, основанные на доверии и общих ценностях.</p>
+                    
+                    <div class="mission-stats reveal reveal-d3" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                        <div class="m-stat">
+                            <div style="color: var(--red); font-size: 24px; font-weight: 800; margin-bottom: 4px;">5X</div>
+                            <div style="font-size: 14px; opacity: 0.6;">Плановый рост дохода резидентов</div>
+                        </div>
+                        <div class="m-stat">
+                            <div style="color: var(--red); font-size: 24px; font-weight: 800; margin-bottom: 4px;">30%</div>
+                            <div style="font-size: 14px; opacity: 0.6;">Эффективность нетворкинга</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mission-visual reveal reveal-d4">
+                    <div style="position: relative; border-radius: 32px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
+                        <img src="/mission_growth_infographic.png" alt="Инфографика роста BizPride" style="width: 100%; display: block;">
+                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
