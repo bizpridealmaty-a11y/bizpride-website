@@ -3038,3 +3038,139 @@ footer {
 .hc2-event-date { color: var(--red); font-size: 11px; font-weight: 700; }
 .hc2-event-name { font-size: 13px; font-weight: 600; margin-top: 2px; }
 
+
+/* --- RED CALENDAR (Premium Hover) --- */
+.cal-red-grid {
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+  border-radius: 24px; /* Optional, if you want rounded corners */
+  overflow: hidden;
+}
+.cal-red-h {
+  background: var(--bg-light);
+  padding: 20px 10px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 13px;
+  color: #333;
+  border-bottom: 2px solid #d32f2f;
+  border-right: 2px solid #d32f2f;
+}
+.cal-red-h:last-child {
+  border-right: none;
+}
+.cal-red-h.sun {
+  color: #d32f2f;
+  background: rgba(211, 47, 47, 0.05);
+}
+.cal-red-cell {
+  padding: 16px;
+  min-height: 140px;
+  border-right: 2px solid #d32f2f;
+  border-bottom: 2px solid #d32f2f;
+  position: relative;
+  transition: all 0.3s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+.cal-red-cell:nth-child(7n) {
+  border-right: none;
+}
+.cal-red-cell.sun {
+  background: #d32f2f;
+}
+.cal-red-cell.empty {
+  background: var(--bg-light);
+  opacity: 0.5;
+}
+.cal-red-num {
+  font-size: 20px;
+  font-weight: 900;
+  color: #d32f2f;
+  margin-bottom: 8px;
+}
+.cal-red-num.text-white {
+  color: #fff;
+}
+.cal-red-event-small {
+  font-size: 12px;
+  font-weight: 700;
+  color: #757575;
+  line-height: 1.3;
+}
+.cal-red-event {
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.4;
+}
+.cal-icon {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  color: #d32f2f;
+  opacity: 0.5;
+  transition: all 0.3s var(--ease);
+}
+.cal-red-cell.hoverable:hover {
+  background: #fffafa;
+  cursor: pointer;
+}
+.cal-red-cell.hoverable:hover .cal-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.cal-Hover-popup {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 280px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(211, 47, 47, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s var(--ease-bounce);
+  z-index: 100;
+}
+.cal-red-cell.hoverable:hover .cal-Hover-popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-10px);
+}
+.cal-Hover-popup strong {
+  display: block;
+  font-size: 16px;
+  color: #d32f2f;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.cal-Hover-popup p {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.cal-btn-wa {
+  display: inline-block;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #d32f2f;
+  color: #d32f2f;
+  border-radius: 6px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.cal-btn-wa:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
