@@ -640,7 +640,8 @@ body::after {
 
 .hero-cards {
   position: relative;
-  height: 520px;
+  height: 620px;
+  width: 100%;
 }
 
 .hero-card {
@@ -660,75 +661,75 @@ body::after {
 
 .hero-card-1 {
   top: 0;
-  left: 8%;
-  width: 280px;
-  padding: 28px;
+  left: 0;
+  width: 320px;
+  padding: 36px;
   z-index: 3;
 }
 
 .hc-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
   background: var(--red-soft);
   border: 1px solid var(--red-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .hc-icon svg {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   fill: var(--red);
 }
 
 .hc-name {
   font-weight: 800;
-  font-size: 16px;
+  font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .hc-role {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-muted);
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .hc-tag {
   display: inline-block;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--red);
   background: var(--red-soft);
   border: 1px solid var(--red-border);
-  padding: 6px 14px;
-  border-radius: 6px;
+  padding: 8px 18px;
+  border-radius: 8px;
 }
 
 .hero-card-2 {
-  top: 60px;
-  right: 0;
-  width: 240px;
-  padding: 22px;
+  top: 80px;
+  right: -40px;
+  width: 280px;
+  padding: 28px;
   z-index: 2;
 }
 
 .hc2-header {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .hc2-event {
-  padding: 12px 0;
+  padding: 16px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -737,7 +738,7 @@ body::after {
 }
 
 .hc2-event-date {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--red);
   letter-spacing: 1px;
@@ -745,30 +746,31 @@ body::after {
 }
 
 .hc2-event-name {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .hero-card-3 {
-  bottom: 20px;
-  left: 3%;
-  width: 300px;
-  z-index: 1;
+  bottom: 0px;
+  left: 50px;
+  width: 340px;
+  z-index: 4;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
 .hc3-bar {
   background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
-  padding: 14px 22px;
+  padding: 18px 28px;
   color: #fff;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
 
 .hc3-body {
-  padding: 20px;
+  padding: 28px;
 }
 
 .hc3-stat {
