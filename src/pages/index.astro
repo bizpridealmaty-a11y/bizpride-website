@@ -353,64 +353,74 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
         <div class="container">
 
 
-            <!-- Detailed Formats - Compact Grid -->
-            <div class="events-grid-compact">
-                <!-- БИЗНЕС БРАНЧИ -->
-                <div class="event-card-compact reveal">
-                    <div class="ecc-img">
-                        <img src="/img-networking.png" alt="Бизнес Бранчи">
-                    </div>
-                    <div class="ecc-body">
-                        <h3>Бизнес Бранчи</h3>
-                        <p>Регулярные встречи с экспертами, обмен опытом и разбор актуальных трендов.</p>
-                        <div class="ecc-tags">
-                            <span>Знания</span><span>Нетворкинг</span>
+                <h2 style="font-size: clamp(40px, 6vw, 64px); font-weight: 900; color: var(--brand); line-height: 1.1; margin-bottom: 60px; text-transform: uppercase;">
+                    Наши форматы<br>мероприятий
+                </h2>
+                <div class="formats-premium-grid">
+                    <!-- БИЗНЕС БРАНЧИ -->
+                    <div class="format-card-premium reveal">
+                        <div class="fcp-img-wrapper">
+                            <img src="/img-networking.png" alt="Бизнес Бранчи">
+                        </div>
+                        <div class="fcp-content">
+                            <h3>Бизнес Бранчи</h3>
+                            <p>Регулярные встречи с экспертами, обмен опытом и разбор актуальных трендов.</p>
+                            <div class="fcp-tags">
+                                <span class="fcp-tag">Знания</span>
+                                <span class="fcp-tag">Нетворкинг</span>
+                                <span class="fcp-tag">Инсайты</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- МАСТЕР МАЙНД -->
-                <div class="event-card-compact reveal reveal-d1">
-                    <div class="ecc-img">
-                        <img src="/img-mastermind.png" alt="Мастер Майнд">
-                    </div>
-                    <div class="ecc-body">
-                        <h3>Мастер Майнд</h3>
-                        <p>Глубокий разбор бизнес-кейсов в закрытых группах. Взгляд со стороны и решения.</p>
-                        <div class="ecc-tags">
-                            <span>Рост</span><span>Стратегия</span>
+                    <!-- МАСТЕР МАЙНД -->
+                    <div class="format-card-premium gold reveal reveal-d1">
+                        <div class="fcp-img-wrapper">
+                            <img src="/img-mastermind.png" alt="Мастер Майнд">
+                        </div>
+                        <div class="fcp-content">
+                            <h3>Мастер Майнд</h3>
+                            <p>Глубокий разбор бизнес-кейсов в закрытых группах. Взгляд со стороны и решения.</p>
+                            <div class="fcp-tags">
+                                <span class="fcp-tag">Рост</span>
+                                <span class="fcp-tag">Стратегия</span>
+                                <span class="fcp-tag">Решения</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- ТРЕНИНГИ - WORKSHOP -->
-                <div class="event-card-compact reveal reveal-d2">
-                    <div class="ecc-img">
-                        <img src="/img-networking.png" alt="Тренинги Workshop">
-                    </div>
-                    <div class="ecc-body">
-                        <h3>Тренинги - Workshop</h3>
-                        <p>Практические обучающие встречи по конкретным навыкам и инструментам.</p>
-                        <div class="ecc-tags">
-                            <span>Навыки</span><span>Практика</span>
+                    <!-- ТРЕНИНГИ - WORKSHOP -->
+                    <div class="format-card-premium gold reveal reveal-d2">
+                        <div class="fcp-img-wrapper">
+                            <img src="/img-networking.png" alt="Тренинги Workshop">
+                        </div>
+                        <div class="fcp-content">
+                            <h3>Тренинги - Workshop</h3>
+                            <p>Практические обучающие встречи по конкретным навыкам и инструментам.</p>
+                            <div class="fcp-tags">
+                                <span class="fcp-tag">Навыки</span>
+                                <span class="fcp-tag">Практика</span>
+                                <span class="fcp-tag">Инструменты</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- НЕФОРМАЛЬНЫЕ ВСТРЕЧИ -->
-                <div class="event-card-compact reveal reveal-d3">
-                    <div class="ecc-img">
-                        <img src="/img-mastermind.png" alt="Неформальные встречи">
-                    </div>
-                    <div class="ecc-body">
-                        <h3>Неформальные Встречи</h3>
-                        <p>Совместные поездки, ужины и тимбилдинги. Свободное общение без формата.</p>
-                        <div class="ecc-tags">
-                            <span>Отдых</span><span>Связи</span>
+                    <!-- НЕФОРМАЛЬНЫЕ ВСТРЕЧИ -->
+                    <div class="format-card-premium reveal reveal-d3">
+                        <div class="fcp-img-wrapper">
+                            <img src="/img-mastermind.png" alt="Неформальные встречи">
+                        </div>
+                        <div class="fcp-content">
+                            <h3>Неформальные Встречи</h3>
+                            <p>Совместные поездки, ужины и тимбилдинги. Свободное общение без формата.</p>
+                            <div class="fcp-tags">
+                                <span class="fcp-tag">Отдых</span>
+                                <span class="fcp-tag">Связи</span>
+                                <span class="fcp-tag">Среда</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </section>
 
