@@ -1279,12 +1279,13 @@ body::after {
   box-shadow: 0 32px 64px rgba(196, 43, 43, 0.3);
 }
 
-.format-card-premium.gold {
-  background: var(--gold);
+.format-card-premium.light {
+  background: #fcfcfc;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.format-card-premium.gold:hover {
-  box-shadow: 0 32px 64px rgba(212, 168, 83, 0.3);
+.format-card-premium.light:hover {
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.08);
 }
 
 .fcp-img-wrapper {
@@ -1304,7 +1305,7 @@ body::after {
   color: #fff;
 }
 
-.format-card-premium.gold .fcp-content {
+.format-card-premium.light .fcp-content {
   color: var(--text-dark);
 }
 
@@ -1341,8 +1342,8 @@ body::after {
   color: #fff;
 }
 
-.format-card-premium.gold .fcp-tag {
-  background: rgba(0, 0, 0, 0.1);
+.format-card-premium.light .fcp-tag {
+  background: rgba(0, 0, 0, 0.05);
   color: var(--text-dark);
 }
 
