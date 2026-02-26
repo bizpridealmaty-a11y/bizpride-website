@@ -1,0 +1,133 @@
+---
+import '../styles/global.css';
+import { createClient } from '@sanity/client';
+import imageUrlBuilder from '@sanity/image-url';
+
+const client = createClient({
+  projectId: 'yctyzy4i',
+  dataset: 'production',
+  useCdn: false,
+  apiVersion: '2023-05-03',
+});
+
+const builder = imageUrlBuilder(client);
+function urlFor(source) {
+  return builder.image(source);
+}
+
+const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
+---
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотогалерея BizPride Club — Отчеты с наших мероприятий</title>
+    <link rel="icon" type="image/png" href="/logo.png">
+    <meta name="description"
+        content="Посмотрите фотоотчеты с прошедших встреч, мастермайндов и неформальных выездов BizPride Club. Найдите себя на кадрах нашего сообщества.">
+    <meta name="keywords"
+        content="фотоотчеты бизнес-клуб, галерея BizPride, мероприятия Алматы фото, резиденты клуба фото">
+    <link rel="canonical" href="https://bizpride.kz/photos">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Фотоотчеты BizPride Club">
+    <meta property="og:description"
+        content="Лучшие моменты с наших встреч и мероприятий в Алматы. Смотрите в галерее.">
+    <meta property="og:url" content="https://bizpride.kz/photos">
+    <meta property="og:image" content="https://bizpride.kz/img-mastermind.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="bg-primary">
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" class="nav-logo">
+                    <div class="nav-logo-icon"><img src="/logo.png" alt="BizPride"></div>
+                    <span class="nav-brand"><span>Biz</span>Pride</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/about">О клубе</a></li>
+                    <li><a href="/photos" class="active">Фото</a></li>
+                    <li><a href="/#events">Мероприятия</a></li>
+                    <li><a href="/#membership">Членство</a></li>
+                    <li><a href="https://wa.me/77070357777" target="_blank" class="btn-glow">Вступить</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section-dark" style="padding-top: 180px;">
+            <div class="container">
+                <div class="gallery-header" style="flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 80px;">
+                    <div>
+                        <div class="label reveal" style="margin-bottom: 16px;">Свежие кадры</div>
+                        <h2 class="heading-lg reveal reveal-d1" style="font-size: clamp(40px, 6vw, 72px); line-height: 1.05; letter-spacing: -2px;">Фотоотчёты<br>с мероприятий</h2>
+                    </div>
+                    <p class="reveal reveal-d2" style="color: var(--text-light); font-size: 18px; max-width: 640px; line-height: 1.7; opacity: 0.8;">
+                        На этой странице мы сохраняем историю наших встреч. Находите себя на фотоотчётах, делитесь моментами и следите за жизнью нашего сообщества.
+                    </p>
+                </div>
+
+                <div class="albums-grid">
+                    {albums.map((album, index) => (
+                        <a href={album.googleDriveLink} target="_blank" class={`album-card reveal ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`} style="display:block; text-decoration:none;">
+                            {album.coverImage && (
+                                <img class="album-cover" src={urlFor(album.coverImage).width(600).url()} alt={album.title} />
+                            )}
+                            <div class="album-overlay">
+                                <div class="album-date">{album.date}</div>
+                                <div class="album-title">{album.title}</div>
+                                <div class="album-count">
+                                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" /></svg> 
+                                    Смотреть в Drive
+                                </div>
+                            </div>
+                        </a>
+                    ))}
+                    <div class="album-card reveal reveal-d2" style="display:flex;align-items:center;justify-content:center">
+                        <div style="text-align:center;color:var(--text-muted);padding:24px">
+                            <div style="font-size:36px;margin-bottom:12px">📸</div>
+                            <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">Скоро</div>
+                            <div style="font-size:11px;margin-top:6px;opacity:.6">Новые фотоотчёты</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacts" class="section-dark" style="border-top: 1px solid var(--border);">
+        <div class="container">
+            <div class="footer-bottom">
+                <span>© 2026 BizPride Club</span>
+                <div class="footer-social">
+                    <a href="https://t.me/bizpride" target="_blank">TG</a>
+                    <a href="https://www.instagram.com/biz.pride/" target="_blank">IG</a>
+                    <a href="https://wa.me/77070357777" target="_blank">WA</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

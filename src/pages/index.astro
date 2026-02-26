@@ -85,10 +85,10 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                 </a>
                 <ul class="nav-links">
                     <li><a href="/about">О клубе</a></li>
-                    <li><a href="#values">Ценности</a></li>
-                    <li><a href="#events">Мероприятия</a></li>
-                    <li><a href="#gallery">Фото</a></li>
-                    <li><a href="#membership">Членство</a></li>
+                    <li><a href="/#values">Ценности</a></li>
+                    <li><a href="/#events">Мероприятия</a></li>
+                    <li><a href="/photos">Фото</a></li>
+                    <li><a href="/#membership">Членство</a></li>
                     <li><a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BE%20%D0%BA%D0%BB%D1%83%D0%B1%D0%B5%20BizPride"
                             target="_blank" class="btn-glow">Вступить</a></li>
                 </ul>
@@ -460,74 +460,7 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
         </div>
     </section>
 
-    <!-- GALLERY -->
-    <section class="section-dark" id="gallery">
-        <div class="container">
-            <div class="gallery-header" style="flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 80px;">
-                <div>
-                    <div class="label reveal" style="margin-bottom: 16px;">Свежие кадры</div>
-                    <h2 class="heading-lg reveal reveal-d1" style="font-size: clamp(40px, 6vw, 72px); line-height: 1.05; letter-spacing: -2px;">Фотоотчёты<br>с мероприятий</h2>
-                </div>
-                <p class="reveal reveal-d2" style="color: var(--text-light); font-size: 18px; max-width: 640px; line-height: 1.7; opacity: 0.8;">
-                    Сохраняем лучшие моменты с наших встреч. Найти себя на фотоотчётах с прошедших выходных можно здесь.
-                </p>
-            </div>
-            <div class="albums-grid">
-                {albums.map((album, index) => {
-                    const isLink = !!album.googleDriveLink;
-                    const CardTag = isLink ? 'a' : 'div';
-                    const cardProps = isLink 
-                        ? { href: album.googleDriveLink, target: "_blank", class: `album-card reveal ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`, "style": "display:block;text-decoration:none;" }
-                        : { class: `album-card reveal ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`, onclick: "openAlbum(this)", "data-album": album._id, "data-title": album.title };
-                    
-                    return (
-                        <CardTag {...cardProps}>
-                            {album.coverImage && (
-                                <img class="album-cover" src={urlFor(album.coverImage).width(600).url()} alt={album.title} />
-                            )}
-                            <div class="album-overlay">
-                                <div class="album-date">{album.date}</div>
-                                <div class="album-title">{album.title}</div>
-                                <div class="album-count"><svg viewBox="0 0 24 24">
-                                        <path
-                                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
-                                    </svg> {album.photoCount || 'Смотреть'}</div>
-                            </div>
-                        </CardTag>
-                    );
-                })}
-                <div class="album-card reveal reveal-d2" data-album="coming"
-                    style="display:flex;align-items:center;justify-content:center">
-                    <div style="text-align:center;color:var(--text-muted);padding:24px">
-                        <div style="font-size:36px;margin-bottom:12px">📸</div>
-                        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">Скоро
-                        </div>
-                        <div style="font-size:11px;margin-top:6px;opacity:.6">Новые фотоотчёты</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Album expanded view (fullscreen overlay) -->
-    <div class="album-view" id="albumView">
-        <div class="album-view-header">
-            <div class="album-view-title" id="albumViewTitle"></div>
-            <button class="album-view-close" onclick="closeAlbum()">✕</button>
-        </div>
-        <div class="album-view-body">
-            <div class="photo-grid" id="albumPhotos"></div>
-        </div>
-    </div>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-        <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">‹</button>
-        <img class="lightbox-img" id="lightboxImg" src="" alt="">
-        <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">›</button>
-        <a class="lightbox-dl" id="lightboxDl" href="" download>↓ Скачать</a>
-    </div>
 
     <!-- CTA -->
     <section class="cta-section">
@@ -694,50 +627,9 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
         const statsElements = document.querySelectorAll('.stats-bar, .fmt-stats-block');
         statsElements.forEach(el => statsObs.observe(el));
 
-        // ═══ GALLERY ═══
-        let currentPhotos = [];
-        let currentPhotoIdx = 0;
-
-        function openAlbum(card) {
-            const driveUrl = card.dataset.drive;
-            // If Google Drive link is set, open it directly
-            if (driveUrl) { window.open(driveUrl, '_blank'); return; }
-            // Otherwise show placeholder
-            const title = card.dataset.title || 'Альбом';
-            document.getElementById('albumViewTitle').textContent = title;
-            const grid = document.getElementById('albumPhotos');
-            grid.innerHTML = '<div class="gallery-placeholder"><div class="gp-icon">📸</div><p>Фотографии скоро будут загружены. Следите за обновлениями!</p></div>';
-            document.getElementById('albumView').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeAlbum() {
-            document.getElementById('albumView').classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        function openLightbox(idx) {
-            currentPhotoIdx = idx;
-            const src = currentPhotos[idx];
-            document.getElementById('lightboxImg').src = src;
-            document.getElementById('lightboxDl').href = src;
-            document.getElementById('lightbox').classList.add('open');
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('open');
-        }
-
-        function navLightbox(dir) {
-            currentPhotoIdx = (currentPhotoIdx + dir + currentPhotos.length) % currentPhotos.length;
-            openLightbox(currentPhotoIdx);
-        }
-
         // Close on Escape
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') { closeLightbox(); closeAlbum(); closeMobileMenu(); }
-            if (e.key === 'ArrowRight') navLightbox(1);
-            if (e.key === 'ArrowLeft') navLightbox(-1);
+            if (e.key === 'Escape') { closeMobileMenu(); }
         });
     </script>
 </body>
