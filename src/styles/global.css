@@ -2292,6 +2292,37 @@ body::after {
   letter-spacing: 1px;
 }
 
+.cal-btn-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--red);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 12px;
+  transition: all 0.3s var(--ease);
+  pointer-events: auto;
+}
+
+.cal-btn-wa:hover {
+  background: var(--red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(196, 43, 43, 0.3);
+}
+
+.cal-btn-wa svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
 @media (max-width: 900px) {
   .calendar-title {
     font-size: 60px;
