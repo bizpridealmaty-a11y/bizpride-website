@@ -8,12 +8,14 @@ interface Props {
 	title: string;
     description?: string;
     canonicalURL?: string;
+    navTheme?: 'default' | 'dark';
 }
 
 const { 
     title, 
     description = "BizPride Club — закрытый бизнес-клуб для предпринимателей в Алматы. Нетворкинг, мастермайнды, менторство и совместный рост.",
-    canonicalURL = Astro.url.href
+    canonicalURL = Astro.url.href,
+    navTheme = 'default'
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -46,7 +48,7 @@ const currentPath = Astro.url.pathname;
         <ViewTransitions />
 	</head>
 	<body>
-        <Navigation currentPath={currentPath} />
+        <Navigation currentPath={currentPath} theme={navTheme} />
         <main transition:animate="fade">
 		    <slot />
         </main>

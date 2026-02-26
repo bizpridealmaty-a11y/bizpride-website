@@ -2928,3 +2928,17 @@ footer {
     border-radius: 14px;
   }
 }
+/* --- NAVIGATION CONTRAST --- */
+.nav.nav-dark {
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.nav.nav-dark .nav-brand, .nav.nav-dark .nav-links a {
+    color: #1a1a1a !important;
+}
+.nav.nav-dark .nav-logo-icon img {
+    filter: brightness(0);
+}
+.nav.nav-dark .burger span {
+    background: #1a1a1a;
+}
