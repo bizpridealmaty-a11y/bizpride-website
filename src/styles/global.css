@@ -3384,15 +3384,19 @@ footer {
   letter-spacing: -4px;
 }
 
+.calendar-title {
+  white-space: nowrap;
+}
+
 .calendar-title-small {
-  font-size: clamp(24px, 4vw, 50px);
+  font-size: clamp(14px, 2.5vw, 30px);
   color: #ff6b6b;
   font-weight: 900;
   letter-spacing: -1px;
   opacity: 0.8;
   position: relative;
   display: inline-block;
-  transform: translateY(-20px);
+  transform: translateY(-15px);
 }
 
 .calendar-grid {
