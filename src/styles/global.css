@@ -3501,15 +3501,16 @@ footer {
 .cal-day.tuesday .cal-event-preview,
 .cal-day.saturday .cal-event-preview {
   position: absolute !important;
-  top: 4px !important;
-  right: 6px !important;
-  left: auto !important;
+  top: 50% !important;
+  left: 50% !important;
+  right: auto !important;
   bottom: auto !important;
+  transform: translate(-50%, -50%);
   margin: 0 !important;
   font-size: 9px !important;
   font-weight: 900 !important;
   color: var(--brand) !important;
-  text-align: right !important;
+  text-align: center !important;
   line-height: 1.2 !important;
   letter-spacing: 0.3px;
   z-index: 2;
