@@ -3500,17 +3500,21 @@ footer {
 
 .cal-day.tuesday .cal-event-preview,
 .cal-day.saturday .cal-event-preview {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  left: auto;
-  margin: 0;
-  font-size: 7px;
-  font-weight: 800;
-  color: var(--brand);
-  text-align: right;
-  line-height: 1.2;
+  position: absolute !important;
+  top: 4px !important;
+  right: 6px !important;
+  left: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  font-size: 9px !important;
+  font-weight: 900 !important;
+  color: var(--brand) !important;
+  text-align: right !important;
+  line-height: 1.2 !important;
   letter-spacing: 0.3px;
+  z-index: 2;
+  opacity: 1 !important;
+  display: block !important;
 }
 
 /* Hover Popup */
