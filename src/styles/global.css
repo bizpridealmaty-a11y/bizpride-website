@@ -3364,9 +3364,14 @@ footer {
 
 /* --- CALENDAR MARCH (Original) --- */
 #calendar {
-  padding-top: 60px;
+  padding-top: 140px;
   padding-bottom: 120px;
   background: #fdfaf6;
+}
+
+.calendar-header-wrapper {
+  max-width: 80%;
+  margin: 0 auto 40px;
 }
 
 .calendar-title {
