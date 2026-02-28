@@ -2111,6 +2111,17 @@ body::after {
   text-align: left;
 }
 
+/* Invisible bridge to prevent hover loss */
+.cal-mini-day .cal-popup::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  background: transparent;
+}
+
 .section-light .cal-mini-day .cal-popup {
   background: #ffffff;
   border-color: rgba(0, 0, 0, 0.1);
