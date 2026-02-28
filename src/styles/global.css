@@ -2498,57 +2498,87 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .event-row {
-    grid-template-columns: 1fr;
-    min-height: auto;
+  .about-content {
+    order: 2;
   }
+}
 
-  .event-row:nth-child(even) {
-    direction: ltr;
-  }
+/* ═══ CALENDAR FOOTER IMAGE ═══ */
+.section-light#events {
+  /* Remove bottom padding to let the image touch the bottom */
+  padding-bottom: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
 
-  .event-img {
-    min-height: 220px;
-  }
+.calendar-footer-image {
+  margin-top: 40px;
+  /* Minimal distance from calendar */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* Align to bottom */
+  width: 100%;
+  overflow: hidden;
+}
 
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
+.calendar-footer-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  /* Remove bottom whitespace gap */
+}
 
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
+.event-row {
+  grid-template-columns: 1fr;
+  min-height: auto;
+}
 
-  /* MOBILE VALUES OPTIMIZATION */
-  .values-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-  }
+.event-row:nth-child(even) {
+  direction: ltr;
+}
 
-  .value-card {
-    padding: 32px 24px !important;
-    text-align: center;
-    border-radius: 20px;
-  }
+.event-img {
+  min-height: 220px;
+}
 
-  .vc-icon {
-    font-size: 36px !important;
-    margin-bottom: 20px !important;
-    justify-content: center;
-    display: flex;
-  }
+.stats-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
 
-  .value-card h3 {
-    font-size: 20px !important;
-    margin-bottom: 12px !important;
-  }
+.footer-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
 
-  .value-card p {
-    font-size: 14px !important;
-    line-height: 1.6;
-  }
+/* MOBILE VALUES OPTIMIZATION */
+.values-grid {
+  grid-template-columns: 1fr !important;
+  gap: 16px;
+}
+
+.value-card {
+  padding: 32px 24px !important;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.vc-icon {
+  font-size: 36px !important;
+  margin-bottom: 20px !important;
+  justify-content: center;
+  display: flex;
+}
+
+.value-card h3 {
+  font-size: 20px !important;
+  margin-bottom: 12px !important;
+}
+
+.value-card p {
+  font-size: 14px !important;
+  line-height: 1.6;
 }
 
 @media(max-width:480px) {
