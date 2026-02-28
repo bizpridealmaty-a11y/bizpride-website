@@ -2520,13 +2520,16 @@ footer {
   /* Align to bottom */
   width: 100%;
   overflow: hidden;
+  margin-bottom: -5px;
+  /* Pull down to cover sub-pixel gaps */
 }
 
 .calendar-footer-image img {
   max-width: 100%;
   height: auto;
   display: block;
-  /* Remove bottom whitespace gap */
+  vertical-align: bottom;
+  /* Removes inline gap */
 }
 
 .event-row {
