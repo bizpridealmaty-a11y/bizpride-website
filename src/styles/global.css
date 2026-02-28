@@ -2006,20 +2006,20 @@ body::after {
 .cal-mini-wrapper {
   background: transparent;
   width: 100%;
-  max-width: 400px;
-  /* Compact width */
+  max-width: 600px;
+  /* Compact width (Increased for visibility) */
   margin: 0 auto;
 }
 
 .cal-mini-header-row {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .cal-mini-h {
   text-align: center;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--text-muted);
   text-transform: capitalize;
@@ -2028,7 +2028,7 @@ body::after {
 .cal-mini-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 12px;
   /* Spacing between days */
 }
 
@@ -2037,8 +2037,8 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  font-size: 16px;
+  border-radius: 16px;
+  font-size: 20px;
   font-weight: 500;
   color: var(--text-dark);
   position: relative;
