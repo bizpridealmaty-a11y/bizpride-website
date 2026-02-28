@@ -25,12 +25,20 @@ const currentPath = Astro.url.pathname;
 <html lang="ru">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/png" href="/logo.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={canonicalURL} />
+        
+        <!-- SEO -->
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+        <meta name="theme-color" content="#c42b2b" />
+        <meta name="author" content="BizPride Club" />
+        <meta name="language" content="Russian" />
+        <meta name="geo.region" content="KZ-ALA" />
+        <meta name="geo.placename" content="Almaty" />
         
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
@@ -39,7 +47,57 @@ const currentPath = Astro.url.pathname;
         <meta property="og:url" content={canonicalURL} />
         <meta property="og:site_name" content="BizPride Club" />
         <meta property="og:locale" content="ru_KZ" />
-        <meta property="og:image" content="https://bizpride.kz/img-mastermind.png" />
+        <meta property="og:image" content="https://bizpride.kz/logo.png" />
+        <meta property="og:image:width" content="512" />
+        <meta property="og:image:height" content="512" />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content="https://bizpride.kz/logo.png" />
+
+        <!-- JSON-LD Structured Data -->
+        <script type="application/ld+json" set:html={JSON.stringify([
+            {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "BizPride Club",
+                "url": "https://bizpride.kz",
+                "logo": "https://bizpride.kz/logo.png",
+                "description": "Закрытый бизнес-клуб для предпринимателей в Алматы. Нетворкинг, мастермайнды, менторство.",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Алматы",
+                    "addressCountry": "KZ"
+                },
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+7-707-035-7777",
+                    "contactType": "customer service",
+                    "availableLanguage": ["Russian", "Kazakh"]
+                },
+                "sameAs": [
+                    "https://wa.me/77070357777"
+                ]
+            },
+            {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "BizPride Club",
+                "image": "https://bizpride.kz/img-mastermind.png",
+                "description": "Бизнес-клуб BizPride — сообщество сильных предпринимателей Алматы. Мастермайнды, бизнес-бранчи, инвестиционный клуб и ценный нетворкинг.",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Алматы",
+                    "addressRegion": "Алматинская область",
+                    "addressCountry": "KZ"
+                },
+                "priceRange": "₸₸₸",
+                "telephone": "+7-707-035-7777",
+                "url": "https://bizpride.kz"
+            }
+        ])} />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

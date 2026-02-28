@@ -6,8 +6,8 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
 ---
 
 <Layout 
-    title="BizPride Club — Закрытый бизнес-клуб в Алматы"
-    description="Объединяем предпринимателей Казахстана для совместного роста. Нетворкинг-ужины, мастермайнды и закрытое сообщество лидеров в Алматы."
+    title="BizPride Club — Открытый бизнес-клуб в Алматы"
+    description="Объединяем предпринимателей Казахстана для совместного роста. Нетворкинг-ужины, мастермайнды и открытое сообщество лидеров в Алматы."
 >
     <!-- HERO -->
     <section class="hero" id="hero">
@@ -16,7 +16,7 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                 <div class="hero-content">
                     <div class="hero-badge"><span class="hero-badge-dot"></span>Алматы · Бизнес-клуб</div>
                     <h1><span class="red">BizPride</span><br>Club</h1>
-                    <p class="hero-tagline">Закрытое сообщество лидеров</p>
+                    <p class="hero-tagline">Открытое сообщество лидеров</p>
                     <p class="hero-desc">Объединяем предпринимателей Казахстана, которые ценят реальные связи, обмен
                         опытом и совместный рост. Вход — только по рекомендации.</p>
                     <div class="hero-actions">
@@ -45,6 +45,25 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                             <div class="hc2-event">
                                 <div class="hc2-event-date">Ежеквартально</div>
                                 <div class="hc2-event-name">Ретрит</div>
+                            </div>
+                        </div>
+
+                        <!-- 3RD CARD: UPCOMING EVENTS -->
+                        <div class="hero-card hero-card-3 reveal reveal-d3">
+                            <div class="hc3-bar">Ближайшие события</div>
+                            <div class="hc3-body">
+                                <div class="hc3-stat">
+                                    <div class="hc3-stat-label">03 Марта</div>
+                                    <div class="hc3-stat-value" style="font-size: 13px;">Совет Директоров</div>
+                                </div>
+                                <div class="hc3-stat">
+                                    <div class="hc3-stat-label">07 Марта</div>
+                                    <div class="hc3-stat-value" style="font-size: 13px;">Family Day</div>
+                                </div>
+                                <div class="hc3-stat" style="border-bottom: none;">
+                                    <div class="hc3-stat-label">14 Марта</div>
+                                    <div class="hc3-stat-value" style="font-size: 13px;">Бизнес-Бранч</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -91,21 +110,34 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
 
             <div class="values-grid">
                 <div class="value-card reveal">
-                    <div class="vc-icon">🤝</div>
+                    <div class="vc-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
                     <h3>Окружение</h3>
-                    <p>Доступ к кругу сильных лидеров, которые сталкиваются с такими же вызовами и готовы делиться
-                        опытом.</p>
+                    <p>Доступ к кругу сильных лидеров, которые сталкиваются с такими же вызовами и готовы делиться опытом.</p>
                 </div>
                 <div class="value-card reveal reveal-d1">
-                    <div class="vc-icon">🚀</div>
+                    <div class="vc-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
                     <h3>Развитие</h3>
-                    <p>Проверенные форматы встреч, ориентированные на конкретный результат в бизнесе и личностный рост.
-                    </p>
+                    <p>Проверенные форматы встреч, ориентированные на конкретный результат в бизнесе и личностный рост.</p>
                 </div>
                 <div class="value-card reveal reveal-d2">
-                    <div class="vc-icon">🛡️</div>
+                    <div class="vc-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
                     <h3>Доверие</h3>
                     <p>Закрытая среда, где соблюдаются правила конфиденциальности и действует принцип WIN-WIN.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="vc-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+                    <h3>Атмосфера</h3>
+                    <p>Неформальная обстановка, где предприниматели открыто обсуждают вызовы без масок и фасадов.</p>
+                </div>
+                <div class="value-card reveal reveal-d1">
+                    <div class="vc-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                    <h3>Эксклюзивность</h3>
+                    <p>Вход только по рекомендации. Это гарантирует высокий уровень участников и качество взаимодействия.</p>
+                </div>
+                <div class="value-card reveal reveal-d2">
+                    <div class="vc-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+                    <h3>Результаты</h3>
+                    <p>Конкретные сделки, партнёрства и рост выручки — измеримый эффект от участия в клубе.</p>
                 </div>
             </div>
         </div>
@@ -147,8 +179,9 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                     <div class="cal-event-preview">СОВЕТ<br>ДИРЕКТОРОВ</div>
                     <div class="cal-popup">
                         <strong>СОВЕТ ДИРЕКТОРОВ</strong>
+                        <span class="cal-popup-time">09:00 — 13:00</span>
                         <p>Глубокий разбор бизнес-кейсов в закрытой группе.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%203%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank" style="margin-top:10px; width:100%;">Принять участие</a>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%203%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
                     </div>
                 </div>
                 <div class="cal-day"><span class="cal-num">4</span></div>
@@ -166,6 +199,12 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                 <div class="cal-day sunday has-event">
                     <span class="cal-num">8</span>
                     <div class="cal-event-preview">Финансовые игры<br>CASHFLOW</div>
+                    <div class="cal-popup">
+                        <strong>CASHFLOW</strong>
+                        <span class="cal-popup-time">17:00 — 20:30</span>
+                        <p>Финансовые игры для развития финансового мышления.</p>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%208%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20CASHFLOW." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
+                    </div>
                 </div>
 
                 <!-- Row 3: Mar 9-15 -->
@@ -175,8 +214,9 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                     <div class="cal-event-preview">СОВЕТ<br>ДИРЕКТОРОВ</div>
                     <div class="cal-popup">
                         <strong>СОВЕТ ДИРЕКТОРОВ</strong>
+                        <span class="cal-popup-time">09:00 — 13:00</span>
                         <p>Глубокий разбор бизнес-кейсов в закрытой группе.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2010%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank" style="margin-top:10px; width:100%;">Принять участие</a>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2010%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
                     </div>
                 </div>
                 <div class="cal-day"><span class="cal-num">11</span></div>
@@ -187,13 +227,20 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                     <div class="cal-event-preview">БИЗНЕС<br>БРАНЧ</div>
                     <div class="cal-popup">
                         <strong>Бизнес-Бранч</strong>
-                        <p>Формат делового общения за завтраком.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2014%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%91%D1%80%D0%B0%D0%BD%D1%87." class="cal-btn-wa" target="_blank" style="margin-top:10px; width:100%;">Принять участие</a>
+                        <span class="cal-popup-time">12:00 — 15:00</span>
+                        <p>Деловое общение за завтраком, обмен контактами.</p>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2014%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%91%D1%80%D0%B0%D0%BD%D1%87." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
                     </div>
                 </div>
                 <div class="cal-day sunday has-event">
                     <span class="cal-num">15</span>
                     <div class="cal-event-preview">Финансовые игры<br>CASHFLOW</div>
+                    <div class="cal-popup">
+                        <strong>CASHFLOW</strong>
+                        <span class="cal-popup-time">17:00 — 20:30</span>
+                        <p>Финансовые игры для развития финансового мышления.</p>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2015%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20CASHFLOW." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
+                    </div>
                 </div>
 
                 <!-- Row 4: Mar 16-22 -->
@@ -203,8 +250,9 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                     <div class="cal-event-preview">СОВЕТ<br>ДИРЕКТОРОВ</div>
                     <div class="cal-popup">
                         <strong>СОВЕТ ДИРЕКТОРОВ</strong>
+                        <span class="cal-popup-time">09:00 — 13:00</span>
                         <p>Глубокий разбор бизнес-кейсов в закрытой группе.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2017%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank" style="margin-top:10px; width:100%;">Принять участие</a>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2017%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
                     </div>
                 </div>
                 <div class="cal-day"><span class="cal-num">18</span></div>
@@ -215,13 +263,20 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                     <div class="cal-event-preview">БИЗНЕС<br>БРАНЧ</div>
                     <div class="cal-popup">
                         <strong>Бизнес-Бранч</strong>
-                        <p>Формат делового общения за завтраком.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2021%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%91%D1%80%D0%B0%D0%BD%D1%87." class="cal-btn-wa" target="_blank" style="margin-top:10px; width:100%;">Принять участие</a>
+                        <span class="cal-popup-time">12:00 — 15:00</span>
+                        <p>Деловое общение за завтраком, обмен контактами.</p>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2021%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%91%D1%80%D0%B0%D0%BD%D1%87." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
                     </div>
                 </div>
                 <div class="cal-day sunday has-event">
                     <span class="cal-num">22</span>
                     <div class="cal-event-preview">Финансовые игры<br>CASHFLOW</div>
+                    <div class="cal-popup">
+                        <strong>CASHFLOW</strong>
+                        <span class="cal-popup-time">17:00 — 20:30</span>
+                        <p>Финансовые игры для развития финансового мышления.</p>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2022%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20CASHFLOW." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
+                    </div>
                 </div>
 
                 <!-- Row 5: Mar 23-29 -->
@@ -231,8 +286,9 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                     <div class="cal-event-preview">СОВЕТ<br>ДИРЕКТОРОВ</div>
                     <div class="cal-popup">
                         <strong>СОВЕТ ДИРЕКТОРОВ</strong>
+                        <span class="cal-popup-time">09:00 — 13:00</span>
                         <p>Глубокий разбор бизнес-кейсов в закрытой группе.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2024%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank" style="margin-top:10px; width:100%;">Принять участие</a>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2024%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
                     </div>
                 </div>
                 <div class="cal-day"><span class="cal-num">25</span></div>
@@ -243,13 +299,20 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                     <div class="cal-event-preview">БИЗНЕС<br>БРАНЧ</div>
                     <div class="cal-popup">
                         <strong>Бизнес-Бранч</strong>
-                        <p>Формат делового общения за завтраком.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2028%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%91%D1%80%D0%B0%D0%BD%D1%87." class="cal-btn-wa" target="_blank" style="margin-top:10px; width:100%;">Принять участие</a>
+                        <span class="cal-popup-time">12:00 — 15:00</span>
+                        <p>Деловое общение за завтраком, обмен контактами.</p>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2028%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%91%D1%80%D0%B0%D0%BD%D1%87." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
                     </div>
                 </div>
                 <div class="cal-day sunday has-event">
                     <span class="cal-num">29</span>
                     <div class="cal-event-preview">Финансовые игры<br>CASHFLOW</div>
+                    <div class="cal-popup">
+                        <strong>CASHFLOW</strong>
+                        <span class="cal-popup-time">17:00 — 20:30</span>
+                        <p>Финансовые игры для развития финансового мышления.</p>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2029%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20CASHFLOW." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
+                    </div>
                 </div>
 
                 <!-- Row 6: Mar 30-31, Apr 1-5 -->
@@ -259,8 +322,9 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                     <div class="cal-event-preview">СОВЕТ<br>ДИРЕКТОРОВ</div>
                     <div class="cal-popup">
                         <strong>СОВЕТ ДИРЕКТОРОВ</strong>
+                        <span class="cal-popup-time">09:00 — 13:00</span>
                         <p>Глубокий разбор бизнес-кейсов в закрытой группе.</p>
-                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2031%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank" style="margin-top:10px; width:100%;">Принять участие</a>
+                        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%2031%20%D0%BC%D0%B0%D1%80%D1%82%D0%B0%2C%20%D0%BD%D0%B0%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2." class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%;">Принять участие</a>
                     </div>
                 </div>
                 <div class="cal-day empty"><span class="cal-num">1</span></div>
@@ -290,44 +354,56 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
             </div>
             <div class="membership-grid">
                 <div class="membership-card reveal">
-                    <div class="membership-tier">Разовое</div>
-                    <div class="membership-price">₸10 000</div>
-                    <p class="membership-desc">Одно гостевое посещение открытой встречи клуба</p>
+                    <div class="membership-tier">Подписка BizPride</div>
+                    <div class="membership-price">₸10 000 <small>/ мес</small></div>
+                    <p class="membership-desc">Формат первого уровня участия в клубе.</p>
                     <ul class="membership-features">
-                        <li><span class="check">✓</span>Одно открытое мероприятие</li>
-                        <li><span class="check">✓</span>Знакомство с форматом</li>
-                        <li><span class="check">✓</span>Вопросы резидентам</li>
-                        <li><span class="check">✓</span>Оценка атмосферы клуба</li>
+                        <li><span class="check">✓</span>Офлайн-мероприятие (1/мес)</li>
+                        <li><span class="check">✓</span>Закрытые онлайн-сессии</li>
+                        <li><span class="check">✓</span>Записи встреч и материалов</li>
+                        <li><span class="check">✓</span>Доступ к базе знаний</li>
+                        <li><span class="check">✓</span>Закрытый онлайн-чат</li>
                     </ul>
-                    <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D0%BE%D0%B5%20%D0%BF%D0%BE%D1%81%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B5"
+                    <div class="membership-note" style="font-size: 12px; color: var(--text-muted); font-style: italic; margin-bottom: 20px; line-height: 1.4;">
+                        Подходит тем, кто хочет быть в сообществе и постепенно погружаться в формат клуба.
+                    </div>
+                    <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D1%84%D0%BE%D1%80%D0%BC%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D0%BF%D0%B8%D1%81%D0%BA%D1%83%20BizPride"
                         target="_blank" class="btn-glass" style="width:100%;justify-content:center">Записаться</a>
                 </div>
                 <div class="membership-card reveal reveal-d1">
-                    <div class="membership-tier">6 месяцев</div>
-                    <div class="membership-price">₸300 000 <small>/ 6 мес</small></div>
-                    <p class="membership-desc">Полный доступ ко всем форматам клуба на полгода</p>
+                    <div class="membership-tier">Резидентство 6 месяцев</div>
+                    <div class="membership-price">₸300 000</div>
+                    <p class="membership-desc">Основной формат участия в клубе.</p>
                     <ul class="membership-features">
-                        <li><span class="check">✓</span>Все мастермайнды</li>
-                        <li><span class="check">✓</span>Закрытый чат</li>
-                        <li><span class="check">✓</span>Менторские сессии</li>
-                        <li><span class="check">✓</span>Приоритет на ивентах</li>
-                        <li><span class="check">✓</span>База контактов</li>
+                        <li><span class="check">✓</span>Все офлайн-мероприятия</li>
+                        <li><span class="check">✓</span>Регулярные мастермайнды</li>
+                        <li><span class="check">✓</span>Стратегические разборы</li>
+                        <li><span class="check">✓</span>Закрытый чат резидентов</li>
+                        <li><span class="check">✓</span>База контактов участников</li>
+                        <li><span class="check">✓</span>Нетворкинг с лидерами</li>
                     </ul>
-                    <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B2%D1%81%D1%82%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%B2%20%D0%BA%D0%BB%D1%83%D0%B1%20%D0%BD%D0%B0%206%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%BD%D0%B0%206%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%206%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B5%D0%B2"
+                    <div class="membership-note" style="font-size: 12px; color: var(--text-muted); font-style: italic; margin-bottom: 20px; line-height: 1.4;">
+                        Фокус на системный рост через сильное окружение.
+                    </div>
+                    <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D1%80%D0%B5%D0%B7%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%BC%20%D0%BD%D0%B0%206%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B5%D0%B2"
                         target="_blank" class="btn-glow" style="width:100%;justify-content:center">Вступить</a>
                 </div>
                 <div class="membership-card featured reveal reveal-d2">
-                    <div class="membership-tier">12 месяцев</div>
-                    <div class="membership-price">₸500 000 <small>/ год</small></div>
-                    <p class="membership-desc">Максимальная выгода — полный доступ на год</p>
+                    <div class="membership-tier">Резидентство 12 месяцев</div>
+                    <div class="membership-price">₸500 000</div>
+                    <p class="membership-desc">Стратегический формат участия на год.</p>
                     <ul class="membership-features">
-                        <li><span class="check">✓</span>Всё из «6 месяцев»</li>
+                        <li><span class="check">✓</span>Всё из тарифа 6 месяцев</li>
+                        <li><span class="check">✓</span>Курсы: Маркетинг, ИИ, Боты</li>
                         <li><span class="check">✓</span>Персональный ментор</li>
-                        <li><span class="check">✓</span>Инвест-клуб</li>
-                        <li><span class="check">✓</span>VIP-ретриты</li>
-                        <li><span class="check">✓</span>Выход на партнёров</li>
+                        <li><span class="check">✓</span>Трекинг целей и KPI</li>
+                        <li><span class="check">✓</span>Инвест-направление</li>
+                        <li><span class="check">✓</span>Приоритет в инициативах</li>
                     </ul>
-                    <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B2%D1%81%D1%82%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%B2%20%D0%BA%D0%BB%D1%83%D0%B1%20%D0%BD%D0%B0%2012%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B5%D0%B2"
+                    <div class="membership-note" style="font-size: 12px; color: var(--text-muted); font-style: italic; margin-bottom: 20px; line-height: 1.4;">
+                        Для предпринимателей, планирующих масштабирование и годовой план развития.
+                    </div>
+                    <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D1%80%D0%B5%D0%B7%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%BC%20%D0%BD%D0%B0%2012%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B5%D0%B2"
                         target="_blank" class="btn-glass" style="width:100%;justify-content:center">Обсудить</a>
                 </div>
             </div>
@@ -340,6 +416,95 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
             </div>
         </div>
     </section>
+
+    <!-- FAQ Section for SEO & Internal Linking -->
+    <section class="section-dark" style="background: var(--bg-secondary); padding-top: 80px; padding-bottom: 80px;">
+        <div class="container" style="max-width: 800px;">
+            <div class="label reveal" style="margin-bottom: 24px;">Популярные вопросы</div>
+            <h2 class="heading-md reveal" style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 40px; color: var(--text-light);">FAQ: Всё о резидентстве в BizPride</h2>
+            
+            <div class="faq-list reveal reveal-d1" style="display: flex; flex-direction: column; gap: 24px;">
+                <div class="faq-item" style="background: var(--bg-card); padding: 24px; border-radius: 16px; border: 1px solid var(--border);">
+                    <h3 style="font-size: 20px; font-weight: 700; color: var(--red); margin-bottom: 12px;">Кто может стать резидентом бизнес-клуба?</h3>
+                    <p style="font-size: 16px; color: var(--text-light); line-height: 1.5;">Наш бизнес-клуб в Алматы открыт для действующих предпринимателей, основателей компаний и топ-менеджеров с подтвержденным доходом и стремлением к кратному росту. Для вступления необходимо пройти интервью и проверку службы безопасности.</p>
+                </div>
+                <div class="faq-item" style="background: var(--bg-card); padding: 24px; border-radius: 16px; border: 1px solid var(--border);">
+                    <h3 style="font-size: 20px; font-weight: 700; color: var(--red); margin-bottom: 12px;">Как проходят форматы Мастермайнд (Mastermind)?</h3>
+                    <p style="font-size: 16px; color: var(--text-light); line-height: 1.5;">Мастермайнды в BizPride — это регулярные встречи в закрытых группах (до 10 человек). Под руководством опытного модератора резиденты разбирают реальные бизнес-кейсы, ставят цели и делятся опытом. <a href="/about" style="color: var(--red); text-decoration: underline;">Узнать больше о наших форматах</a>.</p>
+                </div>
+                <div class="faq-item" style="background: var(--bg-card); padding: 24px; border-radius: 16px; border: 1px solid var(--border);">
+                    <h3 style="font-size: 20px; font-weight: 700; color: var(--red); margin-bottom: 12px;">Чем Бизнес-Бранч отличается от Совета Директоров?</h3>
+                    <p style="font-size: 16px; color: var(--text-light); line-height: 1.5;">Бизнес-Бранчи (каждую субботу) — это открытый формат делового общения, нетворкинга и знакомства с клубом. Совет Директоров (каждый вторник) — это глубокая проработка бизнес-процессов только для резидентов. Смотрите расписание на странице <a href="/events" style="color: var(--red); text-decoration: underline;">Мероприятия</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schema.org Data (Event & FAQ) -->
+    <script type="application/ld+json" set:html={JSON.stringify([
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Кто может стать резидентом бизнес-клуба?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Наш бизнес-клуб открыт для действующих предпринимателей и топ-менеджеров с подтвержденным доходом. Для вступления необходимо пройти интервью."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Как проходят форматы Мастермайнд (Mastermind)?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Это регулярные встречи в закрытых группах (до 10 человек) под руководством модератора для разбора реальных бизнес-кейсов."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Чем Бизнес-Бранч отличается от Совета Директоров?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Бизнес-Бранчи — открытый нетворкинг за завтраком. Совет Директоров — глубокая работа над бизнес-советами только для резидентов клуба."
+                    }
+                }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "Бизнес-Бранч BizPride",
+            "description": "Еженедельный бизнес-бранч для предпринимателей: нетворкинг и обмен контактами.",
+            "startDate": "2026-03-07T12:00:00+05:00",
+            "endDate": "2026-03-07T15:00:00+05:00",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "location": {
+                "@type": "Place",
+                "name": "BizPride Club",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Алматы",
+                    "addressCountry": "KZ"
+                }
+            },
+            "offers": {
+                "@type": "Offer",
+                "url": "https://wa.me/77070357777",
+                "price": "0",
+                "priceCurrency": "KZT",
+                "availability": "https://schema.org/InStock",
+                "validFrom": "2026-02-27T00:00:00+05:00"
+            },
+            "organizer": {
+                "@type": "Organization",
+                "name": "BizPride Club",
+                "url": "https://bizpride.kz"
+            }
+        }
+    ])} />
 
     <!-- FLOATING WHATSAPP -->
     <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BE%20%D0%BA%D0%BB%D1%83%D0%B1%D0%B5%20BizPride"

@@ -1,63 +1,97 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// About Page for BizPride Club
+// SEO Hub for BizPride Club Blog
 ---
 
 <Layout 
-    title="О клубе BizPride — История, Миссия и Команда"
-    description="Узнайте больше о BizPride Club: нашей истории, миссии и ценностях. Мы создаем сообщество лидеров для совместного роста в Алматы."
+    title="Блог бизнес-клуба BizPride Алматы | База знаний для предпринимателей"
+    description="Все о закрытых бизнес-клубах, мастермайндах и нетворкинге в Алматы. Читайте опыт резидентов и аналитику рынка в блоге BizPride Club."
 >
-    <section class="section-dark" style="padding-top: 180px;">
-        <div class="container">
-            <div class="label reveal">О проекте</div>
-            <h1 class="heading-lg reveal reveal-d1" style="font-size: clamp(40px, 8vw, 96px); line-height: 0.9; margin-bottom: 40px;">Сила<br>Сообщества</h1>
-            
-            <div class="hero-grid" style="grid-template-columns: 1fr; max-width: 800px; gap: 40px;">
-                <p class="reveal reveal-d2" style="font-size: 20px; color: var(--text-light); line-height: 1.6;">
-                    BizPride Club — это не просто бизнес-клуб. Это экосистема для предпринимателей, которые стремятся к масштабированию своего дела через качественное окружение и обмен реальным опытом.
-                </p>
-                <div class="reveal reveal-d3" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-top: 40px;">
-                    <div class="stats-card" style="background: var(--bg-card); padding: 32px; border-radius: 24px; border: 1px solid var(--border);">
-                        <div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">2020</div>
-                        <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Год основания</div>
-                    </div>
-                    <div class="stats-card" style="background: var(--bg-card); padding: 32px; border-radius: 24px; border: 1px solid var(--border);">
-                        <div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">120+</div>
-                        <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Активных резидентов</div>
-                    </div>
+    <!-- HERO -->
+    <section class="section-dark about-hero" style="padding-top: 300px !important;">
+        <div class="container container-large">
+            <!-- Content Layer -->
+            <div class="about-hero-grid">
+                <div class="about-hero-content">
+                    <h1 class="heading-lg reveal reveal-d1" style="font-size: clamp(40px, 8vw, 96px); line-height: 0.9; margin-bottom: 40px; color: #fff; margin-top: 250px !important;">Блог (FIXED)<br><span style="color: var(--brand);">О Клубе</span></h1>
+                    
+                    <p class="reveal reveal-d2" style="font-size: 20px; color: var(--text-light); line-height: 1.6; max-width: 600px; margin-bottom: 0;">
+                        Погрузитесь в экосистему закрытого сообщества. Здесь мы делимся практическим опытом, аналитикой рынка и рассказываем, как правильное окружение кратно увеличивает масштаб бизнеса.
+                    </p>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <section class="section-dark" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="hero-grid" style="align-items: center; gap: 80px;">
-                <div style="max-width: 800px;">
-                    <h2 class="heading-lg reveal" style="font-size: 48px; margin-bottom: 32px;">Наша Миссия</h2>
-                    <p class="reveal reveal-d1" style="font-size: 18px; margin-bottom: 24px;">Мы верим, что успех предпринимателя напрямую зависит от тех, кто его окружает. Наша цель — создать среду, где каждый лидер находит поддержку, нужные контакты и вдохновение для новых свершений.</p>
-                    <p class="reveal reveal-d2" style="font-size: 18px; margin-bottom: 40px;">В BizPride мы не просто знакомимся — мы строим долгосрочные партнерские отношения, основанные на доверии и общих ценностях.</p>
-                    
-                    <div class="mission-stats reveal reveal-d3" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-                        <div class="m-stat">
-                            <div style="color: var(--red); font-size: 24px; font-weight: 800; margin-bottom: 4px;">5X</div>
-                            <div style="font-size: 14px; opacity: 0.6;">Плановый рост дохода резидентов</div>
-                        </div>
-                        <div class="m-stat">
-                            <div style="color: var(--red); font-size: 24px; font-weight: 800; margin-bottom: 4px;">30%</div>
-                            <div style="font-size: 14px; opacity: 0.6;">Эффективность нетворкинга</div>
-                        </div>
-                    </div>
-                </div>
+    <!-- CLUSTERS -->
+    <section class="section-dark" style="background: var(--bg-secondary); padding-bottom: 120px;">
+        <div class="container container-large">
+            
+            <!-- CLUSTER 1 -->
+            <div class="reveal" style="margin-bottom: 80px;">
+                <h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 900; color: #fff; margin-bottom: 16px;">Что такое бизнес-клуб?</h2>
+                <p style="font-size: 18px; color: var(--text-light); margin-bottom: 40px; max-width: 600px;">Глубокий разбор форматов закрытых сообществ и их влияния на развитие компаний.</p>
                 
-                <div class="mission-visual reveal reveal-d4">
-                    <div style="position: relative; border-radius: 32px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
-                        <img src="/mission_growth_infographic.png" alt="Инфографика роста BizPride" style="width: 100%; display: block;">
-                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
-                    </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                    <a href="/blog/chto-takoe-business-club" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
+                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Что такое бизнес-клуб и зачем он?</h3>
+                        <p style="color: var(--text-light);">Главная якорная статья. Отличия от коворкингов, тренингов и реальные преимущества закрытого сообщества.</p>
+                    </a>
+                    
+                    <a href="/blog/luchshie-business-cluby-almaty" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
+                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Лучшие бизнес-клубы Алматы: как выбрать</h3>
+                        <p style="color: var(--text-light);">Сравнительный материал. Форматы встреч, стоимость, частые ошибки выбора и кому это подходит.</p>
+                    </a>
+
+                    <a href="/blog/rost-dohoda-cherez-okruzhenie" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
+                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Влияние клуба на рост дохода</h3>
+                        <p style="color: var(--text-light);">Аналитика, твердые цифры и реальные модели масштабирования бизнеса через качественное окружение.</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- CLUSTER 2 -->
+            <div class="reveal" style="margin-bottom: 80px;">
+                <h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 900; color: #fff; margin-bottom: 16px;">Мастермайнд (Mastermind)</h2>
+                <p style="font-size: 18px; color: var(--text-light); margin-bottom: 40px; max-width: 600px;">Все о ключевом формате бизнес-взаимодействия и коллективного разума.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                    <a href="/blog/chto-takoe-mastermind" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
+                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Что такое мастермайнд простыми словами</h3>
+                        <p style="color: var(--text-light);">История термина, точный формат проведения, принципы работы и главные ошибки участников.</p>
+                    </a>
+                    <a href="/blog/mastermind-v-bizpride" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
+                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Как проходит мастермайнд в BizPride</h3>
+                        <p style="color: var(--text-light);">Сценарий встречи, распределение ролей, жесткий регламент и примеры реальных вопросов резидентов.</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- CLUSTER 3 -->
+            <div class="reveal">
+                <h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 900; color: #fff; margin-bottom: 16px;">Локальный трафик (Алматы)</h2>
+                <p style="font-size: 18px; color: var(--text-light); margin-bottom: 40px; max-width: 600px;">Главные события, места притяжения и бизнес-жизнь южной столицы Казахстана.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                    <a href="/blog/business-soobschestvo-almaty" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
+                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Бизнес-сообщество Алматы</h3>
+                        <p style="color: var(--text-light);">Кто вступает в клубы, популярные отрасли, офлайн-мероприятия, отзывы и карта города.</p>
+                    </a>
+                    <a href="/blog/business-meropriyatiya-almaty-2026" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
+                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Бизнес-мероприятия в Алматы 2026</h3>
+                        <p style="color: var(--text-light);">Главный локальный гид по выставкам, форумам, бранчам и нетворкинг-встречам на этот год.</p>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 </Layout>
+
+<style>
+    .faq-item:hover {
+        transform: translateY(-5px);
+        border-color: var(--brand) !important;
+    }
+</style>
