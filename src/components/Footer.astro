@@ -86,8 +86,20 @@ const currentYear = new Date().getFullYear();
                             iconAnchor: [30, 60]
                         });
 
-                        L.marker(coords, { icon: brandIcon }).addTo(mapInstance)
-                            .bindPopup('<b>BizPride Club</b><br>БЦ «Женис», Бухар-Жырау 33');
+                        const marker = L.marker(coords, { icon: brandIcon }).addTo(mapInstance);
+                        
+                        // Открываем 2GIS при клике на маркер или карту
+                        const open2Gis = () => window.open('https://go.2gis.com/DVpGd', '_blank');
+                        marker.on('click', open2Gis);
+                        mapInstance.on('click', open2Gis);
+                        
+                        // Делаем карту статичной кнопкой
+                        container.style.cursor = 'pointer';
+                        mapInstance.dragging.disable();
+                        mapInstance.touchZoom.disable();
+                        mapInstance.doubleClickZoom.disable();
+                        mapInstance.boxZoom.disable();
+                        mapInstance.keyboard.disable();
                     }
 
                     // Work with Astro ViewTransitions
