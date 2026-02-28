@@ -144,7 +144,7 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
     </section>
 
     <!-- КАЛЕНДАРЬ МЕРОПРИЯТИЙ (МАРТ) -->
-    <section class="section-light" id="events" style="padding-top:80px; padding-bottom:80px; background:#fdfaf6;">
+    <section class="section-light" id="events" style="padding-top:80px; background:#fdfaf6;">
         <div class="container container-large">
             <div class="calendar-header-wrapper">
                 <h2 class="calendar-title reveal">МАРТ <span class="calendar-title-small">РАСПИСАНИЕ МЕРОПРИЯТИЙ</span></h2>
@@ -321,7 +321,11 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                     <div class="cal-mini-day empty">5</div>
                 </div>
             </div>
+        </div>
 
+        <!-- MINIMALIST AUDIENCE INTEGRATION -->
+        <div class="calendar-footer-image reveal reveal-d2">
+            <img src="/img-audience.png" alt="Audience" />
         </div>
     </section>
 

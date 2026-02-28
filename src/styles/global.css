@@ -2504,32 +2504,33 @@ footer {
 }
 
 /* ═══ CALENDAR FOOTER IMAGE ═══ */
-.section-light#events {
+.section-light#events,
+.section-light#calendar {
   /* Remove bottom padding to let the image touch the bottom */
   padding-bottom: 0 !important;
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden;
 }
 
 .calendar-footer-image {
-  margin-top: 40px;
-  /* Minimal distance from calendar */
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  /* Align to bottom */
+  margin-top: 20px;
+  /* Minimal distance from calendar as requested */
   width: 100%;
-  overflow: hidden;
-  margin-bottom: -5px;
-  /* Pull down to cover sub-pixel gaps */
+  display: block;
+  line-height: 0;
+  /* Finally kill the 4px baseline gap */
+  margin-bottom: -1px;
+  /* Overlap with footer border */
+  z-index: 2;
 }
 
 .calendar-footer-image img {
-  max-width: 100%;
+  width: 100%;
+  max-width: none;
+  /* Let it stretch to full width if needed */
   height: auto;
   display: block;
-  vertical-align: bottom;
-  /* Removes inline gap */
 }
 
 .event-row {
