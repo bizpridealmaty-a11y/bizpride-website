@@ -240,18 +240,30 @@ body::after {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 24px 0;
+  padding: 12px 0;
   transition: all .5s var(--ease);
-  background: transparent;
+  background: #000;
 }
 
 .nav.scrolled {
-  background: rgba(0, 0, 0, 0.95);
+  background: #000;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 12px 0;
+  padding: 4px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav.scrolled .nav-links a {
+  color: var(--text-light) !important;
+}
+
+.nav.scrolled .nav-logo-icon img {
+  filter: invert(1) !important;
+}
+
+.nav.scrolled .burger span {
+  background: var(--text-white) !important;
 }
 
 .nav-inner {
@@ -273,6 +285,7 @@ body::after {
   align-items: center;
   justify-content: center;
   transition: all .3s var(--ease);
+  margin-top: -8px;
 }
 
 .nav-logo:hover .nav-logo-icon {
