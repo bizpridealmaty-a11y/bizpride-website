@@ -9,7 +9,7 @@ import Layout from '../layouts/Layout.astro';
     description="Все о закрытых бизнес-клубах, мастермайндах и нетворкинге в Алматы. Читайте опыт резидентов и аналитику рынка в блоге BizPride Club."
 >
     <!-- HERO -->
-    <section class="section-dark about-hero" style="padding-top: 150px; background: linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.95)), url('/img-about-hero-new.jpg') center/cover no-repeat; min-height: 60vh; display: flex; align-items: center;">
+    <section class="section-dark about-hero">
         <div class="container container-large">
             <!-- Content Layer -->
             <div class="about-hero-grid">
@@ -90,6 +90,31 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+    .about-hero {
+        padding-top: 150px;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    .about-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: url('/img-about-hero-new.jpg') center/cover no-repeat;
+        filter: grayscale(100%);
+        z-index: -2;
+    }
+    .about-hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.95));
+        z-index: -1;
+    }
+
     .faq-item:hover {
         transform: translateY(-5px);
         border-color: var(--brand) !important;
