@@ -240,7 +240,7 @@ body::after {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 12px 0;
+  padding: 8px 0;
   transition: all .5s var(--ease);
   background: #000;
 }
@@ -249,7 +249,7 @@ body::after {
   background: #000;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 4px 0;
+  padding: 2px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
@@ -280,12 +280,12 @@ body::after {
 }
 
 .nav-logo-icon {
-  height: 90px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all .3s var(--ease);
-  margin-top: -8px;
+  margin-top: -4px;
 }
 
 .nav-logo:hover .nav-logo-icon {
@@ -294,7 +294,7 @@ body::after {
 }
 
 .nav-logo-icon img {
-  height: 80px;
+  height: 72px;
   width: auto;
   object-fit: contain;
   filter: invert(1);
