@@ -1,122 +1,331 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// SEO Hub for BizPride Club Blog
+// SEO Hub for BizPride Club Blog - Editorial Redesign
 ---
 
 <Layout 
     title="Блог бизнес-клуба BizPride Алматы | База знаний для предпринимателей"
     description="Все о закрытых бизнес-клубах, мастермайндах и нетворкинге в Алматы. Читайте опыт резидентов и аналитику рынка в блоге BizPride Club."
 >
-    <!-- HERO -->
-    <section class="section-dark about-hero">
-        <div class="container container-large">
-            <!-- Content Layer -->
-            <div class="about-hero-grid">
-                <div class="about-hero-content">
-                    <h1 class="heading-lg reveal reveal-d1" style="font-size: clamp(40px, 8vw, 96px); line-height: 0.9; margin-bottom: 40px; color: #fff;">Блог<br><span style="color: var(--brand);">О Клубе</span></h1>
-                    
-                    <p class="reveal reveal-d2" style="font-size: 20px; color: var(--text-light); line-height: 1.6; max-width: 600px; margin-bottom: 0;">
+    <div class="editorial-container">
+        
+        <!-- ROW 1: INTRO -->
+        <section class="ed-row height-vh">
+            <div class="ed-col image-col">
+                <img src="/img-about-hero-new.jpg" alt="BizPride Hero" class="ed-img grayscale" />
+            </div>
+            <div class="ed-col text-col content-center">
+                <div class="ed-content">
+                    <h1 class="ed-title">БЛОГ<br><span class="ed-accent">О КЛУБЕ</span></h1>
+                    <p class="ed-desc">
                         Погрузитесь в экосистему закрытого сообщества. Здесь мы делимся практическим опытом, аналитикой рынка и рассказываем, как правильное окружение кратно увеличивает масштаб бизнеса.
                     </p>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <!-- CLUSTERS -->
-    <section class="section-dark" style="background: var(--bg-secondary); padding-bottom: 120px;">
-        <div class="container container-large">
-            
-            <!-- CLUSTER 1 -->
-            <div class="reveal" style="margin-bottom: 80px;">
-                <h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 900; color: #fff; margin-bottom: 16px;">Что такое бизнес-клуб?</h2>
-                <p style="font-size: 18px; color: var(--text-light); margin-bottom: 40px; max-width: 600px;">Глубокий разбор форматов закрытых сообществ и их влияния на развитие компаний.</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-                    <a href="/blog/chto-takoe-business-club" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
-                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Что такое бизнес-клуб и зачем он?</h3>
-                        <p style="color: var(--text-light);">Главная якорная статья. Отличия от коворкингов, тренингов и реальные преимущества закрытого сообщества.</p>
-                    </a>
-                    
-                    <a href="/blog/luchshie-business-cluby-almaty" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
-                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Лучшие бизнес-клубы Алматы: как выбрать</h3>
-                        <p style="color: var(--text-light);">Сравнительный материал. Форматы встреч, стоимость, частые ошибки выбора и кому это подходит.</p>
-                    </a>
-
-                    <a href="/blog/rost-dohoda-cherez-okruzhenie" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
-                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Влияние клуба на рост дохода</h3>
-                        <p style="color: var(--text-light);">Аналитика, твердые цифры и реальные модели масштабирования бизнеса через качественное окружение.</p>
-                    </a>
+        <!-- ROW 2: ABOUT / FORMATS -->
+        <section class="ed-row height-auto reverse-mobile">
+            <div class="ed-col text-col content-center bg-darker">
+                <div class="ed-content">
+                    <h2 class="ed-subtitle">ЧТО ТАКОЕ БИЗНЕС-КЛУБ?</h2>
+                    <p class="ed-desc">
+                        Главная якорная статья. Отличия от коворкингов, тренингов и реальные преимущества закрытого сообщества. Глубокий разбор форматов закрытых сообществ и их влияния на развитие компаний.
+                    </p>
+                    <a href="/blog/chto-takoe-business-club" class="ed-link">ЧИТАТЬ СТАТЬЮ &rarr;</a>
                 </div>
             </div>
+            <div class="ed-col image-col">
+                <img src="/img-mastermind.png" alt="Мастермайнд" class="ed-img grayscale" />
+            </div>
+        </section>
 
-            <!-- CLUSTER 2 -->
-            <div class="reveal" style="margin-bottom: 80px;">
-                <h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 900; color: #fff; margin-bottom: 16px;">Мастермайнд (Mastermind)</h2>
-                <p style="font-size: 18px; color: var(--text-light); margin-bottom: 40px; max-width: 600px;">Все о ключевом формате бизнес-взаимодействия и коллективного разума.</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-                    <a href="/blog/chto-takoe-mastermind" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
-                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Что такое мастермайнд простыми словами</h3>
-                        <p style="color: var(--text-light);">История термина, точный формат проведения, принципы работы и главные ошибки участников.</p>
-                    </a>
-                    <a href="/blog/mastermind-v-bizpride" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
-                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Как проходит мастермайнд в BizPride</h3>
-                        <p style="color: var(--text-light);">Сценарий встречи, распределение ролей, жесткий регламент и примеры реальных вопросов резидентов.</p>
-                    </a>
+        <!-- ROW 3: VALUES -->
+        <section class="ed-row height-auto">
+            <div class="ed-col image-col">
+                <img src="/img-audience.png" alt="Аудитория" class="ed-img grayscale" />
+            </div>
+            <div class="ed-col text-col bg-darker">
+                <div class="ed-content">
+                    <h2 class="ed-subtitle">ЦЕННОСТИ</h2>
+                    <div class="ed-list">
+                        <div class="ed-list-item">
+                            <span class="ed-number">1</span>
+                            <div class="ed-list-text">
+                                <strong>Окружение</strong>
+                                <p>Доступ к кругу сильных лидеров, готовых делиться опытом и знаниями.</p>
+                            </div>
+                        </div>
+                        <div class="ed-list-item">
+                            <span class="ed-number">2</span>
+                            <div class="ed-list-text">
+                                <strong>Развитие</strong>
+                                <p>Проверенные форматы встреч для результата в бизнесе и личностного роста.</p>
+                            </div>
+                        </div>
+                        <div class="ed-list-item">
+                            <span class="ed-number">3</span>
+                            <div class="ed-list-text">
+                                <strong>Доверие</strong>
+                                <p>Закрытая среда, честность, конфиденциальность и строгий принцип WIN-WIN.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- CLUSTER 3 -->
-            <div class="reveal">
-                <h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 900; color: #fff; margin-bottom: 16px;">Локальный трафик (Алматы)</h2>
-                <p style="font-size: 18px; color: var(--text-light); margin-bottom: 40px; max-width: 600px;">Главные события, места притяжения и бизнес-жизнь южной столицы Казахстана.</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-                    <a href="/blog/business-soobschestvo-almaty" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
-                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Бизнес-сообщество Алматы</h3>
-                        <p style="color: var(--text-light);">Кто вступает в клубы, популярные отрасли, офлайн-мероприятия, отзывы и карта города.</p>
-                    </a>
-                    <a href="/blog/business-meropriyatiya-almaty-2026" class="faq-item" style="text-decoration: none; display: block; background: var(--bg-card); padding: 32px; border-radius: 20px; border: 1px solid var(--border); transition: transform 0.3s, border-color 0.3s;">
-                        <h3 style="font-size: 24px; color: var(--red); margin-bottom: 12px; font-weight: 800;">Бизнес-мероприятия в Алматы 2026</h3>
-                        <p style="color: var(--text-light);">Главный локальный гид по выставкам, форумам, бранчам и нетворкинг-встречам на этот год.</p>
-                    </a>
+        </section>
+
+        <!-- ROW 4: SERVICES/TRAFFIC -->
+        <section class="ed-row height-auto">
+            <div class="ed-col text-col content-center">
+                <div class="ed-content">
+                    <h2 class="ed-subtitle">БИЗНЕС-ВСТРЕЧИ В АЛМАТЫ</h2>
+                    <div class="ed-services">
+                        <div class="ed-service">
+                            <h3>БИЗНЕС-БРАНЧ</h3>
+                            <p>Открытый формат делового общения и нетворкинга за завтраком. Проходит каждую субботу для всех желающих.</p>
+                            <a href="/blog/business-meropriyatiya-almaty-2026" class="ed-link">ПОДРОБНЕЕ &rarr;</a>
+                        </div>
+                        <div class="ed-service">
+                            <h3>СОВЕТ ДИРЕКТОРОВ</h3>
+                            <p>Глубокая проработка бизнес-процессов только для резидентов. Проходит каждый вторник в закрытом формате.</p>
+                            <a href="/events" class="ed-link">РАСПИСАНИЕ &rarr;</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+            <div class="ed-col image-col">
+                <img src="/img-networking.png" alt="Нетворкинг" class="ed-img grayscale" />
+            </div>
+        </section>
+    </div>
 </Layout>
 
 <style>
-    .about-hero {
-        padding-top: 150px;
-        min-height: 60vh;
-        display: flex;
-        align-items: center;
-        position: relative;
-        z-index: 1;
-        overflow: hidden;
-    }
-    .about-hero::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: url('/img-about-hero-new.jpg') center/cover no-repeat;
-        filter: grayscale(100%);
-        z-index: -2;
-    }
-    .about-hero::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.95));
-        z-index: -1;
+    /* Reset & Base within this layout */
+    .editorial-container {
+        background: #0a0a0a;
+        color: #fff;
+        font-family: var(--font, 'Montserrat', sans-serif);
+        padding-top: 80px; /* Offset for nav */
     }
 
-    .faq-item:hover {
-        transform: translateY(-5px);
-        border-color: var(--brand) !important;
+    .ed-row {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 2px solid #1a1a1a;
+    }
+
+    @media (min-width: 768px) {
+        .ed-row {
+            flex-direction: row;
+        }
+        .ed-row > .ed-col {
+            flex: 1;
+            width: 50%;
+            border-right: 2px solid #1a1a1a;
+        }
+        .ed-row > .ed-col:last-child {
+            border-right: none;
+        }
+    }
+
+    .height-vh {
+        min-height: calc(100vh - 80px); /* Full screen minus nav */
+    }
+
+    .height-auto {
+        min-height: 500px;
+    }
+
+    .image-col {
+        position: relative;
+        overflow: hidden;
+        min-height: 300px; /* for mobile */
+        background: #111;
+        padding: 40px; /* Internal padding for photos in the editorial layout */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media (max-width: 767px) {
+        .image-col {
+            padding: 20px;
+        }
+    }
+
+    /* For the hero image, we might want it edge-to-edge */
+    .height-vh .image-col {
+        padding: 0; 
+    }
+
+    .ed-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    
+    .height-vh .ed-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .grayscale {
+        filter: grayscale(100%) contrast(1.1) brightness(0.9);
+        transition: filter 0.5s ease;
+    }
+    .image-col:hover .grayscale {
+        filter: grayscale(0%) contrast(1.0) brightness(1);
+    }
+
+    .text-col {
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (min-width: 1024px) {
+        .text-col {
+            padding: 60px 80px;
+        }
+    }
+
+    .content-center {
+        justify-content: center;
+    }
+
+    .bg-darker {
+        background: #111;
+    }
+
+    .ed-title {
+        font-size: clamp(48px, 6vw, 84px);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+    }
+
+    .ed-accent {
+        color: var(--brand, #c42b2b);
+    }
+
+    .ed-subtitle {
+        font-size: clamp(32px, 4vw, 56px);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+    }
+
+    .ed-desc {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        max-width: 500px;
+        margin-bottom: 20px;
+    }
+
+    .ed-link {
+        display: inline-block;
+        margin-top: 10px;
+        color: var(--brand, #c42b2b);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: color 0.3s;
+    }
+
+    .ed-link:hover {
+        color: #fff;
+    }
+
+    .ed-list {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .ed-list-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .ed-number {
+        font-size: 20px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .ed-list-text p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.5;
+        margin: 0;
+        max-width: 300px;
+    }
+
+    .ed-list-text strong {
+        color: #fff;
+        display: block;
+        margin-bottom: 4px;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .ed-services {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-top: 30px;
+    }
+
+    @media (min-width: 1200px) {
+        .ed-services {
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+    }
+
+    .ed-service h3 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    .ed-service p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+
+    /* Reverse order on mobile for some rows to keep text->image flow */
+    @media (max-width: 767px) {
+        .reverse-mobile {
+            flex-direction: column-reverse;
+        }
     }
 </style>
