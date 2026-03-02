@@ -1549,7 +1549,7 @@ body::after {
 .album-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.85) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.95) 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1564,6 +1564,7 @@ body::after {
   text-transform: uppercase;
   color: var(--red);
   margin-bottom: 6px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .album-title {
@@ -1572,6 +1573,7 @@ body::after {
   text-transform: uppercase;
   letter-spacing: .5px;
   color: #fff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
 }
 
 .album-count {
@@ -2513,6 +2515,10 @@ footer {
 
   .about-content {
     order: 2;
+  }
+
+  .albums-grid {
+    grid-template-columns: 1fr;
   }
 }
 
