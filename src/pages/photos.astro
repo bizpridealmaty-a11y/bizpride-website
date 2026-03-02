@@ -2,7 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import { client, urlFor } from '../lib/sanity';
 
-const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
+const sanityAlbums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
+
+const albums = [
+    {
+        title: '«Как увеличить чистую прибыль» от 10 до 30%',
+        date: '28.02.2026',
+        googleDriveLink: 'https://mainslow.wfolio.pro/disk/28-02-2026-bizpride-qb7ndw',
+        staticCover: '/img-album-profit.jpg'
+    },
+    ...sanityAlbums
+];
 ---
 
 <Layout 
@@ -24,9 +34,11 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
             <div class="albums-grid">
                 {albums.map((album, index) => (
                     <a href={album.googleDriveLink} target="_blank" class={`album-card reveal ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`} style="display:block; text-decoration:none;">
-                        {album.coverImage && (
+                        {album.staticCover ? (
+                            <img class="album-cover" src={album.staticCover} alt={album.title} />
+                        ) : album.coverImage ? (
                             <img class="album-cover" src={urlFor(album.coverImage).width(600).url()} alt={album.title} />
-                        )}
+                        ) : null}
                         <div class="album-overlay">
                             <div class="album-date">{album.date}</div>
                             <div class="album-title">{album.title}</div>
