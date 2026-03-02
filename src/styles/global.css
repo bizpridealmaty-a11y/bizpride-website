@@ -2570,9 +2570,11 @@ footer {
 }
 
 /* MOBILE VALUES OPTIMIZATION */
-.values-grid {
-  grid-template-columns: 1fr !important;
-  gap: 16px;
+@media (max-width: 768px) {
+  .values-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
 }
 
 .value-card {
@@ -2730,7 +2732,7 @@ footer {
 
 .values-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
 
