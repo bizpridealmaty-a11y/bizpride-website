@@ -28,9 +28,12 @@ import Layout from '../layouts/Layout.astro';
         <!-- NAV ROW: TABS -->
         <section class="ed-nav-row">
             <div class="ed-nav-container">
-                <a href="#articles" class="ed-nav-btn active">БАЗА ЗНАНИЙ (СТАТЬИ)</a>
-                <a href="/videos" class="ed-nav-btn">КАТАЛОГ ВИДЕО</a>
-                <a href="/podcasts" class="ed-nav-btn">ПОДКАСТЫ</a>
+                <a href="#all" class="ed-nav-btn active">ВСЕ ТЕМЫ</a>
+                <a href="#sales" class="ed-nav-btn">ПРОДАЖИ И ПЕРЕГОВОРЫ</a>
+                <a href="#management" class="ed-nav-btn">УПРАВЛЕНИЕ И КОМАНДА</a>
+                <a href="#marketing" class="ed-nav-btn">МАРКЕТИНГ И ПРОДВИЖЕНИЕ</a>
+                <a href="#mindset" class="ed-nav-btn">МЫШЛЕНИЕ И РАЗВИТИЕ</a>
+                <a href="#community" class="ed-nav-btn">МЕРОПРИЯТИЯ КЛУБА</a>
             </div>
         </section>
 
@@ -174,21 +177,28 @@ import Layout from '../layouts/Layout.astro';
         padding: 12px 24px;
         font-size: 13px;
         font-weight: 700;
-        letter-spacing: 1.5px;
+        letter-spacing: 1px;
         text-transform: uppercase;
         text-decoration: none;
-        transition: all 0.3s ease;
+        border-radius: 30px; /* Pill shape */
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     .ed-nav-btn:hover {
         border-color: #fff;
         color: #fff;
+        transform: translateY(-3px); /* Lift animation on hover */
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
     }
 
     .ed-nav-btn.active {
         background: var(--brand, #c42b2b);
         border-color: var(--brand, #c42b2b);
         color: #fff;
+    }
+
+    .ed-nav-btn.active:hover {
+        box-shadow: 0 4px 15px rgba(196, 43, 43, 0.4); /* Brand color glow */
     }
 
     @media (max-width: 767px) {
