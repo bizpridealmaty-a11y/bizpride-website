@@ -12,5 +12,8 @@
     "@sanity/client": "^7.16.0",
     "@sanity/image-url": "^2.0.3",
     "astro": "^5.17.1"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.7.0"
   }
 }

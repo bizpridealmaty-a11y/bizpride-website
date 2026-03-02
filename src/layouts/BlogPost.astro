@@ -5,6 +5,33 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title || 'Блог BizPride'} description={frontmatter.description}>
+    <!-- Article + VideoObject Schema for SEO -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": frontmatter.title,
+        "description": frontmatter.description,
+        "image": frontmatter.image,
+        "author": {
+            "@type": "Organization",
+            "name": "BizPride Club",
+            "url": "https://bizpride.kz"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BizPride Club",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://bizpride.kz/logo.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": Astro.url.href
+        },
+        "datePublished": new Date().toISOString(),
+        "inLanguage": "ru-KZ"
+    })} />
     <div class="blog-post-container">
         
         <header class="bp-header">
