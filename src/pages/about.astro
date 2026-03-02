@@ -24,24 +24,24 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- NAV ROW: TABS -->
-        <section class="ed-nav-row">
+        <section class="ed-nav-row" id="blog-nav">
             <div class="ed-nav-container">
-                <a href="#all" class="ed-nav-btn active">ВСЕ ТЕМЫ</a>
-                <a href="#sales" class="ed-nav-btn">ПРОДАЖИ И ПЕРЕГОВОРЫ</a>
-                <a href="#management" class="ed-nav-btn">УПРАВЛЕНИЕ И КОМАНДА</a>
-                <a href="#marketing" class="ed-nav-btn">МАРКЕТИНГ И ПРОДВИЖЕНИЕ</a>
-                <a href="#mindset" class="ed-nav-btn">МЫШЛЕНИЕ И РАЗВИТИЕ</a>
-                <a href="#community" class="ed-nav-btn">МЕРОПРИЯТИЯ КЛУБА</a>
+                <a href="#all" class="ed-nav-btn active" data-filter="all">ВСЕ ТЕМЫ</a>
+                <a href="#sales" class="ed-nav-btn" data-filter="sales">ПРОДАЖИ И ПЕРЕГОВОРЫ</a>
+                <a href="#management" class="ed-nav-btn" data-filter="management">УПРАВЛЕНИЕ И КОМАНДА</a>
+                <a href="#marketing" class="ed-nav-btn" data-filter="marketing">МАРКЕТИНГ И ПРОДВИЖЕНИЕ</a>
+                <a href="#mindset" class="ed-nav-btn" data-filter="mindset">МЫШЛЕНИЕ И РАЗВИТИЕ</a>
+                <a href="#community" class="ed-nav-btn" data-filter="community">МЕРОПРИЯТИЯ КЛУБА</a>
             </div>
         </section>
 
         <!-- BLOG GRID -->
         <section class="ed-blog-grid-section">
             <div class="ed-blog-container">
-                <div class="ed-blog-grid">
+                <div class="ed-blog-grid" id="blog-grid">
                     
                     <!-- Article Card 1 -->
-                    <a href="/blog/chto-takoe-business-club" class="ed-card">
+                    <a href="/blog/chto-takoe-business-club" class="ed-card blog-item" data-category="management">
                         <div class="ed-card-img" style="background-image: url('/img-mastermind.png');"></div>
                         <div class="ed-card-content">
                             <span class="ed-card-tag">УПРАВЛЕНИЕ И КОМАНДА</span>
@@ -51,7 +51,7 @@ import Layout from '../layouts/Layout.astro';
                     </a>
 
                     <!-- Article Card 2 -->
-                    <a href="#" class="ed-card">
+                    <a href="#" class="ed-card blog-item" data-category="community">
                         <div class="ed-card-img" style="background-image: url('/img-networking.png');"></div>
                         <div class="ed-card-content">
                             <span class="ed-card-tag">МЕРОПРИЯТИЯ КЛУБА</span>
@@ -61,7 +61,7 @@ import Layout from '../layouts/Layout.astro';
                     </a>
 
                     <!-- Video Card 1 -->
-                    <a href="https://www.youtube.com/watch?v=i8DyxfJR9G8" target="_blank" class="ed-card video-card">
+                    <a href="https://www.youtube.com/watch?v=i8DyxfJR9G8" target="_blank" class="ed-card video-card blog-item" data-category="sales">
                         <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/i8DyxfJR9G8/maxresdefault.jpg');">
                             <div class="video-play-icon">&#9658;</div>
                         </div>
@@ -117,6 +117,37 @@ import Layout from '../layouts/Layout.astro';
         </section>
     </div>
 </Layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.ed-nav-btn');
+        const cards = document.querySelectorAll('.blog-item');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to the clicked tab
+                tab.classList.add('active');
+
+                const filter = tab.getAttribute('data-filter');
+
+                // Filter cards
+                cards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || filter === category) {
+                        card.style.display = 'flex'; // our cards use flexbox
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
 
 <style>
     /* Reset & Base within this layout */
