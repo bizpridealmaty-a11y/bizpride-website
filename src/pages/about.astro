@@ -160,9 +160,9 @@ import Layout from '../layouts/Layout.astro';
 
     /* BLOG GRID */
     .ed-blog-grid-section {
-        padding: 60px 20px;
-        background: #0d0d0d;
-        border-bottom: 2px solid #1a1a1a;
+        padding: 80px 20px;
+        background: #ffffff; /* White background */
+        border-bottom: 2px solid #eaeaea;
     }
 
     .ed-blog-container {
@@ -179,17 +179,19 @@ import Layout from '../layouts/Layout.astro';
     .ed-card {
         display: flex;
         flex-direction: column;
-        background: #151515;
-        border: 1px solid #222;
+        background: #ffffff;
+        border: 1px solid #eaeaea;
         border-radius: 12px;
         overflow: hidden;
         text-decoration: none;
-        transition: transform 0.3s ease, border-color 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* Soft shadow for depth */
+        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .ed-card:hover {
         transform: translateY(-5px);
         border-color: var(--brand, #c42b2b);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     .ed-card-img {
@@ -239,7 +241,7 @@ import Layout from '../layouts/Layout.astro';
 
     .ed-card-title {
         font-size: 18px;
-        color: #fff;
+        color: #111111; /* Dark text for light card */
         line-height: 1.4;
         margin-bottom: 20px;
         font-weight: 700;
@@ -248,7 +250,7 @@ import Layout from '../layouts/Layout.astro';
 
     .ed-card-link {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.5);
+        color: #666666; /* Darker gray for readability on white */
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -256,7 +258,7 @@ import Layout from '../layouts/Layout.astro';
     }
 
     .ed-card:hover .ed-card-link {
-        color: #fff;
+        color: var(--brand, #c42b2b); /* Highlight red on hover instead of white */
     }
 
     .ed-nav-row {
