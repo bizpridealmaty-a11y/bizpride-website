@@ -1,0 +1,165 @@
+---
+import Layout from './Layout.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title || 'Блог BizPride'} description={frontmatter.description}>
+    <div class="blog-post-container">
+        
+        <header class="bp-header">
+            <a href="/about" class="bp-back-btn">&larr; В Базу Знаний</a>
+            <div class="bp-meta">
+                <span class="bp-category">{frontmatter.category}</span>
+                <span class="bp-date">{frontmatter.date}</span>
+                <span class="bp-readtime">{frontmatter.readTime}</span>
+            </div>
+            <h1 class="bp-title">{frontmatter.title}</h1>
+        </header>
+
+        {frontmatter.image && (
+            <div class="bp-hero-image" style={`background-image: url('${frontmatter.image}');`}></div>
+        )}
+
+        <article class="bp-content">
+            <slot />
+        </article>
+
+        <section class="bp-footer">
+            <div class="bp-share">
+                <p>Поделиться статьей:</p>
+                <!-- Add share links here -->
+            </div>
+        </section>
+
+    </div>
+</Layout>
+
+<style>
+    .blog-post-container {
+        background: #0a0a0a;
+        color: #fff;
+        font-family: var(--font, 'Montserrat', sans-serif);
+        padding-top: 100px;
+        min-height: 100vh;
+    }
+
+    .bp-header {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px 40px;
+        text-align: center;
+    }
+
+    .bp-back-btn {
+        display: inline-block;
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        transition: color 0.3s;
+    }
+
+    .bp-back-btn:hover {
+        color: #fff;
+    }
+
+    .bp-meta {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 20px;
+    }
+
+    .bp-category {
+        color: var(--brand, #c42b2b);
+    }
+
+    .bp-title {
+        font-size: clamp(32px, 5vw, 56px);
+        font-weight: 900;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+    }
+
+    .bp-hero-image {
+        width: 100%;
+        height: 60vh;
+        min-height: 400px;
+        background-attachment: fixed; /* Parallax effect for blog post hero too */
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-top: 2px solid #1a1a1a;
+        border-bottom: 2px solid #1a1a1a;
+    }
+
+    .bp-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 60px 20px;
+        font-size: 18px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .bp-content :global(h2) {
+        font-size: 32px;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        color: #fff;
+    }
+
+    .bp-content :global(h3) {
+        font-size: 24px;
+        font-weight: 700;
+        margin-top: 40px;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .bp-content :global(p) {
+        margin-bottom: 25px;
+    }
+
+    .bp-content :global(ul), .bp-content :global(ol) {
+        margin-bottom: 25px;
+        padding-left: 20px;
+    }
+
+    .bp-content :global(li) {
+        margin-bottom: 10px;
+    }
+
+    .bp-content :global(blockquote) {
+        border-left: 4px solid var(--brand, #c42b2b);
+        padding-left: 20px;
+        margin: 40px 0;
+        font-style: italic;
+        font-size: 22px;
+        color: #fff;
+    }
+
+    .bp-footer {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .bp-share p {
+        font-weight: 600;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+    }
+</style>
