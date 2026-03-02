@@ -25,6 +25,15 @@ import Layout from '../layouts/Layout.astro';
             </div>
         </section>
 
+        <!-- NAV ROW: TABS -->
+        <section class="ed-nav-row">
+            <div class="ed-nav-container">
+                <a href="#articles" class="ed-nav-btn active">БАЗА ЗНАНИЙ (СТАТЬИ)</a>
+                <a href="/videos" class="ed-nav-btn">КАТАЛОГ ВИДЕО</a>
+                <a href="/podcasts" class="ed-nav-btn">ПОДКАСТЫ</a>
+            </div>
+        </section>
+
         <!-- ROW 2: ABOUT / FORMATS -->
         <section class="ed-row height-auto reverse-mobile">
             <div class="ed-col text-col content-center bg-darker">
@@ -138,6 +147,55 @@ import Layout from '../layouts/Layout.astro';
 
     .height-auto {
         min-height: 500px;
+    }
+
+    .ed-nav-row {
+        width: 100%;
+        background: #0a0a0a; /* or #111 depending on preference */
+        border-bottom: 2px solid #1a1a1a;
+        padding: 30px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ed-nav-container {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        padding: 0 20px;
+        justify-content: center;
+    }
+
+    .ed-nav-btn {
+        background: transparent;
+        color: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 12px 24px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .ed-nav-btn:hover {
+        border-color: #fff;
+        color: #fff;
+    }
+
+    .ed-nav-btn.active {
+        background: var(--brand, #c42b2b);
+        border-color: var(--brand, #c42b2b);
+        color: #fff;
+    }
+
+    @media (max-width: 767px) {
+        .ed-nav-btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 
     .image-col {
