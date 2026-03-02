@@ -1,0 +1,36 @@
+---
+import BlogPost from '../../layouts/BlogPost.astro';
+
+const frontmatter = {
+  title: "Лидер = не начальник: как один лидер может вести 3–4 автономные команды?",
+  description: "Посмотреть полное видео на тему: " + "Лидер = не начальник: как один лидер может вести 3–4 автономные команды?",
+  category: "УПРАВЛЕНИЕ И КОМАНДА",
+  date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }),
+  readTime: "ВИДЕО 20+ МИН",
+  image: "https://img.youtube.com/vi/5_pmcSj4u-0/maxresdefault.jpg"
+};
+---
+
+<BlogPost frontmatter={frontmatter}>
+    <p class="lead">В этом видео мы подробно разбираем тему: <strong>Лидер = не начальник: как один лидер может вести 3–4 автономные команды?</strong>. Приятного просмотра!</p>
+    
+    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 12px; margin-top: 40px; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.1);">
+        <iframe 
+            src="https://www.youtube.com/embed/5_pmcSj4u-0" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <h2>Главные мысли из видео</h2>
+    <p>Здесь вы можете оставить свои инсайты и главные выводы после просмотра. Командная работа и обмен опытом — ключевые ценности нашего клуба. Рекомендуем посмотреть видео полностью для максимального погружения в тему.</p>
+</BlogPost>
+
+<style>
+    .lead {
+        font-size: 22px;
+        color: #fff;
+        line-height: 1.6;
+    }
+</style>
