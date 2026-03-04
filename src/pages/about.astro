@@ -357,9 +357,11 @@ import Layout from '../layouts/Layout.astro';
                         <div class="ed-card-content">
                             <span class="ed-card-tag">МЕРОПРИЯТИЯ КЛУБА</span>
                             <h3 class="ed-card-title">Про бизнес сообщество BizPride. Бизнес клуб предпринимателей Алматы Казахстан.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
                     </a>
+                </div>
+
+                <div class="ed-load-more-container">
+                    <button id="load-more-btn" class="ed-btn-load-more">СМОТРЕТЬ ВСЕ</button>
                 </div>
             </div>
         </section>
@@ -410,31 +412,64 @@ import Layout from '../layouts/Layout.astro';
     document.addEventListener('astro:page-load', () => {
         const tabs = document.querySelectorAll('.ed-nav-btn');
         const cards = document.querySelectorAll('.blog-item');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        
+        const CARDS_PER_PAGE = 6;
+        let visibleCount = CARDS_PER_PAGE;
+        let currentFilter = 'all';
+
+        function updateCardsDisplay() {
+            let matches = 0;
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (currentFilter === 'all' || currentFilter === category) {
+                    if (matches < visibleCount) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                    matches++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (loadMoreBtn) {
+                if (matches > visibleCount) {
+                    loadMoreBtn.style.display = 'inline-block';
+                } else {
+                    loadMoreBtn.style.display = 'none';
+                }
+            }
+        }
+
+        // Initialize display
+        updateCardsDisplay();
+
+        if (loadMoreBtn) {
+            const newBtn = loadMoreBtn.cloneNode(true);
+            loadMoreBtn.parentNode.replaceChild(newBtn, loadMoreBtn);
+            
+            newBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                visibleCount += CARDS_PER_PAGE;
+                updateCardsDisplay();
+            });
+        }
 
         tabs.forEach(tab => {
-            // Clone the node to clear any existing event listeners from previous page loads
             const newTab = tab.cloneNode(true);
             tab.parentNode.replaceChild(newTab, tab);
 
             newTab.addEventListener('click', (e) => {
                 e.preventDefault();
-                
-                // Get all freshly cloned tabs
                 const currentTabs = document.querySelectorAll('.ed-nav-btn');
-                
                 currentTabs.forEach(t => t.classList.remove('active'));
                 newTab.classList.add('active');
 
-                const filter = newTab.getAttribute('data-filter');
-
-                cards.forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    if (filter === 'all' || filter === category) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                currentFilter = newTab.getAttribute('data-filter');
+                visibleCount = CARDS_PER_PAGE; // Reset visible count when changing categories
+                updateCardsDisplay();
             });
         });
     });
@@ -494,6 +529,33 @@ import Layout from '../layouts/Layout.astro';
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 30px;
+    }
+
+    .ed-load-more-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+    .ed-btn-load-more {
+        background: var(--brand, #c42b2b);
+        color: #ffffff;
+        border: none;
+        padding: 16px 40px;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(196, 43, 43, 0.2);
+    }
+
+    .ed-btn-load-more:hover {
+        background: #a82222;
+        transform: translateY(-2px);
+        box-shadow: 0 15px 30px rgba(196, 43, 43, 0.3);
     }
 
     .ed-card {
