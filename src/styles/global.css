@@ -909,6 +909,12 @@ body::after {
   }
 }
 
+.stats-marquee-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
 .stats-marquee-track {
   display: flex;
   width: max-content;
