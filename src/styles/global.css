@@ -912,13 +912,13 @@ body::after {
 .stats-marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 25s linear infinite;
+  animation: marquee-scroll 60s linear infinite;
 }
 
 .stats-marquee-content {
   display: flex;
-  gap: 12vw;
-  padding-right: 12vw;
+  gap: 18vw;
+  padding-right: 18vw;
   align-items: center;
 }
 
