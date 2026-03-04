@@ -718,6 +718,7 @@ import Layout from '../layouts/Layout.astro';
         background: #111;
         padding: 40px; /* Internal padding for photos in the editorial layout */
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
     }
@@ -738,6 +739,8 @@ import Layout from '../layouts/Layout.astro';
         height: 100%;
         object-fit: cover;
         display: block;
+        flex: 1;
+        min-height: 0;
     }
     
     .hero-parallax-section {
