@@ -706,7 +706,7 @@ body::after {
 
 .hero-card-1 {
   top: 0;
-  left: 3%;
+  left: -15%;
   width: 280px;
   padding: 28px;
   z-index: 3;
@@ -757,10 +757,10 @@ body::after {
 }
 
 .hero-card-2 {
-  top: 60px;
-  right: -5%;
-  width: 260px;
-  padding: 22px;
+  top: -20px;
+  right: -25%;
+  width: 280px;
+  padding: 24px;
   z-index: 2;
 }
 
