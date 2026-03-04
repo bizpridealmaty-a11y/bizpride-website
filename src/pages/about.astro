@@ -515,9 +515,15 @@ import Layout from '../layouts/Layout.astro';
 
     /* BLOG GRID */
     .ed-blog-grid-section {
-        padding: 80px 20px;
+        padding: 40px 20px;
         background: #ffffff; /* White background */
         border-bottom: 2px solid #eaeaea;
+    }
+
+    @media (min-width: 768px) {
+        .ed-blog-grid-section {
+            padding: 80px 20px;
+        }
     }
 
     .ed-blog-container {
@@ -534,7 +540,13 @@ import Layout from '../layouts/Layout.astro';
     .ed-load-more-container {
         display: flex;
         justify-content: center;
-        margin-top: 50px;
+        margin-top: 30px;
+    }
+
+    @media (min-width: 768px) {
+        .ed-load-more-container {
+            margin-top: 50px;
+        }
     }
 
     .ed-btn-load-more {
