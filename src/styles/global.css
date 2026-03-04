@@ -893,7 +893,7 @@ body::after {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 32px;
   text-align: center;
 }
@@ -901,7 +901,6 @@ body::after {
 @media (max-width: 768px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    /* Example: 2 columns for smaller screens */
   }
 }
 

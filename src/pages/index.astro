@@ -94,6 +94,10 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                             <div class="stat-number" data-count="3000" data-suffix="+">0</div>
                             <div class="stat-label">Запросов</div>
                         </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="50" data-suffix=" млрд ₸">0</div>
+                            <div class="stat-label">Суммарный оборот</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -138,6 +142,81 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                     <div class="vc-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
                     <h3>Результаты</h3>
                     <p>Конкретные сделки, партнёрства и рост выручки — измеримый эффект от участия в клубе.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRITERIA / FILTER -->
+    <section class="section-dark" id="criteria" style="border-top: 1px solid var(--border); padding-top: 120px; padding-bottom: 120px;">
+        <div class="container container-large">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
+                <div class="label reveal">Отбор</div>
+                <h2 class="heading-lg reveal reveal-d1" style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 24px;">Кого мы ждем<br>в клубе</h2>
+                <p class="reveal reveal-d2" style="color: var(--text-light); font-size: 18px;">BizPride объединяет сильных предпринимателей. Чтобы сохранять высокое качество окружения, каждый кандидат проходит строгий отбор.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div class="criteria-card reveal" style="background: var(--bg-card); padding: 40px; border-radius: var(--r-lg); border: 1px solid var(--border);">
+                    <div style="color: var(--brand); font-size: 32px; font-weight: 900; margin-bottom: 20px;">01</div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Твердый бизнес</h3>
+                    <p style="color: var(--text-light);">Вы являетесь собственником или соучредителем действующего экологичного бизнеса с подтвержденным оборотом.</p>
+                </div>
+                <div class="criteria-card reveal reveal-d1" style="background: var(--bg-card); padding: 40px; border-radius: var(--r-lg); border: 1px solid var(--border);">
+                    <div style="color: var(--brand); font-size: 32px; font-weight: 900; margin-bottom: 20px;">02</div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Проверка СБ</h3>
+                    <p style="color: var(--text-light);">Каждый кандидат проходит проверку службой безопасности на отсутствие критичных рисков и безупречную деловую репутацию.</p>
+                </div>
+                <div class="criteria-card reveal reveal-d2" style="background: var(--bg-card); padding: 40px; border-radius: var(--r-lg); border: 1px solid var(--border);">
+                    <div style="color: var(--brand); font-size: 32px; font-weight: 900; margin-bottom: 20px;">03</div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Общие ценности</h3>
+                    <p style="color: var(--text-light);">Собеседование с амбассадорами клуба для подтверждения готовности отдавать, развиваться и следовать принципу WIN-WIN.</p>
+                </div>
+            </div>
+            <div class="reveal reveal-d3" style="text-align: center; margin-top: 60px;">
+                <a href="#test-drive" class="btn btn-primary" style="padding: 18px 40px;">Пройти отбор</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FACES / CASES -->
+    <section class="section-dark" id="faces" style="background: var(--bg-secondary); border-top: 1px solid var(--border);">
+        <div class="container container-large">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 20px;">
+                <div>
+                    <div class="label reveal">Кейсы Резидентов</div>
+                    <h2 class="heading-lg reveal reveal-d1" style="font-size: clamp(32px, 5vw, 48px); margin: 0;">Лица BizPride</h2>
+                </div>
+                <a href="/residents" class="btn btn-outline reveal reveal-d2">Все резиденты</a>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                <!-- Placeholder Card 1 -->
+                <div class="face-card reveal" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
+                    <div style="height: 300px; background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
+                    <div style="padding: 30px;">
+                        <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Алексей Иванов</h3>
+                        <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Основатель IT-Компании</div>
+                        <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«За полгода в клубе нашел 2 ключевых партнера и мы закрыли сделку на 150 млн тенге. Окружение решает всё.»</p>
+                    </div>
+                </div>
+                <!-- Placeholder Card 2 -->
+                <div class="face-card reveal reveal-d1" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
+                    <div style="height: 300px; background: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
+                    <div style="padding: 30px;">
+                        <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Динара Смагулова</h3>
+                        <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Сеть ресторанов</div>
+                        <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«Здесь я получаю выжимку чужого опыта. Совет директоров помогает мне видеть слепые зоны в моем бизнесе.»</p>
+                    </div>
+                </div>
+                <!-- Placeholder Card 3 -->
+                <div class="face-card reveal reveal-d2" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
+                    <div style="height: 300px; background: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
+                    <div style="padding: 30px;">
+                        <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Марат Каримов</h3>
+                        <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Строительная Корпорация</div>
+                        <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«BizPride — это про масштаб. Я пришел за инвестициями, а получил еще и мощный сдвиг в мышлении.»</p>
+                    </div>
                 </div>
             </div>
         </div>
