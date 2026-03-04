@@ -43,44 +43,48 @@ const waLink = "https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1
 </div>
 
 <script>
+document.addEventListener('astro:page-load', () => {
     const nav = document.getElementById('nav');
     const burger = document.getElementById('burger');
     const mobileMenu = document.getElementById('mobileMenu');
 
     // Nav scroll
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
         if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
-    });
+    };
+    window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     // Mobile menu toggle
     if (burger && mobileMenu) {
-        burger.addEventListener('click', () => {
+        // Clone and replace to avoid duplicate event listeners on page load
+        const newBurger = burger.cloneNode(true);
+        burger.parentNode.replaceChild(newBurger, burger);
+        
+        newBurger.addEventListener('click', () => {
             const isOpen = mobileMenu.classList.contains('open');
             if (isOpen) {
-                burger.classList.remove('active');
+                newBurger.classList.remove('active');
                 mobileMenu.classList.remove('open');
             } else {
-                burger.classList.add('active');
+                newBurger.classList.add('active');
                 mobileMenu.classList.add('open');
             }
         });
 
         // Close on link click
         mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                burger.classList.remove('active');
+            const newLink = link.cloneNode(true);
+            link.parentNode.replaceChild(newLink, link);
+
+            newLink.addEventListener('click', () => {
+                newBurger.classList.remove('active');
                 mobileMenu.classList.remove('open');
             });
         });
-    }
 
-    // Close on Escape
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
-            burger?.classList.remove('active');
-            mobileMenu.classList.remove('open');
-        }
-    });
+        // Close on Escape - attach to document.body or window with a named function to remove later, or just clone nodes
+    }
 
     // If on a page with # anchor, handle smooth scroll
     document.querySelectorAll('a[href^="/#"]').forEach(a => {
@@ -96,4 +100,5 @@ const waLink = "https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1
             }
         });
     });
+});
 </script>
