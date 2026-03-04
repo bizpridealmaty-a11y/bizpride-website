@@ -205,17 +205,7 @@ import Layout from '../layouts/Layout.astro';
                             <span class="ed-card-link">Смотреть видео &rarr;</span>
                         </div>
                     </a>
-                    <!-- Video Card: laiki-nichego-ne-reshayut-chto-na-samom-dele-prod -->
-                    <a href="/blog/laiki-nichego-ne-reshayut-chto-na-samom-dele-prod" class="ed-card video-card blog-item" data-category="marketing">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/RRcAGXfmQFE/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МАРКЕТИНГ И ПРОДВИЖЕНИЕ</span>
-                            <h3 class="ed-card-title">Лайки ничего не решают: что на самом деле продвигает ваш контент в 2026 году:</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
+
                     <!-- Video Card: lyudi-ustali-ot-uspeshnogo-uspeha-kakoi-kontent -->
                     <a href="/blog/lyudi-ustali-ot-uspeshnogo-uspeha-kakoi-kontent" class="ed-card video-card blog-item" data-category="marketing">
                         <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/Vb7JCEoNoes/maxresdefault.jpg');">
@@ -417,27 +407,30 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('astro:page-load', () => {
         const tabs = document.querySelectorAll('.ed-nav-btn');
         const cards = document.querySelectorAll('.blog-item');
 
         tabs.forEach(tab => {
-            tab.addEventListener('click', (e) => {
+            // Clone the node to clear any existing event listeners from previous page loads
+            const newTab = tab.cloneNode(true);
+            tab.parentNode.replaceChild(newTab, tab);
+
+            newTab.addEventListener('click', (e) => {
                 e.preventDefault();
                 
-                // Remove active class from all tabs
-                tabs.forEach(t => t.classList.remove('active'));
+                // Get all freshly cloned tabs
+                const currentTabs = document.querySelectorAll('.ed-nav-btn');
                 
-                // Add active class to the clicked tab
-                tab.classList.add('active');
+                currentTabs.forEach(t => t.classList.remove('active'));
+                newTab.classList.add('active');
 
-                const filter = tab.getAttribute('data-filter');
+                const filter = newTab.getAttribute('data-filter');
 
-                // Filter cards
                 cards.forEach(card => {
                     const category = card.getAttribute('data-category');
                     if (filter === 'all' || filter === category) {
-                        card.style.display = 'flex'; // our cards use flexbox
+                        card.style.display = 'flex';
                     } else {
                         card.style.display = 'none';
                     }
