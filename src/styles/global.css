@@ -3572,11 +3572,16 @@ footer {
 
 .marquee-track {
   display: flex;
-  gap: 30px;
   width: max-content;
-  will-change: transform;
-  /* 40 seconds loop duration */
-  animation: marquee-scroll 40s linear infinite;
+  /* Adjust animation duration if it's too fast/slow */
+  animation: marquee-scroll 30s linear infinite;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 30px;
+  /* padding-right creates the gap between the end of the original and the start of the duplicate */
+  padding-right: 30px;
 }
 
 /* Pause animation on hover */
@@ -3585,13 +3590,12 @@ footer {
 }
 
 @keyframes marquee-scroll {
-  0% {
+  from {
     transform: translateX(0);
   }
 
-  100% {
-    /* Translate exactly half the width since we double the items */
-    transform: translateX(calc(-50% - 15px));
+  to {
+    transform: translateX(-50%);
   }
 }
 
