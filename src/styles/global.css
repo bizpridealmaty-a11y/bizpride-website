@@ -712,6 +712,11 @@ body::after {
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), 0 0 40px rgba(196, 43, 43, 0.2);
 }
 
+.hero-cards:hover .hero-card:not(:hover) {
+  filter: blur(5px) brightness(0.6);
+  opacity: 0.8;
+}
+
 .hero-card-1 {
   top: 0;
   left: 0;
@@ -902,6 +907,24 @@ body::after {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.stats-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 25s linear infinite;
+}
+
+.stats-marquee-content {
+  display: flex;
+  gap: 12vw;
+  padding-right: 12vw;
+  align-items: center;
+}
+
+.stats-marquee-content .stat-item {
+  flex-shrink: 0;
+  text-align: center;
 }
 
 .stat-number {
