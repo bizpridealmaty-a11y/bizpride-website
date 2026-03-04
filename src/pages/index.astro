@@ -174,7 +174,7 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                 </div>
             </div>
             <div class="reveal reveal-d3" style="text-align: center; margin-top: 60px;">
-                <a href="#test-drive" class="btn btn-primary" style="padding: 18px 40px;">Пройти отбор</a>
+                <a href="https://wa.me/77070357777?text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9%20%D0%B4%D0%B5%D0%BD%D1%8C!%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BF%D0%BE%D1%81%D0%B5%D1%82%D0%B8%D1%82%D1%8C%20%D1%82%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B5%20%D0%B2%20%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BA%D0%BB%D1%83%D0%B1%D0%B5%20BizPride." class="btn btn-white-red" style="padding: 18px 40px;" target="_blank">Пройти отбор</a>
             </div>
         </div>
     </section>
@@ -189,33 +189,73 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                 </div>
                 <a href="/residents" class="btn btn-outline reveal reveal-d2">Все резиденты</a>
             </div>
+        </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
-                <!-- Placeholder Card 1 -->
-                <div class="face-card reveal" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
-                    <div style="height: 300px; background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
-                    <div style="padding: 30px;">
-                        <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Алексей Иванов</h3>
-                        <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Основатель IT-Компании</div>
-                        <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«За полгода в клубе нашел 2 ключевых партнера и мы закрыли сделку на 150 млн тенге. Окружение решает всё.»</p>
+        <!-- MARQUEE CAROUSEL (FULL WIDTH) -->
+        <div class="marquee-container reveal reveal-d3" style="padding-bottom: 80px;">
+            <div class="marquee-track">
+                    <!-- Original Set -->
+                    <div class="marquee-card">
+                        <div class="face-card" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
+                            <div style="height: 300px; background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
+                            <div style="padding: 30px;">
+                                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Алексей Иванов</h3>
+                                <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Основатель IT-Компании</div>
+                                <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«За полгода в клубе нашел 2 ключевых партнера и мы закрыли сделку на 150 млн тенге. Окружение решает всё.»</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <!-- Placeholder Card 2 -->
-                <div class="face-card reveal reveal-d1" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
-                    <div style="height: 300px; background: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
-                    <div style="padding: 30px;">
-                        <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Динара Смагулова</h3>
-                        <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Сеть ресторанов</div>
-                        <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«Здесь я получаю выжимку чужого опыта. Совет директоров помогает мне видеть слепые зоны в моем бизнесе.»</p>
+                    <div class="marquee-card">
+                        <div class="face-card" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
+                            <div style="height: 300px; background: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
+                            <div style="padding: 30px;">
+                                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Динара Смагулова</h3>
+                                <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Сеть ресторанов</div>
+                                <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«Здесь я получаю выжимку чужого опыта. Совет директоров помогает мне видеть слепые зоны в моем бизнесе.»</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <!-- Placeholder Card 3 -->
-                <div class="face-card reveal reveal-d2" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
-                    <div style="height: 300px; background: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
-                    <div style="padding: 30px;">
-                        <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Марат Каримов</h3>
-                        <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Строительная Корпорация</div>
-                        <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«BizPride — это про масштаб. Я пришел за инвестициями, а получил еще и мощный сдвиг в мышлении.»</p>
+                    <div class="marquee-card">
+                        <div class="face-card" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
+                            <div style="height: 300px; background: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
+                            <div style="padding: 30px;">
+                                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Марат Каримов</h3>
+                                <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Строительная Корпорация</div>
+                                <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«BizPride — это про масштаб. Я пришел за инвестициями, а получил еще и мощный сдвиг в мышлении.»</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Duplicated Set for Infinite Loop -->
+                    <div class="marquee-card" aria-hidden="true">
+                        <div class="face-card" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
+                            <div style="height: 300px; background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
+                            <div style="padding: 30px;">
+                                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Алексей Иванов</h3>
+                                <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Основатель IT-Компании</div>
+                                <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«За полгода в клубе нашел 2 ключевых партнера и мы закрыли сделку на 150 млн тенге. Окружение решает всё.»</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="marquee-card" aria-hidden="true">
+                        <div class="face-card" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
+                            <div style="height: 300px; background: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
+                            <div style="padding: 30px;">
+                                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Динара Смагулова</h3>
+                                <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Сеть ресторанов</div>
+                                <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«Здесь я получаю выжимку чужого опыта. Совет директоров помогает мне видеть слепые зоны в моем бизнесе.»</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="marquee-card" aria-hidden="true">
+                        <div class="face-card" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
+                            <div style="height: 300px; background: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop') center/cover; filter: grayscale(100%); transition: 0.3s; cursor: pointer;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></div>
+                            <div style="padding: 30px;">
+                                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">Марат Каримов</h3>
+                                <div style="color: var(--brand); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">Строительная Корпорация</div>
+                                <p style="color: var(--text-light); font-size: 14px; font-style: italic;">«BizPride — это про масштаб. Я пришел за инвестициями, а получил еще и мощный сдвиг в мышлении.»</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

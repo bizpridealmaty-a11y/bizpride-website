@@ -3559,3 +3559,59 @@ footer {
   width: 100%;
   display: block;
 }
+
+/* MARQUEE CAROUSEL (FACES) */
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  /* Fading edges */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+  will-change: transform;
+  /* 40 seconds loop duration */
+  animation: marquee-scroll 40s linear infinite;
+}
+
+/* Pause animation on hover */
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    /* Translate exactly half the width since we double the items */
+    transform: translateX(calc(-50% - 15px));
+  }
+}
+
+.marquee-card {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+/* CUSTOM FILTER BUTTON */
+.btn-white-red {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+  transition: all 0.3s var(--ease);
+}
+
+.btn-white-red:hover {
+  background-color: var(--red);
+  color: #ffffff;
+  border-color: var(--red);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(196, 43, 43, 0.3);
+}
