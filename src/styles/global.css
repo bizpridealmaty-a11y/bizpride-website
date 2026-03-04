@@ -706,7 +706,7 @@ body::after {
 
 .hero-card-1 {
   top: 0;
-  left: 8%;
+  left: 3%;
   width: 280px;
   padding: 28px;
   z-index: 3;
@@ -758,14 +758,14 @@ body::after {
 
 .hero-card-2 {
   top: 60px;
-  right: 0;
-  width: 240px;
+  right: -5%;
+  width: 260px;
   padding: 22px;
   z-index: 2;
 }
 
 .hc2-header {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -783,7 +783,7 @@ body::after {
 }
 
 .hc2-event-date {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--red);
   letter-spacing: 1px;
@@ -791,7 +791,7 @@ body::after {
 }
 
 .hc2-event-name {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   margin-top: 2px;
 }
