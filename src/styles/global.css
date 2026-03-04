@@ -706,10 +706,15 @@ body::after {
 
 .hero-card-1 {
   top: 0;
-  left: -15%;
+  left: 0;
+  transform: translateX(-40px);
   width: 280px;
   padding: 28px;
   z-index: 3;
+}
+
+.hero-card-1:hover {
+  transform: translate(-40px, -6px);
 }
 
 .hc-icon {
@@ -758,10 +763,15 @@ body::after {
 
 .hero-card-2 {
   top: -20px;
-  right: -25%;
+  right: 0;
+  transform: translateX(40px);
   width: 280px;
   padding: 24px;
   z-index: 2;
+}
+
+.hero-card-2:hover {
+  transform: translate(40px, -6px);
 }
 
 .hc2-header {
