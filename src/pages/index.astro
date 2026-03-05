@@ -73,59 +73,41 @@ const placeholders = [
 
         <div class="container">
             <div class="hero-grid">
-                <div class="hero-content">
-                    <div class="hero-badge"><span class="hero-badge-dot"></span>Алматы · Бизнес-клуб</div>
-                    <h1><span class="red">BizPride</span><br>Club</h1>
-                    <p class="hero-tagline">Открытое сообщество лидеров</p>
-                    <p class="hero-desc">Объединяем предпринимателей Казахстана, которые ценят реальные связи, обмен
-                        опытом и совместный рост. Вход — только по рекомендации.</p>
+                <div class="hero-left">
+                    <span class="hero-badge"><span class="hero-badge-dot"></span>АЛМАТЫ - БИЗНЕС-КЛУБ</span>
+                    <h1><span class="red">BizPride</span> Club</h1>
+                    <h2>Открытое сообщество лидеров</h2>
+                    <p class="hero-desc">Объединяем предпринимателей Казахстана, которые ценят реальные связи, обмен опытом и совместный рост. Вход — только по рекомендации.</p>
                     <div class="hero-actions">
-                        <a href="/#membership" class="btn-glow">Стать резидентом</a>
-                        <a href="/events" class="btn-glass">Расписание мероприятий</a>
+                        <a href="/#membership" class="btn-primary">СТАТЬ РЕЗИДЕНТОМ</a>
+                        <a href="/events" class="btn-outline">РАСПИСАНИЕ МЕРОПРИЯТИЙ</a>
                     </div>
                 </div>
-                <div class="hero-visual">
-                    <div class="hero-cards">
-                        <div class="hero-card hero-card-1">
-                            <div class="hc-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" /></svg></div>
-                            <div class="hc-name">120+ Резидентов</div>
-                            <div class="hc-role">Предприниматели, инвесторы, CEO</div>
-                            <span class="hc-tag">Открытый клуб</span>
-                        </div>
-                        <div class="hero-card hero-card-2">
-                            <div class="hc2-header">Форматы встреч</div>
-                            <div class="hc2-event">
-                                <div class="hc2-event-date">Еженедельно</div>
-                                <div class="hc2-event-name">Мастермайнды</div>
-                            </div>
-                            <div class="hc2-event">
-                                <div class="hc2-event-date">Ежемесячно</div>
-                                <div class="hc2-event-name">Нетворкинг-ужин</div>
-                            </div>
-                            <div class="hc2-event">
-                                <div class="hc2-event-date">Ежеквартально</div>
-                                <div class="hc2-event-name">Ретрит</div>
-                            </div>
-                        </div>
 
-                        <!-- 3RD CARD: UPCOMING EVENTS -->
-                        <div class="hero-card hero-card-3 reveal reveal-d3">
-                            <div class="hc3-bar">Ближайшие события</div>
-                            <div class="hc3-body">
-                                <div class="hc3-stat">
-                                    <div class="hc3-stat-label">03 Марта</div>
-                                    <div class="hc3-stat-value" style="font-size: 13px;">Совет Директоров</div>
-                                </div>
-                                <div class="hc3-stat">
-                                    <div class="hc3-stat-label">07 Марта</div>
-                                    <div class="hc3-stat-value" style="font-size: 13px;">Family Day</div>
-                                </div>
-                                <div class="hc3-stat" style="border-bottom: none;">
-                                    <div class="hc3-stat-label">14 Марта</div>
-                                    <div class="hc3-stat-value" style="font-size: 13px;">Бизнес-Бранч</div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="hero-right">
+                    <div class="hero-card">
+                        <div class="hc-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="var(--text-white)"/></svg></div>
+                        <h3>120+ РЕЗИДЕНТОВ</h3>
+                        <p>Предприниматели, инвесторы, CEO</p>
+                        <a href="/about" class="btn-outline-red" style="align-self: flex-start; margin-top: 5px;">ОТКРЫТЫЙ КЛУБ</a>
+                    </div>
+
+                    <div class="hero-card hero-formats-card">
+                        <h3>ФОРМАТЫ ВСТРЕЧ</h3>
+                        <ul>
+                            <li><strong>ЕЖЕНЕДЕЛЬНО</strong> <span>Мастермайнды</span></li>
+                            <li><strong>ЕЖЕМЕСЯЧНО</strong> <span>Нетворкинг-ужин</span></li>
+                            <li><strong>ЕЖЕКВАРТАЛЬНО</strong> <span>Ретрит</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="hero-card hero-events-card">
+                        <div class="card-header">БЛИЖАЙШИЕ СОБЫТИЯ</div>
+                        <ul>
+                            <li><strong>03 МАРТА</strong> <span>Совет Директоров</span></li>
+                            <li><strong>07 МАРТА</strong> <span>Family Day</span></li>
+                            <li><strong>14 МАРТА</strong> <span>Бизнес-Бранч</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -137,43 +119,40 @@ const placeholders = [
         <div class="stats-bar reveal reveal-d4" style="border-right: none; border-left: none; width: 100%;">
             <div class="stats-marquee-container">
                 <div class="marquee-track stats-marquee-track">
-                    <div class="marquee-content stats-marquee-content">
-                        <!-- Group 1 -->
-                        <div class="stat-item"><div class="stat-number" data-count="150" data-suffix="+">0</div><div class="stat-label">Встреч в год</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="120" data-suffix="+">0</div><div class="stat-label">Резидентов</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="62">0</div><div class="stat-label">Отраслей</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="5">0</div><div class="stat-label">Лет опыта</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="3000" data-suffix="+">0</div><div class="stat-label">Запросов</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="50" data-suffix=" млрд ₸">0</div><div class="stat-label">Суммарный оборот</div></div>
-                        <!-- Group 2 -->
-                        <div class="stat-item"><div class="stat-number" data-count="150" data-suffix="+">0</div><div class="stat-label">Встреч в год</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="120" data-suffix="+">0</div><div class="stat-label">Резидентов</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="62">0</div><div class="stat-label">Отраслей</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="5">0</div><div class="stat-label">Лет опыта</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="3000" data-suffix="+">0</div><div class="stat-label">Запросов</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="50" data-suffix=" млрд ₸">0</div><div class="stat-label">Суммарный оборот</div></div>
-                    </div>
-                    <!-- Duplicate for loop -->
-                    <div class="marquee-content stats-marquee-content">
-                        <!-- Group 1 -->
-                        <div class="stat-item"><div class="stat-number" data-count="150" data-suffix="+">0</div><div class="stat-label">Встреч в год</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="120" data-suffix="+">0</div><div class="stat-label">Резидентов</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="62">0</div><div class="stat-label">Отраслей</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="5">0</div><div class="stat-label">Лет опыта</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="3000" data-suffix="+">0</div><div class="stat-label">Запросов</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="50" data-suffix=" млрд ₸">0</div><div class="stat-label">Суммарный оборот</div></div>
-                        <!-- Group 2 -->
-                        <div class="stat-item"><div class="stat-number" data-count="150" data-suffix="+">0</div><div class="stat-label">Встреч в год</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="120" data-suffix="+">0</div><div class="stat-label">Резидентов</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="62">0</div><div class="stat-label">Отраслей</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="5">0</div><div class="stat-label">Лет опыта</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="3000" data-suffix="+">0</div><div class="stat-label">Запросов</div></div>
-                        <div class="stat-item"><div class="stat-number" data-count="50" data-suffix=" млрд ₸">0</div><div class="stat-label">Суммарный оборот</div></div>
-                    </div>
+    <section class="stats section-dark" style="border-bottom: 1px solid var(--border); border-top: 1px solid var(--border);">
+        <div class="container container-large">
+            <div class="stats-row">
+                <div class="stat-item">
+                    <h2>3000<span>+</span></h2>
+                    <p>ЗАПРОСОВ</p>
+                </div>
+                <div class="stat-item">
+                    <h2>50<span> млрд ₸</span></h2>
+                    <p>СУММАРНЫЙ ОБОРОТ</p>
+                </div>
+                <div class="stat-item">
+                    <h2>150<span>+</span></h2>
+                    <p>ВСТРЕЧ В ГОД</p>
+                </div>
+                <div class="stat-item">
+                    <h2>120<span>+</span></h2>
+                    <p>РЕЗИДЕНТОВ</p>
+                </div>
+                <div class="stat-item">
+                    <h2>62</h2>
+                    <p>ОТРАСЛЕЙ</p>
+                </div>
+                <div class="stat-item">
+                    <h2>5</h2>
+                    <p>ЛЕТ ОПЫТА</p>
+                </div>
+                <div class="stat-item">
+                    <h2>30</h2>
+                    <p>БИЗНЕС<br>CAMPОВ</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- VALUES -->
     <section class="section-dark" id="values" style="background: var(--bg-secondary);">

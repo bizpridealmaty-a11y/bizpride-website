@@ -28,7 +28,7 @@ const waLink = "https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1
                         </a>
                     </li>
                 ))}
-                <li><a href={waLink} target="_blank" class="btn-glow">Вступить</a></li>
+                <li><a href={waLink} target="_blank" class="btn-primary btn-sm">Вступить</a></li>
             </ul>
             <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
         </div>
@@ -39,7 +39,7 @@ const waLink = "https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1
     {links.map(link => (
         <a href={link.href} class={currentPath === link.href ? 'active' : ''}>{link.label}</a>
     ))}
-    <a href={waLink} target="_blank" class="btn-glow">Вступить</a>
+    <a href={waLink} target="_blank" class="btn-primary btn-sm">Вступить</a>
 </div>
 
 <script>
