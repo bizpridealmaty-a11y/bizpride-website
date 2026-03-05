@@ -1,62 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const residents = [
-  { name: 'Александр Вотинцев', role: 'Производство систем ароматизации' },
-  { name: 'Дмитрий Балюцкий', role: 'IT компания, софт для компаний' },
-  { name: 'Александр Ежилов', role: 'IT компания, софт для компаний' },
-  { name: 'Кульзия Заитова', role: 'Финансовый консалтинг' },
-  { name: 'Надир Хилажев', role: 'Резидент BizPride' },
-  { name: 'Nikita Korolev', role: 'Финансовый консалтинг' },
-  { name: 'Григорьев Игорь Михайлович', role: 'Антиквариат, сеть магазинов' },
-  { name: 'Зарина Зикирова', role: 'Продюсер ютуб-каналов и проектов' },
-  { name: 'Екатерина Волкова', role: 'Сеть медицинских магазинов' },
-  { name: 'Галина Гиль-Батыр', role: 'Владелец Антикафе проекта' },
-  { name: 'Зухра Дениско', role: 'Резидент BizPride' },
-  { name: 'Фатима Искакова', role: 'Логистическая компания, трансферт' },
-  { name: 'Александр Попов', role: 'Резидент BizPride' },
-  { name: 'Кардабаева Мадина', role: 'Интернет-магазины, байер из Китая' },
-  { name: 'Ильяс Маммедов', role: 'Магазин компьютерной техники' },
-  { name: 'Кузьмитский Роман', role: 'HR компания по трудоустройству' },
-  { name: 'Биданов Канат', role: 'Сертификация и измерительные системы' },
-  { name: 'Башмаков Сергей', role: 'Финансовый консалтинг' },
-  { name: 'Темирханов Макен', role: 'Производство пробиотика для иммунитета' },
-  { name: 'Рупп Александр', role: 'Архитектура, дизайн, строительство' },
-  { name: 'Чалый Артём', role: 'Клининговая компания' },
-  { name: 'Таиров Рахим', role: 'Организация массовых мероприятий' },
-  { name: 'Усик Ксения', role: 'Медицинские расходники, тендеры' },
-  { name: 'Кужукеева Гульмира', role: 'Юрист, Психология, Гештальт-терапия' },
-  { name: 'Хан Андрей', role: 'IT разработка ПО' },
-  { name: 'Иржанова Оксана', role: 'Строительный бизнес, спецремонт' },
-  { name: 'Денис Исаков', role: 'Клининговая компания' },
-  { name: 'Карсунцев Артём', role: 'Рекламное агентство' },
-  { name: 'Серикбеккызы Айгуль', role: 'Резидент BizPride' },
-  { name: 'Мустафаев Рашид', role: 'Резидент BizPride' },
-  { name: 'Миняйло Сергей', role: 'Резидент BizPride' },
-  { name: 'Поспелов Евгений', role: 'Резидент BizPride' },
-  { name: 'Ошерова Светлана', role: 'Консалтинг по оптимизации бизнеса' },
-  { name: 'Кадырова Асель', role: 'Декор и оформление' },
-  { name: 'Васепов Виталий', role: 'Инвестирование и фондовый рынок' },
-  { name: 'Клименко Евгений', role: 'Маркетинг' },
-  { name: 'Икрамов Рустем', role: 'Строительство, горное оборудование' },
-  { name: 'Щербакова Татьяна', role: 'Строительная сфера, услуги' },
-  { name: 'Кравченко Александр', role: 'Туристическая компания' },
-  { name: 'Исламова Саида', role: 'Резидент BizPride' }
-];
-
-const placeholders = [
-  "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1543132220-3ec99c6094dc?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1508214751196-bfd47101e639?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=600&auto=format&fit=crop"
-];
+import residents from '../data/residents.js';
 ---
 
 <Layout 
@@ -78,7 +23,7 @@ const placeholders = [
                 
                 {residents.map((res, index) => (
                     <div class="face-card reveal" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='none'">
-                        <img src={placeholders[index % placeholders.length]} alt={res.name} style="width: 100%; height: 350px; object-fit: cover; filter: grayscale(100%); transition: 0.3s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'" loading="lazy" />
+                        <img src={res.image} alt={res.name} style="width: 100%; height: 350px; object-fit: cover; filter: grayscale(100%); transition: 0.3s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'" loading="lazy" />
                         <div style="padding: 30px;">
                             <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 5px;">{res.name}</h3>
                             <div style="color: var(--brand); font-size: 14px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">{res.role}</div>

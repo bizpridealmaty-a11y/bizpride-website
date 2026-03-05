@@ -1,0 +1,30 @@
+const residents = [
+    { name: 'Дмитрий Балюцкий', role: 'IT компания, софт для компаний', quote: '', telegram: 'https://t.me/bdl77', image: '/residents/Дмитрий Балюцкий.jpg' },
+    { name: 'Александр Ежилов', role: 'IT компания, софт для компаний', quote: 'AStudioDev — Разработка программного обеспечения для бизнеса. astudio.dev', telegram: 'https://t.me/AleksandrEzhilov', image: '/residents/Александр Ежилов.jpg' },
+    { name: 'Кульзия Заитова', role: 'Финансовый консалтинг компаний', quote: '', telegram: '', image: '/residents/Кульзия Заитова.jpg' },
+    { name: 'Григорьев Игорь Михайлович', role: 'Антиквариат, сеть магазинов', quote: 'Коллекционер города Алматы. Покупка-продажа предметов старины коллекционирования. Монеты-нумизматика, фалеристика-нагрудные знаки, антиквариат.', telegram: 'https://t.me/igor0703kz', image: '/residents/Григорьев Игорь.jpg' },
+    { name: 'Зарина Зикирова', role: 'Продюсер ютуб каналов и интернет проектов', quote: '', telegram: 'https://t.me/ZarinaZikirova', image: '/residents/Зарина Зикирова.jpg' },
+    { name: 'Екатерина Волкова', role: 'Сеть медицинских магазинов', quote: 'Магазин реабилитационных, ортопедических товаров и стелек ORTONOG.KZ', telegram: 'https://t.me/vea_katya', image: '/residents/Екатерина волшебная.jpg' },
+    { name: 'Галина Гиль-Батыр', role: 'Владелец Антикафе проекта', quote: '', telegram: 'https://t.me/Gili4ka', image: '/residents/Галина Гиль-Батыр .jpg' },
+    { name: 'Кузьмитский Роман', role: 'HR компания по найму и трудоустройству', quote: 'WeFind — ваш надёжный HR-партнёр в найме персонала. Берём на себя поиск, оформление и управление сотрудниками. Аутсорсинг, аутстаффинг, массовый подбор.', telegram: 'https://t.me/Roman_Kuzmitsky', image: '/residents/Кузьмитский Роман.jpg' },
+    { name: 'Башмаков Сергей', role: 'Финансовый консалтинг', quote: '', telegram: 'https://t.me/s_bashmakou', image: '/residents/Сергей Башмаков.jpg' },
+    { name: 'Темирханов Макен', role: 'Производство пробиотика для иммунитета', quote: '', telegram: 'https://t.me/EnergyMaken', image: '/residents/Макен Темирханов.jpg' },
+    { name: 'Рупп Александр', role: 'Архитектура, строительство, графический дизайнер', quote: '', telegram: 'https://t.me/Sasha_Rupp', image: '/residents/Александр Рупп.jpg' },
+    { name: 'Чалый Артём Федорович', role: 'Клининговая компания', quote: '', telegram: '', image: '/residents/Чалый Артём.jpg' },
+    { name: 'Таиров Рахим', role: 'Организация массовых мероприятий и событий', quote: '', telegram: 'https://t.me/RakhimDairov', image: '/residents/Рахим Даиров.jpg' },
+    { name: 'Усик Ксения', role: 'Медицинские расходники, тендер', quote: 'Компания Medelity занимается оптово-розничной поставкой медицинских расходных материалов, комплексным обеспечением медицинских центров.', telegram: 'https://t.me/Kseniya_Medelity', image: '/residents/Ксения Усик.jpg' },
+    { name: 'Кужукеева Гульмира', role: 'Юрист по некоммерческому праву', quote: 'Психология, Гештальт-терапия', telegram: 'https://t.me/gulmira_sanay', image: '/residents/Гульмира Кужукеева.jpg' },
+    { name: 'Хан Андрей Васильевич', role: 'IT Платформа', quote: 'ТОО "Luna Eight" IT Платформа для автоматизации подписания Договоров и АВР ЭЦП НУЦ РК', telegram: 'https://t.me/Andrey_Luna8', image: '/residents/Андрей Хан.jpg' },
+    { name: 'Карсунцев Артём', role: 'Рекламное агенство', quote: 'daAgency - Мы не ограничиваемся запуском рекламы. Мы заходим в проект глубоко и управляем тем, что реально влияет на выручку.', telegram: 'https://t.me/ArtemKars', image: '/residents/Карсунцев Артём.jpg' },
+    { name: 'Серикбеккызы Айгуль', role: 'Резидент BizPride', quote: '', telegram: 'https://t.me/Aigul_Serikbek', image: '/residents/Серикбеккызы Айгуль .jpg' },
+    { name: 'Мустафаев Рашид', role: 'Менторство', quote: 'Групповые и индивидуальные авторские программы, трансформации и масштабирования личности, проектов и амбиций. В интегральном подходе.', telegram: 'https://t.me/Rashid_mcoach', image: '/residents/Рашид Мустафаев.jpg' },
+    { name: 'Миняйло Сергей Сергеевич', role: 'Директор по маркетингу', quote: 'Помогаю предпринимателям выстроить систему привлечения клиентов: создаю стратегию и лично внедряю её до результата.', telegram: 'https://t.me/inet_marketer', image: '/residents/Сергей Миняйло.jpg' },
+    { name: 'Ошерова Светлана', role: 'Консалтинг по оптимизации бизнеса', quote: '', telegram: 'https://t.me/SvetlanaOsherova', image: '/residents/Светлана Ошерова.jpg' },
+    { name: 'Кадырова Асель', role: 'Декор и оформление', quote: '', telegram: 'https://t.me/Assel_Janym', image: '/residents/Асель Кадырова.jpg' },
+    { name: 'Васепов Виталий', role: 'Инвестирование и фондовый рынок', quote: 'Международная компания Solico. Директор по развитию молочного бизнеса. Задачи: развитие продаж, развитие каналов сбыта, управление ассортиментом.', telegram: 'https://t.me/VVassepov', image: '/residents/Виталий Вассепов.JPG' },
+    { name: 'Клименко Евгений', role: 'Маркетинг', quote: '', telegram: 'https://t.me/zhe_nin', image: '/residents/Евгений Клименко.jpg' },
+    { name: 'Икрамов Рустем', role: 'Строительство, горнодобывающее оборудование', quote: '', telegram: 'https://t.me/Rus_2902', image: '/residents/Рустем.jpg' },
+    { name: 'Кравченко Александр', role: 'Туристическая компания wishtours', quote: '', telegram: 'https://t.me/ALexx_Kra', image: '/residents/Александр Кравченко.jpg' }
+];
+
+export default residents;
