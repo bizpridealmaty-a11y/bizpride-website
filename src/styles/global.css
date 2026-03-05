@@ -3948,7 +3948,7 @@ footer {
   display: flex;
   width: max-content;
   /* Adjust animation duration if it's too fast/slow */
-  animation: marquee-scroll 90s linear infinite;
+  animation: marquee-scroll 180s linear infinite;
 }
 
 .marquee-content {
