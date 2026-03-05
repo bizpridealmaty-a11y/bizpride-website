@@ -432,6 +432,30 @@ import residents from '../data/residents.js';
             .hm-h1 { font-size: 60px; }
             .hm-stat-item { margin: 0 20px; min-width: 140px; }
             .hm-stat-value { font-size: 22px; }
+
+            /* ── Mobile Card Reset ── */
+            .hm-right-col {
+                margin-top: 30px;
+                gap: 12px;
+            }
+            .hm-card {
+                margin-bottom: 0 !important;
+                padding: 20px;
+            }
+            .hm-card:nth-child(1),
+            .hm-card:nth-child(2),
+            .hm-card:nth-child(3) {
+                transform: none !important;
+            }
+            .hm-card:hover {
+                transform: scale(1.03) !important;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            }
+            .hm-card-title { font-size: 16px; }
+            .hm-card-desc { font-size: 13px; }
+            .hm-card-icon { width: 36px; height: 36px; font-size: 18px; padding: 7px; }
+            .hm-event-date { font-size: 28px; }
+            .hm-btn-card { font-size: 12px; }
         }
 </style>
 
