@@ -589,18 +589,140 @@ body::after {
 
 .hero-portrait {
   position: absolute;
-  bottom: 0;
+  top: 60px;
+  /* Offset roughly by header height */
   left: 50%;
   transform: translateX(-50%);
+  height: calc(100% - 60px);
   width: auto;
-  max-width: 90%;
-  height: 95vh;
-  max-height: 950px;
+  max-width: 100vw;
+  object-fit: cover;
   z-index: 1;
-  /* behind grid content */
-  object-fit: contain;
-  object-position: bottom center;
+  /* Behind cards and text */
   pointer-events: none;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.2s forwards;
+}
+
+/* Vignette Overlay */
+.hero-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  /* Over portrait, under content */
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 30%, rgba(26, 26, 26, 0.95) 100%);
+}
+
+.hero-grid.glass-split {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .hero-grid.glass-split {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 40px;
+  }
+
+  .hero-content.left-align {
+    flex: 1 1 auto;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-visual.right-align {
+    flex: 1 1 auto;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-cards-stack {
+    align-items: center;
+    padding-right: 0;
+    max-width: 100%;
+  }
+
+  .hero-desc {
+    margin: 20px auto;
+  }
+
+  .hero-actions {
+    justify-content: center !important;
+  }
+}
+
+.hero-content.left-align {
+  flex: 0 1 45%;
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.hero-visual.right-align {
+  flex: 0 1 45%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hero-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-end;
+  /* Align right */
+  width: 100%;
+  max-width: 320px;
+  padding-right: 20px;
+}
+
+/* Restore minimal glass borders but no solid backgrounds */
+.hero-card-glass {
+  width: 100%;
+  background: rgba(31, 41, 55, 0.2);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.hero-card-glass:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(220, 38, 38, 0.15);
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+.hero-card-glass .hc-icon {
+  margin-bottom: 12px;
+}
+
+.hero-card-glass .hc-main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-card-events .hc3-bar {
+  background: var(--red);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: var(--r-sm);
+  display: inline-block;
+  margin-bottom: 15px;
+  font-size: 11px;
 }
 
 .hero-grid {
