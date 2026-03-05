@@ -587,15 +587,40 @@ body::after {
   animation: float 8s ease-in-out infinite;
 }
 
+.hero-portrait {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 90%;
+  height: 95vh;
+  max-height: 950px;
+  z-index: 1;
+  /* behind grid content */
+  object-fit: contain;
+  object-position: bottom center;
+  pointer-events: none;
+}
+
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 
 .hero-content {
   padding-top: 80px;
+  flex: 0 1 45%;
+}
+
+.hero-visual {
+  flex: 0 1 40%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .hero-badge {
