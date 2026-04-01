@@ -5,6 +5,122 @@ import { client, urlFor } from '../lib/sanity';
 const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
 
 import residents from '../data/residents.js';
+
+// ═══ DYNAMIC CALENDAR GENERATION ═══
+const MONTH_NAMES = ['ЯНВАРЬ','ФЕВРАЛЬ','МАРТ','АПРЕЛЬ','МАЙ','ИЮНЬ','ИЮЛЬ','АВГУСТ','СЕНТЯБРЬ','ОКТЯБРЬ','НОЯБРЬ','ДЕКАБРЬ'];
+
+const now = new Date();
+const currentMonth = now.getMonth();
+const currentYear = now.getFullYear();
+
+const month1 = { month: currentMonth, year: currentYear };
+const month2 = { 
+    month: currentMonth === 11 ? 0 : currentMonth + 1, 
+    year:  currentMonth === 11 ? currentYear + 1 : currentYear 
+};
+
+function getDaysInMonth(year: number, month: number) {
+    return new Date(year, month + 1, 0).getDate();
+}
+
+function getFirstDayOfWeek(year: number, month: number) {
+    const d = new Date(year, month, 1).getDay();
+    return d === 0 ? 6 : d - 1;
+}
+
+function getWeekOfMonth(day: number, firstDow: number) {
+    return Math.ceil((day + firstDow) / 7);
+}
+
+interface CalEvent {
+    title: string;
+    time?: string;
+    description: string;
+}
+
+function getEventsForDay(year: number, month: number, day: number): CalEvent[] {
+    const date = new Date(year, month, day);
+    const dow = date.getDay();
+    const firstDow = getFirstDayOfWeek(year, month);
+    const weekNum = getWeekOfMonth(day, firstDow);
+    const events: CalEvent[] = [];
+
+    if (dow === 2) {
+        events.push({
+            title: 'СОВЕТ ДИРЕКТОРОВ',
+            time: '09:00 — 13:00',
+            description: 'Глубокий разбор бизнес-кейсов.'
+        });
+    }
+
+    if (dow === 4 && (weekNum === 2 || weekNum === 4)) {
+        events.push({
+            title: 'ТРЕКИНГ',
+            time: '08:00 — 12:00',
+            description: 'Трекинговая сессия для резидентов.'
+        });
+    }
+
+    if (dow === 6) {
+        if (weekNum === 1) {
+            events.push({
+                title: 'FAMILY DAY',
+                time: '08:00 — 17:00',
+                description: 'Семейный день резидентов.'
+            });
+        } else {
+            events.push({
+                title: 'БИЗНЕС-БРАНЧ',
+                time: '12:00 — 15:00',
+                description: 'Деловое общение за завтраком.'
+            });
+        }
+    }
+
+    if (dow === 0) {
+        events.push({
+            title: 'CASHFLOW',
+            time: '17:00 — 20:30',
+            description: 'Финансовая игра.'
+        });
+    }
+
+    return events;
+}
+
+interface CalDay {
+    day: number;
+    empty: boolean;
+    events: CalEvent[];
+}
+
+function generateMonthGrid(year: number, month: number): CalDay[] {
+    const daysInMonth = getDaysInMonth(year, month);
+    const firstDow = getFirstDayOfWeek(year, month);
+    const grid: CalDay[] = [];
+
+    for (let i = 0; i < firstDow; i++) {
+        grid.push({ day: 0, empty: true, events: [] });
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+        grid.push({ day: d, empty: false, events: getEventsForDay(year, month, d) });
+    }
+
+    const remainder = grid.length % 7;
+    if (remainder > 0) {
+        for (let i = 0; i < (7 - remainder); i++) {
+            grid.push({ day: 0, empty: true, events: [] });
+        }
+    }
+
+    return grid;
+}
+
+const grid1 = generateMonthGrid(month1.year, month1.month);
+const grid2 = generateMonthGrid(month2.year, month2.month);
+const name1 = MONTH_NAMES[month1.month];
+const name2 = MONTH_NAMES[month2.month];
 ---
 
 <Layout 
@@ -655,7 +771,7 @@ import residents from '../data/residents.js';
     </section>
 
     <!-- CRITERIA / FILTER -->
-    <section class="section-dark" id="criteria" style="border-top: 1px solid var(--border); padding-top: 120px; padding-bottom: 120px;">
+    <section class="section-dark bg-bw-section" id="criteria" style="border-top: 1px solid var(--border); padding-top: 120px; padding-bottom: 120px;">
         <div class="container container-large">
             <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
                 <div class="label reveal">Отбор</div>
@@ -664,17 +780,17 @@ import residents from '../data/residents.js';
             </div>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div class="criteria-card reveal" style="background: var(--bg-card); padding: 40px; border-radius: var(--r-lg); border: 1px solid var(--border);">
+                <div class="criteria-card reveal" style="background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(12px); padding: 40px; border-radius: var(--r-lg); border: 1px solid rgba(255, 255, 255, 0.08);">
                     <div style="color: var(--brand); font-size: 32px; font-weight: 900; margin-bottom: 20px;">01</div>
                     <h3 style="font-size: 24px; margin-bottom: 15px;">Твердый бизнес</h3>
                     <p style="color: var(--text-light);">Вы являетесь собственником или соучредителем действующего экологичного бизнеса с подтвержденным оборотом.</p>
                 </div>
-                <div class="criteria-card reveal reveal-d1" style="background: var(--bg-card); padding: 40px; border-radius: var(--r-lg); border: 1px solid var(--border);">
+                <div class="criteria-card reveal reveal-d1" style="background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(12px); padding: 40px; border-radius: var(--r-lg); border: 1px solid rgba(255, 255, 255, 0.08);">
                     <div style="color: var(--brand); font-size: 32px; font-weight: 900; margin-bottom: 20px;">02</div>
                     <h3 style="font-size: 24px; margin-bottom: 15px;">Проверка СБ</h3>
                     <p style="color: var(--text-light);">Каждый кандидат проходит проверку службой безопасности на отсутствие критичных рисков и безупречную деловую репутацию.</p>
                 </div>
-                <div class="criteria-card reveal reveal-d2" style="background: var(--bg-card); padding: 40px; border-radius: var(--r-lg); border: 1px solid var(--border);">
+                <div class="criteria-card reveal reveal-d2" style="background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(12px); padding: 40px; border-radius: var(--r-lg); border: 1px solid rgba(255, 255, 255, 0.08);">
                     <div style="color: var(--brand); font-size: 32px; font-weight: 900; margin-bottom: 20px;">03</div>
                     <h3 style="font-size: 24px; margin-bottom: 15px;">Общие ценности</h3>
                     <p style="color: var(--text-light);">Собеседование с амбассадорами клуба для подтверждения готовности отдавать, развиваться и следовать принципу WIN-WIN.</p>
@@ -741,182 +857,82 @@ import residents from '../data/residents.js';
         </div>
     </section>
 
-    <!-- КАЛЕНДАРЬ МЕРОПРИЯТИЙ (МАРТ) -->
+    <!-- КАЛЕНДАРЬ МЕРОПРИЯТИЙ (ДИНАМИЧЕСКИЙ) -->
     <section class="section-light" id="events" style="padding-top:80px; background:#fdfaf6;">
         <div class="container container-large">
             <div class="calendar-header-wrapper">
-                <h2 class="calendar-title reveal">МАРТ <span class="calendar-title-small">РАСПИСАНИЕ МЕРОПРИЯТИЙ</span></h2>
+                <h2 class="calendar-title reveal">РАСПИСАНИЕ <span class="calendar-title-small">МЕРОПРИЯТИЙ</span></h2>
             </div>
 
-            
-            <div class="cal-mini-wrapper reveal reveal-d1">
-                <div class="cal-mini-header-row">
-                    <div class="cal-mini-h">Пн</div>
-                    <div class="cal-mini-h">Вт</div>
-                    <div class="cal-mini-h">Ср</div>
-                    <div class="cal-mini-h">Чт</div>
-                    <div class="cal-mini-h">Пт</div>
-                    <div class="cal-mini-h">Сб</div>
-                    <div class="cal-mini-h">Вс</div>
+            <div class="cal-dual-wrapper reveal reveal-d1">
+                <!-- Слева: Текущий месяц -->
+                <div class="cal-month-block">
+                    <div class="cal-month-name">{name1}</div>
+                    <div class="cal-mini-wrapper">
+                        <div class="cal-mini-header-row">
+                            <div class="cal-mini-h">Пн</div>
+                            <div class="cal-mini-h">Вт</div>
+                            <div class="cal-mini-h">Ср</div>
+                            <div class="cal-mini-h">Чт</div>
+                            <div class="cal-mini-h">Пт</div>
+                            <div class="cal-mini-h">Сб</div>
+                            <div class="cal-mini-h">Вс</div>
+                        </div>
+                        <div class="cal-mini-grid">
+                            {grid1.map((cell) => (
+                                <div class={`cal-mini-day ${cell.empty ? 'empty' : ''} ${cell.events.length > 0 ? 'has-event' : ''}`}>
+                                    {!cell.empty && cell.day}
+                                    {cell.events.length > 0 && (
+                                        <div class="cal-popup">
+                                            {cell.events.map((ev) => (
+                                                <div class="cal-popup-event">
+                                                    <strong>{ev.title}</strong>
+                                                    {ev.time && <span class="cal-popup-time">{ev.time}</span>}
+                                                    <p>{ev.description}</p>
+                                                    <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank">Принять участие</a>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-                <div class="cal-mini-grid">
-                    <div class="cal-mini-day empty">23</div>
-                    <div class="cal-mini-day empty">24</div>
-                    <div class="cal-mini-day empty">25</div>
-                    <div class="cal-mini-day empty">26</div>
-                    <div class="cal-mini-day empty">27</div>
-                    <div class="cal-mini-day empty">28</div>
-                    <div class="cal-mini-day has-event">
-                        1
-                        <div class="cal-popup">
-                            <strong>CASHFLOW</strong>
-                            <p>Финансовая игра. 17:00</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    
-                    <div class="cal-mini-day">2</div>
-                    <div class="cal-mini-day has-event">
-                        3
-                        <div class="cal-popup">
-                            <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                            <span class="cal-popup-time">09:00 — 13:00</span>
-                            <p>Глубокий разбор бизнес-кейсов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day">4</div>
-                    <div class="cal-mini-day">5</div>
-                    <div class="cal-mini-day">6</div>
-                    <div class="cal-mini-day has-event">
-                        7
-                        <div class="cal-popup">
-                            <strong>Family Day</strong>
-                            <p>Семейный день резидентов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day has-event">
-                        8
-                        <div class="cal-popup">
-                            <strong>CASHFLOW</strong>
-                            <span class="cal-popup-time">17:00 — 20:30</span>
-                            <p>Финансовая игра.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
 
-                    <div class="cal-mini-day">9</div>
-                    <div class="cal-mini-day has-event">
-                        10
-                        <div class="cal-popup">
-                            <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                            <span class="cal-popup-time">09:00 — 13:00</span>
-                            <p>Глубокий разбор бизнес-кейсов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
+                <!-- Справа: Следующий месяц -->
+                <div class="cal-month-block">
+                    <div class="cal-month-name">{name2}</div>
+                    <div class="cal-mini-wrapper">
+                        <div class="cal-mini-header-row">
+                            <div class="cal-mini-h">Пн</div>
+                            <div class="cal-mini-h">Вт</div>
+                            <div class="cal-mini-h">Ср</div>
+                            <div class="cal-mini-h">Чт</div>
+                            <div class="cal-mini-h">Пт</div>
+                            <div class="cal-mini-h">Сб</div>
+                            <div class="cal-mini-h">Вс</div>
+                        </div>
+                        <div class="cal-mini-grid">
+                            {grid2.map((cell) => (
+                                <div class={`cal-mini-day ${cell.empty ? 'empty' : ''} ${cell.events.length > 0 ? 'has-event' : ''}`}>
+                                    {!cell.empty && cell.day}
+                                    {cell.events.length > 0 && (
+                                        <div class="cal-popup">
+                                            {cell.events.map((ev) => (
+                                                <div class="cal-popup-event">
+                                                    <strong>{ev.title}</strong>
+                                                    {ev.time && <span class="cal-popup-time">{ev.time}</span>}
+                                                    <p>{ev.description}</p>
+                                                    <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank">Принять участие</a>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                     </div>
-                    <div class="cal-mini-day">11</div>
-                    <div class="cal-mini-day">12</div>
-                    <div class="cal-mini-day">13</div>
-                    <div class="cal-mini-day has-event">
-                        14
-                        <div class="cal-popup">
-                            <strong>Бизнес-Бранч</strong>
-                            <span class="cal-popup-time">12:00 — 15:00</span>
-                            <p>Деловое общение за завтраком.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day has-event">
-                        15
-                        <div class="cal-popup">
-                            <strong>CASHFLOW</strong>
-                            <span class="cal-popup-time">17:00 — 20:30</span>
-                            <p>Финансовая игра.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-
-                    <div class="cal-mini-day">16</div>
-                    <div class="cal-mini-day has-event">
-                        17
-                        <div class="cal-popup">
-                            <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                            <span class="cal-popup-time">09:00 — 13:00</span>
-                            <p>Глубокий разбор бизнес-кейсов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day">18</div>
-                    <div class="cal-mini-day">19</div>
-                    <div class="cal-mini-day">20</div>
-                    <div class="cal-mini-day has-event">
-                        21
-                        <div class="cal-popup">
-                            <strong>Бизнес-Бранч</strong>
-                            <span class="cal-popup-time">12:00 — 15:00</span>
-                            <p>Деловое общение за завтраком.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day has-event">
-                        22
-                        <div class="cal-popup">
-                            <strong>CASHFLOW</strong>
-                            <span class="cal-popup-time">17:00 — 20:30</span>
-                            <p>Финансовая игра.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-
-                    <div class="cal-mini-day">23</div>
-                    <div class="cal-mini-day has-event">
-                        24
-                        <div class="cal-popup">
-                            <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                            <span class="cal-popup-time">09:00 — 13:00</span>
-                            <p>Глубокий разбор бизнес-кейсов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day">25</div>
-                    <div class="cal-mini-day">26</div>
-                    <div class="cal-mini-day">27</div>
-                    <div class="cal-mini-day has-event">
-                        28
-                        <div class="cal-popup">
-                            <strong>Бизнес-Бранч</strong>
-                            <span class="cal-popup-time">12:00 — 15:00</span>
-                            <p>Деловое общение за завтраком.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day has-event">
-                        29
-                        <div class="cal-popup">
-                            <strong>CASHFLOW</strong>
-                            <span class="cal-popup-time">17:00 — 20:30</span>
-                            <p>Финансовая игра.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-
-                    <div class="cal-mini-day">30</div>
-                    <div class="cal-mini-day has-event">
-                        31
-                        <div class="cal-popup">
-                            <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                            <span class="cal-popup-time">09:00 — 13:00</span>
-                            <p>Глубокий разбор бизнес-кейсов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day empty">1</div>
-                    <div class="cal-mini-day empty">2</div>
-                    <div class="cal-mini-day empty">3</div>
-                    <div class="cal-mini-day empty">4</div>
-                    <div class="cal-mini-day empty">5</div>
                 </div>
             </div>
         </div>

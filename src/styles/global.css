@@ -1869,9 +1869,26 @@ body::after {
   text-align: center;
   position: relative;
   overflow: hidden;
-  background:
+  background-color: #000;
+  background-image:
     linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-    url('/img-cta-bg.jpg') center/cover no-repeat;
+    url('/bg-selection.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: luminosity;
+}
+
+.bg-bw-section {
+  position: relative;
+  background-color: #000 !important;
+  background-image:
+    linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.85)),
+    url('/bg-selection.jpg') !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-blend-mode: luminosity !important;
 }
 
 .cta-section>* {
@@ -2415,12 +2432,78 @@ body::after {
   font-style: italic;
 }
 
+/* ═══ CALENDAR DUAL LAYOUT ═══ */
+.cal-dual-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cal-month-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.cal-month-name {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 900;
+  color: var(--red);
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.cal-popup-event+.cal-popup-event {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.section-dark .cal-popup-event+.cal-popup-event {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.cal-btn-wa {
+  margin-top: 12px;
+  width: 100%;
+  display: block;
+  padding: 8px 16px;
+  background: var(--red);
+  color: #fff !important;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.section-light .cal-btn-wa,
+.cal-mini-day .cal-popup .cal-btn-wa {
+  background: var(--red) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.cal-btn-wa:hover {
+  background: var(--red-dark);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .cal-dual-wrapper {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
 /* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â CALENDAR NEW/* ═══ CALENDAR MINI (DATE PICKER STYLE) ═══ */
 .cal-mini-wrapper {
   background: transparent;
   width: 100%;
-  max-width: 600px;
-  /* Compact width (Increased for visibility) */
   margin: 0 auto;
 }
 

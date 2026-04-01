@@ -3,6 +3,140 @@ import Layout from '../layouts/Layout.astro';
 import { client, urlFor } from '../lib/sanity';
 
 const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
+
+// ═══ DYNAMIC CALENDAR GENERATION ═══
+const MONTH_NAMES = ['ЯНВАРЬ','ФЕВРАЛЬ','МАРТ','АПРЕЛЬ','МАЙ','ИЮНЬ','ИЮЛЬ','АВГУСТ','СЕНТЯБРЬ','ОКТЯБРЬ','НОЯБРЬ','ДЕКАБРЬ'];
+
+const now = new Date();
+const currentMonth = now.getMonth();  // 0-indexed
+const currentYear = now.getFullYear();
+
+const month1 = { month: currentMonth, year: currentYear };
+const month2 = { 
+    month: currentMonth === 11 ? 0 : currentMonth + 1, 
+    year:  currentMonth === 11 ? currentYear + 1 : currentYear 
+};
+
+function getDaysInMonth(year: number, month: number) {
+    return new Date(year, month + 1, 0).getDate();
+}
+
+function getFirstDayOfWeek(year: number, month: number) {
+    // 0=Mon, 1=Tue ... 6=Sun (ISO week)
+    const d = new Date(year, month, 1).getDay();
+    return d === 0 ? 6 : d - 1;
+}
+
+function getWeekOfMonth(day: number, firstDow: number) {
+    // Week number within the month (1-based)
+    return Math.ceil((day + firstDow) / 7);
+}
+
+interface CalEvent {
+    title: string;
+    time?: string;
+    description: string;
+}
+
+function getEventsForDay(year: number, month: number, day: number): CalEvent[] {
+    const date = new Date(year, month, day);
+    const dow = date.getDay(); // 0=Sun, 1=Mon, ... 6=Sat
+    const firstDow = getFirstDayOfWeek(year, month);
+    const weekNum = getWeekOfMonth(day, firstDow);
+    const events: CalEvent[] = [];
+
+    // Tuesday (dow=2) → СОВЕТ ДИРЕКТОРОВ
+    if (dow === 2) {
+        events.push({
+            title: 'СОВЕТ ДИРЕКТОРОВ',
+            time: '09:00 — 13:00',
+            description: 'Глубокий разбор бизнес-кейсов.'
+        });
+    }
+
+    // Thursday (dow=4) 2nd & 4th week → Трекинг
+    if (dow === 4 && (weekNum === 2 || weekNum === 4)) {
+        events.push({
+            title: 'ТРЕКИНГ',
+            time: '08:00 — 12:00',
+            description: 'Трекинговая сессия для резидентов.'
+        });
+    }
+
+    // Saturday (dow=6) → Бизнес-Бранч или Family Day
+    if (dow === 6) {
+        if (weekNum === 1) {
+            events.push({
+                title: 'FAMILY DAY',
+                time: '08:00 — 17:00',
+                description: 'Семейный день резидентов.'
+            });
+        } else {
+            events.push({
+                title: 'БИЗНЕС-БРАНЧ',
+                time: '12:00 — 15:00',
+                description: 'Деловое общение за завтраком.'
+            });
+        }
+    }
+
+    // Sunday (dow=0) → CASHFLOW
+    if (dow === 0) {
+        events.push({
+            title: 'CASHFLOW',
+            time: '17:00 — 20:30',
+            description: 'Финансовая игра.'
+        });
+    }
+
+    return events;
+}
+
+interface CalDay {
+    day: number;
+    empty: boolean;
+    events: CalEvent[];
+}
+
+function generateMonthGrid(year: number, month: number): CalDay[] {
+    const daysInMonth = getDaysInMonth(year, month);
+    const firstDow = getFirstDayOfWeek(year, month);
+    const grid: CalDay[] = [];
+
+    // Leading empty cells (prev month)
+    for (let i = 0; i < firstDow; i++) {
+        grid.push({ day: 0, empty: true, events: [] });
+    }
+
+    // Actual days
+    for (let d = 1; d <= daysInMonth; d++) {
+        grid.push({ day: d, empty: false, events: getEventsForDay(year, month, d) });
+    }
+
+    // Trailing empty cells to fill last row
+    const remainder = grid.length % 7;
+    if (remainder > 0) {
+        for (let i = 0; i < (7 - remainder); i++) {
+            grid.push({ day: 0, empty: true, events: [] });
+        }
+    }
+
+    return grid;
+}
+
+const grid1 = generateMonthGrid(month1.year, month1.month);
+const grid2 = generateMonthGrid(month2.year, month2.month);
+const name1 = MONTH_NAMES[month1.month];
+const name2 = MONTH_NAMES[month2.month];
+
+// Schema.org events for first Sunday of current month
+const firstSunday = (() => {
+    for (let d = 1; d <= getDaysInMonth(month1.year, month1.month); d++) {
+        if (new Date(month1.year, month1.month, d).getDay() === 0) return d;
+    }
+    return 7;
+})();
+const schemaDate = `${month1.year}-${String(month1.month + 1).padStart(2, '0')}-${String(firstSunday).padStart(2, '0')}`;
 ---
 
 <Layout 
@@ -10,182 +144,89 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
     description="Календарь встреч, мастермайндов и бизнес-бранчей BizPride Club в Алматы. Планируйте свое участие заранее для качественного нетворкинга."
     navTheme="dark"
 >
-    <!-- КАЛЕНДАРЬ МЕРОПРИЯТИЙ (МАРТ 2026) -->
     <section class="section-light" id="calendar">
         <div class="container container-large">
             <div class="calendar-header-wrapper">
-                <h1 class="calendar-title reveal">МАРТ <span class="calendar-title-small">РАСПИСАНИЕ МЕРОПРИЯТИЙ</span></h1>
+                <h1 class="calendar-title reveal">РАСПИСАНИЕ <span class="calendar-title-small">МЕРОПРИЯТИЙ</span></h1>
             </div>
 
-            
-            <div class="cal-mini-wrapper reveal reveal-d1">
-                <div class="cal-mini-header-row">
-                    <div class="cal-mini-h">Пн</div>
-                    <div class="cal-mini-h">Вт</div>
-                    <div class="cal-mini-h">Ср</div>
-                    <div class="cal-mini-h">Чт</div>
-                    <div class="cal-mini-h">Пт</div>
-                    <div class="cal-mini-h">Сб</div>
-                    <div class="cal-mini-h">Вс</div>
+            <div class="cal-dual-wrapper">
+                {/* ═══ MONTH 1 ═══ */}
+                <div class="cal-month-block reveal reveal-d1">
+                    <h2 class="cal-month-name">{name1}</h2>
+                    <div class="cal-mini-wrapper">
+                        <div class="cal-mini-header-row">
+                            <div class="cal-mini-h">Пн</div>
+                            <div class="cal-mini-h">Вт</div>
+                            <div class="cal-mini-h">Ср</div>
+                            <div class="cal-mini-h">Чт</div>
+                            <div class="cal-mini-h">Пт</div>
+                            <div class="cal-mini-h">Сб</div>
+                            <div class="cal-mini-h">Вс</div>
+                        </div>
+                        <div class="cal-mini-grid">
+                            {grid1.map(cell => (
+                                cell.empty ? (
+                                    <div class="cal-mini-day empty"></div>
+                                ) : cell.events.length > 0 ? (
+                                    <div class="cal-mini-day has-event">
+                                        {cell.day}
+                                        <div class="cal-popup">
+                                            {cell.events.map(ev => (
+                                                <div class="cal-popup-event">
+                                                    <strong>{ev.title}</strong>
+                                                    {ev.time && <span class="cal-popup-time">{ev.time}</span>}
+                                                    <p>{ev.description}</p>
+                                                </div>
+                                            ))}
+                                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank">Принять участие</a>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div class="cal-mini-day">{cell.day}</div>
+                                )
+                            ))}
+                        </div>
+                    </div>
                 </div>
-                <div class="cal-mini-grid">
-                    <div class="cal-mini-day empty">23</div>
-                    <div class="cal-mini-day empty">24</div>
-                    <div class="cal-mini-day empty">25</div>
-                    <div class="cal-mini-day empty">26</div>
-                    <div class="cal-mini-day empty">27</div>
-                    <div class="cal-mini-day empty">28</div>
-                    <div class="cal-mini-day has-event">
-                        1
-                        <div class="cal-popup">
-                            <strong>CASHFLOW</strong>
-                            <p>Финансовая игра. 17:00</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    
-                    <div class="cal-mini-day">2</div>
-                    <div class="cal-mini-day has-event">
-                        3
-                        <div class="cal-popup">
-                            <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                            <span class="cal-popup-time">09:00 — 13:00</span>
-                            <p>Глубокий разбор бизнес-кейсов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day">4</div>
-                    <div class="cal-mini-day">5</div>
-                    <div class="cal-mini-day">6</div>
-                    <div class="cal-mini-day has-event">
-                        7
-                        <div class="cal-popup">
-                            <strong>Family Day</strong>
-                            <p>Семейный день резидентов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day has-event">
-                        8
-                        <div class="cal-popup">
-                            <strong>CASHFLOW</strong>
-                            <span class="cal-popup-time">17:00 — 20:30</span>
-                            <p>Финансовая игра.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
 
-                    <div class="cal-mini-day">9</div>
-                    <div class="cal-mini-day has-event">
-                        10
-                        <div class="cal-popup">
-                            <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                            <span class="cal-popup-time">09:00 — 13:00</span>
-                            <p>Глубокий разбор бизнес-кейсов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
+                {/* ═══ MONTH 2 ═══ */}
+                <div class="cal-month-block reveal reveal-d2">
+                    <h2 class="cal-month-name">{name2}</h2>
+                    <div class="cal-mini-wrapper">
+                        <div class="cal-mini-header-row">
+                            <div class="cal-mini-h">Пн</div>
+                            <div class="cal-mini-h">Вт</div>
+                            <div class="cal-mini-h">Ср</div>
+                            <div class="cal-mini-h">Чт</div>
+                            <div class="cal-mini-h">Пт</div>
+                            <div class="cal-mini-h">Сб</div>
+                            <div class="cal-mini-h">Вс</div>
+                        </div>
+                        <div class="cal-mini-grid">
+                            {grid2.map(cell => (
+                                cell.empty ? (
+                                    <div class="cal-mini-day empty"></div>
+                                ) : cell.events.length > 0 ? (
+                                    <div class="cal-mini-day has-event">
+                                        {cell.day}
+                                        <div class="cal-popup">
+                                            {cell.events.map(ev => (
+                                                <div class="cal-popup-event">
+                                                    <strong>{ev.title}</strong>
+                                                    {ev.time && <span class="cal-popup-time">{ev.time}</span>}
+                                                    <p>{ev.description}</p>
+                                                </div>
+                                            ))}
+                                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank">Принять участие</a>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div class="cal-mini-day">{cell.day}</div>
+                                )
+                            ))}
                         </div>
                     </div>
-                    <div class="cal-mini-day">11</div>
-                    <div class="cal-mini-day">12</div>
-                    <div class="cal-mini-day">13</div>
-                    <div class="cal-mini-day has-event">
-                        14
-                        <div class="cal-popup">
-                            <strong>Бизнес-Бранч</strong>
-                            <span class="cal-popup-time">12:00 — 15:00</span>
-                            <p>Деловое общение за завтраком.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day has-event">
-                        15
-                        <div class="cal-popup">
-                            <strong>CASHFLOW</strong>
-                            <span class="cal-popup-time">17:00 — 20:30</span>
-                            <p>Финансовая игра.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-
-                    <div class="cal-mini-day">16</div>
-                    <div class="cal-mini-day has-event">
-                        17
-                        <div class="cal-popup">
-                            <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                            <span class="cal-popup-time">09:00 — 13:00</span>
-                            <p>Глубокий разбор бизнес-кейсов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day">18</div>
-                    <div class="cal-mini-day">19</div>
-                    <div class="cal-mini-day">20</div>
-                    <div class="cal-mini-day has-event">
-                        21
-                        <div class="cal-popup">
-                            <strong>Бизнес-Бранч</strong>
-                            <span class="cal-popup-time">12:00 — 15:00</span>
-                            <p>Деловое общение за завтраком.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day has-event">
-                        22
-                        <div class="cal-popup">
-                            <strong>CASHFLOW</strong>
-                            <span class="cal-popup-time">17:00 — 20:30</span>
-                            <p>Финансовая игра.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-
-                    <div class="cal-mini-day">23</div>
-                    <div class="cal-mini-day has-event">
-                        24
-                        <div class="cal-popup">
-                            <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                            <span class="cal-popup-time">09:00 — 13:00</span>
-                            <p>Глубокий разбор бизнес-кейсов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day">25</div>
-                    <div class="cal-mini-day">26</div>
-                    <div class="cal-mini-day">27</div>
-                    <div class="cal-mini-day has-event">
-                        28
-                        <div class="cal-popup">
-                            <strong>Бизнес-Бранч</strong>
-                            <span class="cal-popup-time">12:00 — 15:00</span>
-                            <p>Деловое общение за завтраком.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day has-event">
-                        29
-                        <div class="cal-popup">
-                            <strong>CASHFLOW</strong>
-                            <span class="cal-popup-time">17:00 — 20:30</span>
-                            <p>Финансовая игра.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-
-                    <div class="cal-mini-day">30</div>
-                    <div class="cal-mini-day has-event">
-                        31
-                        <div class="cal-popup">
-                            <strong>СОВЕТ ДИРЕКТОРОВ</strong>
-                            <span class="cal-popup-time">09:00 — 13:00</span>
-                            <p>Глубокий разбор бизнес-кейсов.</p>
-                            <a href="https://wa.me/77070357777" class="cal-btn-wa" target="_blank" style="margin-top:8px; width:100%; display:block; padding:8px 16px; background:var(--red); color:#fff; border-radius:8px; text-decoration:none; text-align:center; font-size:12px; font-weight:700;">Принять участие</a>
-                        </div>
-                    </div>
-                    <div class="cal-mini-day empty">1</div>
-                    <div class="cal-mini-day empty">2</div>
-                    <div class="cal-mini-day empty">3</div>
-                    <div class="cal-mini-day empty">4</div>
-                    <div class="cal-mini-day empty">5</div>
                 </div>
             </div>
 
@@ -206,8 +247,8 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
             "@type": "Event",
             "name": "Бизнес-Бранч BizPride",
             "description": "Еженедельный бизнес-бранч для предпринимателей: нетворкинг и обмен контактами.",
-            "startDate": "2026-03-07T12:00:00+05:00",
-            "endDate": "2026-03-07T15:00:00+05:00",
+            "startDate": `${schemaDate}T12:00:00+05:00`,
+            "endDate": `${schemaDate}T15:00:00+05:00`,
             "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
             "eventStatus": "https://schema.org/EventScheduled",
             "image": "https://bizpride.kz/img-mastermind.png",
@@ -230,8 +271,30 @@ const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _
                 "url": "https://wa.me/77070357777",
                 "price": "0",
                 "priceCurrency": "KZT",
-                "availability": "https://schema.org/InStock",
-                "validFrom": "2026-02-27T00:00:00+05:00"
+                "availability": "https://schema.org/InStock"
+            },
+            "organizer": {
+                "@type": "Organization",
+                "name": "BizPride Club",
+                "url": "https://bizpride.kz"
+            }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "СОВЕТ ДИРЕКТОРОВ BizPride",
+            "description": "Еженедельный глубокий разбор бизнес-кейсов для предпринимателей.",
+            "startDate": `${month1.year}-${String(month1.month + 1).padStart(2, '0')}-${String((() => { for (let d = 1; d <= getDaysInMonth(month1.year, month1.month); d++) { if (new Date(month1.year, month1.month, d).getDay() === 2) return d; } return 1; })()).padStart(2, '0')}T09:00:00+05:00`,
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "location": {
+                "@type": "Place",
+                "name": "BizPride Club",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Алматы",
+                    "addressCountry": "KZ"
+                }
             },
             "organizer": {
                 "@type": "Organization",
