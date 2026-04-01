@@ -45,7 +45,7 @@ import Layout from '../../layouts/Layout.astro';
   .seo-article .q-cell .desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
   .seo-article .quadrant-wrap { position: relative; }
   .seo-article .q-axis-h { display: flex; justify-content: space-around; margin-bottom: 3px; }
-  .seo-article .q-axis-v { position: absolute; left: -48px; top: 50%; transform: translateY(-50%) rotate(-90deg); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .seo-article .q-axis-v { position: absolute; left: 24px; top: 50%; transform: translate(-50%, -50%) rotate(-90deg); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); font-weight: 600; white-space: nowrap; }
 
   /* INSIGHTS */
   .seo-article .insight-list { display: flex; flex-direction: column; gap: 20px; margin: 36px 0; }
@@ -77,6 +77,8 @@ import Layout from '../../layouts/Layout.astro';
     .seo-article .hero-content { padding: 32px 20px; } 
     .seo-article .container { padding: 44px 20px; }
     .seo-article .quadrant { grid-template-columns: 1fr; }
+    .seo-article .quadrant-wrap { padding-left: 0 !important; }
+    .seo-article .q-axis-v { display: none; }
     .seo-article .related-grid { grid-template-columns: 1fr; } 
   }
 </style>
