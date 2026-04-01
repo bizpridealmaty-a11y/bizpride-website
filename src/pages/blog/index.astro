@@ -4,51 +4,251 @@ import posts from '../../data/blogPosts.json';
 ---
 
 <Layout 
-    title="Блог о клубе BizPride — Статьи, аналитика и новости"
-    description="Читайте полезные статьи от резидентов бизнес-клуба BizPride. Экспертика в бизнесе, маркетинге, налогах и менеджменте для предпринимателей Казахстана."
+    title="BizPride — Бизнес-клуб и сообщество предпринимателей Алматы | База знаний"
+    description="BizPride — бизнес-клуб и деловое сообщество предпринимателей Алматы. Мастермайнды, нетворкинг, менторство. Полная база знаний о бизнес-клубах и сообществах Казахстана."
 >
-    <section class="section-dark" style="padding-top: 180px;">
-        <div class="container">
-            <div class="gallery-header" style="flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 80px;">
-                <div>
-                    <div class="label reveal" style="margin-bottom: 16px;">Полезные материалы</div>
-                    <h1 class="heading-lg reveal reveal-d1" style="font-size: clamp(40px, 6vw, 72px); line-height: 1.05; letter-spacing: -2px;">Блог о<br>клубе</h1>
-                </div>
-                <p class="reveal reveal-d2" style="color: var(--text-light); font-size: 18px; max-width: 640px; line-height: 1.7; opacity: 0.8;">
-                    Здесь мы собираем ценный опыт наших резидентов, разбираем кейсы, делимся новостями клуба и публикуем полезные материалы для роста вашего бизнеса.
-                </p>
-            </div>
-
-            <div class="blog-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px;">
-                {posts.map((post, index) => (
-                    <a href={post.slug} class={`blog-card reveal ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`} style="display: flex; flex-direction: column; text-decoration: none; background: #111; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; transition: transform 0.3s, border-color 0.3s;">
-                        {post.image && (
-                            <div style="width: 100%; height: 200px; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                                <img src={post.image} alt={post.title} style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="blog-image"/>
-                            </div>
-                        )}
-                        <div style="padding: 30px; display: flex; flex-direction: column; height: 100%;">
-                            <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-                                {new Date(post.pubDate).toLocaleDateString('ru-RU')}
-                            </div>
-                            <h3 style="font-size: 22px; color: #fff; margin-bottom: 16px; line-height: 1.3;">{post.title}</h3>
-                            <p style="color: var(--text-muted); font-size: 15px; line-height: 1.6; margin-bottom: 24px; flex-grow: 1;">
-                                {post.description.substring(0, 120)}{post.description.length > 120 ? '...' : ''}
-                            </p>
-                            <div style="color: var(--red); font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px;">
-                                Читать статью <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </div>
-                        </div>
-                    </a>
-                ))}
-            </div>
-        </div>
-    </section>
-</Layout>
-
 <style>
-    .blog-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(255,255,255,0.15);
-    }
+  .seo-hub-container {
+      --bg: #0d0f14;
+      --surface: #161922;
+      --border: #252a36;
+      --accent: #f5a623;
+      --text: #e8eaf0;
+      --muted: #7b8299;
+      --white: #ffffff;
+      padding-top: 100px;
+  }
+  .hero-wrap { max-width:1200px;margin:0 auto;padding:80px 60px 60px;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center; }
+  .hero-badge { display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.3);padding:6px 14px;margin-bottom:24px; }
+  .dot { width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+  .badge-t { font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent); }
+  .hero-title { font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:20px; }
+  .hero-title em { color:var(--accent);font-style:normal; }
+  .hero-desc { font-size:1rem;color:var(--muted);margin-bottom:32px; }
+  .stats { display:flex;gap:32px;margin-bottom:32px; }
+  .stat-n { font-size:2rem;font-weight:900;color:var(--white); }
+  .stat-l { font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:600; }
+  .btns { display:flex;gap:12px; }
+  .bp { background:var(--accent);color:#000;font-weight:900;font-size:0.82rem;letter-spacing:1.5px;text-transform:uppercase;padding:13px 28px; text-decoration: none; display: inline-block;}
+  .bp:hover { background:#ffc04d; }
+  .bo { border:1px solid var(--border);color:var(--muted);font-weight:600;font-size:0.82rem;letter-spacing:1px;text-transform:uppercase;padding:13px 28px;transition:border-color 0.2s,color 0.2s; text-decoration: none; display: inline-block;}
+  .bo:hover { border-color:var(--accent);color:var(--accent); }
+  .hi { position:relative; }
+  .hi img { width:100%;aspect-ratio:4/3;object-fit:cover;opacity:0.85; border-radius: 12px; }
+  .hf { position:absolute;bottom:-16px;left:-16px;background:var(--accent);padding:16px 20px; border-radius: 8px; }
+  .hf .big { font-size:1.6rem;font-weight:900;color:#000;line-height:1; }
+  .hf .sm { font-size:0.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.6); }
+
+  .cb { max-width:1200px;margin:0 auto;padding:0 60px 40px;display:flex;gap:10px;flex-wrap:wrap; }
+  .ct { font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border:1px solid var(--border);color:var(--muted); border-radius: 4px; }
+  .ct.on { border-color:var(--accent);color:var(--accent);background:rgba(245,166,35,0.06); }
+
+  .sec { max-width:1200px;margin:0 auto;padding:20px 60px 60px; }
+  .sh { margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between; }
+  .sc { font-size:0.68rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;margin-bottom:8px;display:inline-block; border-radius: 4px; }
+  .c1 { background:rgba(245,166,35,0.15);color:var(--accent); }
+  .c2 { background:rgba(38,166,154,0.15);color:#26a69a; }
+  .c3 { background:rgba(155,109,255,0.15);color:#9b6dff; }
+  .st { font-size:1.6rem;font-weight:900;color:var(--white); }
+  .sd { font-size:0.88rem;color:var(--muted);margin-top:4px; }
+  .ac { font-size:0.82rem;color:var(--muted);font-weight:600; }
+
+  .fr { display:grid;grid-template-columns:1.6fr 1fr;gap:20px;margin-bottom:20px; }
+  .fc { background:var(--surface);border:1px solid var(--border);overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr;transition:border-color 0.2s; border-radius: 12px; text-decoration: none;}
+  .fc:hover { border-color:var(--accent); }
+  .fci { width:100%;height:100%;object-fit:cover;opacity:0.8;display:block;min-height:240px; }
+  .fcb { padding:28px;display:flex;flex-direction:column;justify-content:space-between; }
+  .fb { display:inline-block;font-size:0.62rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;background:var(--accent);color:#000;margin-bottom:14px; border-radius: 4px; }
+  .ft { font-size:1.15rem;font-weight:900;color:var(--white);line-height:1.35;margin-bottom:10px; }
+  .fd { font-size:0.84rem;color:var(--muted); }
+  .fm { font-size:0.76rem;color:var(--muted);margin-top:16px;display:flex;justify-content:space-between; }
+  .ss { display:flex;flex-direction:column;gap:20px; }
+  .mc { background:var(--surface);border:1px solid var(--border);padding:20px;display:flex;gap:14px;transition:border-color 0.2s;align-items:flex-start;flex:1; border-radius: 12px; text-decoration: none;}
+  .mc:hover { border-color:var(--accent); }
+  .mci { width:72px;height:64px;object-fit:cover;flex-shrink:0;opacity:0.8; border-radius: 8px;}
+  .mt { font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:5px; }
+  .mn { font-size:0.9rem;font-weight:700;color:var(--white);line-height:1.35; }
+  .g3 { display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
+  .g2 { display:grid;grid-template-columns:repeat(2,1fr);gap:20px; }
+  .ca { background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:border-color 0.2s,transform 0.2s; border-radius: 12px; text-decoration: none;}
+  .ca:hover { border-color:var(--accent);transform:translateY(-3px); }
+  .cai { width:100%;aspect-ratio:16/9;object-fit:cover;opacity:0.8;display:block; }
+  .cab { padding:20px; }
+  .cat { font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px; }
+  .can { font-size:0.95rem;font-weight:700;color:var(--white);line-height:1.4;margin-bottom:12px; }
+  .cam { font-size:0.76rem;color:var(--muted);display:flex;justify-content:space-between; }
+  .arr { color:var(--accent); }
+
+  .ctas { background:linear-gradient(135deg,#161922 0%,#1e2432 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 60px;text-align:center; }
+  .ctas h2 { font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:var(--white);margin-bottom:16px; }
+  .ctas p { font-size:1rem;color:var(--muted);max-width:480px;margin:0 auto 32px; }
+  .cbts { display:flex;gap:16px;justify-content:center; }
+
+  @media(max-width:1024px){
+    .seo-hub-container .fr{grid-template-columns:1fr} .seo-hub-container .fc{grid-template-columns:1fr} .seo-hub-container .fci{min-height:200px;max-height:220px}
+    .seo-hub-container .ss{flex-direction:row} .seo-hub-container .g3{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:768px){
+    .seo-hub-container .hero-wrap{grid-template-columns:1fr;padding:50px 20px 40px;gap:40px} .seo-hub-container .hi{display:none}
+    .seo-hub-container .cb{padding:0 20px 30px} .seo-hub-container .sec{padding:20px 20px 50px}
+    .seo-hub-container .fr{grid-template-columns:1fr} .seo-hub-container .ss{flex-direction:column}
+    .seo-hub-container .g3, .seo-hub-container .g2{grid-template-columns:1fr}
+    .seo-hub-container .ctas{padding:60px 20px} .seo-hub-container .cbts{flex-direction:column;align-items:center}
+  }
+
+  .blog-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.15); }
 </style>
+
+<div class="seo-hub-container">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="hero-wrap">
+      <div>
+        <div class="hero-badge"><div class="dot"></div><span class="badge-t">Бизнес-сообщество Алматы</span></div>
+        <h1 class="hero-title">Место, где предприниматели Алматы растут <em>вместе</em></h1>
+        <p class="hero-desc">BizPride — клуб и сообщество для собственников бизнеса. Мастермайнды, нетворкинг, реальные партнёрства без лишней шелухи.</p>
+        <div class="stats">
+          <div><div class="stat-n">40+</div><div class="stat-l">Участников</div></div>
+          <div><div class="stat-n">2x</div><div class="stat-l">Встречи в мес.</div></div>
+          <div><div class="stat-n">5+</div><div class="stat-l">Лет в Алматы</div></div>
+        </div>
+        <div class="btns">
+          <a href="https://wa.me/77070357777" class="bp">Хочу на встречу</a>
+          <a href="#blog" class="bo">База знаний</a>
+        </div>
+      </div>
+      <div class="hi">
+        <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&q=80" alt="BizPride встреча предпринимателей Алматы">
+        <div class="hf"><div class="big">МСБ</div><div class="sm">Алматы</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cb">
+    <span class="ct on">🔑 Бизнес-клуб</span>
+    <span class="ct on">🌐 Бизнес-сообщество</span>
+    <span class="ct on">👥 Сообщество предпринимателей</span>
+    <span class="ct">📍 Алматы</span>
+    <span class="ct">🇰🇿 Казахстан</span>
+    <span class="ct">📈 МСБ</span>
+    <span class="ct">🤝 Нетворкинг</span>
+    <span class="ct">🧠 Менторство</span>
+  </div>
+
+  <section class="sec" id="blog">
+    <div class="sh">
+      <div><span class="sc c1">Кластер 1 — «бизнес клуб»</span><div class="st">Всё о бизнес-клубах</div><div class="sd">Информационные, навигационные и транзакционные статьи</div></div>
+      <span class="ac">6 статей</span>
+    </div>
+    <div class="fr">
+      <a href="/blog/chto-takoe-business-club" class="fc">
+        <img class="fci" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=700&q=80" alt="Что такое бизнес-клуб">
+        <div class="fcb">
+          <div><span class="fb">Начать здесь</span><div class="ft">Что такое бизнес-клуб и зачем он нужен предпринимателю</div><div class="fd">Разбираем формат изнутри: отличие от нетворкинга, что происходит на встречах и кому реально нужен бизнес-клуб.</div></div>
+          <div class="fm"><span>Основы</span><span>8 мин →</span></div>
+        </div>
+      </a>
+      <div class="ss">
+        <a href="/blog/luchshie-business-cluby-almaty" class="mc">
+          <img class="mci" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200&q=70" alt="">
+          <div><div class="mt">Навигатор</div><div class="mn">Лучшие бизнес-клубы Алматы и Казахстана</div></div>
+        </a>
+        <a href="https://wa.me/77070357777" class="mc">
+          <img class="mci" src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=200&q=70" alt="">
+          <div><div class="mt" style="color:#4caf80">Практика</div><div class="mn">Как вступить в бизнес-клуб в Алматы</div></div>
+        </a>
+      </div>
+    </div>
+    <div class="g3">
+      <a href="/blog/chto-takoe-business-club" class="ca">
+        <img class="cai" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=70" alt="">
+        <div class="cab"><div class="cat" style="color:#4a90d9">Польза</div><div class="can">Преимущества участия для МСБ</div><div class="cam"><span>9 мин</span><span class="arr">→</span></div></div>
+      </a>
+      <a href="/#membership" class="ca">
+        <img class="cai" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=70" alt="">
+        <div class="cab"><div class="cat" style="color:#9b6dff">Стоимость</div><div class="can">Сколько стоит членство в бизнес-клубе в Казахстане</div><div class="cam"><span>8 мин</span><span class="arr">→</span></div></div>
+      </a>
+      <a href="/blog/mastermind-v-bizpride" class="ca">
+        <img class="cai" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=70" alt="">
+        <div class="cab"><div class="cat" style="color:#26a69a">Рост</div><div class="can">Менторство и нетворкинг: как использовать клуб на 100%</div><div class="cam"><span>9 мин</span><span class="arr">→</span></div></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:40px;">
+    <div class="sh">
+      <div><span class="sc c2">Кластер 2 — «бизнес сообщество»</span><div class="st">Деловые сообщества Казахстана</div><div class="sd">Понятия, сравнения, обзоры — под запрос «бизнес сообщество»</div></div>
+      <span class="ac">2 статьи</span>
+    </div>
+    <div class="fr">
+      <a href="/blog/chto-takoe-biznes-soobshchestvo" class="fc">
+        <img class="fci" src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=700&q=80" alt="Бизнес-сообщество">
+        <div class="fcb">
+          <div><span class="fb" style="background:#26a69a;color:#000">Понятия</span><div class="ft">Что такое бизнес-сообщество и чем оно отличается от бизнес-клуба</div><div class="fd">Разбираем термины, сравниваем форматы и объясняем, что выбрать под ваши задачи в Казахстане.</div></div>
+          <div class="fm"><span>Понятия</span><span>8 мин →</span></div>
+        </div>
+      </a>
+      <div class="ss">
+        <a href="/blog/business-soobschestvo-almaty" class="mc" style="flex:1;">
+          <img class="mci" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=200&q=70" alt="">
+          <div><div class="mt" style="color:#e8623a">Рейтинг</div><div class="mn">Лучшие сообщества для предпринимателей Казахстана 2026</div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:40px;">
+    <div class="sh">
+      <div><span class="sc c3">Кластер 3 — «сообщество для предпринимателей»</span><div class="st">Предпринимательские сообщества: практика</div><div class="sd">Нетворкинг, поиск единомышленников, закрытые клубы</div></div>
+      <span class="ac">2 статьи</span>
+    </div>
+    <div class="g2">
+      <a href="/blog/rost-dohoda-cherez-okruzhenie" class="ca">
+        <img class="cai" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=70" alt="">
+        <div class="cab"><div class="cat" style="color:#4caf80">Нетворкинг</div><div class="can">Как найти единомышленников в бизнесе в Алматы</div><div class="cam"><span>9 мин</span><span class="arr">→</span></div></div>
+      </a>
+      <a href="/blog/pro-biznes-soobschestvo-bizpride-biznes-klub-pred" class="ca">
+        <img class="cai" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=70" alt="">
+        <div class="cab"><div class="cat" style="color:#9b6dff">Закрытый клуб</div><div class="can">Закрытое сообщество предпринимателей: как попасть и зачем</div><div class="cam"><span>8 мин</span><span class="arr">→</span></div></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="ctas" style="margin-bottom: 60px;">
+    <h2>Готовы попробовать BizPride?</h2>
+    <p>Первая встреча — гостевая. Без обязательств. Просто познакомьтесь с людьми.</p>
+    <div class="cbts">
+      <a href="https://wa.me/77070357777" class="bp">Хочу на встречу</a>
+      <a href="/blog/chto-takoe-business-club" class="bo">Узнать о формате</a>
+    </div>
+  </section>
+  
+  <div style="max-width:1200px;margin:100px auto 40px;padding: 0 60px;">
+      <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 30px;">Все материалы и видеоразборы</h2>
+  </div>
+  <div class="blog-grid" style="max-width:1200px;margin:0 auto;padding: 0 60px 80px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px;">
+      {posts.map((post, index) => (
+          <a href={post.slug} class={`blog-card reveal ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`} style="display: flex; flex-direction: column; text-decoration: none; background: #111; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; transition: transform 0.3s, border-color 0.3s;">
+              {post.image && (
+                  <div style="width: 100%; height: 200px; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                      <img src={post.image} alt={post.title} style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="blog-image"/>
+                  </div>
+              )}
+              <div style="padding: 30px; display: flex; flex-direction: column; height: 100%;">
+                  <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                      {new Date(post.pubDate).toLocaleDateString('ru-RU')}
+                  </div>
+                  <h3 style="font-size: 22px; color: #fff; margin-bottom: 16px; line-height: 1.3;">{post.title}</h3>
+                  <p style="color: var(--text-muted); font-size: 15px; line-height: 1.6; margin-bottom: 24px; flex-grow: 1;">
+                      {post.description.substring(0, 120)}{post.description.length > 120 ? '...' : ''}
+                  </p>
+                  <div style="color: var(--red); font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                      Читать статью <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </div>
+              </div>
+          </a>
+      ))}
+  </div>
+
+</div>
+</Layout>

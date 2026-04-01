@@ -23,6 +23,7 @@ const posts = files.map(filename => {
     const descMatchProp = content.match(/description:\s*(?:"([^"]+)"|'([^']+)'|([^,]+))/);
     const dateMatchProp = content.match(/date:\s*(?:new Date\(\)\.toLocaleDateString\([^)]+\)|"([^"]+)")/);
     const imageMatchProp = content.match(/image:\s*"([^"]+)"/);
+    const heroImageMatch = content.match(/class="hero-img"\s+src="([^"]+)"/);
 
     // Resolve matching values
     let title = titleMatchAttr ? titleMatchAttr[1] : (titleMatchProp ? titleMatchProp[1] : filename.replace('.astro', '').replace(/-/g, ' '));
@@ -31,7 +32,7 @@ const posts = files.map(filename => {
     if (description.includes('+')) description = "Статья или видеоразбор для предпринимателей.";
 
     let pubDate = dateMatchAttr ? dateMatchAttr[1] : (dateMatchProp && dateMatchProp[1] ? dateMatchProp[1] : new Date().toISOString());
-    let image = imageMatchProp ? imageMatchProp[1] : null;
+    let image = imageMatchProp ? imageMatchProp[1] : (heroImageMatch ? heroImageMatch[1] : null);
 
     return {
         slug: '/blog/' + filename.replace('.astro', ''),
