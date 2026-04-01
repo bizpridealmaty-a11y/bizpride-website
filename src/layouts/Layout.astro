@@ -7,6 +7,7 @@ import { ViewTransitions } from 'astro:transitions';
 interface Props {
 	title: string;
     description?: string;
+    keywords?: string;
     canonicalURL?: string;
     navTheme?: 'default' | 'dark';
 }
@@ -14,6 +15,7 @@ interface Props {
 const { 
     title, 
     description = "BizPride Club — клуб для предпринимателей в Алматы. Нетворкинг, мастермайнды, менторство. Сообщество предпринимателей Алматы для совместного роста и развития бизнеса.",
+    keywords = "бизнес клуб Алматы, клуб для предпринимателей в Алматы, предприниматели Алматы, мастермайнд Алматы, нетворкинг Алматы, бизнес сообщество Казахстан, BizPride, Biz Pride, biz pride, BizPride Club, Biz Pride Club, BizPraid, БизПрайд, Биз Прайд, бизпрайд, бизпрайд клуб, Бис Прайт",
     canonicalURL = Astro.url.href,
     navTheme = 'default'
 } = Astro.props;
@@ -39,7 +41,7 @@ const currentPath = Astro.url.pathname;
         <meta name="language" content="Russian" />
         <meta name="geo.region" content="KZ-ALA" />
         <meta name="geo.placename" content="Almaty" />
-        <meta name="keywords" content="бизнес клуб Алматы, клуб для предпринимателей в Алматы, предприниматели Алматы, мастермайнд Алматы, нетворкинг Алматы, бизнес сообщество Казахстан, BizPride, Biz Pride, biz pride, BizPride Club, Biz Pride Club, BizPraid, БизПрайд, Биз Прайд, бизпрайд, бизпрайд клуб, Бис Прайт" />
+        <meta name="keywords" content={keywords} />
         
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
