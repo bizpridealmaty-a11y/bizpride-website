@@ -14,21 +14,31 @@ const files = fs.readdirSync(blogDir).filter(f => f.endsWith('.astro') && f !== 
 const posts = files.map(filename => {
     const content = fs.readFileSync(path.join(blogDir, filename), 'utf-8');
 
-    // Extract metadata using Regex from <BlogLayout ...> or <article ...> blocks
-    const titleMatch = content.match(/title="([^"]+)"/);
-    const descMatch = content.match(/description="([^"]+)"/);
-    const dateMatch = content.match(/pubDate="([^"]+)"/);
+    // Extract metadata using Regex from <BlogLayout ...> or frontmatter
+    const titleMatchAttr = content.match(/title="([^"]+)"/);
+    const descMatchAttr = content.match(/description="([^"]+)"/);
+    const dateMatchAttr = content.match(/pubDate="([^"]+)"/);
 
-    // Some posts might not have explicit title in BlogLayout, fallback
-    const title = titleMatch ? titleMatch[1] : (filename.replace('.astro', '').replace(/-/g, ' '));
-    const description = descMatch ? descMatch[1] : '';
-    const pubDate = dateMatch ? dateMatch[1] : new Date().toISOString();
+    const titleMatchProp = content.match(/title:\s*"([^"]+)"/);
+    const descMatchProp = content.match(/description:\s*(?:"([^"]+)"|'([^']+)'|([^,]+))/);
+    const dateMatchProp = content.match(/date:\s*(?:new Date\(\)\.toLocaleDateString\([^)]+\)|"([^"]+)")/);
+    const imageMatchProp = content.match(/image:\s*"([^"]+)"/);
+
+    // Resolve matching values
+    let title = titleMatchAttr ? titleMatchAttr[1] : (titleMatchProp ? titleMatchProp[1] : filename.replace('.astro', '').replace(/-/g, ' '));
+    // For description, some are concatenated strings like "description: "Посмотреть полное видео на тему: " + "..."", simple approach:
+    let description = descMatchAttr ? descMatchAttr[1] : (descMatchProp ? (descMatchProp[1] || descMatchProp[2] || "Смотреть статью...") : "");
+    if (description.includes('+')) description = "Статья или видеоразбор для предпринимателей.";
+
+    let pubDate = dateMatchAttr ? dateMatchAttr[1] : (dateMatchProp && dateMatchProp[1] ? dateMatchProp[1] : new Date().toISOString());
+    let image = imageMatchProp ? imageMatchProp[1] : null;
 
     return {
         slug: '/blog/' + filename.replace('.astro', ''),
         title,
         description,
-        pubDate
+        pubDate,
+        image
     };
 });
 
