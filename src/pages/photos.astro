@@ -6,6 +6,18 @@ const sanityAlbums = await client.fetch(`*[_type == "photoAlbum"] | order(order 
 
 const albums = [
     {
+        title: '«Одних слушают, других терпят»',
+        date: '11.04.2026',
+        googleDriveLink: 'https://mainslow.wfolio.pro/disk/11-04-2026-bizpride-41ttfg',
+        staticCover: '/img-album-listen.jpg'
+    },
+    {
+        title: 'Family Day — Медвежий водопад',
+        date: '04.04.2026',
+        googleDriveLink: 'https://drive.google.com/drive/folders/1SIcO4K-skeOqJFzk3vJFK48O0dQb0-b0',
+        staticCover: '/img-album-familyday.jpg'
+    },
+    {
         title: 'Налоги: как не платить в Казахстане',
         date: '28.03.2026',
         googleDriveLink: 'https://mainslow.wfolio.pro/disk/28-03-2026-bizpride-99hp2n',
@@ -49,22 +61,31 @@ const albums = [
                 </p>
             </div>
 
-            <div class="albums-grid">
+            <div class="albums-bento">
                 {albums.map((album, index) => (
-                    <a href={album.googleDriveLink} target="_blank" class={`album-card reveal ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`} style="display:block; text-decoration:none;">
+                    <a 
+                        href={album.googleDriveLink} 
+                        target="_blank" 
+                        rel="noopener"
+                        class={`bento-card ${index === 0 ? 'bento-hero' : ''} reveal ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`}
+                        style="display:block; text-decoration:none;"
+                    >
                         {album.staticCover ? (
-                            <img class="album-cover" src={album.staticCover} alt={album.title} />
+                            <img class="bento-img" src={album.staticCover} alt={album.title} loading={index < 3 ? "eager" : "lazy"} />
                         ) : album.coverImage ? (
-                            <img class="album-cover" src={urlFor(album.coverImage).width(600).url()} alt={album.title} />
+                            <img class="bento-img" src={urlFor(album.coverImage).width(800).url()} alt={album.title} loading="lazy" />
                         ) : null}
-                        <div class="album-overlay">
-                            <div class="album-date">{album.date}</div>
-                            <div class="album-title">{album.title}</div>
-                            <div class="album-count">
-                                <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" /></svg> 
-                                Смотреть в Drive
+                        <div class="bento-overlay">
+                            <div class="bento-badge">{album.date}</div>
+                            <div class="bento-bottom">
+                                <div class="bento-title">{album.title}</div>
+                                <div class="bento-cta">
+                                    <span class="bento-cta-text">Открыть альбом</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                                </div>
                             </div>
                         </div>
+                        <div class="bento-number">{String(index + 1).padStart(2, '0')}</div>
                     </a>
                 ))}
             </div>
