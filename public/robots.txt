@@ -22,4 +22,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://bizpride.kz/sitemap.xml
+Sitemap: https://bizpride.kz/sitemap-index.xml
