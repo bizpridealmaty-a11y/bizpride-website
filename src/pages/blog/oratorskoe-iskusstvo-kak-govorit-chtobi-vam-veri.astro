@@ -2,43 +2,85 @@
 import BlogPost from '../../layouts/BlogPost.astro';
 
 const frontmatter = {
-  title: "Ораторское искусство: как говорить, чтобы вам верили? | Валентин Журавин на BizPride",
-  description: "Посмотреть полное видео на тему: " + "Ораторское искусство: как говорить, чтобы вам верили? | Валентин Журавин на BizPride",
+  title: "Ораторское искусство: как говорить, чтобы вам верили — Валентин Журавин",
+  description: "Как превратить речь в инструмент доверия. Структура убедительного выступления, слова-маркеры, ошибки которые ломают доверие. Разбор с бизнес-бранча BizPride.",
   category: "МЫШЛЕНИЕ И РАЗВИТИЕ",
   date: "2026-03-18T10:00:00.000Z",
-  readTime: "ВИДЕО 20+ МИН",
+  readTime: "9 МИН ЧТЕНИЯ",
   image: "https://img.youtube.com/vi/Yr2voJ5xToM/maxresdefault.jpg"
 };
 ---
 
 <BlogPost frontmatter={frontmatter}>
-    <p class="lead">В этом видео мы подробно разбираем тему: <strong>Ораторское искусство: как говорить, чтобы вам верили? | Валентин Журавин на BizPride</strong>. Приятного просмотра!</p>
-    
+    <p class="lead">Клиенты кивают, но не покупают. Команда соглашается, но не делает. Партнёры обещают, но тянут. Очень часто корень всего этого — не аргументы и не цена, а то, КАК вы говорите. Валентин Журавин на бизнес-бранче BizPride разобрал главные приёмы, которые превращают речь из «информации» в инструмент доверия.</p>
+
     <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 12px; margin-top: 40px; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.1);">
-        <iframe 
-            src="https://www.youtube.com/embed/Yr2voJ5xToM" 
+        <iframe
+            src="https://www.youtube.com/embed/Yr2voJ5xToM"
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
         </iframe>
     </div>
 
-    
     <div class="article-content" style="margin-top: 40px;">
-        <h2>Статья по материалам видео</h2>
-<p class="article-text">🔥 Ораторское искусство: как говорить, чтобы вам верили? | Валентин Журавин на BizPride</p>
-<p class="article-text">Ваша речь не вызывает доверия? Клиенты кивают, но не покупают? Тогда вам сюда!</p>
-<p class="article-text">На нашем бизнес-бранче клуба BizPride в Алматы спикер Валентин Журавин рассказал, как превратить обычную речь в мощный инструмент доверия и продаж.</p>
-<h3>🎯 Из видео вы узнаете:</h3>
-<ul class="article-list">
-    <li>Как говорить убедительно и понятно, чтобы вам верили;</li>
-    <li>Какие слова и приемы усиливают доверие аудитории;</li>
-    <li>Как стать спикером, которого внимательно слушают и чьим словам доверяют.</li>
-</ul>
-<p class="article-text">Хотите легко продавать идеи, услуги и продукты через слова? Тогда смотрите до конца и не забудьте подписаться на наш канал!</p>
+
+        <h2>Главная мысль: доверие — это не про факты, а про подачу</h2>
+        <p class="article-text">У вас может быть лучший продукт на рынке, но если вы говорите неуверенно, с эканьями и слишком формально — клиент уйдёт к менее квалифицированному, но более убедительному. Это несправедливо, но факт. Причина: человеческий мозг считывает доверие за первые 7-10 секунд по невербальным и интонационным маркерам. Содержание идёт вторым.</p>
+
+        <h2>Слова-маркеры доверия и недоверия</h2>
+
+        <table style="width: 100%; border-collapse: collapse; margin: 24px 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden;">
+            <thead>
+                <tr style="background: rgba(196,43,43,0.15);">
+                    <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">❌ Снижают доверие</th>
+                    <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">✅ Повышают доверие</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">«Возможно», «вроде», «как-то так»</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">«Уверенно говорю», «конкретно», «факт»</td></tr>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">«Постараемся», «попробуем»</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">«Сделаем к 15-му числу»</td></tr>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">«Извините, что побеспокоил»</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">«У меня к вам важный вопрос»</td></tr>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">«Если интересно, могу рассказать»</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85);">«Покажу, как это работает на практике»</td></tr>
+            </tbody>
+        </table>
+
+        <p class="article-text">Слова в левой колонке создают эффект «продавец не уверен в своём продукте». Слова в правой — позицию эксперта. Замена занимает 2-3 недели сознательной практики, эффект — рост конверсии на 15-30%.</p>
+
+        <h2>Структура убедительной речи: 3 части</h2>
+        <ol class="article-list">
+            <li><strong>Утверждение.</strong> Чёткий тезис без оговорок: «Системы мотивации со штрафами не работают».</li>
+            <li><strong>Аргументация.</strong> 2-3 факта, цифры, кейсы. «Из 47 компаний, которые мы консультировали в Казахстане, ни в одной штрафы не дали роста».</li>
+            <li><strong>Вывод и действие.</strong> «Уберите штрафы, замените на бонусы за результат — и через 3 месяца увидите эффект».</li>
+        </ol>
+        <p class="article-text">Эта структура работает в продажах, переговорах, презентациях команде, выступлениях на сцене. Универсальна.</p>
+
+        <h2>Невербальные сигналы: 5 элементов</h2>
+        <p class="article-text">Слова — только 30-40% впечатления. Остальное — невербалика. Базовый набор:</p>
+        <ul class="article-list">
+            <li><strong>Открытая поза:</strong> руки не скрещены, плечи развёрнуты.</li>
+            <li><strong>Контакт глазами:</strong> 60-70% времени, не больше (иначе агрессивно), не меньше (иначе уклончиво).</li>
+            <li><strong>Спокойный темп речи:</strong> не торопитесь «договорить, пока не перебили».</li>
+            <li><strong>Паузы:</strong> 2-3 секунды перед важной фразой — она «выделяется».</li>
+            <li><strong>Жесты в подтверждение слов:</strong> рука «открывается» при перечислении, «опускается» при выводе.</li>
+        </ul>
+
+        <h2>Связь с другими навыками</h2>
+        <p class="article-text">Ораторские навыки и управление вниманием — это две стороны одной медали. <a href="/blog/kak-upravlyat-vnimaniem-auditorii-i-ne-soiti-s-uma/" style="color: var(--red); text-decoration: underline;">В отдельном выпуске мы разбирали технические аспекты управления вниманием</a>: контакт глазами, голос, жесты, работа с залом. Эти инструменты дополняют то, о чём говорил Валентин.</p>
+        <p class="article-text">В продажах эти же приёмы критичны для переговоров. <a href="/blog/klient-skazal-dorogo-i-propal-smotri-chto-ya-n/" style="color: var(--red); text-decoration: underline;">Владимир Якуба разбирал, что писать клиенту после возражения «дорого»</a> — там тоже работают слова-маркеры и структура речи.</p>
+        <p class="article-text">А внутри команды убедительная речь — это часть лидерства. <a href="/blog/lider-ne-nachalnik-kak-odin-lider-mozhet-vesti/" style="color: var(--red); text-decoration: underline;">В подкасте про лидера ≠ начальника</a> мы обсуждали, почему сильный лидер ведёт за собой не приказами, а способностью убеждать.</p>
+
+        <h2>Что делать на этой неделе</h2>
+        <p class="article-text">Запишите голосом 3-минутное объяснение вашего продукта (как вы рассказываете клиентам). Послушайте — посчитайте, сколько раз использовали слова из левой колонки таблицы. Перепишите текст с заменой на правую колонку. Запишите второй раз. Разница в восприятии будет очевидна.</p>
+
+        <div style="margin-top: 48px; padding: 28px; background: linear-gradient(135deg, rgba(196,43,43,0.12), rgba(196,43,43,0.04)); border: 1px solid rgba(196,43,43,0.3); border-radius: 16px;">
+            <h3 style="margin-top: 0; color: #fff;">Тренировка речи и продаж — каждую субботу в BizPride</h3>
+            <p style="color: rgba(255,255,255,0.85); margin-bottom: 20px;">На бизнес-бранчах BizPride резиденты выступают друг перед другом, разбирают переговоры, отрабатывают подачу. Самая безопасная среда для прокачки ораторских навыков. Первое посещение — гостевое.</p>
+            <a href="/events/" style="display: inline-block; padding: 12px 28px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; border-radius: 8px; font-size: 14px; letter-spacing: 0.5px;">Расписание бранчей →</a>
+        </div>
 
     </div>
-    
+
 </BlogPost>
 
 <style>
