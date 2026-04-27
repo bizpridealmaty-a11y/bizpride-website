@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import BlogTeaser from '../components/BlogTeaser.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 // SEO Hub for BizPride Club Blog - Editorial Redesign
 ---
@@ -21,6 +22,16 @@ import BlogTeaser from '../components/BlogTeaser.astro';
                         Погрузитесь в экосистему закрытого сообщества. Здесь мы делимся практическим опытом, аналитикой рынка и рассказываем, как правильное окружение кратно увеличивает масштаб бизнеса.
                     </p>
                 </div>
+            </div>
+        </section>
+
+        <!-- Breadcrumbs (after hero, before content tabs) -->
+        <section style="background: var(--bg-primary, #0a0a0a); padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <Breadcrumbs items={[
+                    { name: 'Главная', href: '/' },
+                    { name: 'О клубе' }
+                ]} />
             </div>
         </section>
 

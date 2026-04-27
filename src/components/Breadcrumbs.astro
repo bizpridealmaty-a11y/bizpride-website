@@ -1,0 +1,46 @@
+---
+interface Crumb {
+  name: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+  theme?: 'light' | 'dark';
+}
+
+const { items, theme = 'dark' } = Astro.props;
+
+const SITE = 'https://bizpride.kz';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((c, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": c.name,
+    "item": c.href ? (c.href.startsWith('http') ? c.href : `${SITE}${c.href}`) : Astro.url.href
+  }))
+};
+
+const isLight = theme === 'light';
+const linkColor = isLight ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.5)';
+const currentColor = isLight ? '#1a1a1a' : '#fff';
+const sepColor = isLight ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.3)';
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+<nav aria-label="Хлебные крошки" style={`font-size: 13px; padding: 8px 0;`}>
+  {items.map((c, i) => (
+    <>
+      {c.href && i < items.length - 1 ? (
+        <a href={c.href} style={`color: ${linkColor}; text-decoration: none;`}>{c.name}</a>
+      ) : (
+        <span style={`color: ${currentColor}; font-weight: 500;`}>{c.name}</span>
+      )}
+      {i < items.length - 1 && <span style={`margin: 0 8px; color: ${sepColor};`}>/</span>}
+    </>
+  ))}
+</nav>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { client, urlFor } from '../lib/sanity';
 
 const sanityAlbums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
@@ -49,7 +50,13 @@ const albums = [
     title="Фотогалерея BizPride Club — Моменты наших встреч"
     description="Смотрите фотоотчеты с мастермайндов, бранчей и клубных выездов BizPride Club. Живая атмосфера нашего сообщества в Алматы."
 >
-    <section class="section-dark" style="padding-top: 180px;">
+    <section class="section-dark" style="padding-top: 110px;">
+        <div class="container" style="padding-bottom: 32px;">
+            <Breadcrumbs items={[
+                { name: 'Главная', href: '/' },
+                { name: 'Фотогалерея' }
+            ]} />
+        </div>
         <div class="container">
             <div class="gallery-header" style="flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 80px;">
                 <div>

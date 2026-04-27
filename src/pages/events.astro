@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import BlogTeaser from '../components/BlogTeaser.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { client, urlFor } from '../lib/sanity';
 
 const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
@@ -146,6 +147,12 @@ const schemaDate = `${month1.year}-${String(month1.month + 1).padStart(2, '0')}-
     navTheme="dark"
 >
     <section class="section-light" id="calendar">
+        <div class="container container-large" style="padding-top: 100px; padding-bottom: 16px;">
+            <Breadcrumbs items={[
+                { name: 'Главная', href: '/' },
+                { name: 'Мероприятия' }
+            ]} theme="light" />
+        </div>
         <div class="container container-large">
             <div class="calendar-header-wrapper">
                 <h1 class="calendar-title reveal">РАСПИСАНИЕ <span class="calendar-title-small">МЕРОПРИЯТИЙ</span></h1>

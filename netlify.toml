@@ -34,10 +34,15 @@
   force = true
 
 # ─────────────────────────────────────────────────────────────────────
-# Notes:
-# - trailingSlash enforcement is handled by Astro at build time
-#   (astro.config.mjs → trailingSlash: 'always'). All emitted pages
-#   ship as /path/index.html, and Netlify automatically serves
-#   /path → /path/ with a 301 when this is the only file present.
-# - No need for an explicit trailing-slash redirect rule here.
+# 4. Explicit trailing-slash enforcement (defensive — Netlify already
+#    does this via "Pretty URLs" defaults, but pinning it here means
+#    behaviour stays stable if Netlify changes its defaults later).
+#    Note: Astro emits /path/index.html, so this is what's actually
+#    served at /path/. The rule below catches any /path access and
+#    forces the slashed canonical.
 # ─────────────────────────────────────────────────────────────────────
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = true
