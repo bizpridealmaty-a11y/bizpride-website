@@ -2,45 +2,81 @@
 import BlogPost from '../../layouts/BlogPost.astro';
 
 const frontmatter = {
-  title: "Почему твой блог не продаёт? Жёсткая правда почему Instagram в Казахстане больше не продаёт",
-  description: "Посмотреть полное видео на тему: " + "Почему твой блог не продаёт? Жёсткая правда почему Instagram в Казахстане больше не продаёт",
+  title: "Почему блог не продаёт: жёсткая правда о контент-маркетинге в Казахстане",
+  description: "Структура продающего контента: типы, хук, охваты vs продажи. Почему Instagram перестаёт работать и где сейчас реальные продажи. Разбор для предпринимателей.",
   category: "МАРКЕТИНГ И ПРОДВИЖЕНИЕ",
   date: "2026-03-19T22:00:00.000Z",
-  readTime: "ВИДЕО 20+ МИН",
+  readTime: "10 МИН ЧТЕНИЯ",
   image: "https://img.youtube.com/vi/vHNfdaPbh8U/maxresdefault.jpg"
 };
 ---
 
 <BlogPost frontmatter={frontmatter}>
-    <p class="lead">В этом видео мы подробно разбираем тему: <strong>Почему твой блог не продаёт? Жёсткая правда почему Instagram в Казахстане больше не продаёт</strong>. Приятного просмотра!</p>
-    
+    <p class="lead">Каждый эксперт в Казахстане сейчас «ведёт блог». Постит, снимает Reels, выкладывает кейсы. И почти ни у кого это не приводит к реальным продажам. Не потому что «алгоритмы плохие» или «аудитория не та». А потому что блог построен по неверной структуре. Этот разбор — жёсткая правда о том, что нужно переделать.</p>
+
     <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 12px; margin-top: 40px; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.1);">
-        <iframe 
-            src="https://www.youtube.com/embed/vHNfdaPbh8U" 
+        <iframe
+            src="https://www.youtube.com/embed/vHNfdaPbh8U"
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
         </iframe>
     </div>
 
-    
     <div class="article-content" style="margin-top: 40px;">
-        <h2>Статья по материалам видео</h2>
-<p class="article-text">Почему у одних экспертов продажи идут стабильно, а у других в блоге только “купи, купи, купи” и ноль заявок?</p>
-<p class="article-text">В этом видео разбор контент-стратегии для Instagram и YouTube, продвижение личного бренда, алгоритмы соцсетей, структура вирусных роликов, создание Reels и Shorts, продажи через экспертность, доверие и охваты. Если ты предприниматель, блогер или эксперт и хочешь увеличить охваты, подписчиков и заявки без агрессивных продаж — это видео для тебя.</p>
-<p class="article-text">Разберём:</p>
-<ul class="article-list">
-    <li>что такое хук и почему без него ролики не залетают</li>
-    <li>как правильно строить структуру видео: хук, усиление, раскрытие, вывод</li>
-    <li>разницу между продающим, экспертным, развлекательным и личным контентом</li>
-    <li>почему YouTube может выстрелить за 2 месяца, а Instagram не даёт роста</li>
-    <li>как перестать просто продавать и начать зарабатывать</li>
-</ul>
-<p class="article-text">Если ты предприниматель, эксперт, блогер или развиваешь личный бренд — это видео поможет пересобрать стратегию контента и выйти на системные продажи без агрессии и “впаривания”.</p>
-<p class="article-text">Подписывайся на канал, если хочешь понимать, как реально работают соцсети и алгоритмы, а не верить в мифы.</p>
+
+        <h2>Типичная ошибка №1: только продающий контент</h2>
+        <p class="article-text">Самая распространённая модель: эксперт постит «Купи мой курс», «Запишись на консультацию», «Осталось 3 места». Каждый день. Через месяц подписчики видят такого человека как «продавца», а не «эксперта». Доверия нет, охватов нет, продаж нет. Это и есть «купи-купи-купи» — синдром.</p>
+        <p class="article-text">Здоровая структура контента — 4 типа, в правильной пропорции:</p>
+
+        <table style="width: 100%; border-collapse: collapse; margin: 24px 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden;">
+            <thead>
+                <tr style="background: rgba(196,43,43,0.15);">
+                    <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Тип контента</th>
+                    <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Доля</th>
+                    <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Что даёт</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Экспертный</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">40%</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Доверие, статус «знает тему»</td></tr>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Развлекательный</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">30%</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Охваты, узнаваемость, расшаривание</td></tr>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Личный</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">20%</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Эмоциональная связь, лояльность</td></tr>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85);">Продающий</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">10%</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">Конверсия в заявки</td></tr>
+            </tbody>
+        </table>
+
+        <p class="article-text">10% продающего контента при 90% полезного / интересного — это и есть рабочая формула. Она кажется «слишком мало продаж», но на практике даёт В РАЗЫ больше заявок, чем «100% продающее». Потому что аудитория сначала должна довериться.</p>
+
+        <h2>Структура ролика, который «залетает»</h2>
+        <p class="article-text">90% Reels и Shorts не получают охватов из-за плохой структуры. Алгоритм оценивает удержание зрителя в первые 3 секунды и общий процент досматривания. Если 80% зрителей улетают за первые 3 секунды — алгоритм перестаёт показывать ролик. Рабочая структура состоит из 4 элементов:</p>
+        <ol class="article-list">
+            <li><strong>Хук (1-3 сек).</strong> Резкое утверждение, обещание, вопрос: «3 ошибки, из-за которых ваш бизнес теряет 30% выручки».</li>
+            <li><strong>Усиление (4-10 сек).</strong> Почему это касается зрителя: «Это не про крупные компании, это про любого собственника».</li>
+            <li><strong>Раскрытие (10-50 сек).</strong> Сама суть — 3 ошибки с примерами.</li>
+            <li><strong>Вывод (5 сек в конце).</strong> Призыв к действию: подписка, переход в шапку, комментарий.</li>
+        </ol>
+
+        <h2>Почему YouTube стал важнее Instagram</h2>
+        <p class="article-text">В 2024-2026 годах в Казахстане наблюдается чёткий тренд: YouTube начинает обгонять Instagram по реальным конверсиям в продажи. Причины: алгоритм YouTube лучше показывает контент новой аудитории; зритель приходит на YouTube за конкретной информацией (а не «полистать»); долгие форматы дают больше времени для убеждения. Канал на YouTube может «выстрелить» за 2 месяца, если контент попадает в нишу. Instagram сейчас даёт меньше органического роста.</p>
+
+        <h2>Где блог действительно продаёт</h2>
+        <p class="article-text">Не существует «продающего поста». Существует продающая воронка, в которой каждый пост играет свою роль. Первый пост — узнавание. Третий — доверие. Десятый — эмоциональная связь. И только после этого — продажа в правильный момент. Если вы пытаетесь продавать в первом контакте — это срывает всю воронку.</p>
+        <p class="article-text">Параллельно нужно работать с лидогенерацией не только через контент. <a href="/blog/lidogeneratsiya-glavnii-aktiv-v-biznese-konzhano/" style="color: var(--red); text-decoration: underline;">Маркетолог Муратбек Конжанов разбирал лидогенерацию как главный актив бизнеса</a> — какие каналы работают в Казахстане в 2026.</p>
+
+        <h2>Управление вниманием — ключевой навык</h2>
+        <p class="article-text">Контент-маркетинг — это игра с вниманием аудитории. Если вы не умеете управлять вниманием, ваши ролики проигрывают конкурентам, у которых меньше экспертизы, но лучше структура. <a href="/blog/kak-upravlyat-vnimaniem-auditorii-i-ne-soiti-s-uma/" style="color: var(--red); text-decoration: underline;">В отдельном выпуске мы разбирали, как управлять вниманием аудитории без выгорания</a>. Параллельно стоит изучить специфику Instagram: <a href="/blog/effektivnie-strategii-prodvizheniya-v-instagram-ot/" style="color: var(--red); text-decoration: underline;">Дмитрий Тимошевский показал стратегии продвижения и воронки в Instagram</a>.</p>
+
+        <h2>С чего начать</h2>
+        <p class="article-text">Возьмите свои последние 30 постов и распределите по 4 типам контента (экспертный/развлекательный/личный/продающий). Скорее всего, обнаружите, что 60-80% — продающие. Это и есть корень проблемы. Перестройте контент-план в правильной пропорции 40/30/20/10 — и через 6-8 недель увидите рост охватов и заявок.</p>
+
+        <div style="margin-top: 48px; padding: 28px; background: linear-gradient(135deg, rgba(196,43,43,0.12), rgba(196,43,43,0.04)); border: 1px solid rgba(196,43,43,0.3); border-radius: 16px;">
+            <h3 style="margin-top: 0; color: #fff;">Контент-стратегия — каждую субботу в BizPride</h3>
+            <p style="color: rgba(255,255,255,0.85); margin-bottom: 20px;">На бизнес-бранчах BizPride эксперты и собственники из Алматы разбирают свои контент-стратегии в формате мастермайнда. Конкретные блоги, конкретные цифры. Первое посещение — гостевое.</p>
+            <a href="/events/" style="display: inline-block; padding: 12px 28px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; border-radius: 8px; font-size: 14px; letter-spacing: 0.5px;">Расписание бранчей →</a>
+        </div>
 
     </div>
-    
+
 </BlogPost>
 
 <style>
