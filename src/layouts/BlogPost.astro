@@ -1,7 +1,9 @@
 ---
 import Layout from './Layout.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
 
 const { frontmatter } = Astro.props;
+const currentSlug = Astro.url.pathname;
 ---
 
 <Layout title={frontmatter.title || 'Блог BizPride'} description={frontmatter.description}>
@@ -67,6 +69,8 @@ const { frontmatter } = Astro.props;
         <article class="bp-content">
             <slot />
         </article>
+
+        <RelatedPosts currentSlug={currentSlug} currentTitle={frontmatter.title} count={3} />
 
         <section class="bp-footer">
             <div class="bp-share">

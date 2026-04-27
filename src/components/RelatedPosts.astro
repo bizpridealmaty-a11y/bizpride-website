@@ -1,0 +1,64 @@
+---
+import allPosts from '../data/blogPosts.json';
+
+interface Props {
+  currentSlug: string;
+  currentTitle: string;
+  count?: number;
+}
+
+const { currentSlug, currentTitle, count = 3 } = Astro.props;
+
+const normalize = (s: string) => s.replace(/\/$/, '');
+const current = normalize(currentSlug);
+
+const tokenize = (text: string): Set<string> => {
+  const words = text.toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .split(/\s+/)
+    .filter(w => w.length >= 4);
+  return new Set(words);
+};
+
+const currentTokens = tokenize(currentTitle);
+
+const scored = allPosts
+  .filter((p: any) => normalize(p.slug) !== current)
+  .map((p: any) => {
+    const tokens = tokenize(p.title);
+    let score = 0;
+    for (const t of currentTokens) if (tokens.has(t)) score++;
+    return { ...p, score };
+  })
+  .sort((a: any, b: any) =>
+    b.score - a.score ||
+    new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+  )
+  .slice(0, count);
+
+const linkFor = (slug: string) => slug.endsWith('/') ? slug : slug + '/';
+---
+
+{scored.length > 0 && (
+<section aria-label="Похожие статьи" style="max-width: 800px; margin: 80px auto 0; padding: 40px 20px 0; border-top: 1px solid rgba(255,255,255,0.1);">
+  <h2 style="font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 24px;">Похожие материалы</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+    {scored.map((p: any) => (
+      <a href={linkFor(p.slug)} class="related-card" style="display: flex; flex-direction: column; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-decoration: none; transition: border-color 0.25s, transform 0.25s;">
+        <h3 style="font-size: 15px; font-weight: 600; color: #fff; line-height: 1.4; margin: 0 0 12px;">{p.title}</h3>
+        <span style="font-size: 13px; color: var(--red, #c42b2b); font-weight: 600; margin-top: auto;">Читать →</span>
+      </a>
+    ))}
+  </div>
+  <p style="margin-top: 32px; text-align: center; font-size: 14px; color: rgba(255,255,255,0.5);">
+    <a href="/blog/" style="color: rgba(255,255,255,0.7); text-decoration: underline;">Все статьи в Блоге BizPride →</a>
+  </p>
+</section>
+)}
+
+<style>
+  .related-card:hover {
+    border-color: var(--red, #c42b2b) !important;
+    transform: translateY(-2px);
+  }
+</style>

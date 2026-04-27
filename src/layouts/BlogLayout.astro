@@ -1,7 +1,9 @@
 ---
 import Layout from './Layout.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
 
 const { title, description, pubDate, author = "BizPride Club", image = "https://bizpride.kz/logo.png" } = Astro.props;
+const currentSlug = Astro.url.pathname;
 
 // Create JSON-LD Article Schema
 const schema = {
@@ -81,6 +83,8 @@ const breadcrumbSchema = {
             <article class="prose-blog">
                 <slot />
             </article>
+
+            <RelatedPosts currentSlug={currentSlug} currentTitle={title} count={3} />
         </div>
     </section>
     
