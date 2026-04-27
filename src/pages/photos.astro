@@ -44,9 +44,11 @@ const albums = [
     },
     ...sanityAlbums
 ];
+
+const padNum = (n: number) => String(n + 1).padStart(2, '0');
 ---
 
-<Layout 
+<Layout
     title="Фотогалерея BizPride Club — Моменты наших встреч"
     description="Смотрите фотоотчеты с мастермайндов, бранчей и клубных выездов BizPride Club. Живая атмосфера нашего сообщества в Алматы."
 >
@@ -68,25 +70,229 @@ const albums = [
                 </p>
             </div>
 
-            <div class="albums-grid">
-                {albums.map((album, index) => (
-                    <a href={album.googleDriveLink} target="_blank" class={`album-card reveal ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`} style="display:block; text-decoration:none;">
-                        {album.staticCover ? (
-                            <img class="album-cover" src={album.staticCover} alt={album.title} />
-                        ) : album.coverImage ? (
-                            <img class="album-cover" src={urlFor(album.coverImage).width(600).url()} alt={album.title} />
-                        ) : null}
-                        <div class="album-overlay">
-                            <div class="album-date">{album.date}</div>
-                            <div class="album-title">{album.title}</div>
-                            <div class="album-count">
-                                <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" /></svg> 
-                                Смотреть в Drive
+            <div class="albums-bento">
+                {albums.map((album, index) => {
+                    const cover = album.staticCover
+                        ? album.staticCover
+                        : (album.coverImage ? urlFor(album.coverImage).width(1200).url() : null);
+                    return (
+                        <a
+                            href={album.googleDriveLink}
+                            target="_blank"
+                            rel="noopener"
+                            class={`bento-card reveal ${index === 0 ? 'bento-hero' : ''} ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`}
+                            aria-label={`Альбом «${album.title}» — ${album.date}`}
+                        >
+                            {cover && <img class="bento-img" src={cover} alt={album.title} loading={index < 3 ? 'eager' : 'lazy'} />}
+                            <span class="bento-number">{padNum(index)}</span>
+                            <div class="bento-overlay">
+                                <span class="bento-badge">{album.date}</span>
+                                <div class="bento-bottom">
+                                    <span class="bento-title">{album.title}</span>
+                                    <span class="bento-cta">
+                                        <span class="bento-cta-text">Смотреть</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                ))}
+                        </a>
+                    );
+                })}
             </div>
         </div>
     </section>
+
+    <style>
+        /* ═══ BENTO PHOTO GALLERY ═══ */
+        .albums-bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .albums-bento .bento-hero {
+            grid-column: 1 / -1;
+            aspect-ratio: 21/9;
+        }
+
+        .albums-bento .bento-card:not(.bento-hero):nth-child(2) {
+            grid-column: span 2;
+            aspect-ratio: 16/9;
+        }
+
+        .albums-bento .bento-card:not(.bento-hero):nth-child(3) {
+            grid-column: span 1;
+            aspect-ratio: 3/4;
+        }
+
+        .bento-card {
+            position: relative;
+            display: block;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            background: var(--bg-card, #161922);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all .5s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(196, 43, 43, 0.2);
+            border-color: rgba(196, 43, 43, 0.3);
+            z-index: 2;
+        }
+
+        .bento-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        .bento-card:hover .bento-img {
+            transform: scale(1.08);
+        }
+
+        .bento-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, transparent 30%, transparent 50%, rgba(0, 0, 0, 0.7) 80%, rgba(0, 0, 0, 0.95) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            transition: all 0.4s;
+        }
+
+        .bento-hero .bento-overlay {
+            padding: 28px 32px;
+        }
+
+        .bento-badge {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .bento-card:hover .bento-badge {
+            background: var(--red, #c42b2b);
+            border-color: var(--red, #c42b2b);
+        }
+
+        .bento-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 16px;
+        }
+
+        .bento-title {
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #fff;
+            line-height: 1.2;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .bento-hero .bento-title {
+            font-size: clamp(22px, 2.5vw, 32px);
+        }
+
+        .bento-cta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            padding: 8px 16px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        .bento-card:hover .bento-cta {
+            opacity: 1;
+            transform: translateY(0);
+            background: var(--red, #c42b2b);
+            border-color: var(--red, #c42b2b);
+        }
+
+        .bento-cta-text {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .bento-cta svg {
+            width: 14px;
+            height: 14px;
+            color: #fff;
+            transition: transform 0.3s;
+        }
+
+        .bento-card:hover .bento-cta svg {
+            transform: translate(2px, -2px);
+        }
+
+        .bento-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 48px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.06);
+            line-height: 1;
+            pointer-events: none;
+            transition: all 0.5s;
+        }
+
+        .bento-hero .bento-number {
+            font-size: 72px;
+        }
+
+        .bento-card:hover .bento-number {
+            color: rgba(196, 43, 43, 0.15);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 900px) {
+            .albums-bento { grid-template-columns: repeat(2, 1fr); }
+            .albums-bento .bento-card:not(.bento-hero):nth-child(2) { grid-column: span 2; aspect-ratio: 16/9; }
+            .albums-bento .bento-card:not(.bento-hero):nth-child(3) { grid-column: span 1; aspect-ratio: 1/1; }
+        }
+
+        @media (max-width: 600px) {
+            .albums-bento { grid-template-columns: 1fr; }
+            .albums-bento .bento-card,
+            .albums-bento .bento-hero,
+            .albums-bento .bento-card:not(.bento-hero):nth-child(2),
+            .albums-bento .bento-card:not(.bento-hero):nth-child(3) {
+                grid-column: span 1;
+                aspect-ratio: 4/3;
+            }
+            .bento-cta { opacity: 1; transform: none; }
+        }
+    </style>
 </Layout>

@@ -1,0 +1,242 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import allPosts from '../../../data/blogPosts.json';
+
+// ─── Slug → category-id mapping (for all 44 blog posts) ─────────────
+const SLUG_TO_CATEGORY: Record<string, string> = {
+  // Бизнес-клуб
+  'chto-takoe-business-club': 'club',
+  'luchshie-business-cluby-almaty': 'club',
+  'rost-dohoda-cherez-okruzhenie': 'club',
+  'business-meropriyatiya-almaty-2026': 'club',
+  // Сообщество
+  'chto-takoe-biznes-soobshchestvo': 'community',
+  'business-soobschestvo-almaty': 'community',
+  'luchshie-soobshchestva-predprinimatelej': 'community',
+  'zakrytoe-soobshchestvo-predprinimatelej': 'community',
+  'pro-biznes-soobschestvo-bizpride-biznes-klub-pred': 'community',
+  'kak-najti-edinomyshlennikov': 'community',
+  // Мастермайнд
+  'chto-takoe-mastermind': 'mastermind',
+  'mastermind-v-bizpride': 'mastermind',
+  // Cashflow
+  'cashflow-kazakhstan': 'cashflow',
+  'cashflow-almaty': 'cashflow',
+  'cashflow-predprinimateli': 'cashflow',
+  'cashflow-korporativ': 'cashflow',
+  // Продажи и маркетинг
+  'klient-skazal-dorogo-i-propal-smotri-chto-ya-n': 'sales',
+  'top-3-instrumenta-uvelicheniya-prodazh-sovremenno': 'sales',
+  'lidogeneratsiya-glavnii-aktiv-v-biznese-konzhano': 'sales',
+  'sabotazh-bardak-v-whatsapp-u-menedzherov-po-proda': 'sales',
+  'pochemu-tvoi-blog-ne-prodayot-zhyostkaya-pravda-p': 'sales',
+  'effektivnie-strategii-prodvizheniya-v-instagram-ot': 'sales',
+  'drugoi-podhod-k-prodazham-kak-usilit-otdel-prodaz': 'sales',
+  'chto-ne-tak-s-marketingom-v-kazahstane-podkast-pr': 'sales',
+  // Управление и лидерство
+  'po-kolhoznomu-ili-po-sisteme-kak-perestat-derzhat': 'management',
+  'kak-predprinimatelyu-viiti-iz-operatsionki-andrei': 'management',
+  'kak-postroit-sovremennoe-upravlenie-rukovodstvo-d': 'management',
+  'tsennii-konechnii-produkt-chto-vi-voobsche-proizv': 'management',
+  'zarplata-nizhe-rinka-shtrafi-i-10-protsentov-brak': 'management',
+  'lider-ne-nachalnik-kak-odin-lider-mozhet-vesti': 'management',
+  'kak-upravlyat-biznesom-cherez-tsifri-v-kazahstane': 'management',
+  'zachem-vam-voobsche-generalnii-direktor-chestnii': 'management',
+  '2-chast-top-5-instrumentov-dlya-povisheniya-prod': 'management',
+  'kak-razvivat-biznes-cherez-it-it-resheniya-dlya-l': 'management',
+  // Финансы и капитал
+  'kak-razvivat-biznes-cherez-investitsii-v-kazahstan': 'finance',
+  'kak-prodat-svoi-biznes-dorogo-aleksandr-shashkin': 'finance',
+  'pochemu-pokupayut-franshizi-alimzhan-bazavdinov-v': 'finance',
+  'nalogovaya-realnost-2026-chto-zhdet-biznes-v-kaza': 'finance',
+  // Мышление и развитие
+  'oratorskoe-iskusstvo-kak-govorit-chtobi-vam-veri': 'mindset',
+  'kak-upravlyat-vnimaniem-auditorii-i-ne-soiti-s-uma': 'mindset',
+  'lohotron-biznes-haipa-kak-kursi-psihologiya-i-ai': 'mindset',
+  'infotsigane-v-kazahstane-andrei-avtonomov-o-infob': 'mindset',
+  'lyudi-ustali-ot-uspeshnogo-uspeha-kakoi-kontent': 'mindset',
+  'kak-nauchit-telo-viderzhivat-bolshie-dengi-i-otvet': 'mindset',
+};
+
+interface CategoryMeta {
+  name: string;
+  emoji: string;
+  intro: string;
+  metaTitle: string;
+  metaDesc: string;
+}
+
+const CATEGORY_META: Record<string, CategoryMeta> = {
+  club: {
+    name: 'Бизнес-клуб',
+    emoji: '🔑',
+    intro: 'Что такое бизнес-клуб, как выбрать клуб в Алматы, как окружение влияет на рост дохода предпринимателя.',
+    metaTitle: 'Бизнес-клуб: статьи и гайды | Блог BizPride',
+    metaDesc: 'Все материалы о бизнес-клубах: что это, как выбрать в Алматы, как влияет на рост бизнеса. Подробные гайды для предпринимателей Казахстана.'
+  },
+  community: {
+    name: 'Бизнес-сообщество',
+    emoji: '🌐',
+    intro: 'Бизнес-сообщества Казахстана и Алматы: чем отличаются от клубов, как попасть в закрытые сообщества, лучшие площадки 2026 года.',
+    metaTitle: 'Бизнес-сообщество: гайды и обзоры | Блог BizPride',
+    metaDesc: 'Обзоры бизнес-сообществ Казахстана: открытые и закрытые форматы, критерии входа, как найти своё. Гайды для МСБ Алматы.'
+  },
+  mastermind: {
+    name: 'Мастермайнд',
+    emoji: '🧠',
+    intro: 'Формат мастермайнда: история, структура встреч, главные принципы и сценарии работы. Полный разбор инструмента коллективного интеллекта.',
+    metaTitle: 'Мастермайнд: что это и как работает | Блог BizPride',
+    metaDesc: 'Полное руководство по формату мастермайнд: история, структура, принципы. Как проходят мастермайнды в BizPride Алматы.'
+  },
+  cashflow: {
+    name: 'Cashflow',
+    emoji: '💰',
+    intro: 'Игра Cashflow в Казахстане: казахстанская версия BizPride, форматы для предпринимателей и команд, площадки в Алматы.',
+    metaTitle: 'Cashflow: игра Денежный поток в Казахстане | Блог BizPride',
+    metaDesc: 'Казахстанская версия игры Cashflow от BizPride: форматы, площадки в Алматы, корпоративный Cashflow для команд предпринимателей.'
+  },
+  sales: {
+    name: 'Продажи и маркетинг',
+    emoji: '📈',
+    intro: 'Реальные инструменты продаж и маркетинга: скрипты работы с возражениями, лидогенерация, контент-стратегия, систематизация отдела продаж.',
+    metaTitle: 'Продажи и маркетинг: статьи и видео | Блог BizPride',
+    metaDesc: 'Практические материалы о продажах и маркетинге: скрипты, лидогенерация, контент, CRM, систематизация. Опыт практиков из Казахстана.'
+  },
+  management: {
+    name: 'Управление и команда',
+    emoji: '⚙️',
+    intro: 'Системное управление, выход из операционки, лидерство, мотивация команды, ЦКП и регламенты — практические разборы для собственников.',
+    metaTitle: 'Управление и команда: гайды для собственников | Блог BizPride',
+    metaDesc: 'Практическое управление бизнесом: систематизация, выход из операционки, мотивация команды, ЦКП. Опыт практиков для МСБ.'
+  },
+  finance: {
+    name: 'Финансы и капитал',
+    emoji: '💼',
+    intro: 'Привлечение инвестиций в Казахстане, продажа бизнеса дорого, франшизы, налоговая реальность 2026. Финансовые решения для МСБ.',
+    metaTitle: 'Финансы и капитал бизнеса в Казахстане | Блог BizPride',
+    metaDesc: 'Инвестиции, продажа бизнеса, франшизы, налоги в Казахстане. Финансовые гайды и кейсы для собственников МСБ.'
+  },
+  mindset: {
+    name: 'Мышление и развитие',
+    emoji: '💡',
+    intro: 'Ораторское искусство, управление вниманием, выбор обучения. Как отличить настоящих экспертов от инфоцыган и развиваться по-настоящему.',
+    metaTitle: 'Мышление и развитие предпринимателя | Блог BizPride',
+    metaDesc: 'Soft skills для собственников: ораторское искусство, управление вниманием, фильтр от инфоцыган. Развитие на основе данных, не хайпа.'
+  },
+};
+
+export async function getStaticPaths() {
+  const cats = ['club', 'community', 'mastermind', 'cashflow', 'sales', 'management', 'finance', 'mindset'];
+  return cats.map(c => ({ params: { category: c } }));
+}
+
+const { category } = Astro.params;
+const meta = CATEGORY_META[category!];
+
+if (!meta) {
+  return Astro.redirect('/blog/');
+}
+
+const slugFromUrl = (url: string) => url.replace(/^\/blog\//, '').replace(/\/$/, '');
+const articles = allPosts.filter((p: any) => SLUG_TO_CATEGORY[slugFromUrl(p.slug)] === category);
+const ensureSlash = (slug: string) => slug.endsWith('/') ? slug : slug + '/';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://bizpride.kz/" },
+    { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://bizpride.kz/blog/" },
+    { "@type": "ListItem", "position": 3, "name": meta.name, "item": `https://bizpride.kz/blog/category/${category}/` }
+  ]
+};
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": meta.metaTitle,
+  "description": meta.metaDesc,
+  "url": `https://bizpride.kz/blog/category/${category}/`,
+  "isPartOf": { "@type": "Blog", "name": "Блог BizPride", "url": "https://bizpride.kz/blog/" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": articles.length,
+    "itemListElement": articles.slice(0, 20).map((p: any, i: number) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "url": `https://bizpride.kz${ensureSlash(p.slug)}`,
+      "name": p.title
+    }))
+  }
+};
+---
+
+<Layout
+  title={meta.metaTitle}
+  description={meta.metaDesc}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
+
+  <section style="padding: 110px 24px 24px; max-width: 1200px; margin: 0 auto;">
+    <nav aria-label="Хлебные крошки" style="font-size: 13px; padding: 8px 0; color: rgba(255,255,255,0.5);">
+      <a href="/" style="color: rgba(255,255,255,0.5); text-decoration: none;">Главная</a>
+      <span style="margin: 0 8px; opacity: 0.5;">/</span>
+      <a href="/blog/" style="color: rgba(255,255,255,0.5); text-decoration: none;">Блог</a>
+      <span style="margin: 0 8px; opacity: 0.5;">/</span>
+      <span style="color: #fff;">{meta.name}</span>
+    </nav>
+  </section>
+
+  <section style="max-width: 1200px; margin: 0 auto; padding: 24px 24px 60px;">
+    <div style="max-width: 760px;">
+      <div style="display: inline-flex; align-items: center; gap: 12px; background: rgba(196,43,43,0.12); border: 1px solid rgba(196,43,43,0.3); padding: 8px 16px; border-radius: 999px; margin-bottom: 24px;">
+        <span style="font-size: 18px;">{meta.emoji}</span>
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff;">Категория</span>
+      </div>
+      <h1 style="font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: #fff; line-height: 1.1; margin: 0 0 20px;">{meta.name}</h1>
+      <p style="font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0 0 16px;">{meta.intro}</p>
+      <p style="font-size: 14px; color: rgba(255,255,255,0.5);">{articles.length} {articles.length === 1 ? 'статья' : (articles.length < 5 ? 'статьи' : 'статей')} · <a href="/blog/" style="color: var(--red, #c42b2b); text-decoration: underline;">все категории →</a></p>
+    </div>
+  </section>
+
+  <section style="max-width: 1200px; margin: 0 auto; padding: 0 24px 100px;">
+    {articles.length === 0 ? (
+      <p style="color: rgba(255,255,255,0.6); font-size: 16px;">Пока нет статей в этой категории. Загляните в <a href="/blog/" style="color: var(--red, #c42b2b);">блог BizPride</a>.</p>
+    ) : (
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px;">
+        {articles.map((p: any) => (
+          <a href={ensureSlash(p.slug)} class="cat-card" style="display: flex; flex-direction: column; background: #111; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; text-decoration: none; transition: transform 0.3s, border-color 0.3s;">
+            {p.image && (
+              <div style="width: 100%; height: 180px; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <img src={p.image} alt={p.title} style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" loading="lazy" />
+              </div>
+            )}
+            <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+              <div style="font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 12px;">
+                {new Date(p.pubDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </div>
+              <h2 style="font-size: 18px; font-weight: 700; color: #fff; line-height: 1.35; margin: 0 0 12px;">{p.title}</h2>
+              {p.description && p.description.length > 30 && !p.description.startsWith('Посмотреть полное видео') && (
+                <p style="font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.5; margin: 0 0 16px; flex-grow: 1;">
+                  {p.description.length > 130 ? p.description.substring(0, 130) + '…' : p.description}
+                </p>
+              )}
+              <span style="font-size: 13px; color: var(--red, #c42b2b); font-weight: 600; margin-top: auto;">Читать →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </section>
+
+  <style>
+    .cat-card:hover {
+      border-color: var(--red, #c42b2b) !important;
+      transform: translateY(-4px);
+    }
+    .cat-card:hover img {
+      transform: scale(1.05);
+    }
+  </style>
+</Layout>
