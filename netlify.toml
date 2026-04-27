@@ -14,10 +14,12 @@
 # ─────────────────────────────────────────────────────────────────────
 # 2. Old Wix portfolio URLs → 410 Gone (content permanently removed)
 #    Tells Google to drop these from the index.
+#    Note: Netlify requires a `to` value even for 410; the body served
+#    is irrelevant — only the status code matters for SEO.
 # ─────────────────────────────────────────────────────────────────────
 [[redirects]]
   from = "/portfolio-collections/*"
-  to = "/404"
+  to = "/"
   status = 410
   force = true
 

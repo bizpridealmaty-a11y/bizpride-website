@@ -1,12 +1,48 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import posts from '../../data/blogPosts.json';
+
+const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "BizPride — База знаний для предпринимателей Алматы",
+    "description": "Бизнес-клуб и сообщество предпринимателей Алматы. Статьи, разборы, видео-подкасты о мастермайндах, нетворкинге, продажах, лидерстве и развитии бизнеса в Казахстане.",
+    "url": "https://bizpride.kz/blog/",
+    "inLanguage": "ru-KZ",
+    "publisher": {
+        "@type": "Organization",
+        "name": "BizPride Club",
+        "url": "https://bizpride.kz",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://bizpride.kz/logo.png"
+        }
+    },
+    "blogPost": posts.slice(0, 20).map(p => ({
+        "@type": "BlogPosting",
+        "headline": p.title,
+        "url": `https://bizpride.kz${p.slug.endsWith('/') ? p.slug : p.slug + '/'}`,
+        "datePublished": p.pubDate,
+        "image": p.image
+    }))
+};
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://bizpride.kz/" },
+        { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://bizpride.kz/blog/" }
+    ]
+};
 ---
 
-<Layout 
+<Layout
     title="BizPride — Бизнес-клуб и сообщество предпринимателей Алматы | База знаний"
     description="BizPride — бизнес-клуб и деловое сообщество предпринимателей Алматы. Мастермайнды, нетворкинг, менторство. Полная база знаний о бизнес-клубах и сообществах Казахстана."
 >
+<script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 <style>
   .seo-hub-container {
       --bg: #0d0f14;
@@ -223,7 +259,7 @@ import posts from '../../data/blogPosts.json';
   </div>
   <div class="blog-grid" style="max-width:1200px;margin:0 auto;padding: 0 60px 80px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px;">
       {posts.map((post, index) => (
-          <a href={post.slug} class={`blog-card reveal ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`} style="display: flex; flex-direction: column; text-decoration: none; background: #111; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; transition: transform 0.3s, border-color 0.3s;">
+          <a href={post.slug.endsWith('/') ? post.slug : post.slug + '/'} class={`blog-card reveal ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`} style="display: flex; flex-direction: column; text-decoration: none; background: #111; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; transition: transform 0.3s, border-color 0.3s;">
               {post.image && (
                   <div style="width: 100%; height: 200px; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.05);">
                       <img src={post.image} alt={post.title} style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="blog-image"/>

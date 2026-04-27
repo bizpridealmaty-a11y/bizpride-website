@@ -24,16 +24,40 @@ const schema = {
         }
     },
     "datePublished": pubDate,
-    "dateModified": pubDate
+    "dateModified": pubDate,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": Astro.url.href
+    },
+    "inLanguage": "ru-KZ"
+};
+
+// Breadcrumb schema
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://bizpride.kz/" },
+        { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://bizpride.kz/blog/" },
+        { "@type": "ListItem", "position": 3, "name": title, "item": Astro.url.href }
+    ]
 };
 ---
 <Layout title={title} description={description} navTheme="dark">
-    <!-- Inject Article Schema -->
+    <!-- Inject Article + Breadcrumb Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
     <section class="section-dark" style="padding-top: 140px; padding-bottom: 60px;">
         <div class="container container-small" style="max-width: 800px; margin: 0 auto;">
-            <a href="/about" style="color: var(--text-muted); text-decoration: none; font-size: 14px; margin-bottom: 30px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">
+            <nav aria-label="Хлебные крошки" style="margin-bottom: 24px; font-size: 13px; color: var(--text-muted);">
+                <a href="/" style="color: var(--text-muted); text-decoration: none;">Главная</a>
+                <span style="margin: 0 8px; opacity: 0.5;">/</span>
+                <a href="/blog/" style="color: var(--text-muted); text-decoration: none;">Блог</a>
+                <span style="margin: 0 8px; opacity: 0.5;">/</span>
+                <span style="color: #fff;">{title}</span>
+            </nav>
+            <a href="/blog/" style="color: var(--text-muted); text-decoration: none; font-size: 14px; margin-bottom: 30px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 К статьям (Блог)
             </a>

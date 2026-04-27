@@ -33,7 +33,9 @@ const currentPath = Astro.url.pathname;
 		<title>{title}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={canonicalURL} />
-        
+        <link rel="alternate" hreflang="ru" href={canonicalURL} />
+        <link rel="alternate" hreflang="x-default" href={canonicalURL} />
+
         <!-- SEO -->
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
         <meta name="theme-color" content="#c42b2b" />
