@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BlogTeaser from '../components/BlogTeaser.astro';
 
 // SEO Hub for BizPride Club Blog - Editorial Redesign
 ---
@@ -406,6 +407,16 @@ import Layout from '../layouts/Layout.astro';
             </div>
         </section>
     </div>
+
+    <BlogTeaser
+        slugs={[
+            'chto-takoe-business-club',
+            'chto-takoe-mastermind',
+            'rost-dohoda-cherez-okruzhenie'
+        ]}
+        heading="Глубже о форматах клуба"
+        intro="Подробные материалы о формате бизнес-клубов, мастермайндах и о том, как окружение влияет на рост дохода предпринимателя."
+    />
 </Layout>
 
 <script>

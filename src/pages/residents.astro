@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BlogTeaser from '../components/BlogTeaser.astro';
 
 import residents from '../data/residents.js';
 ---
@@ -39,6 +40,16 @@ import residents from '../data/residents.js';
             </div>
         </div>
     </section>
+
+    <BlogTeaser
+        slugs={[
+            'luchshie-business-cluby-almaty',
+            'zakrytoe-soobshchestvo-predprinimatelej',
+            'kak-najti-edinomyshlennikov'
+        ]}
+        heading="Хотите узнать больше о нашем сообществе?"
+        intro="Гайды о бизнес-клубах Алматы, закрытых сообществах и о том, как попасть в правильное окружение."
+    />
 
     <style>
         .face-card {

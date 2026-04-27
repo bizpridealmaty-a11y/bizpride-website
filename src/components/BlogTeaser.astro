@@ -1,0 +1,63 @@
+---
+import allPosts from '../data/blogPosts.json';
+
+interface Props {
+  slugs: string[];
+  heading?: string;
+  intro?: string;
+  theme?: 'light' | 'dark';
+}
+
+const {
+  slugs,
+  heading = 'По теме в Блоге',
+  intro = '',
+  theme = 'dark'
+} = Astro.props;
+
+const linkFor = (slug: string) => slug.endsWith('/') ? slug : slug + '/';
+
+const picked = slugs
+  .map(s => {
+    const normalized = s.startsWith('/blog/') ? s : `/blog/${s}`;
+    const stripped = normalized.replace(/\/$/, '');
+    return allPosts.find((p: any) => p.slug.replace(/\/$/, '') === stripped);
+  })
+  .filter(Boolean) as any[];
+
+const isLight = theme === 'light';
+const bgColor = isLight ? 'transparent' : 'var(--bg-secondary, #161922)';
+const cardBg = isLight ? '#fff' : 'rgba(255,255,255,0.03)';
+const cardBorder = isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.08)';
+const textColor = isLight ? '#1a1a1a' : '#fff';
+const mutedColor = isLight ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)';
+---
+
+{picked.length > 0 && (
+<section aria-label={heading} style={`background: ${bgColor}; padding: 60px 20px; border-top: 1px solid ${isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)'};`}>
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <h2 style={`font-size: clamp(24px, 3vw, 32px); font-weight: 800; color: ${textColor}; margin: 0 0 12px;`}>{heading}</h2>
+    {intro && <p style={`font-size: 16px; color: ${mutedColor}; margin: 0 0 32px; max-width: 720px; line-height: 1.5;`}>{intro}</p>}
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 24px;">
+      {picked.map((p: any) => (
+        <a href={linkFor(p.slug)} class="teaser-card" style={`display: flex; flex-direction: column; padding: 22px; background: ${cardBg}; border: ${cardBorder}; border-radius: 14px; text-decoration: none; transition: border-color 0.25s, transform 0.25s;`}>
+          <h3 style={`font-size: 16px; font-weight: 700; color: ${textColor}; line-height: 1.4; margin: 0 0 12px;`}>{p.title}</h3>
+          {p.description && (
+            <p style={`font-size: 13px; color: ${mutedColor}; line-height: 1.5; margin: 0 0 14px; flex-grow: 1;`}>
+              {p.description.length > 110 ? p.description.substring(0, 110) + '…' : p.description}
+            </p>
+          )}
+          <span style="font-size: 13px; color: var(--red, #c42b2b); font-weight: 600; margin-top: auto;">Читать →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+)}
+
+<style>
+  .teaser-card:hover {
+    border-color: var(--red, #c42b2b) !important;
+    transform: translateY(-2px);
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BlogTeaser from '../components/BlogTeaser.astro';
 import { client, urlFor } from '../lib/sanity';
 
 const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
@@ -303,4 +304,14 @@ const schemaDate = `${month1.year}-${String(month1.month + 1).padStart(2, '0')}-
             }
         }
     ])} />
+
+    <BlogTeaser
+        slugs={[
+            'business-meropriyatiya-almaty-2026',
+            'mastermind-v-bizpride',
+            'chto-takoe-mastermind'
+        ]}
+        heading="Что почитать перед встречей"
+        intro="Календарь главных бизнес-мероприятий Алматы 2026, разбор формата мастермайндов и сценарий встречи в BizPride."
+    />
 </Layout>
