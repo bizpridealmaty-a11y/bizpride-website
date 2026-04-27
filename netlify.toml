@@ -1,0 +1,41 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# ─────────────────────────────────────────────────────────────────────
+# 1. Force apex domain: www.bizpride.kz → bizpride.kz (301)
+# ─────────────────────────────────────────────────────────────────────
+[[redirects]]
+  from = "https://www.bizpride.kz/*"
+  to = "https://bizpride.kz/:splat"
+  status = 301
+  force = true
+
+# ─────────────────────────────────────────────────────────────────────
+# 2. Old Wix portfolio URLs → 410 Gone (content permanently removed)
+#    Tells Google to drop these from the index.
+# ─────────────────────────────────────────────────────────────────────
+[[redirects]]
+  from = "/portfolio-collections/*"
+  to = "/404"
+  status = 410
+  force = true
+
+# ─────────────────────────────────────────────────────────────────────
+# 3. Old manual sitemap path: kept for safety (was removed in commit
+#    9c8bff6 in favor of @astrojs/sitemap → /sitemap-index.xml)
+# ─────────────────────────────────────────────────────────────────────
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 301
+  force = true
+
+# ─────────────────────────────────────────────────────────────────────
+# Notes:
+# - trailingSlash enforcement is handled by Astro at build time
+#   (astro.config.mjs → trailingSlash: 'always'). All emitted pages
+#   ship as /path/index.html, and Netlify automatically serves
+#   /path → /path/ with a 301 when this is the only file present.
+# - No need for an explicit trailing-slash redirect rule here.
+# ─────────────────────────────────────────────────────────────────────
