@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import founderImg from '../assets/founder.webp';
+import audienceImg from '../assets/img-audience.webp';
 import { client, urlFor } from '../lib/sanity';
 
 const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
@@ -943,7 +944,7 @@ const name2 = MONTH_NAMES[month2.month];
 
         <!-- MINIMALIST AUDIENCE INTEGRATION -->
         <div class="calendar-footer-image reveal reveal-d2">
-            <img src="/img-audience.webp" alt="Аудитория BizPride на бизнес-бранче в Алматы" width="1024" height="686" loading="lazy" decoding="async" />
+            <Image src={audienceImg} alt="Аудитория BizPride на бизнес-бранче в Алматы" widths={[400, 800, 1024]} sizes="(max-width: 768px) 100vw, 1024px" quality={82} loading="lazy" decoding="async" />
         </div>
     </section>
 
