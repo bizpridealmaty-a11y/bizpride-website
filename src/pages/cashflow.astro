@@ -1,0 +1,237 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://bizpride.kz/" },
+        { "@type": "ListItem", "position": 2, "name": "Cashflow", "item": "https://bizpride.kz/cashflow/" }
+    ]
+};
+
+const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Cashflow в BizPride — казахстанская версия игры Денежный поток",
+    "description": "Cashflow от BizPride — единственная адаптированная под Казахстан версия игры Роберта Кийосаки: тенге, локальная недвижимость, реальные сценарии Алматы.",
+    "url": "https://bizpride.kz/cashflow/",
+    "isPartOf": { "@type": "WebSite", "name": "BizPride", "url": "https://bizpride.kz" }
+};
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Что такое игра Cashflow (Денежный поток)?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Cashflow — деловая игра, созданная Робертом Кийосаки (автором «Богатого папы») для тренировки финансового мышления: переход из квадранта «работа за деньги» к «деньги работают на вас». За один игровой день вы переживаете 3-5 лет финансовых решений: инвестиции, кредиты, недвижимость, бизнес-сделки."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Чем казахстанская версия Cashflow от BizPride отличается от обычной?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Мы переработали игру под реалии Казахстана: расчёты в тенге (не долларах), казахстанская недвижимость (квартиры в Алматы, бизнес-объекты в Астане), местные инвестиционные инструменты, типовые ситуации МСБ Казахстана. Это единственная такая адаптация в стране."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Где можно поиграть в Cashflow в Алматы?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "BizPride проводит турниры по Cashflow раз в месяц в Алматы. Для резидентов клуба — бесплатно, в рамках членства. Для гостей — по записи. Также мы организуем корпоративные сессии для команд предпринимателей."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Подходит ли Cashflow для команд и сотрудников компании?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Да, у нас есть отдельный корпоративный формат: 2-4 часа игры для команды 6-20 человек с модератором BizPride. Это финансовый тренинг в игровой форме — особенно полезно для топ-менеджмента, отделов продаж и финансов. Заказать можно через WhatsApp."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Что даёт Cashflow предпринимателю?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Понимание квадранта Кийосаки на практике: разница между активом и пассивом, переход от «зарабатывать руками» к «зарабатывать капиталом», навык быстрого финансового анализа сделок. Многие наши резиденты после игры пересматривают портфель личных активов и инвестиционные решения в бизнесе."
+            }
+        }
+    ]
+};
+
+interface CashflowArticle {
+    slug: string;
+    title: string;
+    description: string;
+    image: string;
+    badge: string;
+}
+
+const articles: CashflowArticle[] = [
+    {
+        slug: '/blog/cashflow-kazakhstan/',
+        title: 'Cashflow по-казахстански: как BizPride переработал игру Кийосаки под реальный рынок',
+        description: 'Главная якорная статья: как мы адаптировали Cashflow к Казахстану. Тенге, казахстанская недвижимость, реальные бизнес-ситуации Алматы.',
+        image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1400&q=80',
+        badge: 'Якорная статья'
+    },
+    {
+        slug: '/blog/cashflow-almaty/',
+        title: 'Игра Денежный поток в Алматы 2026: где сыграть и чем BizPride отличается',
+        description: 'Где поиграть в Cashflow (Денежный поток) в Алматы в 2026 году. Сравнение площадок, форматов и цен.',
+        image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1400&q=80',
+        badge: 'Где играть'
+    },
+    {
+        slug: '/blog/cashflow-predprinimateli/',
+        title: 'Что даёт игра Cashflow предпринимателю: квадрант Кийосаки на практике',
+        description: 'Почему Cashflow меняет финансовое мышление предпринимателей. Квадрант денежного потока в контексте казахстанского бизнеса.',
+        image: 'https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=1400&q=80',
+        badge: 'Для предпринимателей'
+    },
+    {
+        slug: '/blog/cashflow-korporativ/',
+        title: 'Корпоративный Cashflow в Алматы: деловая игра для команды предпринимателей',
+        description: 'Корпоративная версия Cashflow в Алматы для команд и партнёров. Финансовый тренинг в игровом формате под казахстанский рынок.',
+        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1400&q=80',
+        badge: 'Для команд'
+    }
+];
+---
+
+<Layout
+    title="Cashflow в Алматы — казахстанская версия игры от BizPride"
+    description="Игра Денежный поток (Cashflow) Кийосаки в адаптированной под Казахстан версии. Тенге, локальная недвижимость, реальные кейсы. Турниры в Алматы."
+>
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+    <section style="padding: 110px 24px 24px; max-width: 1200px; margin: 0 auto;">
+        <Breadcrumbs items={[
+            { name: 'Главная', href: '/' },
+            { name: 'Cashflow' }
+        ]} />
+    </section>
+
+    <!-- Hero -->
+    <section style="max-width: 1200px; margin: 0 auto; padding: 24px 24px 60px;">
+        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center;">
+            <div>
+                <span style="display: inline-block; background: rgba(196,43,43,0.12); border: 1px solid rgba(196,43,43,0.3); padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 24px;">💰 Cashflow в BizPride</span>
+                <h1 style="font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: #fff; line-height: 1.1; margin: 0 0 20px;">Денежный поток<br>по-казахстански</h1>
+                <p style="font-size: 18px; color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 28px;">
+                    Единственная в Казахстане адаптация игры Cashflow Роберта Кийосаки: тенге вместо долларов, алматинская недвижимость, реальные бизнес-сценарии МСБ. За один вечер вы проживаете 3-5 лет финансовых решений.
+                </p>
+                <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+                    <a href="https://wa.me/77070357777?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%B2%20%D1%82%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%B5%20Cashflow%20%D0%B2%20BizPride" target="_blank" rel="noopener" style="display: inline-block; padding: 16px 32px; background: var(--red, #c42b2b); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Записаться на турнир →</a>
+                    <a href="#articles" style="display: inline-block; padding: 16px 32px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Все материалы ↓</a>
+                </div>
+            </div>
+            <div style="position: relative;">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&q=85" alt="Cashflow в BizPride Алматы" width="900" height="600" loading="eager" decoding="async" style="width: 100%; height: auto; border-radius: 20px; opacity: 0.9;" />
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 facts -->
+    <section style="background: var(--bg-secondary, #111); padding: 60px 24px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px;">
+                <div>
+                    <div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">1×</div>
+                    <div style="font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 600;">в месяц</div>
+                    <div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px;">Турнир по Cashflow в Алматы</div>
+                </div>
+                <div>
+                    <div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">3-5</div>
+                    <div style="font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 600;">лет</div>
+                    <div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px;">Финансовых решений за вечер</div>
+                </div>
+                <div>
+                    <div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">100%</div>
+                    <div style="font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 600;">тенге</div>
+                    <div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px;">Никаких долларов</div>
+                </div>
+                <div>
+                    <div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">6-20</div>
+                    <div style="font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 600;">человек</div>
+                    <div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px;">Корпоративные сессии</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 articles hub -->
+    <section id="articles" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px; scroll-margin-top: 80px;">
+        <h2 style="font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #fff; margin: 0 0 16px;">Всё про Cashflow в BizPride</h2>
+        <p style="font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 40px; max-width: 680px;">
+            4 материала, которые отвечают на главные вопросы — от теории квадранта Кийосаки до практических площадок в Алматы и формата для команд.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;">
+            {articles.map(a => (
+                <a href={a.slug} class="cashflow-card" style="display: flex; flex-direction: column; background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; text-decoration: none; transition: transform 0.3s, border-color 0.3s;">
+                    <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
+                        <img src={a.image} alt={a.title} loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: transform 0.5s;" />
+                        <span style="position: absolute; top: 16px; left: 16px; background: rgba(196,43,43,0.95); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">{a.badge}</span>
+                    </div>
+                    <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3 style="font-size: 17px; font-weight: 700; color: #fff; line-height: 1.35; margin: 0 0 12px;">{a.title}</h3>
+                        <p style="font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.55; margin: 0 0 16px; flex-grow: 1;">{a.description}</p>
+                        <span style="font-size: 13px; color: var(--red, #c42b2b); font-weight: 700;">Читать →</span>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="background: var(--bg-secondary, #111); padding: 80px 24px; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: #fff; margin: 0 0 32px;">Частые вопросы про Cashflow</h2>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+                {faqSchema.mainEntity.map((q: any) => (
+                    <details style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 22px 24px;">
+                        <summary style="cursor: pointer; font-size: 17px; font-weight: 700; color: #fff; list-style: none; position: relative; padding-right: 32px;">
+                            {q.name}
+                            <span style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--red); font-size: 22px;">+</span>
+                        </summary>
+                        <p style="margin: 16px 0 0; color: rgba(255,255,255,0.78); font-size: 15px; line-height: 1.7;">{q.acceptedAnswer.text}</p>
+                    </details>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 80px 24px;">
+        <div style="background: linear-gradient(135deg, rgba(196,43,43,0.15), rgba(196,43,43,0.05)); border: 1px solid rgba(196,43,43,0.3); border-radius: 20px; padding: 48px 36px; text-align: center;">
+            <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin: 0 0 16px;">Хотите попробовать Cashflow вживую?</h2>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.85); margin-bottom: 28px;">Турниры проходят раз в месяц в офисе BizPride в Алматы. Места ограничены — уточните ближайшую дату в WhatsApp.</p>
+            <a href="https://wa.me/77070357777?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BD%D0%B0%20%D1%82%D1%83%D1%80%D0%BD%D0%B8%D1%80%20Cashflow%20%D0%B2%20BizPride" target="_blank" rel="noopener" style="display: inline-block; padding: 16px 40px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Записаться в WhatsApp →</a>
+        </div>
+    </section>
+
+    <style>
+        .cashflow-card:hover {
+            border-color: var(--red, #c42b2b) !important;
+            transform: translateY(-4px);
+        }
+        .cashflow-card:hover img {
+            transform: scale(1.05);
+        }
+        @media (max-width: 768px) {
+            section[style*="grid-template-columns: 1.2fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</Layout>

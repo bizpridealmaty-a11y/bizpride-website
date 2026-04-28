@@ -1,0 +1,184 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://bizpride.kz/" },
+        { "@type": "ListItem", "position": 2, "name": "Стоимость", "item": "https://bizpride.kz/pricing/" }
+    ]
+};
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Сколько стоит вступление в бизнес-клуб BizPride?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Стоимость зависит от формата участия. Гостевой визит на бизнес-бранч бесплатный. Годовое членство и premium-резидентство обсуждаются индивидуально на брифе с основателем — мы подбираем пакет под ваши задачи и масштаб бизнеса."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Что входит в членство BizPride?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Доступ к закрытым мастермайндам по вторникам, открытым бизнес-бранчам по субботам, чату резидентов в Telegram, ежеквартальным стратегическим выездам, играм Cashflow, библиотеке записей выступлений и базе из 100+ собственников бизнеса Алматы."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Можно ли прийти бесплатно — посмотреть формат?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Да. Гостевой визит на любой субботний бизнес-бранч — бесплатный, без обязательств. Просто напишите в WhatsApp +7 707 035 7777 — мы согласуем дату и пришлём адрес."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Окупится ли членство в BizPride?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "По нашему опыту — резиденты в среднем окупают годовой взнос в первые 3-6 месяцев за счёт одного партнёрства, спасённой сделки или совета по существующему процессу. Подробный разбор — в статье «Как бизнес-клуб влияет на рост дохода предпринимателя»."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Какие критерии для вступления в BizPride?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Действующий бизнес с оборотом от 50 млн ₸/год (для членства) или статус собственника / топ-менеджера / инвестора. Каждый кандидат проходит интервью с основателем — мы смотрим на совпадение ценностей и реальный интерес к развитию через сообщество, а не на формальные показатели."
+            }
+        }
+    ]
+};
+---
+
+<Layout
+    title="Стоимость участия в BizPride — бизнес-клуб Алматы"
+    description="Сколько стоит членство в BizPride. Гостевой визит — бесплатно. Member и Premium — пакеты под задачи бизнеса. Записаться на встречу."
+>
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+    <section style="padding: 110px 24px 24px; max-width: 1200px; margin: 0 auto;">
+        <Breadcrumbs items={[
+            { name: 'Главная', href: '/' },
+            { name: 'Стоимость' }
+        ]} />
+    </section>
+
+    <!-- Hero -->
+    <section style="max-width: 1200px; margin: 0 auto; padding: 24px 24px 60px;">
+        <div style="max-width: 760px;">
+            <span style="display: inline-block; background: rgba(196,43,43,0.12); border: 1px solid rgba(196,43,43,0.3); padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 24px;">Стоимость участия</span>
+            <h1 style="font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: #fff; line-height: 1.1; margin: 0 0 20px;">Сколько стоит<br>членство в BizPride</h1>
+            <p style="font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                Три формата участия — от бесплатного гостевого визита до закрытого premium-резидентства. Выберите подходящий или приходите познакомиться с клубом без обязательств.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3 Tiers -->
+    <section style="max-width: 1200px; margin: 0 auto; padding: 0 24px 80px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+
+            <!-- Tier 1: Guest -->
+            <div style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 36px 32px; display: flex; flex-direction: column;">
+                <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 16px;">Знакомство</div>
+                <h2 style="font-size: 24px; font-weight: 800; color: #fff; margin: 0 0 8px;">Гостевой визит</h2>
+                <div style="font-size: 32px; font-weight: 900; color: var(--red); margin-bottom: 6px;">Бесплатно</div>
+                <div style="font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Один раз, без обязательств</div>
+                <ul style="list-style: none; padding: 0; margin: 0 0 32px; flex-grow: 1; color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.7;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">✓ Один субботний бизнес-бранч</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">✓ Знакомство с резидентами</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">✓ Спикер + нетворкинг</li>
+                    <li style="padding: 8px 0;">✓ Кофе-брейк включён</li>
+                </ul>
+                <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BD%D0%B0%20%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D0%BE%D0%B9%20%D0%B2%D0%B8%D0%B7%D0%B8%D1%82%20%D0%B2%20BizPride" target="_blank" rel="noopener" style="display: block; padding: 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; text-align: center; border-radius: 10px; letter-spacing: 0.5px; text-transform: uppercase;">Записаться на бранч</a>
+            </div>
+
+            <!-- Tier 2: Member -->
+            <div style="background: linear-gradient(180deg, rgba(196,43,43,0.08) 0%, var(--bg-card, #161922) 100%); border: 2px solid var(--red, #c42b2b); border-radius: 20px; padding: 36px 32px; display: flex; flex-direction: column; position: relative;">
+                <span style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--red); color: #fff; padding: 6px 16px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Популярный</span>
+                <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 16px;">Резидент клуба</div>
+                <h2 style="font-size: 24px; font-weight: 800; color: #fff; margin: 0 0 8px;">Member</h2>
+                <div style="font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 6px;">По запросу</div>
+                <div style="font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 24px;">Годовой пакет, обсуждается на брифе</div>
+                <ul style="list-style: none; padding: 0; margin: 0 0 32px; flex-grow: 1; color: rgba(255,255,255,0.9); font-size: 15px; line-height: 1.7;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">✓ Все субботние бизнес-бранчи</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">✓ Закрытые мастермайнды по вторникам</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">✓ Чат резидентов в Telegram</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">✓ База контактов 100+ собственников</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">✓ Игры Cashflow раз в месяц</li>
+                    <li style="padding: 8px 0;">✓ Библиотека записей выступлений</li>
+                </ul>
+                <a href="https://wa.me/77070357777?text=%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BE%20%D1%87%D0%BB%D0%B5%D0%BD%D1%81%D1%82%D0%B2%D0%B5%20Member%20%D0%B2%20BizPride" target="_blank" rel="noopener" style="display: block; padding: 14px; background: var(--red, #c42b2b); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; text-align: center; border-radius: 10px; letter-spacing: 0.5px; text-transform: uppercase;">Узнать условия</a>
+            </div>
+
+            <!-- Tier 3: Premium -->
+            <div style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 36px 32px; display: flex; flex-direction: column;">
+                <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,215,100,0.7); margin-bottom: 16px;">Premium-резидент</div>
+                <h2 style="font-size: 24px; font-weight: 800; color: #fff; margin: 0 0 8px;">VIP / Совет директоров</h2>
+                <div style="font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 6px;">По запросу</div>
+                <div style="font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Закрытое сообщество, ограниченный набор</div>
+                <ul style="list-style: none; padding: 0; margin: 0 0 32px; flex-grow: 1; color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.7;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">✓ Всё из пакета Member</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">✓ Совет директоров (закрытый Board)</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">✓ Ежеквартальные стратегические выезды</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">✓ Личный модератор по росту</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">✓ Доступ к питч-сессиям инвесторов</li>
+                    <li style="padding: 8px 0;">✓ Приоритет в спикерских слотах</li>
+                </ul>
+                <a href="https://wa.me/77070357777?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20Premium-%D1%80%D0%B5%D0%B7%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D1%81%D1%82%D0%B2%D0%BE%20%D0%B2%20BizPride" target="_blank" rel="noopener" style="display: block; padding: 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,215,100,0.3); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; text-align: center; border-radius: 10px; letter-spacing: 0.5px; text-transform: uppercase;">Запросить условия</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Why no public price -->
+    <section style="background: var(--bg-secondary, #111); padding: 80px 24px; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div style="max-width: 760px; margin: 0 auto;">
+            <h2 style="font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: #fff; margin: 0 0 24px;">Почему мы не пишем точные цены публично</h2>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 18px;">
+                В бизнес-клубах ценность даётся не «единым продуктом», а пакетом под конкретного человека. Кому-то нужен только мастермайнд раз в месяц, кому-то — ежедневный чат и доступ к закрытым выездам, кому-то — выступления в роли спикера.
+            </p>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 18px;">
+                Поэтому мы делаем 30-минутный бриф-звонок, понимаем ваши задачи, и подбираем формат. Это занимает 30 минут вашего времени и абсолютно бесплатно.
+            </p>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+                Если нужна референсная цифра — это <strong>уровень премиальных бизнес-клубов Казахстана</strong>: от 500 000 до 3 000 000 ₸ в год в зависимости от пакета. Подробное сравнение по сегментам — в статье <a href="/blog/luchshie-business-cluby-almaty/" style="color: var(--red); text-decoration: underline;">«Лучшие бизнес-клубы Алматы»</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 80px 24px;">
+        <h2 style="font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: #fff; margin: 0 0 32px;">Частые вопросы о стоимости</h2>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            {faqSchema.mainEntity.map((q: any) => (
+                <details style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 22px 24px;">
+                    <summary style="cursor: pointer; font-size: 17px; font-weight: 700; color: #fff; list-style: none; position: relative; padding-right: 32px;">
+                        {q.name}
+                        <span style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--red); font-size: 22px;">+</span>
+                    </summary>
+                    <p style="margin: 16px 0 0; color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.7;">{q.acceptedAnswer.text}</p>
+                </details>
+            ))}
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 0 24px 100px;">
+        <div style="background: linear-gradient(135deg, rgba(196,43,43,0.15), rgba(196,43,43,0.05)); border: 1px solid rgba(196,43,43,0.3); border-radius: 20px; padding: 48px 36px; text-align: center;">
+            <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin: 0 0 16px;">Не уверены, какой пакет подходит?</h2>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.85); margin-bottom: 28px;">Приходите бесплатно на ближайший субботний бранч. Познакомитесь с резидентами, посмотрите формат изнутри, поймёте — это ваше или нет.</p>
+            <a href="/events/" style="display: inline-block; padding: 16px 40px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Расписание бранчей →</a>
+        </div>
+    </section>
+</Layout>

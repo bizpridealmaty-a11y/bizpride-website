@@ -1,0 +1,239 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://bizpride.kz/" },
+        { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://bizpride.kz/faq/" }
+    ]
+};
+
+interface FAQ {
+    q: string;
+    a: string;
+    href?: string;
+    hrefText?: string;
+}
+
+interface FAQGroup {
+    title: string;
+    icon: string;
+    items: FAQ[];
+}
+
+const groups: FAQGroup[] = [
+    {
+        title: 'О клубе и резидентстве',
+        icon: '🔑',
+        items: [
+            {
+                q: 'Что такое BizPride и чем он отличается от других бизнес-клубов?',
+                a: 'BizPride — закрытое сообщество собственников малого и среднего бизнеса Алматы. В отличие от премиальных клубов для миллиардеров и массовых сообществ для начинающих, мы работаем с владельцами компаний с оборотом 100 млн – 1 млрд ₸. Главное отличие — регулярные мастермайнды (а не только нетворкинг), потому что именно глубокая работа над кейсами даёт измеримый рост.',
+                href: '/blog/chto-takoe-business-club/',
+                hrefText: 'Подробнее о формате бизнес-клубов'
+            },
+            {
+                q: 'Кто может стать резидентом BizPride?',
+                a: 'Действующие предприниматели, собственники бизнеса, топ-менеджеры с подтверждённым доходом, инвесторы. Мы оцениваем не только формальные показатели, но и совпадение ценностей — ищем людей, готовых делиться опытом, а не только потреблять.'
+            },
+            {
+                q: 'Как проходит отбор кандидатов?',
+                a: 'Трёхэтапный процесс: 1) короткая анкета с информацией о бизнесе; 2) проверка репутации и финансовой устойчивости; 3) личное интервью с основателем клуба или Советом директоров. Полный цикл — 1-2 недели.'
+            },
+            {
+                q: 'Можно ли вступить, если я инвестор, а не действующий CEO?',
+                a: 'Да. У нас есть отдельная квота для частных инвесторов и владельцев капитала — они создают синергию с действующими бизнесами, ищущими финансирование.'
+            }
+        ]
+    },
+    {
+        title: 'Форматы встреч и мероприятий',
+        icon: '📅',
+        items: [
+            {
+                q: 'Какие форматы встреч проходят в BizPride?',
+                a: 'Бизнес-бранчи каждую субботу (открытый формат, можно гостем); мастермайнды каждый вторник (закрытый формат для резидентов); турниры по игре Cashflow раз в месяц; стратегические выезды раз в квартал.',
+                href: '/events/',
+                hrefText: 'Расписание мероприятий'
+            },
+            {
+                q: 'Что такое мастермайнд простыми словами?',
+                a: 'Регулярные встречи небольшой группы (5-10 человек) для взаимной помощи в достижении целей. Работает по принципу «равный — равному»: нет одного учителя, роль экспертов выполняют все участники одновременно.',
+                href: '/blog/chto-takoe-mastermind/',
+                hrefText: 'Полное руководство по мастермайнду'
+            },
+            {
+                q: 'Можно ли организовывать мастермайнд дистанционно?',
+                a: 'Да, можно. Однако офлайн-встречи имеют гораздо более высокую плотность (доходимость и уровень доверия). Если дистанционно — строго включённые камеры и убранный телефон.'
+            },
+            {
+                q: 'Чем Бизнес-Бранч отличается от Совета Директоров?',
+                a: 'Бизнес-Бранч (по субботам) — открытый формат: спикер, нетворкинг, можно прийти гостем. Совет Директоров (по вторникам) — закрытый мастермайнд только для резидентов: глубокий разбор реальных кейсов в формате «горячего стула» с жёстким регламентом.'
+            },
+            {
+                q: 'Могут ли два конкурента быть в одной группе мастермайнда?',
+                a: 'Нет. Мы строго следим за этим: конкуренты из одной ниши никогда не помещаются за один стол во время глубоких разборов, чтобы избежать конфликта интересов.'
+            }
+        ]
+    },
+    {
+        title: 'Стоимость и условия',
+        icon: '💼',
+        items: [
+            {
+                q: 'Сколько стоит участие в BizPride?',
+                a: 'Гостевой визит на бранч — бесплатно. Годовое членство (Member и Premium) — обсуждается индивидуально на брифе с основателем. Уровень — премиальные бизнес-клубы Казахстана: от 500 000 до 3 000 000 ₸ в год в зависимости от пакета.',
+                href: '/pricing/',
+                hrefText: 'Подробнее о стоимости'
+            },
+            {
+                q: 'Окупится ли годовое членство?',
+                a: 'По нашему опыту резиденты в среднем окупают взнос в первые 3-6 месяцев — за счёт одного партнёрства внутри клуба, спасённой сделки благодаря совету коллег или найденного подрядчика. Подробный разбор моделей окупаемости — в отдельной статье.',
+                href: '/blog/rost-dohoda-cherez-okruzhenie/',
+                hrefText: 'Как клуб влияет на рост дохода'
+            },
+            {
+                q: 'Можно ли прийти бесплатно — посмотреть формат?',
+                a: 'Да. Гостевой визит на любой субботний бизнес-бранч бесплатный, без обязательств. Напишите в WhatsApp +7 707 035 7777 — мы согласуем дату и пришлём адрес.'
+            },
+            {
+                q: 'Что входит в членство?',
+                a: 'Все субботние бранчи, закрытые мастермайнды по вторникам, чат резидентов в Telegram, доступ к базе из 100+ собственников бизнеса Алматы, игры Cashflow, библиотека записей выступлений. Для Premium — дополнительно Совет директоров, стратегические выезды, питч-сессии инвесторов.'
+            }
+        ]
+    },
+    {
+        title: 'Содержание и темы',
+        icon: '📚',
+        items: [
+            {
+                q: 'Какие темы разбираются на встречах?',
+                a: 'Управление и систематизация бизнеса, продажи и переговоры, лидерство и мотивация команды, маркетинг и контент, выход из операционки, привлечение инвестиций и продажа бизнеса, финансовый и управленческий учёт. Полный список тем — в нашем блоге.',
+                href: '/blog/',
+                hrefText: 'Все материалы блога'
+            },
+            {
+                q: 'Какие спикеры выступают в BizPride?',
+                a: 'Действующие предприниматели и эксперты-практики. Среди прошлых выступлений: Владимир Якуба (продажи), Александр Шашкин (продажа бизнеса), Алимжан Базавдинов (франшизы), Илья Балахнин (управление на данных), Андрей Автономов (выход из операционки), Виталий Палько (современный менеджмент). Полная база — на YouTube-канале.'
+            },
+            {
+                q: 'Можно ли выступить спикером?',
+                a: 'Да, мы регулярно ищем экспертов-практиков с реальным бизнес-опытом для совместных мероприятий. Условия и форматы (подкаст / практикум / бранч) описаны на отдельной странице.',
+                href: '/blog/sotrudnichestvo-so-spikerami/',
+                hrefText: 'Сотрудничество со спикерами'
+            }
+        ]
+    },
+    {
+        title: 'Технические вопросы',
+        icon: '⚙️',
+        items: [
+            {
+                q: 'Где проходят встречи в Алматы?',
+                a: 'Бизнес-бранчи — в премиальных ресторанах Алматы (Esentai City, AFD Plaza, Villa Boutiques). Мастермайнды — в офисе клуба: пр. Бухар-Жырау 33, БЦ «Женис». Стратегические выезды — на природе или за границей (Бали, Дубай, Шымбулак, Кольсай).'
+            },
+            {
+                q: 'Как связаться с клубом?',
+                a: 'Самый быстрый способ — WhatsApp +7 707 035 7777. Также мы в Telegram-канале @bizpride, Instagram @biz.pride, на YouTube-канале «BizPride» с записями выступлений.'
+            },
+            {
+                q: 'Есть ли у вас Telegram-канал?',
+                a: 'Да, открытый Telegram-канал @bizpride — там анонсы мероприятий и фрагменты выступлений. Чат резидентов отдельный, доступен только членам клуба.'
+            }
+        ]
+    }
+];
+
+// Flatten all FAQs into a single FAQPage schema
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": groups.flatMap(g => g.items.map(item => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.href ? `${item.a} ${item.hrefText} — ${item.href}` : item.a
+        }
+    })))
+};
+
+const totalQuestions = groups.reduce((s, g) => s + g.items.length, 0);
+---
+
+<Layout
+    title="FAQ — частые вопросы о BizPride и бизнес-клубах Алматы"
+    description="Ответы на главные вопросы про BizPride: стоимость, форматы, отбор резидентов, мастермайнды. 18 вопросов от основателя клуба."
+>
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+    <section style="padding: 110px 24px 24px; max-width: 1200px; margin: 0 auto;">
+        <Breadcrumbs items={[
+            { name: 'Главная', href: '/' },
+            { name: 'FAQ' }
+        ]} />
+    </section>
+
+    <!-- Hero -->
+    <section style="max-width: 1200px; margin: 0 auto; padding: 24px 24px 60px;">
+        <div style="max-width: 760px;">
+            <span style="display: inline-block; background: rgba(196,43,43,0.12); border: 1px solid rgba(196,43,43,0.3); padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 24px;">FAQ · {totalQuestions} вопросов</span>
+            <h1 style="font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: #fff; line-height: 1.1; margin: 0 0 20px;">Частые вопросы<br>о BizPride и бизнес-клубах</h1>
+            <p style="font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                Собрали {totalQuestions} вопросов, которые чаще всего задают перед вступлением в клуб. Если ответа на ваш вопрос здесь нет — напишите в WhatsApp, мы ответим в течение часа.
+            </p>
+        </div>
+    </section>
+
+    <!-- Quick nav -->
+    <section style="max-width: 1200px; margin: 0 auto; padding: 0 24px 40px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            {groups.map((g, i) => (
+                <a href={`#group-${i}`} style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; font-weight: 600; transition: border-color 0.2s;">
+                    <span>{g.icon}</span><span>{g.title}</span>
+                </a>
+            ))}
+        </div>
+    </section>
+
+    <!-- FAQ groups -->
+    <section style="max-width: 900px; margin: 0 auto; padding: 0 24px 80px;">
+        {groups.map((g, gi) => (
+            <div id={`group-${gi}`} style="margin-bottom: 56px; scroll-margin-top: 100px;">
+                <h2 style="font-size: clamp(24px, 3vw, 32px); font-weight: 800; color: #fff; margin: 0 0 24px; display: flex; align-items: center; gap: 14px;">
+                    <span style="font-size: 1.2em;">{g.icon}</span>
+                    {g.title}
+                </h2>
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    {g.items.map((item) => (
+                        <details style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 22px 24px;">
+                            <summary style="cursor: pointer; font-size: 17px; font-weight: 700; color: #fff; list-style: none; position: relative; padding-right: 32px;">
+                                {item.q}
+                                <span style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--red); font-size: 22px;">+</span>
+                            </summary>
+                            <div style="margin-top: 16px;">
+                                <p style="margin: 0; color: rgba(255,255,255,0.78); font-size: 15px; line-height: 1.7;">{item.a}</p>
+                                {item.href && (
+                                    <p style="margin: 14px 0 0;"><a href={item.href} style="color: var(--red); font-size: 14px; text-decoration: underline;">→ {item.hrefText}</a></p>
+                                )}
+                            </div>
+                        </details>
+                    ))}
+                </div>
+            </div>
+        ))}
+    </section>
+
+    <!-- CTA -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 0 24px 100px;">
+        <div style="background: linear-gradient(135deg, rgba(196,43,43,0.15), rgba(196,43,43,0.05)); border: 1px solid rgba(196,43,43,0.3); border-radius: 20px; padding: 48px 36px; text-align: center;">
+            <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin: 0 0 16px;">Не нашли ответ?</h2>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.85); margin-bottom: 28px;">Напишите в WhatsApp — отвечает основатель клуба, обычно в течение часа в рабочее время.</p>
+            <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A3%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B5%D1%81%D1%82%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BF%D1%80%D0%BE%20BizPride" target="_blank" rel="noopener" style="display: inline-block; padding: 16px 40px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Написать в WhatsApp →</a>
+        </div>
+    </section>
+</Layout>
