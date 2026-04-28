@@ -139,6 +139,19 @@ const currentPath = Astro.url.pathname;
         </script>
         <noscript><div><img src="https://mc.yandex.ru/watch/108838020" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
         <!-- /Yandex.Metrika counter -->
+
+        <!-- Google Analytics 4 (G-PTCSV0Q73E) — async, no render block -->
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-PTCSV0Q73E"></script>
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-PTCSV0Q73E', {
+                send_page_view: true,
+                anonymize_ip: true
+            });
+        </script>
+        <!-- /Google Analytics 4 -->
 	</head>
 	<body>
         <Navigation currentPath={currentPath} theme={navTheme} />
