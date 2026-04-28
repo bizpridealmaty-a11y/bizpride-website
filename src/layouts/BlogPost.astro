@@ -7,26 +7,16 @@ const currentSlug = Astro.url.pathname;
 ---
 
 <Layout title={frontmatter.title || 'Блог BizPride'} description={frontmatter.description}>
-    <!-- Article + VideoObject Schema for SEO -->
+    <!-- Article Schema for SEO. author + publisher reference the canonical
+         Organization in Layout.astro via @id (no duplication). -->
     <script type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": frontmatter.title,
         "description": frontmatter.description,
         "image": frontmatter.image,
-        "author": {
-            "@type": "Organization",
-            "name": "BizPride Club",
-            "url": "https://bizpride.kz"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "BizPride Club",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://bizpride.kz/logo.png"
-            }
-        },
+        "author":    { "@id": "https://bizpride.kz/#organization" },
+        "publisher": { "@id": "https://bizpride.kz/#organization" },
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": Astro.url.href

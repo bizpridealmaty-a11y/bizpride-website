@@ -5,26 +5,20 @@ import RelatedPosts from '../components/RelatedPosts.astro';
 const { title, description, pubDate, author = "BizPride Club", image = "https://bizpride.kz/logo.png" } = Astro.props;
 const currentSlug = Astro.url.pathname;
 
-// Create JSON-LD Article Schema
+// Create JSON-LD Article Schema.
+// author + publisher reference the canonical Organization defined in
+// Layout.astro via @id, so Google sees a single Organization entity
+// instead of 3 duplicates per page.
+const ORG_REF = { "@id": "https://bizpride.kz/#organization" };
+
 const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": title,
     "description": description,
     "image": image,
-    "author": {
-        "@type": "Organization",
-        "name": author,
-        "url": "https://bizpride.kz"
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "BizPride Club",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "https://bizpride.kz/logo.png"
-        }
-    },
+    "author": ORG_REF,
+    "publisher": ORG_REF,
     "datePublished": pubDate,
     "dateModified": pubDate,
     "mainEntityOfPage": {

@@ -67,10 +67,17 @@ const currentPath = Astro.url.pathname;
             {
                 "@context": "https://schema.org",
                 "@type": "Organization",
+                "@id": "https://bizpride.kz/#organization",
                 "name": "BizPride Club",
                 "alternateName": ["БизПрайд", "Биз Прайд", "БизПрайд Клуб", "бизпрайд", "Бис Прайт", "Biz Pride", "Biz Pride Club", "BizPraid"],
                 "url": "https://bizpride.kz",
-                "logo": "https://bizpride.kz/logo.png",
+                "logo": {
+                    "@type": "ImageObject",
+                    "@id": "https://bizpride.kz/#logo",
+                    "url": "https://bizpride.kz/logo.png",
+                    "contentUrl": "https://bizpride.kz/logo.png",
+                    "caption": "BizPride Club"
+                },
                 "description": "Закрытый бизнес-клуб для предпринимателей в Алматы. Нетворкинг, мастермайнды, менторство.",
                 "address": {
                     "@type": "PostalAddress",
