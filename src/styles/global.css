@@ -1872,7 +1872,7 @@ body::after {
   background-color: #000;
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-    url('/bg-selection.jpg');
+    url('/bg-selection.webp');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1884,7 +1884,7 @@ body::after {
   background-color: #000 !important;
   background-image:
     linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.85)),
-    url('/bg-selection.jpg') !important;
+    url('/bg-selection.webp') !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
