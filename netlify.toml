@@ -34,47 +34,14 @@
   force = true
 
 # ─────────────────────────────────────────────────────────────────────
-# 4. Explicit trailing-slash redirects for known top-level routes.
-#    GSC reported "Redirect error" on 25.04.2026 for /events without
-#    slash. Pretty URLs (below) already handles this, but explicit
-#    rules provide a defensive layer in case Netlify defaults change.
-#    Order matters: these MUST be above any catch-all SPA fallback.
-# ─────────────────────────────────────────────────────────────────────
-[[redirects]]
-  from = "/events"
-  to = "/events/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/about"
-  to = "/about/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/photos"
-  to = "/photos/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/residents"
-  to = "/residents/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog"
-  to = "/blog/"
-  status = 301
-  force = true
-
-# ─────────────────────────────────────────────────────────────────────
-# 5. Catch-all trailing-slash enforcement via Netlify's "Pretty URLs"
-#    feature. Astro emits /path/index.html, so /path access auto-
-#    redirects to /path/ when this is on. Explicit rules above remain
-#    as a safety net for the most-trafficked routes.
+# 4. Trailing-slash enforcement is handled by Netlify's "Pretty URLs"
+#    feature alone. Astro emits /path/index.html, and Netlify auto-
+#    redirects /path → /path/ when this is on.
+#
+#    DO NOT add explicit [[redirects]] for /about, /events, etc. with
+#    `force = true` — Netlify matches both /path and /path/ for the
+#    same `from = "/path"` rule, which causes an infinite redirect
+#    loop on the slashed URL. Pretty URLs is the correct, safe path.
 # ─────────────────────────────────────────────────────────────────────
 [build.processing]
   skip_processing = false
