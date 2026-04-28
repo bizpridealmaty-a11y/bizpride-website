@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import founderImg from '../assets/founder.webp';
 import { client, urlFor } from '../lib/sanity';
 
 const albums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
@@ -578,7 +580,8 @@ const name2 = MONTH_NAMES[month2.month];
     <div class="hero-mockup-wrapper" id="home">
         <!-- Background Layer (Moved outside container for true Full Width) -->
         <div class="hm-bg-layer">
-            <img src="/founder.webp" alt="Основатель BizPride" class="hm-bg-image" width="1920" height="1072" fetchpriority="high" loading="eager" decoding="async">
+            <Image src={founderImg} alt="Основатель BizPride — Дмитрий Тимошевский" class="hm-bg-image" widths={[800, 1280, 1920]} sizes="100vw" quality={82} loading="eager" decoding="async" />
+            <script is:inline>{/* Astro Image: above-fold hero — generates optimized variants + responsive srcset */}</script>
             <div class="hm-overlay"></div>
         </div>
         <div class="hero-mockup-container">
