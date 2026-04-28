@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import posts from '../../data/blogPosts.json';
 
 const blogSchema = {
@@ -38,8 +39,8 @@ const breadcrumbSchema = {
 ---
 
 <Layout
-    title="BizPride — Бизнес-клуб и сообщество предпринимателей Алматы | База знаний"
-    description="BizPride — бизнес-клуб и деловое сообщество предпринимателей Алматы. Мастермайнды, нетворкинг, менторство. Полная база знаний о бизнес-клубах и сообществах Казахстана."
+    title="Блог BizPride — статьи для предпринимателей Алматы"
+    description="Блог BizPride: гайды о бизнес-клубах, мастермайндах, продажах и лидерстве. Подкасты с практиками для МСБ Казахстана."
 >
 <script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
@@ -137,6 +138,12 @@ const breadcrumbSchema = {
 </style>
 
 <div class="seo-hub-container">
+  <div style="max-width:1200px;margin:0 auto;padding: 0 60px 8px;">
+    <Breadcrumbs items={[
+      { name: 'Главная', href: '/' },
+      { name: 'Блог' }
+    ]} />
+  </div>
   <div style="max-width:1200px;margin:0 auto;">
     <div class="hero-wrap">
       <div>

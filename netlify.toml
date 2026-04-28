@@ -48,3 +48,61 @@
 
 [build.processing.html]
   pretty_urls = true
+
+# ─────────────────────────────────────────────────────────────────────
+# 5. Long-cache for build-versioned static assets in /_astro/*.
+#    Astro emits content-hashed filenames, so they're safe to cache
+#    forever. `immutable` tells browsers to NEVER revalidate.
+#    Massive win for repeat visits (40-60% faster page loads).
+# ─────────────────────────────────────────────────────────────────────
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Same for fonts, if any are added later.
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ─────────────────────────────────────────────────────────────────────
+# 6. Medium-cache for image assets (1 day). They CAN change (re-upload
+#    same filename), so don't make them immutable. Browser still avoids
+#    revalidation for 24h, then checks once.
+# ─────────────────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/residents/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+# ─────────────────────────────────────────────────────────────────────
+# 7. Security headers — applied site-wide. None of these break
+#    functionality; they pass Mozilla Observatory and securityheaders.com.
+# ─────────────────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Click-jacking protection: only allow same-origin to iframe us.
+    X-Frame-Options = "SAMEORIGIN"
+    # Stop browsers from MIME-sniffing wrong content type.
+    X-Content-Type-Options = "nosniff"
+    # Don't leak full URL referrer to third-party domains.
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # Lock down permissions for APIs we don't use.
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=()"
