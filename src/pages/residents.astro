@@ -1,9 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import BlogTeaser from '../components/BlogTeaser.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 import residents from '../data/residents.js';
+
+// Resident portraits via eager glob — same pattern as index.astro.
+const residentImages = import.meta.glob<{ default: ImageMetadata }>(
+    '/src/assets/residents/*.{webp,jpg,JPG}',
+    { eager: true }
+);
+const residentAsset = (publicPath: string): ImageMetadata | undefined => {
+    const filename = publicPath.replace(/^\/residents\//, '');
+    return residentImages[`/src/assets/residents/${filename}`]?.default;
+};
 ---
 
 <Layout
@@ -31,7 +42,11 @@ import residents from '../data/residents.js';
                 
                 {residents.map((res, index) => (
                     <div class="face-card reveal" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='none'">
-                        <img src={res.image} alt={res.name} style="width: 100%; height: 350px; object-fit: cover; filter: grayscale(100%); transition: 0.3s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'" loading="lazy" />
+                        {residentAsset(res.image) ? (
+                            <Image src={residentAsset(res.image)!} alt={`${res.name} — резидент BizPride`} widths={[240, 400, 640]} sizes="(max-width: 768px) 100vw, 320px" quality={82} style="width: 100%; height: 350px; object-fit: cover; filter: grayscale(100%); transition: 0.3s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'" loading="lazy" decoding="async" />
+                        ) : (
+                            <img src={res.image} alt={res.name} style="width: 100%; height: 350px; object-fit: cover; filter: grayscale(100%); transition: 0.3s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'" loading="lazy" />
+                        )}
                         <div style="padding: 30px;">
                             <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 5px;">{res.name}</h3>
                             <div style="color: var(--brand); font-size: 14px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;">{res.role}</div>
