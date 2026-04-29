@@ -1,7 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { Image } from 'astro:assets';
 import { client, urlFor } from '../lib/sanity';
+
+// Static album covers — imported as Astro assets so they get
+// optimized (multi-resolution srcset, hash filename for forever-cache).
+import imgInvestments from '../assets/img-album-investments.webp';
+import imgListen      from '../assets/img-album-listen.webp';
+import imgTaxes       from '../assets/img-album-taxes.webp';
+import imgBizgame     from '../assets/img-album-bizgame.webp';
+import imgStrategy    from '../assets/img-album-strategy.webp';
+import imgProfit      from '../assets/img-album-profit.webp';
 
 const sanityAlbums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
 
@@ -10,37 +20,37 @@ const albums = [
         title: 'Куда нужно инвестировать',
         date: '18.04.2026',
         googleDriveLink: 'https://mainslow.wfolio.pro/disk/18-04-2026-bizpride-tdc3bt',
-        staticCover: '/img-album-investments.webp'
+        staticCoverAsset: imgInvestments
     },
     {
         title: '«Одних слушают, других терпят»',
         date: '11.04.2026',
         googleDriveLink: 'https://mainslow.wfolio.pro/disk/11-04-2026-bizpride-41ttfg',
-        staticCover: '/img-album-listen.webp'
+        staticCoverAsset: imgListen
     },
     {
         title: 'Налоги: как не платить в Казахстане',
         date: '28.03.2026',
         googleDriveLink: 'https://mainslow.wfolio.pro/disk/28-03-2026-bizpride-99hp2n',
-        staticCover: '/img-album-taxes.webp'
+        staticCoverAsset: imgTaxes
     },
     {
         title: 'Бизнес-игра Ярд',
         date: '21.03.2026',
         googleDriveLink: 'https://mainslow.wfolio.pro/disk/21-03-2026-bizgame-7r2qs2',
-        staticCover: '/img-album-bizgame.webp'
+        staticCoverAsset: imgBizgame
     },
     {
         title: 'Стратегическая сессия',
         date: '14.03.2026',
         googleDriveLink: 'https://mainslow.wfolio.pro/disk/14-03-2026-bizpride-085cwm',
-        staticCover: '/img-album-strategy.webp'
+        staticCoverAsset: imgStrategy
     },
     {
         title: '«Как увеличить чистую прибыль» от 10 до 30%',
         date: '28.02.2026',
         googleDriveLink: 'https://mainslow.wfolio.pro/disk/28-02-2026-bizpride-qb7ndw',
-        staticCover: '/img-album-profit.webp'
+        staticCoverAsset: imgProfit
     },
     ...sanityAlbums
 ];
@@ -72,9 +82,7 @@ const padNum = (n: number) => String(n + 1).padStart(2, '0');
 
             <div class="albums-bento">
                 {albums.map((album, index) => {
-                    const cover = album.staticCover
-                        ? album.staticCover
-                        : (album.coverImage ? urlFor(album.coverImage).width(1200).url() : null);
+                    const sanityUrl = album.coverImage ? urlFor(album.coverImage).width(1200).url() : null;
                     return (
                         <a
                             href={album.googleDriveLink}
@@ -83,7 +91,20 @@ const padNum = (n: number) => String(n + 1).padStart(2, '0');
                             class={`bento-card reveal ${index === 0 ? 'bento-hero' : ''} ${index > 0 ? 'reveal-d' + Math.min(index, 3) : ''}`}
                             aria-label={`Альбом «${album.title}» — ${album.date}`}
                         >
-                            {cover && <img class="bento-img" src={cover} alt={album.title} loading={index < 3 ? 'eager' : 'lazy'} />}
+                            {album.staticCoverAsset ? (
+                                <Image
+                                    class="bento-img"
+                                    src={album.staticCoverAsset}
+                                    alt={album.title}
+                                    widths={[400, 800, 1200]}
+                                    sizes={index === 0 ? '(max-width: 768px) 100vw, 1200px' : '(max-width: 768px) 100vw, 600px'}
+                                    quality={82}
+                                    loading={index < 3 ? 'eager' : 'lazy'}
+                                    decoding="async"
+                                />
+                            ) : sanityUrl ? (
+                                <img class="bento-img" src={sanityUrl} alt={album.title} loading={index < 3 ? 'eager' : 'lazy'} decoding="async" />
+                            ) : null}
                             <span class="bento-number">{padNum(index)}</span>
                             <div class="bento-overlay">
                                 <span class="bento-badge">{album.date}</span>
