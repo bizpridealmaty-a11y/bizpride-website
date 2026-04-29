@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://bizpride.kz/" },
+        { "@type": "ListItem", "position": 2, "name": "Бизнес-клуб", "item": "https://bizpride.kz/business-club/" }
+    ]
+};
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Что такое бизнес-клуб и для кого он?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Бизнес-клуб — закрытое сообщество собственников бизнеса и топ-менеджеров с фильтром на входе. Главное отличие от ассоциации или коворкинга — общие ценности, единый уровень масштаба и правила обмена опытом без прямых продаж. BizPride работает с собственниками МСБ Алматы (оборот компании от 100 млн ₸/год)."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Чем бизнес-клуб отличается от тренинга или конференции?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "На тренинге один спикер передаёт информацию аудитории — это вертикальная модель. В бизнес-клубе работает «равный — равному»: 10 предпринимателей с реальным опытом разбирают конкретный кейс одного из участников. Вы учитесь на чужих ошибках в реальном времени, а не слушаете теорию."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Что входит в членство BizPride?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Доступ к закрытым мастермайндам по вторникам, открытым бизнес-бранчам по субботам, чату резидентов в Telegram, ежеквартальным стратегическим выездам, играм Cashflow раз в месяц, библиотеке записей выступлений и базе из 100+ собственников бизнеса Алматы."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Когда бизнес-клуб действительно нужен?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Когда уперлись в «стеклянный потолок» по доходу и не понимаете, как сделать х2-х5; когда круг общения тянет назад или не понимает амбиций; когда выходите из операционки и нужно стратегическое партнёрство; когда планируете экспансию или продажу бизнеса. Если бизнес на стадии идеи — пока рано."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Как стать резидентом BizPride?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Трёхэтапный процесс: 1) короткая анкета о бизнесе; 2) проверка репутации и финансовой устойчивости; 3) личное интервью с основателем клуба. Полный цикл — 1-2 недели. Перед заявкой рекомендуем прийти на гостевой бранч (бесплатно), чтобы понять, подходит ли вам формат."
+            }
+        }
+    ]
+};
+---
+
+<Layout
+    title="Бизнес-клуб BizPride в Алматы — закрытое сообщество для МСБ"
+    description="Закрытый бизнес-клуб BizPride: мастермайнды, бранчи, нетворкинг для собственников бизнеса Алматы с оборотом от 100 млн ₸. Гостевой визит — бесплатно."
+>
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+    <section style="padding: 110px 24px 24px; max-width: 1200px; margin: 0 auto;">
+        <Breadcrumbs items={[
+            { name: 'Главная', href: '/' },
+            { name: 'Бизнес-клуб' }
+        ]} />
+    </section>
+
+    <!-- Hero -->
+    <section style="max-width: 1200px; margin: 0 auto; padding: 24px 24px 60px;">
+        <div style="max-width: 760px;">
+            <span style="display: inline-block; background: rgba(196,43,43,0.12); border: 1px solid rgba(196,43,43,0.3); padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 24px;">🔑 Бизнес-клуб BizPride</span>
+            <h1 style="font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: #fff; line-height: 1.1; margin: 0 0 20px;">Бизнес-клуб в Алматы<br>для собственников бизнеса</h1>
+            <p style="font-size: 18px; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                Закрытое сообщество предпринимателей МСБ. Мастермайнды по вторникам, бизнес-бранчи по субботам, чат резидентов 24/7. Без инфоцыган, без агрессивных продаж — только реальный обмен опытом.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3 stats -->
+    <section style="background: var(--bg-secondary, #111); padding: 60px 24px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px;">
+                <div><div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">100+</div><div style="font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 600;">резидентов клуба</div><div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px;">Собственники МСБ Алматы</div></div>
+                <div><div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">2-3×</div><div style="font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 600;">в неделю встречи</div><div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px;">Вторник + суббота</div></div>
+                <div><div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">85%</div><div style="font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 600;">продлевают на 2-й год</div><div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px;">Главная метрика реальной ценности</div></div>
+                <div><div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">3-6</div><div style="font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 600;">месяцев на окупаемость</div><div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px;">Один правильный контакт = взнос</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What you get -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 80px 24px;">
+        <h2 style="font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #fff; margin: 0 0 24px;">Что получает резидент BizPride</h2>
+        <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 32px;">Не «сертификат и доступ к чату». Конкретные результаты, измеримые в выручке и часах вашего времени.</p>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 18px;">
+            <div style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px;">
+                <h3 style="margin: 0 0 8px; color: #fff; font-size: 18px;">🤝 Твёрдый нетворкинг</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.6;">Поиск надёжного подрядчика, инвестора, чиновника — через одно рукопожатие в чате резидентов. То, что обычно занимает месяцы — здесь решается за час.</p>
+            </div>
+            <div style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px;">
+                <h3 style="margin: 0 0 8px; color: #fff; font-size: 18px;">🧠 Мастермайнды по вторникам</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.6;">Группа 6-10 человек. Каждую неделю один из участников выносит свой кейс — остальные дают опыт из своих бизнесов. <a href="/mastermind/" style="color: var(--red); text-decoration: underline;">Подробнее о формате</a>.</p>
+            </div>
+            <div style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px;">
+                <h3 style="margin: 0 0 8px; color: #fff; font-size: 18px;">📈 Кратный рост через чужой опыт</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.6;">Тестируете гипотезы за счёт опыта тех, кто это уже делал. Планируете выход на ОАЭ? В клубе найдётся человек, который уже открыл там компанию — сэкономит вам сотни тысяч долларов.</p>
+            </div>
+            <div style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px;">
+                <h3 style="margin: 0 0 8px; color: #fff; font-size: 18px;">💼 Партнёрства и инвестиции</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.6;">Внутри клуба образуются пулы инвесторов: участники объединяют капиталы для выкупа активов, недвижимости, синдицированного инвестирования в проекты резидентов.</p>
+            </div>
+            <div style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px;">
+                <h3 style="margin: 0 0 8px; color: #fff; font-size: 18px;">🎯 Избавление от одиночества лидера</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.6;">Чем выше поднимаетесь, тем меньше людей вас понимают. Кассовый разрыв не обсудишь с женой, увольнение топа — с подчинёнными. Клуб — место, где вас понимают с полуслова.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section style="background: var(--bg-secondary, #111); padding: 80px 24px;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: #fff; margin: 0 0 24px;">Чем BizPride отличается от других бизнес-клубов Алматы</h2>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 24px;">
+                В Алматы 5-10 заметных предпринимательских сообществ. Каждое — со своей нишей. <a href="/blog/luchshie-business-cluby-almaty/" style="color: var(--red); text-decoration: underline;">Полный обзор клубов с ценами и критериями</a>.
+            </p>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 18px;">
+                BizPride — в сегменте Middle+: для собственников МСБ с оборотом 100 млн – 1 млрд ₸. Не премиальный «статусный» клуб для миллиардеров и не массовое сообщество начинающих.
+            </p>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+                Главное отличие — акцент на <strong>регулярных мастермайндах</strong>, а не только на нетворкинге за бранчем. Именно глубокая работа над кейсами даёт измеримый рост, а не «знакомства за кофе». Подробное сравнение клубов и сообществ — в статье <a href="/blog/chto-takoe-biznes-soobshchestvo/" style="color: var(--red); text-decoration: underline;">«Что такое бизнес-сообщество»</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 80px 24px;">
+        <h2 style="font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: #fff; margin: 0 0 32px;">Частые вопросы о бизнес-клубе</h2>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+            {faqSchema.mainEntity.map((q: any) => (
+                <details style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 22px 24px;">
+                    <summary style="cursor: pointer; font-size: 17px; font-weight: 700; color: #fff; list-style: none; position: relative; padding-right: 32px;">
+                        {q.name}
+                        <span style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--red); font-size: 22px;">+</span>
+                    </summary>
+                    <p style="margin: 16px 0 0; color: rgba(255,255,255,0.78); font-size: 15px; line-height: 1.7;">{q.acceptedAnswer.text}</p>
+                </details>
+            ))}
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 0 24px 100px;">
+        <div style="background: linear-gradient(135deg, rgba(196,43,43,0.15), rgba(196,43,43,0.05)); border: 1px solid rgba(196,43,43,0.3); border-radius: 20px; padding: 48px 36px; text-align: center;">
+            <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin: 0 0 16px;">Готовы посмотреть клуб изнутри?</h2>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.85); margin-bottom: 28px;">Гостевой визит на ближайший субботний бранч — бесплатно, без обязательств.</p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="/events/" style="display: inline-block; padding: 16px 32px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Расписание бранчей</a>
+                <a href="/pricing/" style="display: inline-block; padding: 16px 32px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Стоимость членства</a>
+            </div>
+        </div>
+    </section>
+</Layout>

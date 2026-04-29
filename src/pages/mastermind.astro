@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://bizpride.kz/" },
+        { "@type": "ListItem", "position": 2, "name": "Мастермайнд", "item": "https://bizpride.kz/mastermind/" }
+    ]
+};
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Что такое мастермайнд простыми словами?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Мастермайнд — регулярные встречи небольшой группы (5-10 человек) для взаимной помощи в достижении целей. Работает по принципу «равный — равному»: нет одного учителя, роль экспертов выполняют все участники одновременно. Один человек выносит проблему, остальные делятся опытом её решения."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Чем мастермайнд в BizPride отличается от обычного коучинга?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Коуч — один человек с одним взглядом на ситуацию. Мастермайнд — 6-10 предпринимателей с реальным опытом из разных ниш. За 2 часа вы получаете 6-10 разных подходов к своему вопросу и выбираете применимое. Стоимость в пересчёте на «час экспертизы» в десятки раз ниже коучинга."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Кто может участвовать в мастермайнде BizPride?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Действующие собственники бизнеса с оборотом от 50 млн ₸/год и топ-менеджеры компаний. Каждый кандидат проходит интервью с основателем — мы оцениваем не только формальные показатели, но и готовность делиться опытом, а не только потреблять."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Как часто проходят мастермайнды?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Каждый вторник в офисе BizPride на пр. Бухар-Жырау 33, БЦ «Женис». Длительность 2 часа. Доступ только для резидентов клуба. Гостевой формат — субботние бизнес-бранчи."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Сколько стоит участие в мастермайнде BizPride?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Мастермайнды по вторникам входят в годовое членство клуба (тариф Member или Premium). Стоимость обсуждается индивидуально на брифе с основателем — пакеты варьируются от 500 000 до 3 000 000 ₸ в год."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Можно ли прийти на мастермайнд один раз — попробовать?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Сами мастермайнды по вторникам — закрытый формат для резидентов. Гостевой визит для знакомства с клубом — на субботний бизнес-бранч (бесплатно). После бранча и беседы с основателем мы решаем, подходим ли друг другу."
+            }
+        }
+    ]
+};
+---
+
+<Layout
+    title="Мастермайнд в Алматы — групповой разбор бизнеса в BizPride"
+    description="Закрытые мастермайнды каждый вторник в Алматы: 6-10 собственников бизнеса разбирают реальные кейсы по жёсткому регламенту. Только для резидентов BizPride."
+>
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+    <section style="padding: 110px 24px 24px; max-width: 1200px; margin: 0 auto;">
+        <Breadcrumbs items={[
+            { name: 'Главная', href: '/' },
+            { name: 'Мастермайнд' }
+        ]} />
+    </section>
+
+    <!-- Hero -->
+    <section style="max-width: 1200px; margin: 0 auto; padding: 24px 24px 60px;">
+        <div style="max-width: 760px;">
+            <span style="display: inline-block; background: rgba(196,43,43,0.12); border: 1px solid rgba(196,43,43,0.3); padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 24px;">🧠 Мастермайнд BizPride</span>
+            <h1 style="font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: #fff; line-height: 1.1; margin: 0 0 20px;">Мастермайнд в Алматы<br>для собственников бизнеса</h1>
+            <p style="font-size: 18px; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                Закрытые встречи 6-10 предпринимателей по вторникам. Жёсткий регламент, честная обратная связь, реальные кейсы — без коучей-теоретиков и продавцов курсов.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3 facts -->
+    <section style="background: var(--bg-secondary, #111); padding: 60px 24px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px;">
+                <div><div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">6-10</div><div style="font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 600;">человек в группе</div><div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px;">Меньше — мало опыта; больше — нет глубины</div></div>
+                <div><div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">2 часа</div><div style="font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 600;">каждый вторник</div><div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px;">По жёсткому регламенту</div></div>
+                <div><div style="font-size: 40px; font-weight: 900; color: var(--red); margin-bottom: 8px;">100%</div><div style="font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 600;">конфиденциальность</div><div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px;">NDA на старте, цифры остаются в комнате</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Format -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 80px 24px;">
+        <h2 style="font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #fff; margin: 0 0 24px;">Как проходит мастермайнд в BizPride</h2>
+        <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 24px;">
+            Структура встречи проверена — это не «попили кофе и поговорили». Каждый из 4 этапов имеет жёсткий тайминг, модератор контролирует.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+            <div style="display: grid; grid-template-columns: 60px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <div style="font-size: 32px; font-weight: 900; color: var(--red); line-height: 1;">1</div>
+                <div>
+                    <h3 style="margin: 0 0 6px; color: #fff; font-size: 18px;">Чек-ин <span style="font-weight: 400; color: rgba(255,255,255,0.5); font-size: 14px;">— 15 минут</span></h3>
+                    <p style="margin: 0; color: rgba(255,255,255,0.75);">Каждый отчитывается: что обещал на прошлой встрече, что сделал, какой результат. Группа фиксирует выполнение «социального контракта».</p>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 60px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <div style="font-size: 32px; font-weight: 900; color: var(--red); line-height: 1;">2</div>
+                <div>
+                    <h3 style="margin: 0 0 6px; color: #fff; font-size: 18px;">«Горячий стул» <span style="font-weight: 400; color: rgba(255,255,255,0.5); font-size: 14px;">— 20 минут на участника</span></h3>
+                    <p style="margin: 0; color: rgba(255,255,255,0.75);">Один человек 3-5 минут формулирует свой запрос (с цифрами, контекстом, что уже пробовал). Остальные 15-17 минут — задают уточняющие вопросы и делятся опытом из своего бизнеса.</p>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 60px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <div style="font-size: 32px; font-weight: 900; color: var(--red); line-height: 1;">3</div>
+                <div>
+                    <h3 style="margin: 0 0 6px; color: #fff; font-size: 18px;">Сбор обязательств <span style="font-weight: 400; color: rgba(255,255,255,0.5); font-size: 14px;">— 10 минут</span></h3>
+                    <p style="margin: 0; color: rgba(255,255,255,0.75);">Каждый озвучивает 1 конкретное действие, которое сделает до следующей встречи. Группа фиксирует — на следующем мастермайнде спросят результат.</p>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 60px 1fr; gap: 20px; padding: 24px 0;">
+                <div style="font-size: 32px; font-weight: 900; color: var(--red); line-height: 1;">4</div>
+                <div>
+                    <h3 style="margin: 0 0 6px; color: #fff; font-size: 18px;">Свободное общение <span style="font-weight: 400; color: rgba(255,255,255,0.5); font-size: 14px;">— по желанию</span></h3>
+                    <p style="margin: 0; color: rgba(255,255,255,0.75);">Кто хочет — остаётся обсудить детали 1-на-1, обменяться контактами, договориться о партнёрстве.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why -->
+    <section style="background: var(--bg-secondary, #111); padding: 80px 24px;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: #fff; margin: 0 0 24px;">Почему мастермайнд работает лучше других форматов</h2>
+            <table style="width: 100%; border-collapse: collapse; margin: 24px 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden;">
+                <thead>
+                    <tr style="background: rgba(196,43,43,0.15);">
+                        <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Формат</th>
+                        <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Что получаете</th>
+                        <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Цена за «час экспертизы»</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85);">Бизнес-тренинг</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">1 спикер с теорией</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">Высокая</td></tr>
+                    <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Личный коучинг</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">1 эксперт = 1 взгляд</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Очень высокая</td></tr>
+                    <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Конференция</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Контент общий, не про вас</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Средняя</td></tr>
+                    <tr style="background: rgba(196,43,43,0.05);"><td style="padding: 12px 16px; color: var(--red); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.05);">Мастермайнд</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">6-10 экспертов про ваш кейс</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Низкая</td></tr>
+                </tbody>
+            </table>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+                Подробный разбор формата с историей и принципами — в статье <a href="/blog/chto-takoe-mastermind/" style="color: var(--red); text-decoration: underline;">«Что такое мастермайнд простыми словами»</a>. О сценарии работы — <a href="/blog/mastermind-v-bizpride/" style="color: var(--red); text-decoration: underline;">«Сценарий мастермайнда в BizPride»</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 80px 24px;">
+        <h2 style="font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: #fff; margin: 0 0 32px;">Частые вопросы про мастермайнд</h2>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+            {faqSchema.mainEntity.map((q: any) => (
+                <details style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 22px 24px;">
+                    <summary style="cursor: pointer; font-size: 17px; font-weight: 700; color: #fff; list-style: none; position: relative; padding-right: 32px;">
+                        {q.name}
+                        <span style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--red); font-size: 22px;">+</span>
+                    </summary>
+                    <p style="margin: 16px 0 0; color: rgba(255,255,255,0.78); font-size: 15px; line-height: 1.7;">{q.acceptedAnswer.text}</p>
+                </details>
+            ))}
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 0 24px 100px;">
+        <div style="background: linear-gradient(135deg, rgba(196,43,43,0.15), rgba(196,43,43,0.05)); border: 1px solid rgba(196,43,43,0.3); border-radius: 20px; padding: 48px 36px; text-align: center;">
+            <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin: 0 0 16px;">Хотите попасть в мастермайнд BizPride?</h2>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.85); margin-bottom: 28px;">Сначала приходите на гостевой бранч — познакомитесь с резидентами, увидите формат изнутри. После — бриф с основателем.</p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="/events/" style="display: inline-block; padding: 16px 32px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Расписание бранчей</a>
+                <a href="/pricing/" style="display: inline-block; padding: 16px 32px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Условия членства</a>
+            </div>
+        </div>
+    </section>
+</Layout>

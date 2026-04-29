@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://bizpride.kz/" },
+        { "@type": "ListItem", "position": 2, "name": "Нетворкинг в Алматы", "item": "https://bizpride.kz/networking-almaty/" }
+    ]
+};
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Где найти качественный деловой нетворкинг в Алматы?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Качественный нетворкинг — там, где собственники приходят с конкретными бизнес-задачами, а не для «потусоваться». В Алматы это бизнес-клубы с фильтром на входе (BizPride, VQ, Forbes Entrepreneurs Club, Синдикат), профильные ассоциации (Атамекен), Cashflow-турниры. Подробный обзор — в статье «Лучшие бизнес-клубы Алматы»."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Сколько стоит нетворкинг в Алматы?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Цены варьируются: бесплатные открытые мероприятия (стартап-конференции, ивенты Атамекен) — 0 ₸; разовые премиальные ужины — 30-100 тыс. ₸; членство в бизнес-клубах с регулярным нетворкингом — от 500 тыс. до 3 млн ₸ в год. Гостевой визит на бизнес-бранч BizPride — бесплатно."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Чем отличается нетворкинг в бизнес-клубе от обычного ивента?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "На обычном ивенте вы знакомитесь с случайными людьми, многие из которых пришли «продать своё». В бизнес-клубе с фильтром на входе — все участники проверены, у каждого есть бизнес сравнимого масштаба, и работает правило «не продавать в лоб». Качество контактов в 5-10 раз выше."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Как подготовиться к деловому нетворкингу?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "1) Чёткая 30-секундная самопрезентация: кто вы, что делаете, какую конкретную помощь сейчас ищете. 2) Не приходите «продавать» — приходите слушать и помогать. 3) Берите контакты сразу (Telegram удобнее визиток). 4) Через 1-2 дня после встречи напишите 2-3 людям, кто заинтересовал — это превращает знакомство в связь."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Как BizPride организует нетворкинг?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Каждую субботу — бизнес-бранч в премиальном ресторане Алматы: спикер на 30-40 минут + структурированный нетворкинг (speed-dating + свободное общение за кофе). Каждый вторник — закрытые мастермайнды для резидентов. Чат резидентов в Telegram работает 24/7 — там обмен контактами, рекомендации, поиск партнёров."
+            }
+        }
+    ]
+};
+---
+
+<Layout
+    title="Деловой нетворкинг в Алматы — бранчи и встречи BizPride"
+    description="Где найти качественный деловой нетворкинг в Алматы: бизнес-клубы, бранчи, мастермайнды. Гостевой визит на бранч BizPride — бесплатно."
+>
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+    <section style="padding: 110px 24px 24px; max-width: 1200px; margin: 0 auto;">
+        <Breadcrumbs items={[
+            { name: 'Главная', href: '/' },
+            { name: 'Нетворкинг в Алматы' }
+        ]} />
+    </section>
+
+    <!-- Hero -->
+    <section style="max-width: 1200px; margin: 0 auto; padding: 24px 24px 60px;">
+        <div style="max-width: 760px;">
+            <span style="display: inline-block; background: rgba(196,43,43,0.12); border: 1px solid rgba(196,43,43,0.3); padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 24px;">📍 Нетворкинг в Алматы</span>
+            <h1 style="font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: #fff; line-height: 1.1; margin: 0 0 20px;">Деловой нетворкинг<br>в Алматы — без воды</h1>
+            <p style="font-size: 18px; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                Где найти собственников бизнеса с задачами, похожими на ваши. Не «потусоваться», а реально решать вопросы — партнёрства, инвестиции, контракты, рекомендации подрядчиков.
+            </p>
+        </div>
+    </section>
+
+    <!-- Where to find -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 60px 24px;">
+        <h2 style="font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #fff; margin: 0 0 24px;">Где искать качественный нетворкинг в Алматы</h2>
+        <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 32px;">
+            5 типов мест в Алматы, где собственники реально находят партнёров и клиентов. Расположены по росту качества контактов.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px;">
+                <h3 style="margin: 0 0 8px; color: #fff; font-size: 18px;">1. Открытые бизнес-конференции</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.6;">Бесплатно или 5-15 тыс. ₸. Большая аудитория (200-500 человек), низкая концентрация лиц принятия решений. Подходят для первых шагов в нетворкинге.</p>
+            </div>
+            <div style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px;">
+                <h3 style="margin: 0 0 8px; color: #fff; font-size: 18px;">2. Профильные ассоциации (Атамекен, ATS)</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.6;">Доступ к госпрограммам и формальным деловым связям. Менее эффективны для «горячего» нетворкинга, но полезны для работы с государством.</p>
+            </div>
+            <div style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px;">
+                <h3 style="margin: 0 0 8px; color: #fff; font-size: 18px;">3. Тематические встречи (IT, маркетинг, HR)</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.6;">Узкоспециализированные мероприятия — TechCrunch Almaty, Marketing Days, HR-конференции. Хорошо для нишевых контактов внутри одной отрасли.</p>
+            </div>
+            <div style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px;">
+                <h3 style="margin: 0 0 8px; color: #fff; font-size: 18px;">4. Premium-ивенты (Forbes, Synergy)</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.6;">Билет 30-150 тыс. ₸. Высокая концентрация серьёзных людей, но разовый формат — нет глубины связей. Хороши для «знакомства с топом», не для долгосрочных партнёрств.</p>
+            </div>
+            <div style="background: linear-gradient(180deg, rgba(196,43,43,0.08) 0%, var(--bg-card, #161922) 100%); border: 2px solid var(--red, #c42b2b); border-radius: 14px; padding: 24px;">
+                <h3 style="margin: 0 0 8px; color: #fff; font-size: 18px;">5. Закрытые бизнес-клубы — самый эффективный формат</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.6;">Регулярные встречи 50-100 проверенных собственников. Знакомство углубляется со временем, появляется доверие, начинаются партнёрства. <a href="/blog/luchshie-business-cluby-almaty/" style="color: var(--red); text-decoration: underline;">Сравнение клубов Алматы</a> — в обзорной статье.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BizPride networking format -->
+    <section style="background: var(--bg-secondary, #111); padding: 80px 24px;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: #fff; margin: 0 0 24px;">Как устроен нетворкинг в BizPride</h2>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 28px;">
+                Не «свободное общение и кофе». Структурированный формат, где каждый получает 5-10 целевых контактов за встречу.
+            </p>
+            <table style="width: 100%; border-collapse: collapse; margin: 0 0 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden;">
+                <thead>
+                    <tr style="background: rgba(196,43,43,0.15);">
+                        <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Формат</th>
+                        <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Когда</th>
+                        <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Формат знакомств</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85);">Бизнес-бранч</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">Каждую субботу</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">Speed-dating + свободное общение</td></tr>
+                    <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Мастермайнд</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Каждый вторник</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">6-10 человек, глубокая работа над кейсами</td></tr>
+                    <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Cashflow-турниры</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Раз в месяц</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">За одним столом 2-3 часа = неформальный нетворкинг</td></tr>
+                    <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Чат резидентов</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">24/7</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Запросы рекомендаций, обмен контактами</td></tr>
+                    <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Стратегические выезды</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Раз в квартал</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">2-3 дня вместе = глубокие связи</td></tr>
+                </tbody>
+            </table>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+                Где найти единомышленников и как оценить качество окружения — отдельный гайд: <a href="/blog/kak-najti-edinomyshlennikov/" style="color: var(--red); text-decoration: underline;">«Как найти единомышленников в бизнесе в Алматы»</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 80px 24px;">
+        <h2 style="font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: #fff; margin: 0 0 32px;">Частые вопросы про нетворкинг в Алматы</h2>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+            {faqSchema.mainEntity.map((q: any) => (
+                <details style="background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 22px 24px;">
+                    <summary style="cursor: pointer; font-size: 17px; font-weight: 700; color: #fff; list-style: none; position: relative; padding-right: 32px;">
+                        {q.name}
+                        <span style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--red); font-size: 22px;">+</span>
+                    </summary>
+                    <p style="margin: 16px 0 0; color: rgba(255,255,255,0.78); font-size: 15px; line-height: 1.7;">{q.acceptedAnswer.text}</p>
+                </details>
+            ))}
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="max-width: 800px; margin: 0 auto; padding: 0 24px 100px;">
+        <div style="background: linear-gradient(135deg, rgba(196,43,43,0.15), rgba(196,43,43,0.05)); border: 1px solid rgba(196,43,43,0.3); border-radius: 20px; padding: 48px 36px; text-align: center;">
+            <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin: 0 0 16px;">Хотите попробовать нетворкинг BizPride?</h2>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.85); margin-bottom: 28px;">Гостевой визит на ближайший субботний бранч — бесплатно. Познакомитесь с резидентами, попробуете формат speed-dating.</p>
+            <a href="/events/" style="display: inline-block; padding: 16px 40px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Расписание бранчей →</a>
+        </div>
+    </section>
+</Layout>
