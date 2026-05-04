@@ -2,48 +2,77 @@
 import BlogPost from '../../layouts/BlogPost.astro';
 
 const frontmatter = {
-  title: "Зачем вам вообще генеральный директор? Честный разбор модели бизнеса.",
-  description: "Посмотреть полное видео на тему: " + "Зачем вам вообще генеральный директор? Честный разбор модели бизнеса.",
+  title: "Клиентократия vs иерархия: зачем вам генеральный директор",
+  description: "Почему классическая иерархия «CEO → топы → исполнители» убивает клиентоориентированность. Модель клиентократии и кейсы ВкусВилл, Тинькофф.",
   category: "УПРАВЛЕНИЕ И КОМАНДА",
   date: "2026-03-22T10:00:00.000Z",
-  readTime: "ВИДЕО 20+ МИН",
+  readTime: "10 МИН ЧТЕНИЯ",
   image: "https://img.youtube.com/vi/VZBjLAJntoo/maxresdefault.jpg"
 };
 ---
 
 <BlogPost frontmatter={frontmatter}>
-    <p class="lead">В этом видео мы подробно разбираем тему: <strong>Зачем вам вообще генеральный директор? Честный разбор модели бизнеса.</strong>. Приятного просмотра!</p>
-    
+    <p class="lead">«У нас директор → 5 топов → 30 руководителей → 200 исполнителей». Знакомо? Эта структура работает на бумаге, но в реальности убивает скорость, инновации и клиентоориентированность. Этот разбор — про альтернативу: клиентократию, в которой структура строится не вокруг должностей, а вокруг ценности для клиента.</p>
+
     <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 12px; margin-top: 40px; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.1);">
-        <iframe 
-            src="https://www.youtube.com/embed/VZBjLAJntoo" 
+        <iframe
+            src="https://www.youtube.com/embed/VZBjLAJntoo"
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
         </iframe>
     </div>
 
-    
     <div class="article-content" style="margin-top: 40px;">
-        <h2>Статья по материалам видео</h2>
-<p class="article-text">В этом видео я разбираю, почему привычная иерархия "генеральный директор - топы - руководители - исполнители" ломает здравый смысл, рождает бюрократию и отрывает компанию от клиента.</p>
-<p class="article-text">Я показываю, как по другому можно строить управление бизнесом, если поставить клиента в центр и собрать структуру вокруг его болей и ценностей.</p>
-<ul class="article-list">
-    <li>Почему сотрудники в классической структуре обслуживают начальников, а не клиентов</li>
-    <li>Чем клиентократия отличается от обычной вертикали управления</li>
-    <li>Что такое эволюционная цель и чем она сильнее банальной миссии</li>
-    <li>Как через каздев и стратегическую канву найти реальные ценности для клиента</li>
-    <li>На каких ошибках можно сжечь миллиарды, если решать не ту боль</li>
-    <li>Как строить роли и метрики вокруг ценностей, а не вокруг должностей</li>
-</ul>
-<p class="article-text">Я разбираю реальные кейсы:</p>
-<p class="article-text">Сравни, ВкусВилл, Тинькофф, Рокетбанк, рынок микрозаймов. Поясняю, как решения в управлении бьют по клиенту, бренду и экономике компании.</p>
-<p class="article-text">Этот разбор будет полезен предпринимателям, собственникам и топ менеджерам, которые устали от бюрократии и хотят сделать компанию живой, честной и ориентированной на клиента.</p>
-<p class="article-text">Если тебе откликается подход клиентократии, подпишись на канал и поделись этим видео с партнерами или командой.</p>
-<p class="article-text">клиентократия, управление компанией, предприниматели Казахстан, предприниматели Алматы, бизнес клуб BizPride, бизнес Алматы, бизнес сообщество Казахстан, как развивать бизнес, оргструктура компании, ошибки управления, культура компании, клиентский путь, каздев, боли клиента, ценность для клиента, продуктовый подход, customer centric, customer experience, развитие бизнеса, масштабирование бизнеса, бизнес стратегия 2025, топ менеджеры, модель управления, примеры ВкусВилл, Тинькофф, Rocketbank, стратегическая канва</p>
+
+        <h2>Почему сотрудники в классической иерархии обслуживают начальников, а не клиентов</h2>
+        <p class="article-text">В классической вертикали «CEO → топы → исполнители» каждый сотрудник физически отчитывается перед своим начальником, а не перед клиентом. Бонус, KPI, статус, повышение — всё зависит от руководителя. Логичный результат: сотрудник оптимизирует работу под то, что нравится начальнику, а не под то, что нужно клиенту. Бюрократия растёт, клиентский опыт деградирует, лучшие уходят.</p>
+
+        <h2>Что такое клиентократия</h2>
+        <p class="article-text">Клиентократия — модель, в которой структура компании построена вокруг клиентских болей и ценностей, а не вокруг должностей. Каждая роль имеет конкретный клиентский результат, метрики оценивают клиентскую ценность, бюджеты следуют за клиентом. CEO становится не «главным», а тем, кто обеспечивает условия для клиентократии.</p>
+
+        <h2>Иерархия vs клиентократия — сравнение</h2>
+
+        <table style="width: 100%; border-collapse: collapse; margin: 24px 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden;">
+            <thead>
+                <tr style="background: rgba(196,43,43,0.15);">
+                    <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Параметр</th>
+                    <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Классическая иерархия</th>
+                    <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Клиентократия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Кому отчитывается сотрудник</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Начальнику</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Клиентскому результату</td></tr>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">KPI</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Внутренние процессы</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">NPS, LTV, повторные продажи</td></tr>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Скорость решений</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Дни-недели (согласования)</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Часы (автономия команд)</td></tr>
+                <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85);">Реальные кейсы</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">Сравни (упала после 2018)</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">ВкусВилл, Тинькофф (рост 5-10×)</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Кейсы из реального бизнеса</h2>
+        <p class="article-text"><strong>ВкусВилл:</strong> сеть розницы без директоров магазинов. Команда кассиров и сотрудников зала сама принимает решения по выкладке, заказам, графику. Результат — экономия на менеджменте + рост скорости решений + лучший клиентский опыт.</p>
+        <p class="article-text"><strong>Тинькофф:</strong> банк построен вокруг клиентского пути, а не отделов. Любая команда может «забрать» клиентскую боль и решить её — без согласований через CEO. Так стал лидером digital-банкинга.</p>
+
+        <h2>Как перейти к клиентократии</h2>
+        <ol class="article-list">
+            <li><strong>Каздев:</strong> 30 интервью с реальными клиентами — что они на самом деле покупают и в чём боль.</li>
+            <li><strong>Стратегическая канва:</strong> карта клиентских ценностей, на которые вы конкурируете.</li>
+            <li><strong>Перестройка ролей:</strong> вместо «маркетинг», «продажи» — команды по клиентским сегментам/проблемам.</li>
+            <li><strong>KPI вокруг клиента:</strong> NPS, retention, LTV — вместо «процент закрытых задач».</li>
+            <li><strong>Автономия команд:</strong> бюджет и право решений — внутри команды. Подробно: <a href="/blog/lider-ne-nachalnik-kak-odin-lider-mozhet-vesti/" style="color: var(--red); text-decoration: underline;">Лидер ≠ начальник: автономные команды</a>.</li>
+        </ol>
+
+        <h2>Связь с другими темами</h2>
+        <p class="article-text">Клиентократия связана с пересмотром продукта компании — <a href="/blog/tsennii-konechnii-produkt-chto-vi-voobsche-proizv/" style="color: var(--red); text-decoration: underline;">статья о ЦКП</a> разбирает, как сформулировать ценный конечный продукт. И с современным менеджментом в целом — <a href="/blog/kak-postroit-sovremennoe-upravlenie-rukovodstvo-d/" style="color: var(--red); text-decoration: underline;">подкаст Виталия Палько о современном управлении</a>.</p>
+
+        <div style="margin-top: 48px; padding: 28px; background: linear-gradient(135deg, rgba(196,43,43,0.12), rgba(196,43,43,0.04)); border: 1px solid rgba(196,43,43,0.3); border-radius: 16px;">
+            <h3 style="margin-top: 0; color: #fff;">Кейсы клиентократии — еженедельно в BizPride</h3>
+            <p style="color: rgba(255,255,255,0.85); margin-bottom: 20px;">На бизнес-бранчах BizPride собственники разбирают свои реальные оргструктуры и переход к клиентократии.</p>
+            <a href="/events/" style="display: inline-block; padding: 12px 28px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; border-radius: 8px; font-size: 14px; letter-spacing: 0.5px;">Расписание бранчей →</a>
+        </div>
 
     </div>
-    
+
 </BlogPost>
 
 <style>
