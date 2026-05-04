@@ -1,6 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { Image } from 'astro:assets';
+import cashflowHeroImg from '../assets/cashflow/cashflow-hero.jpg';
+import cashflowAlmatyImg from '../assets/cashflow/cashflow-almaty.jpg';
+import cashflowPredprinimateliImg from '../assets/cashflow/cashflow-predprinimateli.jpg';
+import cashflowKorporativImg from '../assets/cashflow/cashflow-korporativ.jpg';
 
 const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -71,7 +76,7 @@ interface CashflowArticle {
     slug: string;
     title: string;
     description: string;
-    image: string;
+    image: ImageMetadata;
     badge: string;
 }
 
@@ -80,28 +85,28 @@ const articles: CashflowArticle[] = [
         slug: '/blog/cashflow-kazakhstan/',
         title: 'Cashflow по-казахстански: как BizPride переработал игру Кийосаки под реальный рынок',
         description: 'Главная якорная статья: как мы адаптировали Cashflow к Казахстану. Тенге, казахстанская недвижимость, реальные бизнес-ситуации Алматы.',
-        image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1400&q=80',
+        image: cashflowHeroImg,
         badge: 'Якорная статья'
     },
     {
         slug: '/blog/cashflow-almaty/',
         title: 'Игра Денежный поток в Алматы 2026: где сыграть и чем BizPride отличается',
         description: 'Где поиграть в Cashflow (Денежный поток) в Алматы в 2026 году. Сравнение площадок, форматов и цен.',
-        image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1400&q=80',
+        image: cashflowAlmatyImg,
         badge: 'Где играть'
     },
     {
         slug: '/blog/cashflow-predprinimateli/',
         title: 'Что даёт игра Cashflow предпринимателю: квадрант Кийосаки на практике',
         description: 'Почему Cashflow меняет финансовое мышление предпринимателей. Квадрант денежного потока в контексте казахстанского бизнеса.',
-        image: 'https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=1400&q=80',
+        image: cashflowPredprinimateliImg,
         badge: 'Для предпринимателей'
     },
     {
         slug: '/blog/cashflow-korporativ/',
         title: 'Корпоративный Cashflow в Алматы: деловая игра для команды предпринимателей',
         description: 'Корпоративная версия Cashflow в Алматы для команд и партнёров. Финансовый тренинг в игровом формате под казахстанский рынок.',
-        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1400&q=80',
+        image: cashflowKorporativImg,
         badge: 'Для команд'
     }
 ];
@@ -137,7 +142,7 @@ const articles: CashflowArticle[] = [
                 </div>
             </div>
             <div style="position: relative;">
-                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&q=85" alt="Cashflow в BizPride Алматы" width="900" height="600" loading="eager" decoding="async" style="width: 100%; height: auto; border-radius: 20px; opacity: 0.9;" />
+                <Image src={cashflowHeroImg} alt="Игра Cashflow Денежный поток в BizPride Алматы — финансовый тренинг" widths={[400, 700, 900]} sizes="(max-width: 768px) 100vw, 500px" quality={85} loading="eager" fetchpriority="high" decoding="async" style="width: 100%; height: auto; border-radius: 20px; opacity: 0.9;" />
             </div>
         </div>
     </section>
@@ -180,7 +185,7 @@ const articles: CashflowArticle[] = [
             {articles.map(a => (
                 <a href={a.slug} class="cashflow-card" style="display: flex; flex-direction: column; background: var(--bg-card, #161922); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; text-decoration: none; transition: transform 0.3s, border-color 0.3s;">
                     <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
-                        <img src={a.image} alt={a.title} loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: transform 0.5s;" />
+                        <Image src={a.image} alt={a.title} widths={[300, 500, 700]} sizes="(max-width: 768px) 100vw, 350px" quality={82} loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: transform 0.5s;" />
                         <span style="position: absolute; top: 16px; left: 16px; background: rgba(196,43,43,0.95); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">{a.badge}</span>
                     </div>
                     <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">

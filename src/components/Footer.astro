@@ -54,34 +54,60 @@ const currentYear = new Date().getFullYear();
             </div>
         </div>
 
-        <!-- Interactive Map Integration -->
+        <!-- Interactive Map — lazy-loaded on scroll. Googlebot doesn't run
+             IntersectionObserver/Leaflet, so it never requests CartoCDN
+             tiles or unpkg.com Leaflet assets — fixes 8+ "not loaded"
+             warnings in Search Console without removing the feature. -->
         <div class="footer-map-wrapper reveal">
-            <div id="footer-map" style="height: 350px; border-radius: 24px; overflow: hidden; position: relative;"></div>
-            
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-            <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+            <div
+                id="footer-map"
+                data-coords="43.2328,76.9224"
+                data-2gis="https://go.2gis.com/DVpGd"
+                style="height: 350px; border-radius: 24px; overflow: hidden; position: relative; background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%); display: flex; align-items: center; justify-content: center; cursor: pointer;"
+            >
+                <div style="text-align: center; padding: 24px;">
+                    <div style="font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 8px;">📍 Где мы находимся</div>
+                    <div style="font-size: 16px; color: rgba(255,255,255,0.9); font-weight: 600;">пр. Бухар-Жырау 33, БЦ «Женис»</div>
+                    <div style="font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 6px;">Алматы, Казахстан</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 14px;">Прокрутите вниз — карта загрузится</div>
+                </div>
+            </div>
             
             <script is:inline>
                 (function() {
                     let mapInstance = null;
+                    let mapLoaded = false;
 
-                    function initMap() {
+                    function loadLeafletAssets() {
+                        return new Promise((resolve) => {
+                            if (window.L) { resolve(); return; }
+                            const css = document.createElement('link');
+                            css.rel = 'stylesheet';
+                            css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+                            document.head.appendChild(css);
+                            const script = document.createElement('script');
+                            script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+                            script.async = true;
+                            script.onload = resolve;
+                            document.body.appendChild(script);
+                        });
+                    }
+
+                    async function initMap() {
                         const container = document.getElementById('footer-map');
-                        if (!container || typeof L === 'undefined') {
-                            return;
-                        }
+                        if (!container || mapLoaded) return;
+                        mapLoaded = true;
 
-                        // Protect against double init
-                        if (mapInstance) {
-                            mapInstance.remove();
-                        }
+                        await loadLeafletAssets();
+                        if (typeof L === 'undefined') return;
 
-                        const coords = [43.2328, 76.9224];
+                        container.innerHTML = '';
+                        const [lat, lng] = container.dataset.coords.split(',').map(Number);
+                        const open2Gis = () => window.open(container.dataset['2gis'], '_blank');
+
                         mapInstance = L.map('footer-map', {
-                            center: coords,
-                            zoom: 17,
-                            zoomControl: false,
-                            scrollWheelZoom: false
+                            center: [lat, lng], zoom: 17,
+                            zoomControl: false, scrollWheelZoom: false
                         });
 
                         L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -90,24 +116,14 @@ const currentYear = new Date().getFullYear();
 
                         const brandIcon = L.divIcon({
                             className: 'brand-map-marker',
-                            html: `
-                                <div class="marker-pin">
-                                    <div class="marker-logo"></div>
-                                </div>
-                            `,
-                            iconSize: [60, 60],
-                            iconAnchor: [30, 60]
+                            html: '<div class="marker-pin"><div class="marker-logo"></div></div>',
+                            iconSize: [60, 60], iconAnchor: [30, 60]
                         });
 
-                        const marker = L.marker(coords, { icon: brandIcon }).addTo(mapInstance);
-                        
-                        // Открываем 2GIS при клике на маркер или карту
-                        const open2Gis = () => window.open('https://go.2gis.com/DVpGd', '_blank');
-                        marker.on('click', open2Gis);
+                        L.marker([lat, lng], { icon: brandIcon })
+                            .addTo(mapInstance).on('click', open2Gis);
                         mapInstance.on('click', open2Gis);
-                        
-                        // Делаем карту статичной кнопкой
-                        container.style.cursor = 'pointer';
+
                         mapInstance.dragging.disable();
                         mapInstance.touchZoom.disable();
                         mapInstance.doubleClickZoom.disable();
@@ -115,15 +131,35 @@ const currentYear = new Date().getFullYear();
                         mapInstance.keyboard.disable();
                     }
 
-                    // Work with Astro ViewTransitions
-                    document.addEventListener('astro:page-load', initMap);
-                    
-                    // Fallback for first load
-                    if (document.readyState === 'complete') {
-                        initMap();
-                    } else {
-                        window.addEventListener('load', initMap);
+                    function setupLazyMap() {
+                        const container = document.getElementById('footer-map');
+                        if (!container) return;
+                        // Click on placeholder triggers load (better UX)
+                        container.addEventListener('click', initMap, { once: true });
+                        // Auto-load when scrolled near
+                        if ('IntersectionObserver' in window) {
+                            const obs = new IntersectionObserver((entries) => {
+                                if (entries[0].isIntersecting) {
+                                    obs.disconnect();
+                                    initMap();
+                                }
+                            }, { rootMargin: '300px' });
+                            obs.observe(container);
+                        } else {
+                            // Ancient browsers — load after 5s
+                            setTimeout(initMap, 5000);
+                        }
                     }
+
+                    // Reset on Astro view transition (fresh DOM each navigation)
+                    document.addEventListener('astro:page-load', () => {
+                        mapLoaded = false;
+                        if (mapInstance) { try { mapInstance.remove(); } catch(e) {} mapInstance = null; }
+                        setupLazyMap();
+                    });
+
+                    if (document.readyState !== 'loading') setupLazyMap();
+                    else document.addEventListener('DOMContentLoaded', setupLazyMap);
                 })();
             </script>
         </div>
