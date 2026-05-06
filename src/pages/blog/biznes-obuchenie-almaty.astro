@@ -1,0 +1,121 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Какие форматы бизнес-обучения есть в Алматы в 2026 году?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Основные форматы: онлайн-курсы (от 30 до 500 тыс. ₸), оффлайн-тренинги (от 50 до 300 тыс. ₸ за модуль), личный коучинг (от 100 тыс. ₸/мес), MBA-программы (от 5 млн ₸/год), мастермайнд-группы в бизнес-клубах (от 500 тыс. ₸/год). Каждый закрывает разные задачи — выбор зависит от вашего текущего уровня и конкретной проблемы."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Чем мастермайнд лучше бизнес-тренинга?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Тренинг — один эксперт передаёт знания группе (вертикальная модель). Мастермайнд — 6-10 равных собственников разбирают конкретно ваш кейс (горизонтальная модель). На тренинге вы получаете общие знания. На мастермайнде — решение вашей конкретной задачи от людей с реальным опытом в 6-10 разных нишах."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Как выбрать бизнес-обучение в Казахстане и не попасть на инфоцыган?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "5 признаков надёжной программы: 1) у автора есть действующий бизнес (не только курсы); 2) реалистичные обещания (не «1 млн за месяц»); 3) структурированная программа с домашними заданиями; 4) кейсы учеников с конкретными цифрами; 5) обратная связь от автора, а не только от ассистента."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Сколько стоит бизнес-обучение для предпринимателя в Алматы?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "От 0 ₸ (бесплатные конференции, YouTube-контент) до 10+ млн ₸ (MBA, Executive-программы). Средний бюджет для собственника МСБ — 500 тыс. – 2 млн ₸ в год, включая членство в бизнес-клубе + 1-2 целевых курса. Главное — не тратить на «волшебные таблетки», а инвестировать в структурированные программы."
+            }
+        }
+    ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<BlogLayout
+    title="Бизнес-обучение в Алматы 2026: форматы, цены, как выбрать"
+    description="Обзор форматов бизнес-обучения в Алматы: курсы, тренинги, коучинг, MBA, мастермайнды. Сравнительная таблица + критерии выбора + защита от инфоцыган."
+    pubDate="2026-05-06T09:00:00+05:00"
+    wordCount={2400}
+>
+    <p class="lead" style="font-size: 22px; color: #fff; font-weight: 600; margin-bottom: 40px;">
+        Рынок бизнес-обучения в Казахстане за последние 5 лет вырос в десятки раз. Вместе с настоящими программами выросли и «инфоцыгане». Этот гайд — честный обзор всех форматов обучения для собственников бизнеса в Алматы: от бесплатных конференций до MBA, с конкретными ценами, критериями выбора и защитой от лохотрона.
+    </p>
+
+    <h2>5 форматов бизнес-обучения в Алматы: сравнение</h2>
+
+    <table style="width: 100%; border-collapse: collapse; margin: 24px 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden;">
+        <thead>
+            <tr style="background: rgba(196,43,43,0.15);">
+                <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Формат</th>
+                <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Цена</th>
+                <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Что даёт</th>
+                <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Для кого</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Онлайн-курс</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">30-500 тыс. ₸</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Конкретный навык (таргет, Excel, продажи)</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Начинающие, самозанятые</td></tr>
+            <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Оффлайн-тренинг</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">50-300 тыс. ₸</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Практика + обратная связь спикера</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Менеджеры, специалисты</td></tr>
+            <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Личный коучинг</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">100 тыс. – 1 млн ₸/мес</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Индивидуальная проработка 1 задачи</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Собственники на этапе трансформации</td></tr>
+            <tr style="background: rgba(196,43,43,0.05);"><td style="padding: 12px 16px; color: var(--red, #c42b2b); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.05);">Мастермайнд в бизнес-клубе</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">500 тыс. – 3 млн ₸/год</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">6-10 равных разбирают ваш кейс каждую неделю</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Собственники МСБ, уперлись в потолок</td></tr>
+            <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85);">MBA / Executive</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">5-15 млн ₸/год</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">Системное бизнес-образование + диплом</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">Топ-менеджеры, карьерный рост в корпорациях</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Почему мастермайнд — самый эффективный формат для собственников МСБ</h2>
+    <p>На курсе вы получаете знания одного эксперта. На тренинге — практику по одной теме. На MBA — фундаментальное образование за 2 года. В <a href="/mastermind/">мастермайнде</a> вы каждую неделю получаете 6-10 разных взглядов на вашу конкретную задачу — от людей, которые решали похожие проблемы в своём бизнесе.</p>
+    <p>Главное преимущество: стоимость «часа экспертизы» в мастермайнде в 5-10 раз ниже, чем в личном коучинге. Один мастермайнд-сессия (2 часа) = эквивалент 10-20 часов коучинга по разнообразию и глубине обратной связи.</p>
+    <p>Подробный разбор формата — в статье <a href="/blog/chto-takoe-mastermind/">«Что такое мастермайнд простыми словами»</a>.</p>
+
+    <h2>Как не попасть на инфоцыган: чек-лист</h2>
+    <p>Перед покупкой любого курса / тренинга / наставничества проверьте 5 пунктов:</p>
+    <ol>
+        <li><strong>У автора есть действующий бизнес?</strong> Не «был когда-то», а работает прямо сейчас. Если единственный бизнес автора — продажа курсов, это red flag.</li>
+        <li><strong>Обещания реалистичны?</strong> «За 6 месяцев систематизируете отдел продаж» — да. «1 млн за 30 дней» — нет.</li>
+        <li><strong>Есть кейсы учеников с цифрами?</strong> Не «стало лучше», а «выручка с 12 млн до 23 млн за 8 месяцев в нише X».</li>
+        <li><strong>Есть структурированная программа?</strong> Расписание, домашние задания, проверка. Не «вебинар раз в неделю».</li>
+        <li><strong>Обратная связь от автора?</strong> Если «авторская программа», но общается только ассистент — это конвейер, не обучение.</li>
+    </ol>
+    <p>Подробный разбор — в статьях <a href="/blog/infotsigane-v-kazahstane-andrei-avtonomov-o-infob/">«Инфоцыгане в Казахстане»</a> и <a href="/blog/lohotron-biznes-haipa-kak-kursi-psihologiya-i-ai/">«Лохотрон бизнес-хайпа»</a>.</p>
+
+    <h2>Оптимальный бюджет на обучение для собственника МСБ</h2>
+    <p>Реалистичный годовой бюджет для предпринимателя с оборотом 100 млн – 1 млрд ₸:</p>
+    <ul>
+        <li><strong>Членство в бизнес-клубе с мастермайндами:</strong> 500 тыс. – 1.5 млн ₸/год — закрывает 80% потребностей в развитии</li>
+        <li><strong>1-2 целевых курса/тренинга в год:</strong> 100-300 тыс. ₸ — закрывает конкретные навыковые gap'ы (например, управленческий учёт или Instagram-маркетинг)</li>
+        <li><strong>Книги + подкасты + YouTube:</strong> 0 ₸ — бесплатный continuous learning</li>
+        <li><strong>Итого:</strong> 600 тыс. – 2 млн ₸/год = 1-3% от личного дохода собственника</li>
+    </ul>
+    <p>Сравнение <a href="/blog/luchshie-business-cluby-almaty/">бизнес-клубов Алматы по ценам и критериям</a> — в обзорной статье.</p>
+
+    <h2>Бесплатные форматы обучения в Алматы</h2>
+    <p>Не всё стоит денег. Форматы, где вы учитесь бесплатно (или почти):</p>
+    <ul>
+        <li><strong>Бизнес-бранчи BizPride</strong> — гостевой визит бесплатный (<a href="/blog/biznes-zavtrak-almaty/">формат и расписание</a>)</li>
+        <li><strong>YouTube-каналы</strong> предпринимателей-практиков (BizPride, «Бизнес Секреты», Digital Almaty)</li>
+        <li><strong>Конференции Атамекен</strong> — по госпрограммам поддержки МСБ</li>
+        <li><strong>Telegram-каналы</strong> отраслевых экспертов</li>
+        <li><strong>Деловые игры</strong> — например, <a href="/cashflow/">Cashflow</a> в казахстанской версии от BizPride</li>
+    </ul>
+
+    <div style="margin-top: 60px; padding: 40px; background: rgba(241, 70, 53, 0.1); border-radius: 20px; border: 1px solid var(--red); text-align: center;">
+        <h3 style="color: #fff; font-size: 28px; margin-bottom: 20px;">Попробуйте мастермайнд-формат вживую</h3>
+        <p style="margin-bottom: 24px; font-size: 18px; color: var(--text-light);">Гостевой визит на бизнес-бранч BizPride — бесплатно. Увидите, как работает формат «равный — равному» и решите, подходит ли вам.</p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <a href="/events/" class="btn-glow" style="display: inline-block;">Расписание бранчей</a>
+            <a href="/pricing/" style="display: inline-block; padding: 14px 28px; border: 1px solid var(--red); color: var(--red); text-decoration: none; font-weight: 700; border-radius: 50px; font-size: 14px;">Стоимость членства</a>
+        </div>
+    </div>
+
+</BlogLayout>

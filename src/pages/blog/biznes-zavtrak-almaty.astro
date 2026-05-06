@@ -1,0 +1,135 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Что такое бизнес-завтрак и чем он отличается от обычного нетворкинга?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Бизнес-завтрак (бранч) — формат деловой встречи в ресторане: спикер на 30-40 минут + структурированный нетворкинг (speed-dating + свободное общение). Отличие от обычного нетворкинга: фильтр участников, модерация, тайминг, конкретная тема. Обычный нетворкинг — хаотичное «потусоваться». Бранч — конвейер целевых знакомств."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Где проходят бизнес-завтраки BizPride в Алматы?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Каждую субботу в премиальных ресторанах Алматы: Esentai City, AFD Plaza, Villa Boutiques. Локация меняется, конкретный адрес сообщается после записи. Все площадки — с отдельным залом, кофе-зоной и проектором для спикера."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Сколько стоит участие в бизнес-завтраке BizPride?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Гостевой визит на первый бизнес-бранч — бесплатно, без обязательств. Для резидентов клуба все субботние бранчи входят в годовое членство. Стоимость членства обсуждается индивидуально."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Кто приходит на бизнес-завтраки BizPride?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "30-70 владельцев малого и среднего бизнеса, топ-менеджеров и самозанятых профессионалов из Алматы. Каждый приходит через базу и сообщество BizPride с проверенным деловым бэкграундом. Типичный участник — собственник бизнеса с оборотом от 50 млн ₸/год."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Как записаться на бизнес-завтрак?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Напишите в WhatsApp +7 707 035 7777 — мы согласуем ближайшую дату, пришлём адрес и формат. Запись обычно за 2-3 дня до мероприятия, количество мест ограничено."
+            }
+        }
+    ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<BlogLayout
+    title="Бизнес-завтрак в Алматы — деловые бранчи BizPride"
+    description="Еженедельный бизнес-бранч для предпринимателей Алматы: спикер, speed-dating, нетворкинг. Гостевой визит — бесплатно. Записаться в WhatsApp."
+    pubDate="2026-05-06T10:00:00+05:00"
+    wordCount={2200}
+>
+    <p class="lead" style="font-size: 22px; color: #fff; font-weight: 600; margin-bottom: 40px;">
+        Бизнес-завтрак (business brunch) — самый массовый и доступный формат BizPride. Каждую субботу 30-70 предпринимателей Алматы собираются за завтраком в премиальном ресторане: один спикер на актуальную тему + структурированный нетворкинг. Первый визит — гостевой и бесплатный.
+    </p>
+
+    <h2>Как устроен бизнес-бранч BizPride</h2>
+    <p>Бранч — это не «кофе и знакомства». Это структурированное мероприятие с жёстким таймингом, которое каждый раз даёт участнику 5-10 целевых контактов и 1-2 практических инсайта по теме недели.</p>
+
+    <h3>Хронометраж одного бранча (~3 часа)</h3>
+    <table style="width: 100%; border-collapse: collapse; margin: 24px 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden;">
+        <thead>
+            <tr style="background: rgba(196,43,43,0.15);">
+                <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Время</th>
+                <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Блок</th>
+                <th style="padding: 14px 16px; text-align: left; color: #fff; font-weight: 700;">Что происходит</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">11:00-11:30</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Кофе и знакомства</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">Свободное общение, обмен визитками/Telegram</td></tr>
+            <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">11:30-12:10</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Спикер</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">30-40 мин выступление + 10 мин Q&A</td></tr>
+            <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">12:10-12:40</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.05);">Speed-dating</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.05);">3 минуты на знакомство с каждым → переход к следующему</td></tr>
+            <tr><td style="padding: 12px 16px; color: rgba(255,255,255,0.85);">12:40-14:00</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.85);">Свободный нетворкинг</td><td style="padding: 12px 16px; color: rgba(255,255,255,0.7);">Обед, углублённые разговоры 1-на-1, обмен контактами</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Чем бизнес-завтрак отличается от обычного ивента</h2>
+    <p>На обычном бизнес-завтраке (их десятки в Алматы каждый месяц) вы приходите, слушаете спикера, пьёте кофе, уходите. Ни одного нового контакта в телефоне. В BizPride — другая модель:</p>
+    <ul>
+        <li><strong>Фильтр участников:</strong> каждый гость проходит через нашу базу. На бранче нет случайных людей и агрессивных продавцов.</li>
+        <li><strong>Speed-dating формат:</strong> структурированные 3-минутные знакомства. За 30 минут вы лично поговорите с 8-10 собственниками бизнеса.</li>
+        <li><strong>Модерация:</strong> ведущий BizPride открывает, представляет, следит за таймингом. Не бывает ситуации «один человек говорит 40 минут, остальные скучают».</li>
+        <li><strong>Продакшн:</strong> 4 камеры, профессиональная фотосъёмка. Вы получаете контент для соцсетей бесплатно — просто за то, что пришли.</li>
+    </ul>
+    <p>Подробнее о формате нетворкинга — в гайде <a href="/networking-almaty/">«Деловой нетворкинг в Алматы»</a>. А если интересен закрытый формат глубокого разбора бизнес-кейсов — это <a href="/mastermind/">мастермайнд</a>, доступный только для резидентов.</p>
+
+    <h2>Кто приглашённые спикеры</h2>
+    <p>Мы не зовём мотивационных ораторов и продавцов курсов. Каждый спикер — действующий предприниматель или эксперт-практик с реальным бизнес-опытом в Казахстане:</p>
+    <ul>
+        <li><strong>Владимир Якуба</strong> — скрипты работы с возражением «дорого» (<a href="/blog/klient-skazal-dorogo-i-propal-smotri-chto-ya-n/">подкаст</a>)</li>
+        <li><strong>Илья Балахнин</strong> — управление на основе данных, формула прибыли (<a href="/blog/lohotron-biznes-haipa-kak-kursi-psihologiya-i-ai/">подкаст</a>)</li>
+        <li><strong>Александр Шашкин</strong> — продажа бизнеса и M&A (<a href="/blog/kak-prodat-svoi-biznes-dorogo-aleksandr-shashkin/">подкаст</a>)</li>
+        <li><strong>Анна Прохорова</strong> — нейрофизиология денег и ответственности (<a href="/blog/kak-nauchit-telo-viderzhivat-bolshie-dengi-i-otvet/">подкаст</a>)</li>
+    </ul>
+    <p>Если вы эксперт и хотите выступить — смотрите гайд <a href="/blog/sotrudnichestvo-so-spikerami/">«Сотрудничество со спикерами»</a>.</p>
+
+    <h2>Что получает гость бизнес-бранча</h2>
+    <ul>
+        <li><strong>5-10 целевых контактов</strong> собственников бизнеса Алматы — в Telegram, не на визитках</li>
+        <li><strong>1 практический инсайт</strong> по теме недели (продажи / управление / маркетинг / финансы)</li>
+        <li><strong>3-5 фото</strong> профессионального качества — для соцсетей и LinkedIn</li>
+        <li><strong>Видео-запись выступления</strong> на YouTube-канале BizPride — если тема зацепила, можно пересмотреть</li>
+        <li><strong>Понимание формата</strong> — после первого бранча вы решаете, подходит ли вам клуб</li>
+    </ul>
+
+    <h2>Часто задаваемые вопросы</h2>
+    <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px;">
+        {faqSchema.mainEntity.map((q: any) => (
+            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 22px 24px;">
+                <summary style="cursor: pointer; font-size: 17px; font-weight: 700; color: #fff; list-style: none; position: relative; padding-right: 32px;">
+                    {q.name}
+                    <span style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--red); font-size: 22px;">+</span>
+                </summary>
+                <p style="margin: 16px 0 0; color: rgba(255,255,255,0.78); font-size: 15px; line-height: 1.7;">{q.acceptedAnswer.text}</p>
+            </details>
+        ))}
+    </div>
+
+    <div style="margin-top: 60px; padding: 40px; background: rgba(241, 70, 53, 0.1); border-radius: 20px; border: 1px solid var(--red); text-align: center;">
+        <h3 style="color: #fff; font-size: 28px; margin-bottom: 20px;">Приходите на ближайший бранч</h3>
+        <p style="margin-bottom: 24px; font-size: 18px; color: var(--text-light);">Первый визит — гостевой, бесплатный, без обязательств. Напишите в WhatsApp — мы пришлём дату и адрес.</p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BD%D0%B0%20%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%B1%D1%80%D0%B0%D0%BD%D1%87%20BizPride" target="_blank" class="btn-glow" style="display: inline-block;">Записаться в WhatsApp</a>
+            <a href="/events/" style="display: inline-block; padding: 14px 28px; border: 1px solid var(--red); color: var(--red); text-decoration: none; font-weight: 700; border-radius: 50px; font-size: 14px;">Расписание →</a>
+        </div>
+    </div>
+
+</BlogLayout>
