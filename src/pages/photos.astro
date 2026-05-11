@@ -6,6 +6,7 @@ import { client, urlFor } from '../lib/sanity';
 
 // Static album covers — imported as Astro assets so they get
 // optimized (multi-resolution srcset, hash filename for forever-cache).
+import imgSpeaker0424 from '../assets/img-album-speaker-0424.jpg';
 import imgInvestments from '../assets/img-album-investments.webp';
 import imgListen      from '../assets/img-album-listen.webp';
 import imgTaxes       from '../assets/img-album-taxes.webp';
@@ -16,6 +17,12 @@ import imgProfit      from '../assets/img-album-profit.webp';
 const sanityAlbums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
 
 const albums = [
+    {
+        title: 'Власть и позволение',
+        date: '24.04.2026',
+        googleDriveLink: 'https://mainslow.wfolio.pro/disk/25-04-2026-bizpride-jpwprw',
+        staticCoverAsset: imgSpeaker0424
+    },
     {
         title: 'Куда нужно инвестировать',
         date: '18.04.2026',
