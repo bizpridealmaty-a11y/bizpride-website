@@ -262,11 +262,7 @@ const schemaDate = `${month1.year}-${String(month1.month + 1).padStart(2, '0')}-
             "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
             "eventStatus": "https://schema.org/EventScheduled",
             "image": "https://bizpride.kz/img-mastermind.png",
-            "performer": {
-                "@type": "Organization",
-                "name": "BizPride Club",
-                "url": "https://bizpride.kz"
-            },
+            "performer": { "@id": "https://bizpride.kz/#organization" },
             "location": {
                 "@type": "Place",
                 "name": "BizPride Club",
@@ -283,11 +279,7 @@ const schemaDate = `${month1.year}-${String(month1.month + 1).padStart(2, '0')}-
                 "priceCurrency": "KZT",
                 "availability": "https://schema.org/InStock"
             },
-            "organizer": {
-                "@type": "Organization",
-                "name": "BizPride Club",
-                "url": "https://bizpride.kz"
-            }
+            "organizer": { "@id": "https://bizpride.kz/#organization" }
         },
         {
             "@context": "https://schema.org",
@@ -306,11 +298,7 @@ const schemaDate = `${month1.year}-${String(month1.month + 1).padStart(2, '0')}-
                     "addressCountry": "KZ"
                 }
             },
-            "organizer": {
-                "@type": "Organization",
-                "name": "BizPride Club",
-                "url": "https://bizpride.kz"
-            }
+            "organizer": { "@id": "https://bizpride.kz/#organization" }
         }
     ])} />
 
