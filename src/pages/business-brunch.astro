@@ -11,6 +11,51 @@ const breadcrumbSchema = {
     ]
 };
 
+// Recurring Event schema — next Saturday brunch. Google shows this
+// in SERP as a rich "Event" result with date, location, price.
+const now = new Date();
+const daysUntilSaturday = (6 - now.getDay() + 7) % 7 || 7;
+const nextSaturday = new Date(now.getTime() + daysUntilSaturday * 86400000);
+const saturdayISO = nextSaturday.toISOString().split('T')[0];
+
+const eventSchema = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Бизнес-бранч BizPride — еженедельная встреча предпринимателей",
+    "description": "Открытый бизнес-бранч для предпринимателей Алматы: спикер на актуальную тему + speed-dating + нетворкинг. Гостевой визит бесплатно.",
+    "startDate": `${saturdayISO}T11:00:00+05:00`,
+    "endDate": `${saturdayISO}T14:00:00+05:00`,
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventSchedule": {
+        "@type": "Schedule",
+        "repeatFrequency": "P1W",
+        "byDay": "https://schema.org/Saturday",
+        "startTime": "11:00:00+05:00",
+        "endTime": "14:00:00+05:00"
+    },
+    "image": "https://bizpride.kz/img-mastermind.png",
+    "performer": { "@id": "https://bizpride.kz/#organization" },
+    "organizer": { "@id": "https://bizpride.kz/#organization" },
+    "location": {
+        "@type": "Place",
+        "name": "Премиальный ресторан Алматы (адрес по записи)",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Алматы",
+            "addressCountry": "KZ"
+        }
+    },
+    "offers": {
+        "@type": "Offer",
+        "url": "https://wa.me/77070357777",
+        "price": "0",
+        "priceCurrency": "KZT",
+        "availability": "https://schema.org/InStock",
+        "description": "Гостевой визит — бесплатно"
+    }
+};
+
 const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -28,6 +73,7 @@ const faqSchema = {
     description="Бизнес-бранч каждую субботу в Алматы: спикер, speed-dating, 30-70 предпринимателей. Гостевой визит бесплатно. Расписание и запись."
 >
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
     <section style="padding: 110px 24px 24px; max-width: 1200px; margin: 0 auto;">
