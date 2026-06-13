@@ -10,17 +10,27 @@ interface Props {
     keywords?: string;
     canonicalURL?: string;
     navTheme?: 'default' | 'dark';
+    ogImage?: string;
+    ogImageWidth?: number;
+    ogImageHeight?: number;
+    ogType?: 'website' | 'article';
 }
 
-const { 
-    title, 
+const {
+    title,
     description = "BizPride — закрытый бизнес-клуб для предпринимателей Алматы. Мастермайнды, нетворкинг, бизнес-бранчи. Гостевой визит — бесплатно.",
     keywords = "бизнес клуб Алматы, клуб для предпринимателей в Алматы, предприниматели Алматы, мастермайнд Алматы, нетворкинг Алматы, бизнес сообщество Казахстан, BizPride, Biz Pride, biz pride, BizPride Club, Biz Pride Club, BizPraid, БизПрайд, Биз Прайд, бизпрайд, бизпрайд клуб, Бис Прайт",
     canonicalURL = Astro.url.href,
-    navTheme = 'default'
+    navTheme = 'default',
+    ogImage = '/og/og-default.png',
+    ogImageWidth = 1200,
+    ogImageHeight = 630,
+    ogType = 'website'
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
+// Absolute URL for OG/Twitter images (works for both relative and absolute input)
+const ogImageURL = new URL(ogImage, Astro.site).href;
 ---
 
 <!doctype html>
@@ -46,21 +56,22 @@ const currentPath = Astro.url.pathname;
         <meta name="keywords" content={keywords} />
         
         <!-- Open Graph -->
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={ogType} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={canonicalURL} />
         <meta property="og:site_name" content="BizPride Club" />
         <meta property="og:locale" content="ru_KZ" />
-        <meta property="og:image" content="https://bizpride.kz/logo.png" />
-        <meta property="og:image:width" content="512" />
-        <meta property="og:image:height" content="512" />
+        <meta property="og:image" content={ogImageURL} />
+        <meta property="og:image:width" content={String(ogImageWidth)} />
+        <meta property="og:image:height" content={String(ogImageHeight)} />
+        <meta property="og:image:alt" content={title} />
 
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content="https://bizpride.kz/logo.png" />
+        <meta name="twitter:image" content={ogImageURL} />
 
         <!-- JSON-LD Structured Data -->
         <script type="application/ld+json" set:html={JSON.stringify([

@@ -3,424 +3,175 @@ import Layout from '../layouts/Layout.astro';
 import BlogTeaser from '../components/BlogTeaser.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { Image } from 'astro:assets';
+import founderImg from '../assets/founder.webp';
 import mastermindImg from '../assets/img-mastermind-new-3.webp';
 import networkingImg from '../assets/img-networking-new-2.webp';
 
-// SEO Hub for BizPride Club Blog - Editorial Redesign
+// AboutPage + Breadcrumb schema (Organization уже описана в Layout через @id)
+const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "О клубе BizPride",
+    "description": "BizPride — закрытый бизнес-клуб для предпринимателей Алматы: мастермайнды, бизнес-бранчи, нетворкинг и совет директоров.",
+    "url": "https://bizpride.kz/about/",
+    "mainEntity": { "@id": "https://bizpride.kz/#organization" }
+};
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://bizpride.kz/" },
+        { "@type": "ListItem", "position": 2, "name": "О клубе", "item": "https://bizpride.kz/about/" }
+    ]
+};
+
+const stats = [
+    { value: '120+', label: 'Резидентов клуба' },
+    { value: '50+', label: 'Приглашённых спикеров' },
+    { value: '4.8/5', label: 'Рейтинг NPS' },
+    { value: '$1M+', label: 'Оборот участников' },
+];
+
+const formats = [
+    { title: 'Бизнес-бранч', when: 'Каждую субботу', text: 'Открытый формат делового общения за завтраком: спикер, нетворкинг, знакомство с резидентами. Можно прийти гостем без обязательств.', href: '/blog/business-meropriyatiya-almaty-2026/', cta: 'Календарь встреч' },
+    { title: 'Совет директоров', when: 'Каждый вторник', text: 'Закрытый мастермайнд для резидентов: фокус-группа из 6–10 собственников по жёсткому регламенту разбирает реальные кейсы участников.', href: '/blog/chto-takoe-mastermind/', cta: 'Что такое мастермайнд' },
+    { title: 'Игры Cashflow', when: 'Раз в месяц', text: 'Турниры по финансовой игре в нашей казахстанской версии — отрабатываем денежное мышление в безопасной среде.', href: '/blog/cashflow-almaty/', cta: 'Подробнее об игре' },
+    { title: 'Стратегические выезды', when: 'Раз в квартал', text: 'Выездные сессии только для резидентов: глубокая проработка годовых целей и стратегии в кругу сильного окружения.', href: '/events/', cta: 'Расписание' },
+];
 ---
 
 <Layout
     title="О клубе BizPride — бизнес-клуб в Алматы"
-    description="Закрытое сообщество предпринимателей Алматы. Мастермайнды, бизнес-бранчи, советы директоров. Гостевой визит — бесплатно."
+    description="BizPride — закрытое сообщество предпринимателей Алматы. Кто мы, какие форматы проводим, кому подходит клуб и как стать резидентом. Гостевой визит — бесплатно."
+    keywords="о бизнес-клубе BizPride, что такое BizPride, бизнес-клуб Алматы о клубе, закрытое сообщество предпринимателей Алматы, основатель BizPride"
+    ogImage="/og/og-about.png"
 >
-    <div class="editorial-container">
-        
-        <!-- ROW 1: INTRO (Full Width Parallax) -->
-        <section class="ed-row height-vh hero-parallax-section" style="background-image: url('/img-about-hero-new.webp');">
-            <div class="hero-overlay"></div>
-            <div class="ed-col text-col content-center" style="position: relative; z-index: 2; width: 100%; text-align: center; display: flex; align-items: center; justify-content: center;">
-                <div class="ed-content" style="max-width: 800px; margin: 0 auto; padding: 20px;">
-                    <h1 class="ed-title" style="margin-bottom: 20px;">О BizPride<br><span class="ed-accent">бизнес-клуб Алматы</span></h1>
-                    <p class="ed-desc" style="font-size: 20px; line-height: 1.6; color: #f0f0f0;">
-                        Закрытое сообщество предпринимателей Алматы. Здесь мы делимся практическим опытом, аналитикой рынка и рассказываем, как правильное окружение кратно увеличивает масштаб бизнеса.
-                    </p>
+    <script type="application/ld+json" set:html={JSON.stringify(aboutSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+    <!-- HERO -->
+    <section class="about-hero" style="background-image: url('/img-about-hero-new.webp');">
+        <div class="about-hero-overlay"></div>
+        <div class="about-hero-content">
+            <span class="about-eyebrow">Бизнес-клуб · Алматы</span>
+            <h1 class="about-h1">О клубе <span class="red">BizPride</span></h1>
+            <p class="about-lead">
+                Закрытое сообщество предпринимателей Алматы. Мы объединяем собственников бизнеса, чтобы правильное окружение кратно ускоряло рост каждого участника.
+            </p>
+        </div>
+    </section>
+
+    <!-- Breadcrumbs -->
+    <section style="background: #0a0a0a; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <Breadcrumbs items={[
+                { name: 'Главная', href: '/' },
+                { name: 'О клубе' }
+            ]} />
+        </div>
+    </section>
+
+    <!-- MISSION -->
+    <section style="background: #0a0a0a; padding: 80px 24px;">
+        <div style="max-width: 820px; margin: 0 auto;">
+            <h2 style="font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #fff; margin: 0 0 24px;">Зачем существует BizPride</h2>
+            <p style="font-size: 18px; color: rgba(255,255,255,0.78); line-height: 1.75; margin-bottom: 20px;">
+                Большинство предпринимателей растут в одиночку — на своих ошибках, без обратной связи от равных. BizPride создан, чтобы это изменить: дать собственникам бизнеса среду, где можно открыто разбирать реальные задачи, находить партнёров и принимать решения быстрее.
+            </p>
+            <p style="font-size: 18px; color: rgba(255,255,255,0.78); line-height: 1.75; margin-bottom: 36px;">
+                Это не тренинги и не коворкинг. Это closed-сообщество действующих предпринимателей Алматы, которые помогают друг другу расти — через мастермайнды, нетворкинг и совместную работу над стратегией. Подробнее о формате — в статье <a href="/blog/chto-takoe-business-club/" style="color: var(--red); text-decoration: underline;">«Что такое бизнес-клуб»</a>.
+            </p>
+            <blockquote style="border-left: 4px solid var(--red, #c42b2b); padding: 4px 0 4px 24px; margin: 0; font-size: 22px; font-style: italic; color: #fff; line-height: 1.5;">
+                «Вы — среднее арифметическое пяти человек, с которыми проводите больше всего времени. Выбирайте окружение осознанно.»
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section style="background: #111; padding: 60px 24px; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);">
+        <div class="about-stats">
+            {stats.map(s => (
+                <div class="about-stat">
+                    <div class="about-stat-value">{s.value}</div>
+                    <div class="about-stat-label">{s.label}</div>
                 </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section style="background: #0a0a0a; padding: 80px 24px;">
+        <div class="about-founder">
+            <div class="about-founder-img">
+                <Image src={founderImg} alt="Дмитрий Тимошевский — основатель бизнес-клуба BizPride" widths={[400, 700]} sizes="(max-width: 768px) 100vw, 420px" quality={82} loading="lazy" decoding="async" />
             </div>
-        </section>
-
-        <!-- Breadcrumbs (after hero, before content tabs) -->
-        <section style="background: var(--bg-primary, #0a0a0a); padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">
-            <div style="max-width: 1200px; margin: 0 auto;">
-                <Breadcrumbs items={[
-                    { name: 'Главная', href: '/' },
-                    { name: 'О клубе' }
-                ]} />
+            <div class="about-founder-text">
+                <span class="about-eyebrow">Основатель</span>
+                <h2 style="font-size: clamp(26px, 3.5vw, 36px); font-weight: 800; color: #fff; margin: 8px 0 20px;">Дмитрий Тимошевский</h2>
+                <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 18px;">
+                    «Я создавал BizPride как клуб, в который сам хотел бы попасть: без воды и инфоцыганства, с конкретными разборами и людьми, у которых можно учиться на их реальном опыте.»
+                </p>
+                <p style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+                    Сегодня клуб объединяет более 120 собственников бизнеса из разных сфер. Встречи проходят офлайн в Алматы на трёх языках — казахском, русском и английском.
+                </p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- NAV ROW: TABS -->
-        <section class="ed-nav-row" id="blog-nav">
-            <div class="ed-nav-container">
-                <a href="#all" class="ed-nav-btn active" data-filter="all">ВСЕ ТЕМЫ</a>
-                <a href="#sales" class="ed-nav-btn" data-filter="sales">ПРОДАЖИ И ПЕРЕГОВОРЫ</a>
-                <a href="#management" class="ed-nav-btn" data-filter="management">УПРАВЛЕНИЕ И КОМАНДА</a>
-                <a href="#marketing" class="ed-nav-btn" data-filter="marketing">МАРКЕТИНГ И ПРОДВИЖЕНИЕ</a>
-                <a href="#mindset" class="ed-nav-btn" data-filter="mindset">МЫШЛЕНИЕ И РАЗВИТИЕ</a>
-                <a href="#community" class="ed-nav-btn" data-filter="community">МЕРОПРИЯТИЯ КЛУБА</a>
-            </div>
-        </section>
-
-        <!-- BLOG GRID -->
-        <section class="ed-blog-grid-section">
-            <div class="ed-blog-container">
-                <div class="ed-blog-grid" id="blog-grid">
-
-                    <!-- Video Card: klient-skazal-dorogo-i-propal-smotri-chto-ya-n -->
-                    <a href="/blog/klient-skazal-dorogo-i-propal-smotri-chto-ya-n" class="ed-card video-card blog-item" data-category="sales">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/i8DyxfJR9G8/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">ПРОДАЖИ И ПЕРЕГОВОРЫ</span>
-                            <h3 class="ed-card-title">Клиент сказал “ДОРОГО” и пропал. Смотри, что я написал и он ответил. Владимир Якуба.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: sabotazh-bardak-v-whatsapp-u-menedzherov-po-proda -->
-                    <a href="/blog/sabotazh-bardak-v-whatsapp-u-menedzherov-po-proda" class="ed-card video-card blog-item" data-category="sales">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/8slom9JcJZo/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">ПРОДАЖИ И ПЕРЕГОВОРЫ</span>
-                            <h3 class="ed-card-title">Саботаж, бардак в WhatsApp у менеджеров по продажам. Как навести порядок в продажах?</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: drugoi-podhod-k-prodazham-kak-usilit-otdel-prodaz -->
-                    <a href="/blog/drugoi-podhod-k-prodazham-kak-usilit-otdel-prodaz" class="ed-card video-card blog-item" data-category="sales">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/Vs35lMG_NWA/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">ПРОДАЖИ И ПЕРЕГОВОРЫ</span>
-                            <h3 class="ed-card-title">Другой подход к продажам: как усилить отдел продаж с помощью автоматизации и ИИ</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: top-3-instrumenta-uvelicheniya-prodazh-sovremenno -->
-                    <a href="/blog/top-3-instrumenta-uvelicheniya-prodazh-sovremenno" class="ed-card video-card blog-item" data-category="sales">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/SUdZwoOCujg/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">ПРОДАЖИ И ПЕРЕГОВОРЫ</span>
-                            <h3 class="ed-card-title">ТОП-3 инструмента увеличения продаж. Современное управление</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: lider-ne-nachalnik-kak-odin-lider-mozhet-vesti -->
-                    <a href="/blog/lider-ne-nachalnik-kak-odin-lider-mozhet-vesti" class="ed-card video-card blog-item" data-category="management">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/5_pmcSj4u-0/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">УПРАВЛЕНИЕ И КОМАНДА</span>
-                            <h3 class="ed-card-title">Лидер = не начальник: как один лидер может вести 3–4 автономные команды?</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: po-kolhoznomu-ili-po-sisteme-kak-perestat-derzhat -->
-                    <a href="/blog/po-kolhoznomu-ili-po-sisteme-kak-perestat-derzhat" class="ed-card video-card blog-item" data-category="management">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/nskWGeoxWDY/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">УПРАВЛЕНИЕ И КОМАНДА</span>
-                            <h3 class="ed-card-title">По колхозному или по системе? Как перестать держать бизнес в голове и начать им управлять?</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: zarplata-nizhe-rinka-shtrafi-i-10-protsentov-brak -->
-                    <a href="/blog/zarplata-nizhe-rinka-shtrafi-i-10-protsentov-brak" class="ed-card video-card blog-item" data-category="management">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/YLtfKwWmdz0/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">УПРАВЛЕНИЕ И КОМАНДА</span>
-                            <h3 class="ed-card-title">Зарплата ниже рынка, штрафы и 10 процентов брака. Классическая дорожка к провалу.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: zachem-vam-voobsche-generalnii-direktor-chestnii -->
-                    <a href="/blog/zachem-vam-voobsche-generalnii-direktor-chestnii" class="ed-card video-card blog-item" data-category="management">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/VZBjLAJntoo/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">УПРАВЛЕНИЕ И КОМАНДА</span>
-                            <h3 class="ed-card-title">Зачем вам вообще генеральный директор? Честный разбор модели бизнеса.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: kak-predprinimatelyu-viiti-iz-operatsionki-andrei -->
-                    <a href="/blog/kak-predprinimatelyu-viiti-iz-operatsionki-andrei" class="ed-card video-card blog-item" data-category="management">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/9hwDzTpTrK0/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">УПРАВЛЕНИЕ И КОМАНДА</span>
-                            <h3 class="ed-card-title">Как предпринимателю выйти из операционки. Андрей Автономов расскажет про ТОП 10 инструментов.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: kak-upravlyat-biznesom-cherez-tsifri-v-kazahstane -->
-                    <a href="/blog/kak-upravlyat-biznesom-cherez-tsifri-v-kazahstane" class="ed-card video-card blog-item" data-category="management">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/aO7rGQn2Ll8/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">УПРАВЛЕНИЕ И КОМАНДА</span>
-                            <h3 class="ed-card-title">Как управлять бизнесом через цифры в Казахстане? Полная оцифровка вашего бизнеса.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: kak-postroit-sovremennoe-upravlenie-rukovodstvo-d -->
-                    <a href="/blog/kak-postroit-sovremennoe-upravlenie-rukovodstvo-d" class="ed-card video-card blog-item" data-category="management">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/D9tcQleIG4U/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">УПРАВЛЕНИЕ И КОМАНДА</span>
-                            <h3 class="ed-card-title">Как построить современное управление: Руководство для предпринимателей и бизнес-лидеров Алматы.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: 2-chast-top-5-instrumentov-dlya-povisheniya-prod -->
-                    <a href="/blog/2-chast-top-5-instrumentov-dlya-povisheniya-prod" class="ed-card video-card blog-item" data-category="management">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/aRH1S9Z31BE/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">УПРАВЛЕНИЕ И КОМАНДА</span>
-                            <h3 class="ed-card-title">2 часть | ТОП 5 инструментов для повышения продуктивности | Юрченко Геннадий | BizPride</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: kak-prodat-svoi-biznes-dorogo-aleksandr-shashkin -->
-                    <a href="/blog/kak-prodat-svoi-biznes-dorogo-aleksandr-shashkin" class="ed-card video-card blog-item" data-category="management">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/_dswTWHlEOE/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">УПРАВЛЕНИЕ И КОМАНДА</span>
-                            <h3 class="ed-card-title">Как продать свой бизнес дорого? Александр Шашкин про ээфектиную оценку стоимости любого бизнеса.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: tsennii-konechnii-produkt-chto-vi-voobsche-proizv -->
-                    <a href="/blog/tsennii-konechnii-produkt-chto-vi-voobsche-proizv" class="ed-card video-card blog-item" data-category="management">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/FYL_dYCB0SI/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">УПРАВЛЕНИЕ И КОМАНДА</span>
-                            <h3 class="ed-card-title">Ценный конечный продукт: что вы вообще производите и за что должны получать деньги?</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: pochemu-tvoi-blog-ne-prodayot-zhyostkaya-pravda-p -->
-                    <a href="/blog/pochemu-tvoi-blog-ne-prodayot-zhyostkaya-pravda-p" class="ed-card video-card blog-item" data-category="marketing">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/vHNfdaPbh8U/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МАРКЕТИНГ И ПРОДВИЖЕНИЕ</span>
-                            <h3 class="ed-card-title">Почему твой блог не продаёт? Жёсткая правда почему Instagram в Казахстане больше не продаёт</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-
-                    <!-- Video Card: lyudi-ustali-ot-uspeshnogo-uspeha-kakoi-kontent -->
-                    <a href="/blog/lyudi-ustali-ot-uspeshnogo-uspeha-kakoi-kontent" class="ed-card video-card blog-item" data-category="marketing">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/Vb7JCEoNoes/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МАРКЕТИНГ И ПРОДВИЖЕНИЕ</span>
-                            <h3 class="ed-card-title">Люди устали от "успешного успеха". Какой контент продает сейчас на самом деле?</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: lidogeneratsiya-glavnii-aktiv-v-biznese-konzhano -->
-                    <a href="/blog/lidogeneratsiya-glavnii-aktiv-v-biznese-konzhano" class="ed-card video-card blog-item" data-category="marketing">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/64nfnmf9X4E/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МАРКЕТИНГ И ПРОДВИЖЕНИЕ</span>
-                            <h3 class="ed-card-title">ЛИДОГЕНЕРАЦИЯ главный актив в бизнесе ? Конжанов Муратбек на бизнес бранче BizPride</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: chto-ne-tak-s-marketingom-v-kazahstane-podkast-pr -->
-                    <a href="/blog/chto-ne-tak-s-marketingom-v-kazahstane-podkast-pr" class="ed-card video-card blog-item" data-category="marketing">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/Y2tvAd8lhqA/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МАРКЕТИНГ И ПРОДВИЖЕНИЕ</span>
-                            <h3 class="ed-card-title">Что не так с маркетингом в Казахстане. Подкаст про продажи, маркетинг и успех в бизнесе.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: effektivnie-strategii-prodvizheniya-v-instagram-ot -->
-                    <a href="/blog/effektivnie-strategii-prodvizheniya-v-instagram-ot" class="ed-card video-card blog-item" data-category="marketing">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/PHwGy0f4b0o/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МАРКЕТИНГ И ПРОДВИЖЕНИЕ</span>
-                            <h3 class="ed-card-title">Эффективные стратегии продвижения в Instagram от Дмитрия Тимошевского. Воронки продаж в Instagram.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: kak-nauchit-telo-viderzhivat-bolshie-dengi-i-otvet -->
-                    <a href="/blog/kak-nauchit-telo-viderzhivat-bolshie-dengi-i-otvet" class="ed-card video-card blog-item" data-category="mindset">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/tipQx75qEh4/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МЫШЛЕНИЕ И РАЗВИТИЕ</span>
-                            <h3 class="ed-card-title">Как научить тело выдерживать большие деньги и ответственность?</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: nalogovaya-realnost-2026-chto-zhdet-biznes-v-kaza -->
-                    <a href="/blog/nalogovaya-realnost-2026-chto-zhdet-biznes-v-kaza" class="ed-card video-card blog-item" data-category="mindset">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/YLDuhSPohDs/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МЫШЛЕНИЕ И РАЗВИТИЕ</span>
-                            <h3 class="ed-card-title">Налоговая реальность 2026: что ждет бизнес в Казахстане по новому НК?</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: kak-upravlyat-vnimaniem-auditorii-i-ne-soiti-s-uma -->
-                    <a href="/blog/kak-upravlyat-vnimaniem-auditorii-i-ne-soiti-s-uma" class="ed-card video-card blog-item" data-category="mindset">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/R7gAlhkZ7d4/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МЫШЛЕНИЕ И РАЗВИТИЕ</span>
-                            <h3 class="ed-card-title">Как управлять вниманием аудитории и не сойти с ума от перфекционизма?</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: lohotron-biznes-haipa-kak-kursi-psihologiya-i-ai -->
-                    <a href="/blog/lohotron-biznes-haipa-kak-kursi-psihologiya-i-ai" class="ed-card video-card blog-item" data-category="mindset">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/4Azp0M0aykk/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МЫШЛЕНИЕ И РАЗВИТИЕ</span>
-                            <h3 class="ed-card-title">Лохотрон бизнес-хайпа. Как курсы, психология и AI уводят от реальных денег?</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: oratorskoe-iskusstvo-kak-govorit-chtobi-vam-veri -->
-                    <a href="/blog/oratorskoe-iskusstvo-kak-govorit-chtobi-vam-veri" class="ed-card video-card blog-item" data-category="mindset">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/Yr2voJ5xToM/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МЫШЛЕНИЕ И РАЗВИТИЕ</span>
-                            <h3 class="ed-card-title">Ораторское искусство: как говорить, чтобы вам верили? | Валентин Журавин на BizPride</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: infotsigane-v-kazahstane-andrei-avtonomov-o-infob -->
-                    <a href="/blog/infotsigane-v-kazahstane-andrei-avtonomov-o-infob" class="ed-card video-card blog-item" data-category="mindset">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/7N3AKi_BcBo/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МЫШЛЕНИЕ И РАЗВИТИЕ</span>
-                            <h3 class="ed-card-title">Инфоцыгане в Казахстане. Андрей Автономов о инфобизе, предпринимателях и типичных ошибках в бизнесе.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: kak-razvivat-biznes-cherez-it-it-resheniya-dlya-l -->
-                    <a href="/blog/kak-razvivat-biznes-cherez-it-it-resheniya-dlya-l" class="ed-card video-card blog-item" data-category="mindset">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/w-WgH1vQQEY/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МЫШЛЕНИЕ И РАЗВИТИЕ</span>
-                            <h3 class="ed-card-title">Как развивать бизнес через IT? IT решения для любого бизнеса.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: kak-razvivat-biznes-cherez-investitsii-v-kazahstan -->
-                    <a href="/blog/kak-razvivat-biznes-cherez-investitsii-v-kazahstan" class="ed-card video-card blog-item" data-category="mindset">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/XnlAKx6IFeo/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МЫШЛЕНИЕ И РАЗВИТИЕ</span>
-                            <h3 class="ed-card-title">Как развивать бизнес через инвестиции в Казахстане?</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: pochemu-pokupayut-franshizi-alimzhan-bazavdinov-v -->
-                    <a href="/blog/pochemu-pokupayut-franshizi-alimzhan-bazavdinov-v" class="ed-card video-card blog-item" data-category="mindset">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/zh6s2XaB_uM/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МЫШЛЕНИЕ И РАЗВИТИЕ</span>
-                            <h3 class="ed-card-title">Почему покупают франшизы? Алимжан Базавдинов все про создание и выбор франшиз в Казахстане.</h3>
-                            <span class="ed-card-link">Смотреть видео &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- Video Card: pro-biznes-soobschestvo-bizpride-biznes-klub-pred -->
-                    <a href="/blog/pro-biznes-soobschestvo-bizpride-biznes-klub-pred" class="ed-card video-card blog-item" data-category="community">
-                        <div class="ed-card-img" style="background-image: url('https://img.youtube.com/vi/BQsGhjnEHfM/maxresdefault.jpg');">
-                            <div class="video-play-icon">&#9658;</div>
-                        </div>
-                        <div class="ed-card-content">
-                            <span class="ed-card-tag">МЕРОПРИЯТИЯ КЛУБА</span>
-                            <h3 class="ed-card-title">Про бизнес сообщество BizPride. Бизнес клуб предпринимателей Алматы Казахстан.</h3>
-                    </a>
-                </div>
-
-                <div class="ed-load-more-container">
-                    <button id="load-more-btn" class="ed-btn-load-more">СМОТРЕТЬ ВСЕ</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ROW 2: ABOUT / FORMATS -->
-        <section class="ed-row height-auto">
-            <div class="ed-col image-col">
-                <Image src={mastermindImg} alt="Мастермайнд BizPride — закрытая встреча предпринимателей Алматы" class="ed-img grayscale" widths={[400, 768]} sizes="(max-width: 768px) 100vw, 768px" quality={82} loading="lazy" decoding="async" />
-            </div>
-            <div class="ed-col text-col content-center bg-darker">
-                <div class="ed-content">
-                    <h2 class="ed-subtitle">ЧТО ТАКОЕ БИЗНЕС-КЛУБ?</h2>
-                    <p class="ed-desc">
-                        Главная якорная статья — <a href="/blog/chto-takoe-business-club/" style="color: var(--red); text-decoration: underline;">«Что такое бизнес-клуб и зачем он нужен предпринимателю»</a>. Отличия от коворкингов, тренингов, реальные преимущества закрытого сообщества. Также рекомендуем <a href="/blog/chto-takoe-biznes-soobshchestvo/" style="color: var(--red); text-decoration: underline;">разбор разницы между клубом и сообществом</a> и <a href="/blog/luchshie-business-cluby-almaty/" style="color: var(--red); text-decoration: underline;">обзор лучших бизнес-клубов Алматы</a> с критериями выбора.
-                    </p>
-                    <a href="/blog/chto-takoe-business-club/" class="ed-link">ЧИТАТЬ СТАТЬЮ &rarr;</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ROW 4: SERVICES/TRAFFIC -->
-        <section class="ed-row height-auto">
-            <div class="ed-col text-col content-center">
-                <div class="ed-content">
-                    <h2 class="ed-subtitle">БИЗНЕС-ВСТРЕЧИ В АЛМАТЫ</h2>
-                    <div class="ed-services">
-                        <div class="ed-service">
-                            <h3>БИЗНЕС-БРАНЧ</h3>
-                            <p>Открытый формат делового общения и нетворкинга за завтраком. Проходит каждую субботу для всех желающих. Подробный <a href="/blog/business-meropriyatiya-almaty-2026/" style="color: var(--red); text-decoration: underline;">календарь бизнес-мероприятий Алматы 2026</a>.</p>
-                            <a href="/blog/business-meropriyatiya-almaty-2026/" class="ed-link">ПОДРОБНЕЕ &rarr;</a>
-                        </div>
-                        <div class="ed-service">
-                            <h3>СОВЕТ ДИРЕКТОРОВ</h3>
-                            <p>Глубокая проработка бизнес-процессов только для резидентов. Проходит каждый вторник в закрытом формате. Как устроен формат — в статье <a href="/blog/chto-takoe-mastermind/" style="color: var(--red); text-decoration: underline;">«Что такое мастермайнд»</a> и <a href="/blog/mastermind-v-bizpride/" style="color: var(--red); text-decoration: underline;">«Сценарий мастермайнда в BizPride»</a>.</p>
-                            <a href="/events/" class="ed-link">РАСПИСАНИЕ &rarr;</a>
-                        </div>
+    <!-- FORMATS -->
+    <section style="background: #0d0d0f; padding: 80px 24px;">
+        <div style="max-width: 1100px; margin: 0 auto;">
+            <h2 style="font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #fff; margin: 0 0 12px; text-align: center;">Форматы встреч</h2>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.6; text-align: center; max-width: 640px; margin: 0 auto 48px;">
+                Регулярные офлайн-встречи в Алматы — от открытых бранчей для знакомства до закрытого совета директоров для резидентов.
+            </p>
+            <div class="about-formats">
+                {formats.map(f => (
+                    <div class="about-format-card">
+                        <div class="about-format-when">{f.when}</div>
+                        <h3 style="font-size: 20px; font-weight: 700; color: #fff; margin: 0 0 12px;">{f.title}</h3>
+                        <p style="font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; flex-grow: 1; margin: 0 0 16px;">{f.text}</p>
+                        <a href={f.href} style="color: var(--red); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; text-decoration: none;">{f.cta} &rarr;</a>
                     </div>
-                </div>
+                ))}
             </div>
-            <div class="ed-col image-col">
-                <Image src={networkingImg} alt="Нетворкинг на бизнес-бранче BizPride в Алматы" class="ed-img grayscale" widths={[400, 800, 1024]} sizes="(max-width: 768px) 100vw, 1024px" quality={82} loading="lazy" decoding="async" />
+        </div>
+    </section>
+
+    <!-- IMAGE STRIP -->
+    <section class="about-imgstrip">
+        <div class="about-imgstrip-col">
+            <Image src={mastermindImg} alt="Мастермайнд BizPride — закрытая встреча предпринимателей Алматы" widths={[400, 768]} sizes="(max-width: 768px) 100vw, 50vw" quality={80} loading="lazy" decoding="async" />
+        </div>
+        <div class="about-imgstrip-col">
+            <Image src={networkingImg} alt="Нетворкинг на бизнес-бранче BizPride в Алматы" widths={[400, 768]} sizes="(max-width: 768px) 100vw, 50vw" quality={80} loading="lazy" decoding="async" />
+        </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section style="background: #0a0a0a; padding: 80px 24px;">
+        <div style="max-width: 820px; margin: 0 auto;">
+            <h2 style="font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #fff; margin: 0 0 24px;">Кому подходит клуб</h2>
+            <p style="font-size: 18px; color: rgba(255,255,255,0.78); line-height: 1.75; margin-bottom: 20px;">
+                BizPride — для собственников, топ-менеджеров и инвесторов с действующим бизнесом. Для членства мы ориентируемся на оборот от 50 млн ₸ в год, но смотрим в первую очередь на совпадение ценностей и реальный интерес расти через сообщество, а не на формальные показатели.
+            </p>
+            <p style="font-size: 18px; color: rgba(255,255,255,0.78); line-height: 1.75;">
+                Каждый кандидат проходит знакомство с основателем — так мы сохраняем уровень и атмосферу клуба. Если вы только присматриваетесь к формату бизнес-клубов, начните с разбора <a href="/blog/chto-takoe-biznes-soobshchestvo/" style="color: var(--red); text-decoration: underline;">«клуб vs сообщество»</a> и <a href="/blog/luchshie-business-cluby-almaty/" style="color: var(--red); text-decoration: underline;">обзора лучших бизнес-клубов Алматы</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background: #0d0d0f; padding: 0 24px 100px;">
+        <div style="max-width: 820px; margin: 0 auto; background: linear-gradient(135deg, rgba(196,43,43,0.15), rgba(196,43,43,0.05)); border: 1px solid rgba(196,43,43,0.3); border-radius: 20px; padding: 48px 36px; text-align: center;">
+            <h2 style="font-size: 28px; font-weight: 800; color: #fff; margin: 0 0 16px;">Познакомьтесь с клубом изнутри</h2>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.85); margin-bottom: 28px;">Гостевой визит на субботний бизнес-бранч — бесплатно и без обязательств. Посмотрите формат, познакомьтесь с резидентами и решите, ваше это или нет.</p>
+            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+                <a href="/events/" style="display: inline-block; padding: 16px 36px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Расписание встреч</a>
+                <a href="/pricing/" style="display: inline-block; padding: 16px 36px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Стоимость участия</a>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
     <BlogTeaser
         slugs={[
@@ -433,512 +184,151 @@ import networkingImg from '../assets/img-networking-new-2.webp';
     />
 </Layout>
 
-<script>
-    document.addEventListener('astro:page-load', () => {
-        const tabs = document.querySelectorAll('.ed-nav-btn');
-        const cards = document.querySelectorAll('.blog-item');
-        const loadMoreBtn = document.getElementById('load-more-btn');
-        
-        const CARDS_PER_PAGE = 6;
-        let visibleCount = CARDS_PER_PAGE;
-        let currentFilter = 'all';
-
-        function updateCardsDisplay() {
-            let matches = 0;
-            cards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                if (currentFilter === 'all' || currentFilter === category) {
-                    if (matches < visibleCount) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                    matches++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            if (loadMoreBtn) {
-                if (matches > visibleCount) {
-                    loadMoreBtn.style.display = 'inline-block';
-                } else {
-                    loadMoreBtn.style.display = 'none';
-                }
-            }
-        }
-
-        // Initialize display
-        updateCardsDisplay();
-
-        if (loadMoreBtn) {
-            const newBtn = loadMoreBtn.cloneNode(true);
-            loadMoreBtn.parentNode.replaceChild(newBtn, loadMoreBtn);
-            
-            newBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                visibleCount += CARDS_PER_PAGE;
-                updateCardsDisplay();
-            });
-        }
-
-        tabs.forEach(tab => {
-            const newTab = tab.cloneNode(true);
-            tab.parentNode.replaceChild(newTab, tab);
-
-            newTab.addEventListener('click', (e) => {
-                e.preventDefault();
-                const currentTabs = document.querySelectorAll('.ed-nav-btn');
-                currentTabs.forEach(t => t.classList.remove('active'));
-                newTab.classList.add('active');
-
-                currentFilter = newTab.getAttribute('data-filter');
-                visibleCount = CARDS_PER_PAGE; // Reset visible count when changing categories
-                updateCardsDisplay();
-            });
-        });
-    });
-</script>
-
 <style>
-    /* Reset & Base within this layout */
-    .editorial-container {
-        background: #0a0a0a;
-        color: #fff;
-        font-family: var(--font, 'Montserrat', sans-serif);
-        padding-top: 80px; /* Offset for nav */
+    .red { color: var(--red, #c42b2b); }
+
+    .about-eyebrow {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--red, #c42b2b);
     }
 
-    .ed-row {
+    /* HERO */
+    .about-hero {
+        position: relative;
+        min-height: 52vh;
         display: flex;
-        flex-direction: column;
-        width: 100%;
-        border-bottom: 2px solid #1a1a1a;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 120px 24px 60px;
     }
-
-    @media (min-width: 768px) {
-        .ed-row {
-            flex-direction: row;
-        }
-        .ed-row > .ed-col {
-            flex: 1;
-            width: 50%;
-            border-right: 2px solid #1a1a1a;
-        }
-        .ed-row > .ed-col:last-child {
-            border-right: none;
-        }
+    .about-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0.65), rgba(10,10,10,0.85));
     }
-
-    .height-vh {
-        min-height: 35vh; /* Reduced height by ~3x */
+    .about-hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 820px;
+        text-align: center;
     }
-
-    .height-auto {
-        min-height: 500px;
+    .about-h1 {
+        font-size: clamp(40px, 7vw, 80px);
+        font-weight: 900;
+        line-height: 1.02;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        margin: 16px 0 20px;
     }
-
-    /* BLOG GRID */
-    .ed-blog-grid-section {
-        padding: 40px 20px;
-        background: #ffffff; /* White background */
-        border-bottom: 2px solid #eaeaea;
-    }
-
-    @media (min-width: 768px) {
-        .ed-blog-grid-section {
-            padding: 80px 20px;
-        }
-    }
-
-    .ed-blog-container {
-        max-width: 1200px;
+    .about-lead {
+        font-size: clamp(16px, 2.2vw, 20px);
+        color: rgba(255,255,255,0.82);
+        line-height: 1.6;
+        max-width: 680px;
         margin: 0 auto;
     }
 
-    .ed-blog-grid {
+    /* STATS */
+    .about-stats {
+        max-width: 1100px;
+        margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
     }
-
-    .ed-load-more-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 30px;
+    .about-stat { text-align: center; }
+    .about-stat-value {
+        font-size: clamp(32px, 5vw, 52px);
+        font-weight: 900;
+        color: var(--red, #c42b2b);
+        line-height: 1;
     }
-
-    @media (min-width: 768px) {
-        .ed-load-more-container {
-            margin-top: 50px;
-        }
-    }
-
-    .ed-btn-load-more {
-        background: var(--brand, #c42b2b);
-        color: #ffffff;
-        border: none;
-        padding: 16px 40px;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 20px rgba(196, 43, 43, 0.2);
-    }
-
-    .ed-btn-load-more:hover {
-        background: #a82222;
-        transform: translateY(-2px);
-        box-shadow: 0 15px 30px rgba(196, 43, 43, 0.3);
-    }
-
-    .ed-card {
-        display: flex;
-        flex-direction: column;
-        background: #ffffff;
-        border: 1px solid #eaeaea;
-        border-radius: 12px;
-        overflow: hidden;
-        text-decoration: none;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* Soft shadow for depth */
-        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .ed-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--brand, #c42b2b);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .ed-card-img {
-        width: 100%;
-        height: 220px;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        filter: grayscale(100%) brightness(0.8);
-        transition: filter 0.3s ease;
-        position: relative;
-    }
-
-    .ed-card:hover .ed-card-img {
-        filter: grayscale(0%) brightness(1);
-    }
-
-    .video-play-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 40px;
-        color: rgba(255,255,255,0.8);
-        transition: color 0.3s ease;
-    }
-
-    .ed-card:hover .video-play-icon {
-        color: var(--brand, #c42b2b);
-    }
-
-    .ed-card-content {
-        padding: 25px;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-    }
-
-    .ed-card-tag {
-        font-size: 11px;
-        font-weight: 700;
-        color: var(--brand, #c42b2b);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 15px;
-    }
-
-    .ed-card-title {
-        font-size: 18px;
-        color: #111111; /* Dark text for light card */
-        line-height: 1.4;
-        margin-bottom: 20px;
-        font-weight: 700;
-        flex-grow: 1;
-    }
-
-    .ed-card-link {
+    .about-stat-label {
+        margin-top: 10px;
         font-size: 13px;
-        color: #666666; /* Darker gray for readability on white */
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 1px;
-        transition: color 0.3s ease;
+        color: rgba(255,255,255,0.6);
+    }
+    @media (max-width: 700px) {
+        .about-stats { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
     }
 
-    .ed-card:hover .ed-card-link {
-        color: var(--brand, #c42b2b); /* Highlight red on hover instead of white */
-    }
-
-    .ed-nav-row {
-        width: 100%;
-        background: #0a0a0a; /* or #111 depending on preference */
-        border-bottom: 2px solid #1a1a1a;
-        padding: 30px 0;
-        display: flex;
-        justify-content: center;
+    /* FOUNDER */
+    .about-founder {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 420px 1fr;
+        gap: 48px;
         align-items: center;
     }
-
-    .ed-nav-container {
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-        padding: 0 20px;
-        justify-content: center;
+    .about-founder-img :global(img) {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+        display: block;
+        filter: grayscale(15%);
+    }
+    @media (max-width: 768px) {
+        .about-founder { grid-template-columns: 1fr; gap: 28px; }
+        .about-founder-img { max-width: 360px; }
     }
 
-    .ed-nav-btn {
-        background: transparent;
-        color: rgba(255, 255, 255, 0.7);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 12px 24px;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        text-decoration: none;
-        border-radius: 30px; /* Pill shape */
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* FORMATS */
+    .about-formats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
     }
-
-    .ed-nav-btn:hover {
-        border-color: #fff;
-        color: #fff;
-        transform: translateY(-3px); /* Lift animation on hover */
-        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
-    }
-
-    .ed-nav-btn.active {
-        background: var(--brand, #c42b2b);
-        border-color: var(--brand, #c42b2b);
-        color: #fff;
-    }
-
-    .ed-nav-btn.active:hover {
-        box-shadow: 0 4px 15px rgba(196, 43, 43, 0.4); /* Brand color glow */
-    }
-
-    @media (max-width: 767px) {
-        .ed-nav-btn {
-            width: 100%;
-            text-align: center;
-        }
-    }
-
-    .image-col {
-        position: relative;
-        overflow: hidden;
-        min-height: 300px; /* for mobile */
-        background: #111;
-        padding: 40px; /* Internal padding for photos in the editorial layout */
+    .about-format-card {
+        background: #161922;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 28px 24px;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        transition: border-color 0.3s, transform 0.3s;
+    }
+    .about-format-card:hover {
+        border-color: var(--red, #c42b2b);
+        transform: translateY(-4px);
+    }
+    .about-format-when {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: rgba(255,255,255,0.45);
+        margin-bottom: 12px;
     }
 
-    @media (max-width: 767px) {
-        .image-col {
-            padding: 20px;
-        }
+    /* IMAGE STRIP */
+    .about-imgstrip {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        background: #1a1a1a;
     }
-
-    /* For the hero image, we might want it edge-to-edge */
-    .height-vh .image-col {
-        padding: 0; 
-    }
-
-    .ed-img {
+    .about-imgstrip-col :global(img) {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
-        flex: 1;
-        min-height: 0;
+        filter: grayscale(60%);
+        transition: filter 0.4s;
     }
-    
-    .hero-parallax-section {
-        position: relative;
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .hero-parallax-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.7); /* Dark overlay to make text readable */
-        z-index: 1;
-        transition: background 0.5s ease;
-    }
-
-    .hero-parallax-section:hover::before {
-        background: rgba(0, 0, 0, 0.5); /* Slightly lighter on hold/hover for effect */
-    }
-
-    .text-col {
-        padding: 40px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    @media (min-width: 1024px) {
-        .text-col {
-            padding: 60px 80px;
-        }
-    }
-
-    .content-center {
-        justify-content: center;
-    }
-
-    .bg-darker {
-        background: #111;
-    }
-
-    .ed-title {
-        font-size: clamp(48px, 6vw, 84px);
-        font-weight: 900;
-        line-height: 1;
-        margin-bottom: 30px;
-        text-transform: uppercase;
-        letter-spacing: -2px;
-    }
-
-    .ed-accent {
-        color: var(--brand, #c42b2b);
-    }
-
-    .ed-subtitle {
-        font-size: clamp(32px, 4vw, 56px);
-        font-weight: 800;
-        line-height: 1.1;
-        margin-bottom: 30px;
-        text-transform: uppercase;
-        letter-spacing: -1px;
-    }
-
-    .ed-desc {
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.7);
-        line-height: 1.6;
-        max-width: 500px;
-        margin-bottom: 20px;
-    }
-
-    .ed-link {
-        display: inline-block;
-        margin-top: 10px;
-        color: var(--brand, #c42b2b);
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 13px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        transition: color 0.3s;
-    }
-
-    .ed-link:hover {
-        color: #fff;
-    }
-
-    .ed-list {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        margin-top: 20px;
-    }
-
-    .ed-list-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 20px;
-    }
-
-    .ed-number {
-        font-size: 20px;
-        font-weight: 300;
-        color: rgba(255, 255, 255, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .ed-list-text p {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.6);
-        line-height: 1.5;
-        margin: 0;
-        max-width: 300px;
-    }
-
-    .ed-list-text strong {
-        color: #fff;
-        display: block;
-        margin-bottom: 4px;
-        font-size: 15px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .ed-services {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 40px;
-        margin-top: 30px;
-    }
-
-    @media (min-width: 1200px) {
-        .ed-services {
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-    }
-
-    .ed-service h3 {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 12px;
-        color: #fff;
-        text-transform: uppercase;
-    }
-
-    .ed-service p {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.6);
-        line-height: 1.5;
-        margin-bottom: 10px;
-    }
-
-    /* Reverse order on mobile for some rows to keep text->image flow */
-    @media (max-width: 767px) {
-        .reverse-mobile {
-            flex-direction: column-reverse;
-        }
+    .about-imgstrip-col:hover :global(img) { filter: grayscale(0%); }
+    @media (max-width: 600px) {
+        .about-imgstrip { grid-template-columns: 1fr; }
     }
 </style>

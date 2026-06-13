@@ -6,7 +6,14 @@ const { frontmatter } = Astro.props;
 const currentSlug = Astro.url.pathname;
 ---
 
-<Layout title={frontmatter.title || 'Блог BizPride'} description={frontmatter.description}>
+<Layout
+    title={frontmatter.title || 'Блог BizPride'}
+    description={frontmatter.description}
+    ogImage={frontmatter.image || '/og/og-default.png'}
+    ogImageWidth={frontmatter.image ? 1280 : 1200}
+    ogImageHeight={frontmatter.image ? 720 : 630}
+    ogType="article"
+>
     <!-- Article Schema for SEO. author + publisher reference the canonical
          Organization in Layout.astro via @id (no duplication). -->
     <script type="application/ld+json" set:html={JSON.stringify({
