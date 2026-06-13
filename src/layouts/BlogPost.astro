@@ -4,6 +4,11 @@ import RelatedPosts from '../components/RelatedPosts.astro';
 
 const { frontmatter } = Astro.props;
 const currentSlug = Astro.url.pathname;
+
+// Если обложка поста — это YouTube-превью (img.youtube.com/vi/<ID>/...),
+// значит это видео-пост → отдаём VideoObject для видео-сниппетов в Google.
+const ytMatch = (frontmatter.image || '').match(/\/vi\/([A-Za-z0-9_-]+)\//);
+const ytId = ytMatch ? ytMatch[1] : null;
 ---
 
 <Layout
@@ -42,6 +47,21 @@ const currentSlug = Astro.url.pathname;
             { "@type": "ListItem", "position": 3, "name": frontmatter.title, "item": Astro.url.href }
         ]
     })} />
+    {ytId && (
+        <!-- VideoObject schema — для видео-сниппетов встроенного YouTube-ролика -->
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": frontmatter.title,
+            "description": frontmatter.description,
+            "thumbnailUrl": frontmatter.image,
+            "uploadDate": frontmatter.date || new Date().toISOString(),
+            "contentUrl": `https://www.youtube.com/watch?v=${ytId}`,
+            "embedUrl": `https://www.youtube.com/embed/${ytId}`,
+            "publisher": { "@id": "https://bizpride.kz/#organization" },
+            "inLanguage": "ru-KZ"
+        })} />
+    )}
     <div class="blog-post-container">
         
         <header class="bp-header">
