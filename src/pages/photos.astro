@@ -6,6 +6,7 @@ import { client, urlFor } from '../lib/sanity';
 
 // Static album covers — imported as Astro assets so they get
 // optimized (multi-resolution srcset, hash filename for forever-cache).
+import imgTochka0613  from '../assets/img-album-tochka-0613.jpg';
 import imgTeam0516    from '../assets/img-album-team-0516.jpg';
 import imgSpeaker0424 from '../assets/img-album-speaker-0424.jpg';
 import imgInvestments from '../assets/img-album-investments.webp';
@@ -18,6 +19,12 @@ import imgProfit      from '../assets/img-album-profit.webp';
 const sanityAlbums = await client.fetch(`*[_type == "photoAlbum"] | order(order asc, _createdAt desc)`);
 
 const albums = [
+    {
+        title: '«Точка Сборки»',
+        date: '13.06.2026',
+        googleDriveLink: 'https://mainslow.wfolio.pro/disk/13-06-2026-biz-pride-f05l9m',
+        staticCoverAsset: imgTochka0613
+    },
     {
         title: 'Как создать команду, которая берёт ответственность за результат',
         date: '16.05.2026',
