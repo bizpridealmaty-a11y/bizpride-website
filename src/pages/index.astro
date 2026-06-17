@@ -213,7 +213,7 @@ const name2 = MONTH_NAMES[month2.month];
             position: relative;
             z-index: 10;
             display: flex;
-            padding: 100px;
+            padding: clamp(40px, 6vw, 100px);
             flex-grow: 1;
             align-items: center;
             justify-content: space-between;
@@ -221,8 +221,9 @@ const name2 = MONTH_NAMES[month2.month];
 
         .hm-left-col {
             flex: 1;
-            padding-right: 50px;
+            padding-right: clamp(24px, 3vw, 50px);
             max-width: 60%;
+            min-width: 0;
         }
 
         .hm-geo-tag {
@@ -247,7 +248,7 @@ const name2 = MONTH_NAMES[month2.month];
         .hm-geo-tag i { color: #EE303E; }
 
         .hm-h1 {
-            font-size: 120px;
+            font-size: clamp(52px, 8vw, 120px);
             line-height: 0.9;
             font-weight: 900;
             text-transform: uppercase;
@@ -260,7 +261,7 @@ const name2 = MONTH_NAMES[month2.month];
         .hm-title-white { color: #fff; display: block; }
 
         .hm-subtitle {
-            font-size: 32px;
+            font-size: clamp(20px, 2.4vw, 32px);
             font-weight: 300;
             font-style: italic;
             color: #ccc;
@@ -324,7 +325,8 @@ const name2 = MONTH_NAMES[month2.month];
         }
 
         .hm-right-col {
-            width: 450px;
+            width: clamp(300px, 30vw, 450px);
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
             margin-top: 50px;
@@ -336,7 +338,7 @@ const name2 = MONTH_NAMES[month2.month];
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
+            padding: clamp(16px, 1.8vw, 30px);
             border-radius: 12px;
             position: relative;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -379,7 +381,7 @@ const name2 = MONTH_NAMES[month2.month];
         }
 
         .hm-card-title {
-            font-size: 20px;
+            font-size: clamp(15px, 1.4vw, 20px);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -450,7 +452,7 @@ const name2 = MONTH_NAMES[month2.month];
         }
 
         .hm-event-date {
-            font-size: 32px;
+            font-size: clamp(24px, 2.2vw, 32px);
             font-weight: 800;
             color: #fff;
             line-height: 1;
