@@ -1,0 +1,10 @@
+# 301 со старых/битых слагов (старая транслитерация) на живые статьи.
+# Источник: ошибки индексации в Google Search Console, июль 2026.
+# Netlify матчит путь и со слешем, и без.
+
+/blog/kak-nauchit-telo-uderzhivat-bolshie-dengi-i-otvet   /blog/kak-nauchit-telo-viderzhivat-bolshie-dengi-i-otvet/   301
+/blog/po-kolkhoznomu-ili-po-sisteme-kak-perestat-derzhat  /blog/po-kolhoznomu-ili-po-sisteme-kak-perestat-derzhat/    301
+/blog/kak-postroit-sovremennoe-upravlenie-rukovodstvo-dl  /blog/kak-postroit-sovremennoe-upravlenie-rukovodstvo-d/    301
+/blog/effektivnie-strategii-prodvizheniya-v-instagram-ci  /blog/effektivnie-strategii-prodvizheniya-v-instagram-ot/   301
+/blog/drugoi-podkhod-k-prodazham-kak-sdelat-otdel-prodaz  /blog/drugoi-podhod-k-prodazham-kak-usilit-otdel-prodaz/    301
+/blog/zachem-vam-vobsche-generalnii-direktor-chestni      /blog/zachem-vam-voobsche-generalnii-direktor-chestnii/     301
