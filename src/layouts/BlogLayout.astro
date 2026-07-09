@@ -2,7 +2,7 @@
 import Layout from './Layout.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
 
-const { title, description, pubDate, author = "BizPride Club", image = "https://bizpride.kz/logo.png" } = Astro.props;
+const { title, description, pubDate, author = "BizPride Club", image = "https://bizpride.kz/logo.png", ogImage } = Astro.props;
 const currentSlug = Astro.url.pathname;
 
 // Create JSON-LD Article Schema.
@@ -39,7 +39,7 @@ const breadcrumbSchema = {
     ]
 };
 ---
-<Layout title={title} description={description} navTheme="dark">
+<Layout title={title} description={description} ogImage={ogImage} navTheme="dark">
     <!-- Inject Article + Breadcrumb Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
