@@ -1,0 +1,360 @@
+---
+/**
+ * BlogShell — единое оформление статьи блога BizPride.
+ *
+ * Зачем: статьи сидели на ДВУХ разных шаблонах (BlogPost.astro — 29 статей,
+ * BlogLayout.astro — 15) с разным видом и разным API пропов. Чтобы не трогать
+ * 44 файла статей, весь дизайн вынесен сюда, а оба старых шаблона стали тонкими
+ * обёртками: нормализуют свои пропы и делегируют сюда. Дизайн — в одном месте.
+ *
+ * Формат перенесён с блога digitalpride.kz (согласован заказчиком) и адаптирован
+ * под тёмный бренд BizPride: обложка на всю ширину, широкая раскладка с липким
+ * оглавлением, крупные изображения, анимации появления и счётчики.
+ * React здесь не нужен — вся интерактивность на обычном JS.
+ */
+import Layout from './Layout.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+
+interface Props {
+    title: string;
+    description?: string;
+    category?: string;
+    date?: string;
+    readTime?: string;
+    image?: string;
+    ogImage?: string;
+}
+
+const { title, description = '', category = '', date = '', readTime = '', image = '', ogImage } = Astro.props;
+const currentSlug = Astro.url.pathname;
+
+// Видео-пост: обложка — превью YouTube → отдаём VideoObject для видео-сниппетов.
+const ytMatch = (image || '').match(/\/vi\/([A-Za-z0-9_-]+)\//);
+const ytId = ytMatch ? ytMatch[1] : null;
+
+const MONTHS_RU = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+const parsed = new Date(date);
+const displayDate = date && !isNaN(parsed.getTime())
+    ? `${parsed.getUTCDate()} ${MONTHS_RU[parsed.getUTCMonth()]} ${parsed.getUTCFullYear()}`
+    : (date || '');
+
+const ORG_REF = { '@id': 'https://bizpride.kz/#organization' };
+
+const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    image,
+    author: ORG_REF,
+    publisher: ORG_REF,
+    datePublished: date || undefined,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': Astro.url.href },
+    inLanguage: 'ru-KZ',
+};
+
+const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: 'https://bizpride.kz/' },
+        { '@type': 'ListItem', position: 2, name: 'Блог', item: 'https://bizpride.kz/blog/' },
+        { '@type': 'ListItem', position: 3, name: title, item: Astro.url.href },
+    ],
+};
+---
+
+<Layout
+    title={title}
+    description={description}
+    ogImage={ogImage || image || '/og/og-default.png'}
+    ogImageWidth={image ? 1280 : 1200}
+    ogImageHeight={image ? 720 : 630}
+    ogType="article"
+    navTheme="dark"
+>
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    {ytId && (
+        <script type="application/ld+json" set:html={JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'VideoObject',
+            name: title,
+            description,
+            thumbnailUrl: image,
+            uploadDate: date || new Date().toISOString(),
+            contentUrl: `https://www.youtube.com/watch?v=${ytId}`,
+            embedUrl: `https://www.youtube.com/embed/${ytId}`,
+            publisher: ORG_REF,
+            inLanguage: 'ru-KZ',
+        })} />
+    )}
+
+    <!-- полоса прогресса чтения -->
+    <div id="bp-progress"></div>
+
+    <!-- ОБЛОЖКА НА ВСЮ ШИРИНУ -->
+    <section class:list={['bp-hero', { 'no-img': !image }]}>
+        {image && <img class="bp-hero-img" src={image} alt={title} fetchpriority="high" />}
+        <div class="bp-hero-in">
+            <nav class="bp-crumbs" aria-label="Хлебные крошки">
+                <a href="/">Главная</a><span>/</span><a href="/blog/">Блог</a>
+            </nav>
+            {category && <span class="bp-chip">{category}</span>}
+            <h1 class="bp-h1">{title}</h1>
+            {description && <p class="bp-lead">{description}</p>}
+            <div class="bp-meta">
+                <span>BizPride Club</span>
+                {displayDate && <><i class="bp-dot"></i><span>{displayDate}</span></>}
+                {readTime && <><i class="bp-dot"></i><span>{readTime}</span></>}
+            </div>
+        </div>
+    </section>
+
+    <!-- ШИРОКАЯ РАСКЛАДКА: контент + липкое оглавление -->
+    <div class="bp-wrap">
+        <div class="bp-grid">
+            <article class="bp-content">
+                <slot />
+            </article>
+
+            <aside class="bp-aside">
+                <div class="bp-aside-in">
+                    <nav class="bp-toc" id="bp-toc" hidden>
+                        <div class="bp-toc-t">В статье</div>
+                        <div id="bp-toc-list"></div>
+                    </nav>
+                    <div class="bp-side-cta">
+                        <b>Хотите в клуб?</b>
+                        <p>Приходите на ближайший бизнес-бранч и посмотрите изнутри.</p>
+                        <a href="/events/">Смотреть события</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <RelatedPosts currentSlug={currentSlug} currentTitle={title} count={3} />
+    </div>
+</Layout>
+
+<style is:global>
+    /* ===== Полоса прогресса ===== */
+    #bp-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
+        background:linear-gradient(90deg,#e05252,var(--brand,#c42b2b));transition:width .1s linear}
+
+    /* ===== ОБЛОЖКА НА ВСЮ ШИРИНУ ===== */
+    .bp-hero{position:relative;display:flex;align-items:flex-end;overflow:hidden;
+        min-height:62vh;background:#0a0a0a}
+    @media (min-width:768px){.bp-hero{min-height:76vh}}
+    .bp-hero.no-img{min-height:auto;padding-top:60px}
+    .bp-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    .bp-hero::after{content:"";position:absolute;inset:0;
+        background:linear-gradient(90deg,rgba(8,8,10,.95) 0%,rgba(8,8,10,.74) 45%,rgba(8,8,10,.3) 100%),
+                   linear-gradient(to top,rgba(8,8,10,.92),transparent 58%)}
+    .bp-hero.no-img::after{background:none}
+    .bp-hero-in{position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;padding:140px 40px 56px}
+    @media (max-width:1080px){.bp-hero-in{padding:120px 20px 36px}}
+    .bp-crumbs{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:18px}
+    .bp-crumbs a{color:rgba(255,255,255,.5);text-decoration:none}
+    .bp-crumbs a:hover{color:#fff}
+    .bp-crumbs span{margin:0 8px;opacity:.5}
+    .bp-chip{display:inline-block;background:rgba(196,43,43,.14);
+        border:1px solid rgba(196,43,43,.45);color:#e05252;
+        font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+        padding:6px 13px;border-radius:999px}
+    .bp-h1{color:#fff;font-size:clamp(30px,4.4vw,58px);font-weight:900;line-height:1.04;
+        letter-spacing:-.03em;margin:20px 0 18px;max-width:20ch}
+    .bp-lead{color:rgba(255,255,255,.75);font-size:clamp(15px,1.3vw,19px);max-width:62ch;margin:0 0 24px}
+    .bp-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+        color:rgba(255,255,255,.55);font-size:13px}
+    .bp-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.35);display:inline-block}
+
+    /* ===== ШИРОКАЯ СЕТКА ===== */
+    .bp-wrap{max-width:1400px;margin:0 auto;padding:0 40px}
+    @media (max-width:1080px){.bp-wrap{padding:0 20px}}
+    .bp-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:64px;padding:56px 0 40px}
+    @media (max-width:1080px){.bp-grid{grid-template-columns:1fr;gap:0;padding:36px 0 20px}}
+
+    /* Страница широкая, но строка текста — читаемой длины.
+       Ширину экрана забирают обложка, фото, графики и оглавление. */
+    .bp-content{min-width:0;color:rgba(255,255,255,.85);font-size:17px;line-height:1.8}
+    .bp-content p,.bp-content ul,.bp-content ol{max-width:74ch}
+    .bp-content h2{color:#fff;font-size:clamp(22px,2.2vw,30px);font-weight:800;
+        letter-spacing:-.02em;line-height:1.2;margin:52px 0 16px;scroll-margin-top:90px}
+    .bp-content h3{color:#fff;font-size:19px;font-weight:700;margin:30px 0 10px}
+    .bp-content p{margin:0 0 17px}
+    .bp-content strong{color:#fff}
+    .bp-content a{color:#e05252}
+    .bp-content blockquote{border-left:4px solid var(--brand,#c42b2b);padding:8px 20px;
+        margin:26px 0;background:rgba(196,43,43,.08);border-radius:0 12px 12px 0}
+    .bp-content .lead{font-size:19px;color:rgba(255,255,255,.92)}
+
+    /* ===== КРУПНЫЕ ИЗОБРАЖЕНИЯ ===== */
+    .bp-content figure{margin:40px 0}
+    .bp-content figure img{width:100%;border-radius:18px;object-fit:cover;aspect-ratio:16/8;display:block}
+    .bp-content figcaption{font-size:13px;color:rgba(255,255,255,.45);margin-top:10px}
+    .bp-content figure.bp-bleed{margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);
+        width:100vw;max-width:100vw}
+    .bp-content figure.bp-bleed img{border-radius:0;aspect-ratio:21/8}
+    .bp-content figure.bp-bleed figcaption{max-width:1400px;margin:10px auto 0;padding:0 40px}
+    @media (max-width:1080px){
+        .bp-content figure.bp-bleed{margin-left:-20px;margin-right:-20px;width:calc(100% + 40px)}
+        .bp-content figure.bp-bleed img{aspect-ratio:16/9}
+        .bp-content figure.bp-bleed figcaption{padding:0 20px}
+    }
+
+    /* ===== САЙДБАР ===== */
+    .bp-aside{position:relative}
+    @media (max-width:1080px){.bp-aside{display:none}}
+    .bp-aside-in{position:sticky;top:90px;display:grid;gap:16px}
+    .bp-toc{border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px}
+    .bp-toc-t{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+        color:rgba(255,255,255,.4);margin-bottom:12px}
+    .bp-toc a{display:block;font-size:13.5px;color:rgba(255,255,255,.6);text-decoration:none;
+        padding:7px 0 7px 12px;border-left:2px solid rgba(255,255,255,.1);transition:.2s}
+    .bp-toc a:hover{color:#fff}
+    .bp-toc a.on{color:#e05252;border-left-color:#e05252;font-weight:700}
+    .bp-side-cta{border-radius:16px;padding:20px;border:1px solid rgba(196,43,43,.3);
+        background:linear-gradient(160deg,rgba(196,43,43,.12),rgba(196,43,43,.08))}
+    .bp-side-cta b{display:block;color:#fff;font-size:15px;font-weight:800;margin-bottom:6px}
+    .bp-side-cta p{color:rgba(255,255,255,.6);font-size:12.5px;margin:0 0 14px}
+    .bp-side-cta a{display:block;text-align:center;background:var(--brand,#c42b2b);color:#fff;
+        font-weight:800;font-size:13.5px;padding:10px;border-radius:9px;text-decoration:none}
+    .bp-side-cta a:hover{filter:brightness(1.08)}
+
+    /* ===== БЛОКИ ДАННЫХ (цифры, графики) ===== */
+    .bp-statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:32px 0}
+    @media (max-width:640px){.bp-statrow{grid-template-columns:1fr}}
+    .bp-stat{border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:22px 18px;
+        text-align:center;background:rgba(255,255,255,.03)}
+    .bp-stat-num{font-size:30px;font-weight:800;color:#e05252;line-height:1;
+        font-variant-numeric:tabular-nums}
+    .bp-stat-cap{font-size:12.5px;color:rgba(255,255,255,.55);margin-top:9px;line-height:1.4}
+    .bp-viz{margin:34px 0;padding:26px;border:1px solid rgba(255,255,255,.1);border-radius:18px;
+        background:rgba(255,255,255,.03)}
+    .bp-viz-t{font-size:15px;font-weight:700;color:#fff;margin:0 0 4px}
+    .bp-viz-s{font-size:13px;color:rgba(255,255,255,.45);margin:0 0 20px}
+    .bp-row{display:grid;grid-template-columns:104px 1fr auto;align-items:center;gap:12px;margin:12px 0}
+    @media (max-width:640px){.bp-row{grid-template-columns:76px 1fr auto;gap:8px}}
+    .bp-lbl{font-size:13.5px;font-weight:600;color:rgba(255,255,255,.8)}
+    .bp-trk{position:relative;height:13px;background:rgba(255,255,255,.08);border-radius:7px;overflow:hidden}
+    .bp-fil{position:absolute;top:0;height:13px;border-radius:7px;
+        background:linear-gradient(90deg,#e05252,var(--brand,#c42b2b));
+        transition:width 1s cubic-bezier(.22,1,.36,1)}
+    .bp-val{font-size:12.5px;font-weight:700;color:#e05252;
+        font-variant-numeric:tabular-nums;white-space:nowrap}
+    .bp-note{font-size:12px;color:rgba(255,255,255,.4);margin:10px 0 0}
+
+    /* ===== ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ ===== */
+    .bp-rev{opacity:0;transform:translateY(26px);
+        transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+    .bp-rev.bp-in{opacity:1;transform:none}
+    @media (prefers-reduced-motion:reduce){
+        .bp-rev{opacity:1;transform:none;transition:none}
+        .bp-fil{transition:none}
+    }
+</style>
+
+<script>
+    // Оживление статьи: прогресс чтения, оглавление из <h2>, появление блоков,
+    // счётчики цифр и выезжающие полосы. Чистый JS — React в Astro не нужен.
+    (() => {
+        const bar = document.getElementById('bp-progress');
+        const onScroll = () => {
+            if (!bar) return;
+            const h = document.documentElement.scrollHeight - window.innerHeight;
+            bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        const article = document.querySelector('.bp-content');
+        if (!article) return;
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // --- оглавление строится само из h2 ---
+        const heads = Array.from(article.querySelectorAll('h2'));
+        const tocBox = document.getElementById('bp-toc');
+        const tocList = document.getElementById('bp-toc-list');
+        if (tocBox && tocList && heads.length >= 2) {
+            heads.forEach((h, i) => {
+                if (!h.id) {
+                    const slug = (h.textContent || '').toLowerCase()
+                        .replace(/[^a-zа-яё0-9\s-]/gi, '').trim()
+                        .replace(/\s+/g, '-').slice(0, 50);
+                    h.id = slug || 'section-' + (i + 1);
+                }
+                const a = document.createElement('a');
+                a.href = '#' + h.id;
+                a.textContent = h.textContent || '';
+                tocList.appendChild(a);
+            });
+            tocBox.hidden = false;
+            const links = Array.from(tocList.querySelectorAll('a'));
+            const mark = () => {
+                let idx = 0;
+                heads.forEach((h, i) => { if (h.getBoundingClientRect().top < 160) idx = i; });
+                links.forEach((a, i) => a.classList.toggle('on', i === idx));
+            };
+            window.addEventListener('scroll', mark, { passive: true });
+            mark();
+        }
+
+        // --- появление + счётчики + полосы ---
+        const targets = Array.from(article.querySelectorAll('.bp-viz, .bp-statrow, figure, table, blockquote'));
+        targets.forEach((el) => el.classList.add('bp-rev'));
+        if (reduce) { targets.forEach((el) => el.classList.add('bp-in')); return; }
+
+        article.querySelectorAll('.bp-fil').forEach((el) => {
+            el.dataset.w = el.style.width || '';
+            el.dataset.l = el.style.left || '';
+            el.style.width = '0%';
+        });
+
+        // «от 80к ₸» → анимируем 80, сохраняя обрамление
+        const splitNum = (t) => {
+            const m = t.match(/^(\D*?)(\d+(?:[.,]\d+)?)([\s\S]*)$/);
+            if (!m) return null;
+            const v = parseFloat(m[2].replace(',', '.'));
+            if (!isFinite(v)) return null;
+            return [m[1], v, m[3], /[.,]/.test(m[2]) ? (m[2].includes(',') ? ',' : '.') : ''];
+        };
+
+        const animate = (root) => {
+            root.querySelectorAll('.bp-stat-num, .bp-val').forEach((el) => {
+                if (el.dataset.done) return;
+                const p = splitNum(el.textContent || '');
+                if (!p) return;
+                el.dataset.done = '1';
+                const [pre, to, suf, sep] = p;
+                const dec = sep ? 1 : 0;
+                let t0 = null;
+                const step = (ts) => {
+                    if (t0 === null) t0 = ts;
+                    const k = Math.min((ts - t0) / 1100, 1);
+                    const e = 1 - Math.pow(1 - k, 3);
+                    const val = (to * e).toFixed(dec);
+                    el.textContent = pre + (sep === ',' ? val.replace('.', ',') : val) + suf;
+                    if (k < 1) requestAnimationFrame(step);
+                };
+                requestAnimationFrame(step);
+            });
+            root.querySelectorAll('.bp-fil').forEach((el, i) => {
+                setTimeout(() => {
+                    if (el.dataset.l) el.style.left = el.dataset.l;
+                    el.style.width = el.dataset.w || '';
+                }, i * 90);
+            });
+        };
+
+        const io = new IntersectionObserver((es) => {
+            es.forEach((e) => {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('bp-in');
+                animate(e.target);
+                io.unobserve(e.target);
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        targets.forEach((el) => io.observe(el));
+    })();
+</script>

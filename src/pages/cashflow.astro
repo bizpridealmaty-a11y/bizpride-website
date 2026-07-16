@@ -7,6 +7,49 @@ import cashflowAlmatyImg from '../assets/cashflow/cashflow-almaty.jpg';
 import cashflowPredprinimateliImg from '../assets/cashflow/cashflow-predprinimateli.jpg';
 import cashflowKorporativImg from '../assets/cashflow/cashflow-korporativ.jpg';
 
+const now = new Date();
+const daysUntilSunday = (7 - now.getDay()) % 7 || 7;
+const nextSunday = new Date(now.getTime() + daysUntilSunday * 86400000);
+const sundayISO = nextSunday.toISOString().split('T')[0];
+
+const eventSchema = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Игра Cashflow BizPride — еженедельный воскресный турнир",
+    "description": "Финансовая игра Cashflow в казахстанской версии BizPride: два стола по 7 человек, два ведущих — для новичков и продвинутых. Разовое участие — 15 000 ₸.",
+    "startDate": `${sundayISO}T17:00:00+05:00`,
+    "endDate": `${sundayISO}T20:30:00+05:00`,
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventSchedule": {
+        "@type": "Schedule",
+        "repeatFrequency": "P1W",
+        "byDay": "https://schema.org/Sunday",
+        "startTime": "17:00:00+05:00",
+        "endTime": "20:30:00+05:00"
+    },
+    "performer": { "@id": "https://bizpride.kz/#organization" },
+    "organizer": { "@id": "https://bizpride.kz/#organization" },
+    "location": {
+        "@type": "Place",
+        "name": "Студия BizPride, БЦ «Женис»",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "пр. Бухар-Жырау 33",
+            "addressLocality": "Алматы",
+            "addressCountry": "KZ"
+        }
+    },
+    "offers": {
+        "@type": "Offer",
+        "url": "https://wa.me/77070357777",
+        "price": "15000",
+        "priceCurrency": "KZT",
+        "availability": "https://schema.org/InStock",
+        "description": "Разовое участие — 15 000 ₸"
+    }
+};
+
 const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -50,7 +93,7 @@ const faqSchema = {
             "name": "Где можно поиграть в Cashflow в Алматы?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "BizPride проводит турниры по Cashflow раз в месяц в Алматы. Для резидентов клуба — бесплатно, в рамках членства. Для гостей — разовое участие 15 000 ₸, по записи. Также мы организуем корпоративные сессии для команд предпринимателей."
+                "text": "BizPride проводит игры Cashflow каждое воскресенье с 17:00 до 20:30 на студии клуба (пр. Бухар-Жырау 33, Алматы). Два стола по 7 человек и два ведущих — для новичков и для продвинутых игроков. Для резидентов клуба — бесплатно, в рамках членства. Для гостей — разовое участие 15 000 ₸, по записи. Также мы организуем корпоративные сессии для команд предпринимателей."
             }
         },
         {
@@ -118,6 +161,7 @@ const articles: CashflowArticle[] = [
     keywords="Cashflow Алматы, игра денежный поток Алматы, Кэшфлоу Кийосаки Казахстан, финансовая игра Алматы, cashflow 101 Алматы"
     ogImage="/og/og-cashflow.png"
 >
+    <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -222,7 +266,7 @@ const articles: CashflowArticle[] = [
     <section style="max-width: 800px; margin: 0 auto; padding: 80px 24px;">
         <div style="background: linear-gradient(135deg, rgba(196,43,43,0.15), rgba(196,43,43,0.05)); border: 1px solid rgba(196,43,43,0.3); border-radius: 20px; padding: 48px 36px; text-align: center;">
             <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin: 0 0 16px;">Хотите попробовать Cashflow вживую?</h2>
-            <p style="font-size: 17px; color: rgba(255,255,255,0.85); margin-bottom: 28px;">Турниры проходят раз в месяц в офисе BizPride в Алматы, разовое участие — 15 000 ₸. Места ограничены — уточните ближайшую дату в WhatsApp.</p>
+            <p style="font-size: 17px; color: rgba(255,255,255,0.85); margin-bottom: 28px;">Играем каждое воскресенье с 17:00 до 20:30 на студии BizPride (пр. Бухар-Жырау 33). Два стола по 7 человек, ведущие для новичков и продвинутых. Разовое участие — 15 000 ₸, мест всего 14 — запишитесь в WhatsApp.</p>
             <a href="https://wa.me/77070357777?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BD%D0%B0%20%D1%82%D1%83%D1%80%D0%BD%D0%B8%D1%80%20Cashflow%20%D0%B2%20BizPride" target="_blank" rel="noopener" style="display: inline-block; padding: 16px 40px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Записаться в WhatsApp →</a>
         </div>
     </section>
