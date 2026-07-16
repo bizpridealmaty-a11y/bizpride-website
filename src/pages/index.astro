@@ -641,7 +641,7 @@ const name2 = MONTH_NAMES[month2.month];
                                 <div class="hm-avatar"></div>
                                 <div class="hm-avatar">+99</div>
                             </div>
-                            <a href="/residents" class="hm-btn-card">Все резиденты <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+                            <a href="/residents/" class="hm-btn-card">Все резиденты <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
                         </div>
                     </div>
 
@@ -649,7 +649,7 @@ const name2 = MONTH_NAMES[month2.month];
                     <div class="hm-card">
                         <div class="hm-card-header">
                             <div>
-                                <span class="hm-event-month">Сентябрь 2023</span>
+                                <span class="hm-event-month">{MONTH_NAMES[currentMonth][0] + MONTH_NAMES[currentMonth].slice(1).toLowerCase()} {currentYear}</span>
                                 <div class="hm-card-title highlight">Ближайшие события</div>
                             </div>
                             <div class="hm-card-icon"><svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z" fill="currentColor"/></svg></div>
@@ -664,7 +664,7 @@ const name2 = MONTH_NAMES[month2.month];
                                 <div class="hm-stat-label">Business Talk</div>
                             </div>
                         </div>
-                        <a href="/events" class="hm-btn-card" style="margin-top: 15px;">Календарь встреч <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+                        <a href="/events/" class="hm-btn-card" style="margin-top: 15px;">Календарь встреч <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
                     </div>
 
                     <!-- Card 3 -->
@@ -829,7 +829,7 @@ const name2 = MONTH_NAMES[month2.month];
                     <div class="label reveal">Кейсы Резидентов</div>
                     <h2 class="heading-lg reveal reveal-d1" style="font-size: clamp(32px, 5vw, 48px); margin: 0;">Лица BizPride</h2>
                 </div>
-                <a href="/residents" class="btn-glass reveal reveal-d2">Все резиденты</a>
+                <a href="/residents/" class="btn-glass reveal reveal-d2">Все резиденты</a>
             </div>
         </div>
 
@@ -868,9 +868,9 @@ const name2 = MONTH_NAMES[month2.month];
                             <div style="text-decoration: none; color: inherit; display: block;">
                                 <div class="face-card" style="background: var(--bg-primary); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border);">
                                     {residentAsset(res.image) ? (
-                                        <Image src={residentAsset(res.image)!} alt="" widths={[200, 320]} sizes="320px" quality={75} style="width: 100%; height: 300px; object-fit: cover; filter: grayscale(100%);" loading="lazy" decoding="async" />
+                                        <Image src={residentAsset(res.image)!} alt={`${res.name} — ${res.role}, резидент BizPride`} widths={[200, 320]} sizes="320px" quality={75} style="width: 100%; height: 300px; object-fit: cover; filter: grayscale(100%);" loading="lazy" decoding="async" />
                                     ) : (
-                                        <img src={res.image} alt="" style="width: 100%; height: 300px; object-fit: cover; filter: grayscale(100%);" loading="lazy" />
+                                        <img src={res.image} alt={`${res.name} — ${res.role}, резидент BizPride`} style="width: 100%; height: 300px; object-fit: cover; filter: grayscale(100%);" loading="lazy" />
                                     )}
                                     <div style="padding: 30px;">
                                         <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">{res.name}</h3>
@@ -1066,11 +1066,11 @@ const name2 = MONTH_NAMES[month2.month];
                 </div>
                 <div class="faq-item" style="background: var(--bg-card); padding: 24px; border-radius: 16px; border: 1px solid var(--border);">
                     <h3 style="font-size: 20px; font-weight: 700; color: var(--red); margin-bottom: 12px;">Как проходят форматы Мастермайнд (Mastermind)?</h3>
-                    <p style="font-size: 16px; color: var(--text-light); line-height: 1.5;">Мастермайнды в BizPride — это регулярные встречи в фокус-группах (до 10 человек). Под руководством опытного модератора резиденты разбирают реальные бизнес-кейсы, ставят цели и делятся опытом. <a href="/about" style="color: var(--red); text-decoration: underline;">Узнать больше о наших форматах</a>.</p>
+                    <p style="font-size: 16px; color: var(--text-light); line-height: 1.5;">Мастермайнды в BizPride — это регулярные встречи в фокус-группах (до 10 человек). Под руководством опытного модератора резиденты разбирают реальные бизнес-кейсы, ставят цели и делятся опытом. <a href="/about/" style="color: var(--red); text-decoration: underline;">Узнать больше о наших форматах</a>.</p>
                 </div>
                 <div class="faq-item" style="background: var(--bg-card); padding: 24px; border-radius: 16px; border: 1px solid var(--border);">
                     <h3 style="font-size: 20px; font-weight: 700; color: var(--red); margin-bottom: 12px;">Чем Бизнес-Бранч отличается от Совета Директоров?</h3>
-                    <p style="font-size: 16px; color: var(--text-light); line-height: 1.5;">Бизнес-Бранчи (каждую субботу) — это открытый формат делового общения, нетворкинга и знакомства с клубом. Совет Директоров (каждый вторник) — это глубокая проработка бизнес-процессов только для резидентов. Смотрите расписание на странице <a href="/events" style="color: var(--red); text-decoration: underline;">Мероприятия</a>.</p>
+                    <p style="font-size: 16px; color: var(--text-light); line-height: 1.5;">Бизнес-Бранчи (каждую субботу) — это открытый формат делового общения, нетворкинга и знакомства с клубом. Совет Директоров (каждый вторник) — это глубокая проработка бизнес-процессов только для резидентов. Смотрите расписание на странице <a href="/events/" style="color: var(--red); text-decoration: underline;">Мероприятия</a>.</p>
                 </div>
             </div>
         </div>

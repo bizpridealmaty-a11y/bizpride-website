@@ -9,6 +9,12 @@ const currentSlug = Astro.url.pathname;
 // значит это видео-пост → отдаём VideoObject для видео-сниппетов в Google.
 const ytMatch = (frontmatter.image || '').match(/\/vi\/([A-Za-z0-9_-]+)\//);
 const ytId = ytMatch ? ytMatch[1] : null;
+
+const MONTHS_RU = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+const parsedDate = new Date(frontmatter.date);
+const displayDate = frontmatter.date && !isNaN(parsedDate.getTime())
+    ? `${parsedDate.getUTCDate()} ${MONTHS_RU[parsedDate.getUTCMonth()]} ${parsedDate.getUTCFullYear()}`
+    : (frontmatter.date || '');
 ---
 
 <Layout
@@ -73,7 +79,7 @@ const ytId = ytMatch ? ytMatch[1] : null;
             <a href="/blog/" class="bp-back-btn">&larr; В Базу Знаний</a>
             <div class="bp-meta">
                 <span class="bp-category">{frontmatter.category}</span>
-                <span class="bp-date">{frontmatter.date}</span>
+                <span class="bp-date">{displayDate}</span>
                 <span class="bp-readtime">{frontmatter.readTime}</span>
             </div>
             <h1 class="bp-title">{frontmatter.title}</h1>
