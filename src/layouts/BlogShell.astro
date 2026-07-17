@@ -28,6 +28,11 @@ interface Props {
 const { title, description = '', category = '', date = '', readTime = '', image = '', ogImage } = Astro.props;
 const currentSlug = Astro.url.pathname;
 
+// В <title> у части статей намеренно дописан SEO-хвост через « | » («… | BizPride»,
+// «… | Выставки, Форумы, Бранчи»). В <title> он нужен, а на обложке в качестве H1
+// читается как мусор, поэтому в заголовок берём часть до первой вертикальной черты.
+const heading = title.split(' | ')[0].trim();
+
 // Видео-пост: обложка — превью YouTube → отдаём VideoObject для видео-сниппетов.
 const ytMatch = (image || '').match(/\/vi\/([A-Za-z0-9_-]+)\//);
 const ytId = ytMatch ? ytMatch[1] : null;
@@ -95,13 +100,13 @@ const breadcrumbSchema = {
 
     <!-- ОБЛОЖКА НА ВСЮ ШИРИНУ -->
     <section class:list={['bp-hero', { 'no-img': !image }]}>
-        {image && <img class="bp-hero-img" src={image} alt={title} fetchpriority="high" />}
+        {image && <img class="bp-hero-img" src={image} alt={heading} fetchpriority="high" />}
         <div class="bp-hero-in">
             <nav class="bp-crumbs" aria-label="Хлебные крошки">
                 <a href="/">Главная</a><span>/</span><a href="/blog/">Блог</a>
             </nav>
             {category && <span class="bp-chip">{category}</span>}
-            <h1 class="bp-h1">{title}</h1>
+            <h1 class="bp-h1">{heading}</h1>
             {description && <p class="bp-lead">{description}</p>}
             <div class="bp-meta">
                 <span>BizPride Club</span>
@@ -184,7 +189,14 @@ const breadcrumbSchema = {
     .bp-content h3{color:#fff;font-size:19px;font-weight:700;margin:30px 0 10px}
     .bp-content p{margin:0 0 17px}
     .bp-content strong{color:#fff}
-    .bp-content a{color:#e05252}
+    /* В статьях у ссылок стоит ИНЛАЙНОВЫЙ `color: var(--red)` (#c42b2b) — он перебивает
+       класс, а на чёрном фоне даёт контраст 3.5:1 при норме WCAG AA 4.5:1.
+       Переопределить саму переменную нельзя: тем же `var(--red)` в статьях залиты ФОНЫ
+       кнопок, и её осветление ухудшило бы белый текст на них.
+       Поэтому !important — но ТОЛЬКО для ссылок без собственной заливки: иначе правило
+       перекрашивает и текст CTA-кнопок (`background:var(--red); color:#fff`),
+       давая красное по красному. Файлы статей не трогаем. */
+    .bp-content a:not([style*="background"]){color:#e05252 !important}
     .bp-content blockquote{border-left:4px solid var(--brand,#c42b2b);padding:8px 20px;
         margin:26px 0;background:rgba(196,43,43,.08);border-radius:0 12px 12px 0}
     .bp-content .lead{font-size:19px;color:rgba(255,255,255,.92)}
