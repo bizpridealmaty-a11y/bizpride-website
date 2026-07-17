@@ -21,6 +21,13 @@ const residentAsset = (publicPath: string): ImageMetadata | undefined => {
     return residentImages[`/src/assets/residents/${filename}`]?.default;
 };
 
+// Стопка аватарок в карточке «120+ Резидентов» — реальные резиденты, а не сток.
+// Раньше здесь стояли три чужих лица с Unsplash, что выдавало сток за наших людей.
+const avatarStack = residents
+    .map((r) => ({ name: r.name, asset: residentAsset(r.image) }))
+    .filter((r): r is { name: string; asset: ImageMetadata } => Boolean(r.asset))
+    .slice(0, 3);
+
 // ═══ DYNAMIC CALENDAR GENERATION ═══
 const MONTH_NAMES = ['ЯНВАРЬ','ФЕВРАЛЬ','МАРТ','АПРЕЛЬ','МАЙ','ИЮНЬ','ИЮЛЬ','АВГУСТ','СЕНТЯБРЬ','ОКТЯБРЬ','НОЯБРЬ','ДЕКАБРЬ'];
 
@@ -436,9 +443,7 @@ const name2 = MONTH_NAMES[month2.month];
             font-weight: 700;
         }
         
-        .hm-avatar:first-child { margin-left: 0; background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64'); }
-        .hm-avatar:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64'); }
-        .hm-avatar:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&h=64'); }
+        .hm-avatar:first-child { margin-left: 0; }
 
         .hm-btn-card {
             font-size: 12px;
@@ -636,9 +641,12 @@ const name2 = MONTH_NAMES[month2.month];
                         <div class="hm-card-desc">Топовые предприниматели и эксперты из разных сфер бизнеса.</div>
                         <div class="hm-card-stats">
                             <div class="hm-avatar-group">
-                                <div class="hm-avatar"></div>
-                                <div class="hm-avatar"></div>
-                                <div class="hm-avatar"></div>
+                                {avatarStack.map((r) => (
+                                    // encodeURI обязателен: в именах файлов резидентов есть пробелы
+                                    // («Дмитрий Балюцкий.webp»), а в url() без экранирования пробел
+                                    // обрывает значение и правило молча отбрасывается.
+                                    <div class="hm-avatar" style={`background-image: url("${encodeURI(r.asset.src)}")`} title={r.name}></div>
+                                ))}
                                 <div class="hm-avatar">+99</div>
                             </div>
                             <a href="/residents/" class="hm-btn-card">Все резиденты <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
