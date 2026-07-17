@@ -1,0 +1,147 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+// FAQPage schema mirrors the visible FAQ section at the bottom
+// (Google requires schema text to match what the user sees).
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Кто ведёт трекинг в BizPride?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Модератор потока — Дмитрий Микрюков. Он ведёт группу из 10 человек на протяжении всех трёх месяцев: держит регламент сессий, следит за движением каждого участника к его цели и возвращает фокус, когда операционка начинает съедать квартал."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Сколько стоит участие в потоке трекинга?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Для резидентов клуба участие входит в членство. Для внешних участников стоимость трёхмесячного потока — 100 000 ₸."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Когда проходят трекинг-сессии?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "По четвергам с 08:00 до 13:00 — утренний блок до начала рабочего дня основной команды. Расписание сессий на ближайшие недели видно в календаре мероприятий клуба."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Чем трекинг отличается от мастермайнда?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Мастермайнд разбирает кейсы по запросу: сегодня одну проблему, через неделю другую. Трекинг — это движение к одной цели три месяца подряд: вы фиксируете цель на квартал, и каждая сессия сверяет прогресс именно по ней. Форматы дополняют друг друга."
+            }
+        }
+    ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<BlogLayout
+    category="Управление и команда"
+    readTime="5 МИН ЧТЕНИЯ"
+    title="Трекинг для предпринимателей: трёхмесячный поток BizPride"
+    description="Три месяца системной работы над целью: сессии по четвергам 08:00–13:00, группа 10 человек, модератор Дмитрий Микрюков."
+    pubDate="2026-07-17T12:00:00+05:00"
+    image="/blog-covers/treking-dlya-predprinimatelej.jpg"
+>
+    <p class="lead" style="font-size: 22px; color: #fff; font-weight: 600; margin-bottom: 40px;">
+        Большинство предпринимателей знают, что делать. Проблема в другом: между «знаю» и «сделал» стоит операционка, которая съедает квартал за кварталом. Трекинг — это формат, который превращает цель в ритм: три месяца, одна цель, регулярные сессии и группа, перед которой вы отчитываетесь о прогрессе.
+    </p>
+
+    <h2>Что такое трекинг</h2>
+    <p>Трекинг — это методология сопровождения бизнеса к измеримой цели. Вы формулируете, куда должна прийти компания за квартал, раскладываете путь на шаги и двигаетесь короткими итерациями. На каждой сессии — сверка: что сделано, что сработало, что мешает, что берёте в работу до следующей встречи.</p>
+    <p>Ключевая фигура — модератор (трекер). Он не консультант, который «знает ваш бизнес лучше вас»: его работа — держать фокус на цели, задавать неудобные вопросы и не давать неделям растворяться в текучке.</p>
+
+    <h2>Как устроен поток в BizPride</h2>
+    <table style="width: 100%; border-collapse: collapse; margin: 26px 0; font-size: 15px;">
+        <tbody>
+            <tr>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.85); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.08); width: 40%;">Длительность</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">3 месяца (один поток)</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.85); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.08);">Сессии</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">По четвергам, 08:00–13:00</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.85); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.08);">Группа</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">10 человек</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.85); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.08);">Модератор</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">Дмитрий Микрюков</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.85); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.08);">Место</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">Студия BizPride, пр. Бухар-Жырау 33 (БЦ «Женис»)</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.85); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.08);">Для резидентов</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">Входит в членство</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.85); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.08);">Для внешних участников</td>
+                <td style="padding: 12px 16px; color: #fff; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.08);">100 000 ₸ за поток</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Как проходит сессия</h2>
+    <p>Сессии идут утром — с 08:00 до 13:00, до того как день съест внимание. Каждый участник по очереди проходит один и тот же цикл:</p>
+    <div style="margin: 32px 0;">
+        <div style="display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <div style="font-size: 26px; font-weight: 900; color: var(--red); line-height: 1;">1</div>
+            <div>
+                <h3 style="margin: 0 0 6px; color: #fff; font-size: 18px;">Сверка с целью</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75);">Что обещал на прошлой сессии — что сделано. Прогресс измеряется относительно цели квартала, а не ощущений «вроде двигаемся».</p>
+            </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <div style="font-size: 26px; font-weight: 900; color: var(--red); line-height: 1;">2</div>
+            <div>
+                <h3 style="margin: 0 0 6px; color: #fff; font-size: 18px;">Разбор узкого места</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75);">Что тормозит движение. Модератор и группа помогают отличить настоящее ограничение от привычного «не хватает времени».</p>
+            </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 20px 0;">
+            <div style="font-size: 26px; font-weight: 900; color: var(--red); line-height: 1;">3</div>
+            <div>
+                <h3 style="margin: 0 0 6px; color: #fff; font-size: 18px;">Обязательства до следующей сессии</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75);">Конкретные шаги с дедлайнами — озвученные вслух перед группой. На следующей сессии с них и начнётся сверка.</p>
+            </div>
+        </div>
+    </div>
+    <p>Так за три месяца выстраивается ритм: цель перестаёт быть декларацией и превращается в последовательность выполненных шагов, за которой следят модератор и ещё девять предпринимателей.</p>
+
+    <h2>Кому подходит поток</h2>
+    <ul>
+        <li><strong>Собственнику с ясной целью на квартал</strong> — выйти на новый объём продаж, запустить направление, собрать команду: трекинг даёт ритм исполнения;</li>
+        <li><strong>Тому, кто «всё знает, но не делает»</strong> — внешняя отчётность перед группой работает там, где не работает самодисциплина;</li>
+        <li><strong>Тому, кто уже ходит на мастермайнды</strong> — форматы дополняют друг друга: <a href="/blog/sovet-direktorov-bizpride/">Совет директоров</a> решает текущие кейсы, трекинг ведёт к квартальной цели, а <a href="/blog/biznes-razbor-bizpride/">бизнес-разбор</a> подключается, когда упираешься в конкретную проблему.</li>
+    </ul>
+
+    <h2>Частые вопросы</h2>
+    <h3>Кто ведёт трекинг?</h3>
+    <p>Модератор потока — Дмитрий Микрюков. Он ведёт группу из 10 человек все три месяца: держит регламент, следит за движением каждого к цели и возвращает фокус, когда операционка начинает съедать квартал.</p>
+    <h3>Сколько стоит участие?</h3>
+    <p>Резидентам клуба — входит в членство. Внешним участникам — 100 000 ₸ за трёхмесячный поток.</p>
+    <h3>Когда проходят сессии?</h3>
+    <p>По четвергам с 08:00 до 13:00. Ближайшие даты — в <a href="/events/">календаре мероприятий клуба</a>.</p>
+    <h3>Чем трекинг отличается от мастермайнда?</h3>
+    <p>Мастермайнд разбирает кейсы по запросу — сегодня одну проблему, через неделю другую. Трекинг — движение к одной цели три месяца подряд: каждая сессия сверяет прогресс именно по ней.</p>
+
+    <div style="margin-top: 48px; padding: 32px; background: linear-gradient(135deg, rgba(196,43,43,0.12), rgba(196,43,43,0.04)); border: 1px solid rgba(196,43,43,0.3); border-radius: 16px; text-align: center;">
+        <h3 style="margin: 0 0 10px; color: #fff; font-size: 22px;">Хотите в ближайший поток?</h3>
+        <p style="margin: 0 0 24px; color: rgba(255,255,255,0.75);">Напишите нам — расскажем про даты старта, состав группы и условия участия. Резидентам — в рамках членства, внешним — 100 000 ₸.</p>
+        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B2%20%D0%BF%D0%BE%D1%82%D0%BE%D0%BA%20%D1%82%D1%80%D0%B5%D0%BA%D0%B8%D0%BD%D0%B3%D0%B0%20BizPride" target="_blank" rel="noopener" style="display: inline-block; padding: 16px 40px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Написать в WhatsApp</a>
+    </div>
+</BlogLayout>

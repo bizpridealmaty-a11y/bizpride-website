@@ -1,0 +1,155 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+// FAQPage schema mirrors the visible FAQ section at the bottom
+// (Google requires schema text to match what the user sees).
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Кто может вынести вопрос на бизнес-разбор?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Резиденты клуба BizPride. Резидент формулирует конкретный вопрос или проблему, и под неё собирается группа разбора. Знакомство с клубом для новых участников начинается с субботнего бизнес-бранча (разовое посещение — 10 000 ₸)."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Сколько длится бизнес-разбор и где он проходит?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Три часа. Встречи проходят на студии BizPride по адресу пр. Бухар-Жырау 33 (БЦ «Женис»), как правило по четвергам — по мере поступления кейсов от резидентов."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Как подбираются участники разбора?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Под задачу. Из резидентов клуба приглашаются те, у кого есть полномочия, знания и прожитый опыт именно в теме вопроса: если разбирается стройка отдела продаж — зовут тех, кто уже строил отделы продаж; если франшиза — тех, кто упаковывал и покупал франшизы."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Чем бизнес-разбор отличается от мастермайнда?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "На мастермайнде (Совете директоров) постоянная группа каждую неделю разбирает 2–3 кейса разных участников. Бизнес-разбор устроен наоборот: одна проблема — и группа, собранная специально под неё. Три часа работы только над вашим вопросом."
+            }
+        }
+    ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<BlogLayout
+    category="Бизнес-клуб"
+    readTime="5 МИН ЧТЕНИЯ"
+    title="Бизнес-разбор в BizPride: как клуб решает одну проблему за 3 часа"
+    description="Формат, в котором под конкретный вопрос резидента собирается группа с нужной экспертизой: студия BizPride, 3 часа, решения на выходе."
+    pubDate="2026-07-17T11:00:00+05:00"
+    image="/blog-covers/biznes-razbor-bizpride.jpg"
+>
+    <p class="lead" style="font-size: 22px; color: #fff; font-weight: 600; margin-bottom: 40px;">
+        Мастермайнд отвечает на вопрос «что болит у каждого в группе». Бизнес-разбор — на вопрос «как решить именно эту боль». Это самый концентрированный формат BizPride: три часа, одна проблема и группа резидентов, собранная специально под неё.
+    </p>
+
+    <h2>Как это работает</h2>
+    <div style="margin: 32px 0;">
+        <div style="display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <div style="font-size: 26px; font-weight: 900; color: var(--red); line-height: 1;">1</div>
+            <div>
+                <h3 style="margin: 0 0 6px; color: #fff; font-size: 18px;">Резидент формулирует вопрос</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75);">Не «хочу расти», а точная проблематика: что именно не работает, какое решение нужно принять, что мешает. Чем конкретнее вопрос — тем полезнее разбор.</p>
+            </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <div style="font-size: 26px; font-weight: 900; color: var(--red); line-height: 1;">2</div>
+            <div>
+                <h3 style="margin: 0 0 6px; color: #fff; font-size: 18px;">Под вопрос собирается группа</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75);">Это главная особенность формата. Из резидентов клуба приглашаются те, кто обладает полномочиями, знаниями и прожитым опытом именно в этой теме. Не «кто свободен в четверг», а «кто уже решал такую задачу».</p>
+            </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <div style="font-size: 26px; font-weight: 900; color: var(--red); line-height: 1;">3</div>
+            <div>
+                <h3 style="margin: 0 0 6px; color: #fff; font-size: 18px;">Три часа работы на студии</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75);">Встреча проходит на студии BizPride (пр. Бухар-Жырау 33, БЦ «Женис»), как правило по четвергам. Три часа группа работает только над одним вопросом — без переключений между кейсами.</p>
+            </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 20px 0;">
+            <div style="font-size: 26px; font-weight: 900; color: var(--red); line-height: 1;">4</div>
+            <div>
+                <h3 style="margin: 0 0 6px; color: #fff; font-size: 18px;">Решения на выходе</h3>
+                <p style="margin: 0; color: rgba(255,255,255,0.75);">Автор вопроса уходит с вариантами решения от людей, которые уже проходили его ситуацию, — и с контактами тех, кто готов помочь на следующих шагах.</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>Почему подбор участников решает</h2>
+    <p>В обычной дискуссии мнение о вашей проблеме высказывают все, кто оказался рядом. В бизнес-разборе нужные люди собираются намеренно: у каждого приглашённого есть либо полномочия (он принимает такие решения в своей компании каждый день), либо экспертиза (он профессионально занимается этой сферой), либо прожитый кейс (он уже набил эти шишки).</p>
+    <p>Поэтому три часа разбора заменяют недели консультаций: вы разговариваете не с теоретиками, а с собственниками, которые отвечали за такие же решения своими деньгами.</p>
+
+    <h2>Какие вопросы подходят для разбора</h2>
+    <p>Типичные направления, с которыми резиденты выходят на разбор:</p>
+    <ul>
+        <li><strong>Продажи:</strong> отдел не выполняет план, непонятно — менять людей, систему или продукт;</li>
+        <li><strong>Команда:</strong> найм ключевого руководителя, конфликт совладельцев, передача операционки;</li>
+        <li><strong>Масштабирование:</strong> открывать ли второй город, брать ли крупного клиента, который «съест» все мощности;</li>
+        <li><strong>Деньги:</strong> кассовые разрывы, ценообразование, инвестиции в новое направление.</li>
+    </ul>
+    <p>Общий признак — на кону конкретное решение с ценой ошибки. Если вопрос звучит как «хочу поговорить о стратегии», его сначала стоит превратить в задачу — с этим помогает <a href="/blog/sovet-direktorov-bizpride/">мастермайнд по вторникам</a>.</p>
+
+    <h2>Мастермайнд vs бизнес-разбор</h2>
+    <table style="width: 100%; border-collapse: collapse; margin: 26px 0; font-size: 15px;">
+        <thead>
+            <tr>
+                <th style="padding: 12px 16px; text-align: left; color: #fff; background: rgba(255,255,255,0.05); font-weight: 700;">Параметр</th>
+                <th style="padding: 12px 16px; text-align: left; color: #fff; background: rgba(255,255,255,0.05); font-weight: 700;">Совет директоров</th>
+                <th style="padding: 12px 16px; text-align: left; color: #fff; background: rgba(255,255,255,0.05); font-weight: 700;">Бизнес-разбор</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.08);">Группа</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">Постоянная, 10–15 человек</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">Собирается под кейс</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.08);">Кейсов за встречу</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">2–3</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">Один</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.08);">Ритм</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">Каждый вторник, 09:00–13:00</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">По четвергам, по мере кейсов, 3 часа</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.85); border-top: 1px solid rgba(255,255,255,0.08);">Результат</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">План действий по каждому кейсу</td>
+                <td style="padding: 12px 16px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.08);">Варианты решения одной проблемы + контакты</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Третий рабочий формат клуба — <a href="/blog/treking-dlya-predprinimatelej/">трёхмесячный поток трекинга</a>: он отвечает не за решение отдельной проблемы, а за системное движение к цели.</p>
+
+    <h2>Частые вопросы</h2>
+    <h3>Кто может вынести вопрос на разбор?</h3>
+    <p>Резиденты клуба. Знакомство с BizPride для новых участников начинается с <a href="/business-brunch/">субботнего бизнес-бранча</a> (разовое посещение — 10 000 ₸).</p>
+    <h3>Сколько длится и где проходит?</h3>
+    <p>Три часа, на студии BizPride (пр. Бухар-Жырау 33, БЦ «Женис»), как правило по четвергам.</p>
+    <h3>Как подбираются участники?</h3>
+    <p>Под задачу: приглашаются резиденты с полномочиями, знаниями и прожитым опытом в теме вопроса.</p>
+    <h3>Чем разбор отличается от мастермайнда?</h3>
+    <p>На <a href="/blog/sovet-direktorov-bizpride/">мастермайнде</a> постоянная группа разбирает 2–3 кейса. В разборе — одна проблема и группа, собранная специально под неё.</p>
+
+    <div style="margin-top: 48px; padding: 32px; background: linear-gradient(135deg, rgba(196,43,43,0.12), rgba(196,43,43,0.04)); border: 1px solid rgba(196,43,43,0.3); border-radius: 16px; text-align: center;">
+        <h3 style="margin: 0 0 10px; color: #fff; font-size: 22px;">Есть вопрос, который давно не решается?</h3>
+        <p style="margin: 0 0 24px; color: rgba(255,255,255,0.75);">Напишите нам — расскажем, как проходит бизнес-разбор, и подскажем, с чего начать знакомство с клубом.</p>
+        <a href="https://wa.me/77070357777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%20%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%20BizPride" target="_blank" rel="noopener" style="display: inline-block; padding: 16px 40px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px;">Написать в WhatsApp</a>
+    </div>
+</BlogLayout>

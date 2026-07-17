@@ -1,5 +1,26 @@
 [
   {
+    "slug": "/blog/sovet-direktorov-bizpride",
+    "title": "Совет директоров BizPride: как проходят мастермайнд-встречи",
+    "description": "Каждый вторник 10–15 собственников разбирают 2–3 реальных кейса под модерацией основателя клуба. Регламент, правила и как попасть.",
+    "pubDate": "2026-07-17T10:00:00+05:00",
+    "image": "/blog-covers/sovet-direktorov-bizpride.jpg"
+  },
+  {
+    "slug": "/blog/biznes-razbor-bizpride",
+    "title": "Бизнес-разбор в BizPride: как клуб решает одну проблему за 3 часа",
+    "description": "Формат, в котором под конкретный вопрос резидента собирается группа с нужной экспертизой: студия BizPride, 3 часа, решения на выходе.",
+    "pubDate": "2026-07-17T11:00:00+05:00",
+    "image": "/blog-covers/biznes-razbor-bizpride.jpg"
+  },
+  {
+    "slug": "/blog/treking-dlya-predprinimatelej",
+    "title": "Трекинг для предпринимателей: трёхмесячный поток BizPride",
+    "description": "Три месяца системной работы над целью: сессии по четвергам 08:00–13:00, группа 10 человек, модератор Дмитрий Микрюков.",
+    "pubDate": "2026-07-17T12:00:00+05:00",
+    "image": "/blog-covers/treking-dlya-predprinimatelej.jpg"
+  },
+  {
     "slug": "/blog/delovaya-igra-dlya-komandy",
     "title": "Деловые игры для бизнеса в Алматы — Cashflow и стратсессии",
     "description": "Деловые игры для предпринимателей и команд: Cashflow, «Ярд», стратсессии. Корпоративный формат от 220 000 ₸.",
