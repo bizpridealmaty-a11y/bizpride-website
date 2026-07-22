@@ -595,13 +595,71 @@ const name2 = MONTH_NAMES[month2.month];
             .hm-event-date { font-size: 28px; }
             .hm-btn-card { font-size: 12px; }
         }
+
+        /* ── ВИДЕО-ПОРТРЕТ В HERO ── */
+        .hm-bg-video {
+            display: none;
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center top;
+        }
+        .hm-bg-layer.video-on .hm-bg-video { display: block; }
+        .hm-bg-layer.video-on .hm-bg-image { visibility: hidden; }
+        .hero-mockup-container { min-height: 86vh; }
+
+        /* ── КАРТОЧКИ КЛУБА ВТОРЫМ ЭКРАНОМ ── */
+        .hm-cards-section { background: #050505; padding: 64px 24px 80px; font-family: 'Montserrat', sans-serif; }
+        .hm-cards-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+        .hm-cards-grid .hm-card { margin-bottom: 0; }
+        .hm-cards-grid .hm-card:nth-child(1),
+        .hm-cards-grid .hm-card:nth-child(2),
+        .hm-cards-grid .hm-card:nth-child(3) { transform: none; }
+        .hm-cards-grid .hm-card:hover { transform: translateY(-6px); z-index: 2; background: rgba(20,20,20,0.95); box-shadow: 0 16px 44px rgba(0,0,0,0.45); }
+        @media (max-width: 900px) { .hm-cards-grid { grid-template-columns: 1fr; } }
 </style>
 
     <div class="hero-mockup-wrapper" id="home">
         <!-- Background Layer (Moved outside container for true Full Width) -->
-        <div class="hm-bg-layer">
+        <div class="hm-bg-layer" id="hm-bg-layer">
             <Image src={founderImg} alt="Основатель BizPride — Дмитрий Тимошевский" class="hm-bg-image" widths={[800, 1280, 1920]} sizes="100vw" quality={82} loading="eager" decoding="async" />
             <script is:inline>{/* Astro Image: above-fold hero — generates optimized variants + responsive srcset */}</script>
+            <video id="hm-video" class="hm-bg-video" muted loop playsinline poster="/founder-loop-poster.jpg" aria-hidden="true"></video>
+            <script is:inline>
+                // Живой портрет: источники подключаются только на десктопе и только если
+                // пользователь не просил убрать анимацию — на телефонах видео даже не скачивается,
+                // остаётся прежнее статичное фото.
+                (function () {
+                    var tries = 0;
+                    function init() {
+                        // при prerender/фоновой вкладке ширина бывает 0 — ждём реальный layout
+                        var w = window.innerWidth || document.documentElement.clientWidth;
+                        if (!w) {
+                            if (tries++ < 25) { setTimeout(init, 200); }
+                            else {
+                                // вкладка в фоне: пробуем ещё раз, когда она оживёт
+                                window.addEventListener('resize', init, { once: true });
+                                document.addEventListener('visibilitychange', init, { once: true });
+                            }
+                            return;
+                        }
+                        if (w < 769) return;
+                        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                        var v = document.getElementById('hm-video');
+                        if (!v || v.querySelector('source')) return;
+                        [['founder-loop.webm', 'video/webm'], ['founder-loop.mp4', 'video/mp4']].forEach(function (s) {
+                            var el = document.createElement('source');
+                            el.src = '/' + s[0]; el.type = s[1];
+                            v.appendChild(el);
+                        });
+                        v.load();
+                        var p = v.play();
+                        if (p) p.then(function () {
+                            document.getElementById('hm-bg-layer').classList.add('video-on');
+                        }).catch(function () {});
+                    }
+                    init();
+                })();
+            </script>
             <div class="hm-overlay"></div>
         </div>
         <div class="hero-mockup-container">
@@ -619,9 +677,6 @@ const name2 = MONTH_NAMES[month2.month];
                         <span class="visually-hidden"> — бизнес-клуб для предпринимателей в Алматы</span>
                     </h1>
                     <div class="hm-subtitle">Открытое сообщество лидеров</div>
-                    <p class="hm-description">
-                        Премиальное пространство для нетворкинга, обмена опытом и развития вашего бизнеса. Объединяем сильнейших предпринимателей страны для создания будущего.
-                    </p>
                     <div class="hm-actions">
                         <a href="/#membership" class="hm-btn-primary">
                             Стать резидентом
@@ -629,65 +684,10 @@ const name2 = MONTH_NAMES[month2.month];
                     </div>
                 </div>
 
-                <!-- Right Column -->
-                <div class="hm-right-col">
-                    <!-- Card 1 -->
-                    <div class="hm-card">
-                        <div class="hm-decorative-line"></div>
-                        <div class="hm-card-header">
-                            <div class="hm-card-title">120+ Резидентов</div>
-                            <div class="hm-card-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/></svg></div>
-                        </div>
-                        <div class="hm-card-desc">Топовые предприниматели и эксперты из разных сфер бизнеса.</div>
-                        <div class="hm-card-stats">
-                            <div class="hm-avatar-group">
-                                {avatarStack.map((r) => (
-                                    // encodeURI обязателен: в именах файлов резидентов есть пробелы
-                                    // («Дмитрий Балюцкий.webp»), а в url() без экранирования пробел
-                                    // обрывает значение и правило молча отбрасывается.
-                                    <div class="hm-avatar" style={`background-image: url("${encodeURI(r.asset.src)}")`} title={r.name}></div>
-                                ))}
-                                <div class="hm-avatar">+99</div>
-                            </div>
-                            <a href="/residents/" class="hm-btn-card">Все резиденты <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="hm-card">
-                        <div class="hm-card-header">
-                            <div>
-                                <span class="hm-event-month">{MONTH_NAMES[currentMonth][0] + MONTH_NAMES[currentMonth].slice(1).toLowerCase()} {currentYear}</span>
-                                <div class="hm-card-title highlight">Ближайшие события</div>
-                            </div>
-                            <div class="hm-card-icon"><svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z" fill="currentColor"/></svg></div>
-                        </div>
-                        <div style="display: flex; gap: 20px; margin-top: 10px;">
-                            <div>
-                                <div class="hm-event-date">12</div>
-                                <div class="hm-stat-label">Networking</div>
-                            </div>
-                            <div>
-                                <div class="hm-event-date">24</div>
-                                <div class="hm-stat-label">Business Talk</div>
-                            </div>
-                        </div>
-                        <a href="/events/" class="hm-btn-card" style="margin-top: 15px;">Календарь встреч <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="hm-card">
-                        <div class="hm-card-header">
-                            <div class="hm-card-title">Форматы встреч</div>
-                            <div class="hm-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg></div>
-                        </div>
-                        <div class="hm-card-desc">Бизнес-завтраки, форумы, закрытые ужины и спортивные мероприятия.</div>
-                        <a href="/#values" class="hm-btn-card">Узнать подробнее <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
-                    </div>
-                </div>
             </div>
 
-            <!-- Stats Bar (Animated Marquee) -->
+
+            <!-- Stats Bar            <!-- Stats Bar (Animated Marquee) -->
             <div class="hm-stats-bar-wrapper">
                 <div class="hm-stats-marquee">
                     <!-- Set 1 -->
@@ -753,6 +753,64 @@ const name2 = MONTH_NAMES[month2.month];
             </div>
         </div>
     </div>
+
+    <!-- CLUB CARDS: резиденты / события / форматы (вынесены из hero при переходе на видео-минимализм) -->
+    <section class="hm-cards-section" aria-label="Клуб в цифрах">
+        <div class="hm-cards-grid">
+            <div class="hm-card">
+                        <div class="hm-decorative-line"></div>
+                        <div class="hm-card-header">
+                            <div class="hm-card-title">120+ Резидентов</div>
+                            <div class="hm-card-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/></svg></div>
+                        </div>
+                        <div class="hm-card-desc">Топовые предприниматели и эксперты из разных сфер бизнеса.</div>
+                        <div class="hm-card-stats">
+                            <div class="hm-avatar-group">
+                                {avatarStack.map((r) => (
+                                    // encodeURI обязателен: в именах файлов резидентов есть пробелы
+                                    // («Дмитрий Балюцкий.webp»), а в url() без экранирования пробел
+                                    // обрывает значение и правило молча отбрасывается.
+                                    <div class="hm-avatar" style={`background-image: url("${encodeURI(r.asset.src)}")`} title={r.name}></div>
+                                ))}
+                                <div class="hm-avatar">+99</div>
+                            </div>
+                            <a href="/residents/" class="hm-btn-card">Все резиденты <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="hm-card">
+                        <div class="hm-card-header">
+                            <div>
+                                <span class="hm-event-month">{MONTH_NAMES[currentMonth][0] + MONTH_NAMES[currentMonth].slice(1).toLowerCase()} {currentYear}</span>
+                                <div class="hm-card-title highlight">Ближайшие события</div>
+                            </div>
+                            <div class="hm-card-icon"><svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z" fill="currentColor"/></svg></div>
+                        </div>
+                        <div style="display: flex; gap: 20px; margin-top: 10px;">
+                            <div>
+                                <div class="hm-event-date">12</div>
+                                <div class="hm-stat-label">Networking</div>
+                            </div>
+                            <div>
+                                <div class="hm-event-date">24</div>
+                                <div class="hm-stat-label">Business Talk</div>
+                            </div>
+                        </div>
+                        <a href="/events/" class="hm-btn-card" style="margin-top: 15px;">Календарь встреч <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="hm-card">
+                        <div class="hm-card-header">
+                            <div class="hm-card-title">Форматы встреч</div>
+                            <div class="hm-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg></div>
+                        </div>
+                        <div class="hm-card-desc">Бизнес-завтраки, форумы, закрытые ужины и спортивные мероприятия.</div>
+                        <a href="/#values" class="hm-btn-card">Узнать подробнее <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+                    </div>
+        </div>
+    </section>
 
     <!-- VALUES -->
     <section class="section-dark" id="values" style="background: var(--bg-secondary);">
